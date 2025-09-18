@@ -1,0 +1,17 @@
+@mixin PositionBox($d: flex, $jc: center, $ai: center, $fd: row) {
+    display: $d;
+    justify-content: $jc;
+    align-items: $ai;
+    flex-direction: $fd
+}
+
+@mixin FirstSection($pt: 10px, $pb: 10px) {
+    box-sizing: border-box;
+    padding: $pt 5% $pb 5%;
+    max-width: 1920px;
+}
+
+@mixin WidthAndHeight($w: 100%, $h: 100%) {
+    width: $w;
+    height: $h;
+}
