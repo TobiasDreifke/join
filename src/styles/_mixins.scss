@@ -5,12 +5,6 @@
     flex-direction: $fd
 }
 
-@mixin FirstSection($pt: 10px, $pb: 10px) {
-    box-sizing: border-box;
-    padding: $pt 5% $pb 5%;
-    max-width: 1920px;
-}
-
 @mixin WidthAndHeight($w: 100%, $h: 100%) {
     width: $w;
     height: $h;
