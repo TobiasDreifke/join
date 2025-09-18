@@ -1,6 +1,7 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { Sidebar } from './shared/sidebar/sidebar';
+import { ContactService } from './services/contact-service';
 
 @Component({
   selector: 'app-root',
@@ -10,4 +11,10 @@ import { Sidebar } from './shared/sidebar/sidebar';
 })
 export class App {
   protected readonly title = signal('join');
+
+  contactData = inject(ContactService);
+
+  constructor(){
+    console.log(this.contactData.contactsList)
+  }
 }
