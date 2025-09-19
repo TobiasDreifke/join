@@ -37,7 +37,7 @@
                     <p>Cancel</p><img src="assets/icons/button_x_check/button_x.png">
                 </a>
                 <div class="button_w_background">
-                    <input type="submit" value="Create contact">
+                    <input type="submit" [disabled]="!htmlinput.name" value="Create contact">
                     <img src="assets/icons/button_x_check/button_check.png">
                 </div>
             </div>
