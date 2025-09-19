@@ -4,11 +4,15 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 30px 50px 30px 100px;
+    padding: 25px 50px 25px 100px;
     background-color: $color_white;
     position: relative;
     z-index: 10;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+
+    >p:first-of-type {
+        font-size: 20px;
+    }
 
     >div:first-of-type {
         display: flex;
@@ -46,6 +50,7 @@ header {
     align-items: center;
     transition: all 125ms ease;
     font-weight: bold;
+    user-select: none;
 
     &:hover {
         background-color: $color_highlight_hover;
@@ -53,10 +58,24 @@ header {
 }
 
 .user_menu {
-    display: block;
+    display: flex;
+    flex-direction: column;
     position: absolute;
     top: 100px;
-    right: 0;
+    right: 30px;
+    padding: 12px;
+    background-color: $color_secondary;
+    border-radius: 20px 0 20px 20px;
+    
+    a{
+        color: $color_font_user_menu;
+        cursor: pointer;
+        padding: 16px;
+
+        &:hover {
+            background-color: $color_hover_user_menu;
+        }
+    }
 }
 
 .not_visible {
