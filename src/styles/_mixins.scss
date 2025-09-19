@@ -24,6 +24,8 @@
     background-color: transparent;
     color: $border-color;
     transition: all 250ms ease;
+    padding: 0.75rem 1.5rem;
+    cursor: pointer;
 
     >p {
         margin: 0;
@@ -61,6 +63,8 @@
     justify-content: center;
     gap: $gap;
     border-radius: $radius;
+    padding: 0.75rem 1.5rem;
+    cursor: pointer;
 
     background-color: $bg-color;
     border: none;
