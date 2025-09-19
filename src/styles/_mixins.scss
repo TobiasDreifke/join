@@ -1,3 +1,6 @@
+// @import "./src/styles/_variables.scss";
+@use 'variables' as*;
+
 @mixin PositionBox($d: flex, $jc: center, $ai: center, $fd: row) {
     display: $d;
     justify-content: $jc;
@@ -8,4 +11,78 @@
 @mixin WidthAndHeight($w: 100%, $h: 100%) {
     width: $w;
     height: $h;
+}
+
+@mixin button_w_border($text-color: $color_main, $border-color: $color_secondary, $radius: 0.5rem, $gap: 1rem) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: $gap;
+    border-radius: $radius;
+
+    border: 1px solid $border-color;
+    background-color: transparent;
+    color: $border-color;
+    transition: all 250ms ease;
+
+    >p {
+        margin: 0;
+        color: $text-color;
+        transition: all 250ms ease;
+
+    }
+
+    >img {
+        display: block;
+        transition: all 250ms ease;
+
+    }
+
+    cursor: pointer;
+    padding: 0.75rem 1.5rem;
+
+    &:hover {
+        border-color: $color_highlight;
+        // border: 10px dotted $border-color-hover;
+
+        >img {
+            filter: brightness(0) saturate(100%) invert(56%) sepia(90%) saturate(1042%) hue-rotate(165deg) brightness(93%) contrast(91%);
+        }
+
+        >p {
+            color: $color_highlight;
+        }
+    }
+}
+
+@mixin button_w_background($text-color: $color_white, $bg-color: $color_main, $radius: 0.5rem, $gap: 1rem) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: $gap;
+    border-radius: $radius;
+
+    background-color: $bg-color;
+    border: none;
+    transition: all 250ms ease;
+
+    >p {
+        margin: 0;
+        color: $text-color;
+        transition: all 250ms ease;
+
+    }
+
+    >img {
+        display: block;
+        transition: all 250ms ease;
+
+    }
+
+    cursor: pointer;
+    padding: 0.75rem 1.5rem;
+
+    &:hover {
+        background-color: $color_highlight;
+    }
 }
