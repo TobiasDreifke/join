@@ -18,7 +18,8 @@ export class AddContact {
 
   onSubmit() {
     console.log(this.htmlinput);
-    this.contactService.addContact(this.htmlinput);
+    // ------------------ ENABLE THIS FOR LIVE DATABASE SAVING ----------------
+    // this.contactService.addContact(this.htmlinput);
     this.clearInputFields();
   }
 
