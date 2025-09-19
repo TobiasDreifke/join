@@ -6,49 +6,58 @@
     padding: 40px;
     width: auto;
     gap: 30px;
-}
+    position: relative;
+    @media (max-width: 600px) {
+    .single-contact {
+        margin: 20px 10px;    
+        padding: 20px;        
+        gap: 20px;           
+        width: 100%;         
+    }
+}}
 
 
 .contact-header {
     display: flex;
     flex-direction: row;
     align-items: center;
-
-
-
-    .contact {
-        font-family: 'Inter', sans-serif;
-        font-weight: 700;
-        font-size: 61px;
-        line-height: 120%;
-        letter-spacing: 0;
-        margin: 0;
-    }
-
-
-    .line-mittel {
-        width: 3px;
-        height: 40px;
-        background-color: #29ABE2;
-        border: none;
-    }
-
-    .contact-description {
-        font-family: 'Inter', sans-serif;
-        font-weight: 400;
-        font-size: 27px;
-        line-height: 120%;
-        letter-spacing: 0;
-        margin: 0;
-        color: #2A3647;
-    }
-
-    .back-responsive {
-        display: none;
-        margin-left: auto;
-
-    }
 }
+
+.contact-header .contact {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 61px;
+    line-height: 120%;
+    letter-spacing: 0;
+    margin: 0;
+}
+
+.contact-header .line-mittel {
+    width: 3px;
+    height: 40px;
+    background-color: #29ABE2;
+    border: none;
+}
+
+.contact-header .contact-description {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 27px;
+    line-height: 120%;
+    letter-spacing: 0;
+    margin: 0;
+    color: #2A3647;
+}
+
+.back-responsive {
+    display: none;
+    margin-left: auto;
+}
+
+
+
+
+
 
 .contact-info {
     display: flex;
@@ -176,5 +185,37 @@
     letter-spacing: 0;
     vertical-align: middle;
 
+
 }
 
+.menu-details {
+    position: absolute;
+    bottom: 10px;
+    right: 20px;
+
+    display: none;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    width: 56px;
+    height: 56px;
+    border-radius: 56px;
+    padding: 12px;
+    gap: 10px;
+    background-color: #2A3647;
+    cursor: pointer;
+    color: #fff;
+
+    button {
+        border: none;
+        background: none;
+        padding: 0;
+        margin: 0;
+        cursor: pointer;
+    }
+
+    @media (max-width: 600px) {
+        display: flex;
+    }
+}
