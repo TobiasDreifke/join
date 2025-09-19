@@ -1,0 +1,41 @@
+@use './../../../styles/variables' as *;
+
+.sidebar {
+    background-color: $color_secondary;
+    height: 100%;
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 100px;
+}
+
+
+
+nav {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    a {
+        color: $color_font_user_menu;
+        padding: 8px 0;
+        cursor: pointer;
+    }
+}
+
+.links {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    a {
+        color: $color_font_user_menu;
+        cursor: pointer;
+        transition: all 125ms ease;
+
+        &:hover {
+            color: $color_highlight;
+            transform: scale(1.05) translateX(3px);
+        }
+    }
+}

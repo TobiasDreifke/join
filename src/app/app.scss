@@ -2,6 +2,6 @@
 @use 'variables' as *;
 
 :host {
-    @include PositionBox($d: flex, $jc: start, $ai: center, $fd: row);
+    @include PositionBox($d: flex, $jc: flex-start, $ai: stretch, $fd: row);
     background-color: $color_background_main;
 }

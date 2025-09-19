@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
   styleUrl: './header.scss'
 })
 export class Header {
-  notVisible = false;
+  notVisible = true;
 
   toggleUserMenu(){
     if(this.notVisible == true){
