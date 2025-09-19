@@ -1,0 +1,64 @@
+@use './../../../styles/variables' as *;
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 30px 50px 30px 100px;
+    background-color: $color_white;
+    position: relative;
+    z-index: 10;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+
+    >div:first-of-type {
+        display: flex;
+        align-items: center;
+        gap: 12px
+    }
+}
+
+.info {
+    color: $color_grey;
+    border: 2px solid $color_grey;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 125ms ease;
+
+    &:hover {
+        transform: scale(1.1);
+    }
+}
+
+.user {
+    color: $color_highlight;
+    border: 3px solid $color_secondary;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 125ms ease;
+    font-weight: bold;
+
+    &:hover {
+        background-color: $color_highlight_hover;
+    }
+}
+
+.user_menu {
+    display: block;
+    position: absolute;
+    top: 100px;
+    right: 0;
+}
+
+.not_visible {
+    display: none;
+}

@@ -3,6 +3,5 @@
 
 :host {
     @include PositionBox($d: flex, $jc: start, $ai: center, $fd: row);
-    gap: 1rem;
     background-color: $color_background_main;
 }
