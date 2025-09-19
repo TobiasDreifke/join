@@ -32,6 +32,7 @@ header {
     justify-content: center;
     align-items: center;
     transition: all 125ms ease;
+    user-select: none;
 
     &:hover {
         transform: scale(1.1);

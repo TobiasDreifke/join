@@ -23,6 +23,7 @@ a {
 
     &.active {
         background-color: $color_main;
+        color: $color_white;
         pointer-events: none;
     }
 }
@@ -36,6 +37,20 @@ nav {
     a {
         padding: 12px 40px;
         transition: all 125ms ease;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+
+        &.active {
+            img {
+                filter: brightness(0) invert(1);
+            }
+        }
+
+        img {
+            width: 25px;
+            height: 25px;
+        }
 
         &:hover {
             background-color: $color_hover_user_menu;
