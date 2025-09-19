@@ -8,32 +8,39 @@
 </div>
 <div class="right_wrapper">
     <p>X</p>
-    <div class="form_wrapper">
+    <!-- <div class="form_wrapper">
+
+    </div> -->
+
+    <form (ngSubmit)="onSubmit()" class="form_wrapper">
         <div class="person_icon">
             <img src="assets/icons/person.png" alt="">
         </div>
         <div class="form_container">
-            <img src="" alt="">
             <div class="form">
-                <div class="button_global button_w_border">
-                    <p>Name</p><img src="assets/icons/person.png">
+                <div class="button_w_border">
+                    <input name="name" type="text" [(ngModel)]="htmlinput.name" id="name" placeholder="name">
+                    <img src="assets/icons/person.png">
                 </div>
-                <div class="button_global button_w_border">
-                    <p>Email</p><img src="assets/icons/mail.png">
+                <div class="button_w_border">
+                    <input name="email" type="email" [(ngModel)]="htmlinput.email" id="email" placeholder="email">
+                    <img src="assets/icons/mail.png">
                 </div>
-                <div class="button_global button_w_border">
-                    <p>Phone</p><img src="assets/icons/call.png">
+                <div class="button_w_border">
+                    <input name="phone" type="tel" id="phone" [(ngModel)]="htmlinput.phone" placeholder="phone">
+                    <img src="assets/icons/call.png">
+                </div>
+            </div>
+            <div class="button_wrapper">
+                <!-- hier noch router link einfügen -->
+                <a routerLink="/" class="button_w_border">
+                    <p>Cancel</p><img src="assets/icons/button_x_check/button_x.png">
+                </a>
+                <div class="button_w_background">
+                    <input type="submit" [disabled]="!htmlinput.name" value="Create contact">
+                    <img src="assets/icons/button_x_check/button_check.png">
                 </div>
             </div>
         </div>
-    </div>
-
-    <div class="button_wrapper">
-        <div class="button_w_border">
-            <p>Cancel</p><img src="assets/icons/button_x_check/button_x.png">
-        </div>
-        <div class="button_w_background">
-            <p>Create Project</p> <img src="assets/icons/button_x_check/button_check.png">
-        </div>
-    </div>
+    </form>
 </div>
