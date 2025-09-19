@@ -71,6 +71,7 @@ header {
         color: $color_font_user_menu;
         cursor: pointer;
         padding: 16px;
+        text-decoration: none;
 
         &:hover {
             background-color: $color_hover_user_menu;

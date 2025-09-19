@@ -3,39 +3,59 @@
 .sidebar {
     background-color: $color_secondary;
     height: 100%;
-    padding: 50px;
+    width: 220px;
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 100px;
+    padding-top: 50px;
+    padding-bottom: 50px;
 }
 
+.logo {
+    width: 90px;
+}
 
+a {
+    cursor: pointer;
+    text-decoration: none;
+    color: $color_font_user_menu;
+
+    &.active {
+        background-color: $color_main;
+        pointer-events: none;
+    }
+}
 
 nav {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 8px;
+    width: 100%;
 
     a {
-        color: $color_font_user_menu;
-        padding: 8px 0;
-        cursor: pointer;
+        padding: 12px 40px;
+        transition: all 125ms ease;
+
+        &:hover {
+            background-color: $color_hover_user_menu;
+        }
     }
 }
 
 .links {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 8px;
+    width: 100%;
+    margin-top: auto;
 
     a {
-        color: $color_font_user_menu;
-        cursor: pointer;
         transition: all 125ms ease;
+        padding: 8px 40px;
 
         &:hover {
             color: $color_highlight;
-            transform: scale(1.05) translateX(3px);
         }
     }
 }
