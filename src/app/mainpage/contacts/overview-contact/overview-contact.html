@@ -1,1 +1,49 @@
-<p>overview-contact works!</p>
+<section>
+    @if (!isMobile) {
+        <header>
+            <a href=""><p>Add new contact</p><img src="assets/icons/person_add.png"></a>
+        </header>
+        <main>
+            @for (letter of letters; track letter) {
+                @if (contactsByLetter[letter].length > 0) {
+                    <div>
+                        <h2>{{ letter }}</h2>
+
+                        @for (contact of contactsByLetter[letter]; track contact.id) {
+                            <div class="contact">
+                                <div class="contact-initials">{{ getInitials(contact.name) }}</div>
+                                <div class="contact-info">
+                                    <h3>{{ contact.name }}</h3>
+                                    <p>{{ contact.email }}</p>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                }
+            }
+        </main>
+    } @else {
+        <main>
+            @for (letter of letters; track letter) {
+                @if (contactsByLetter[letter].length > 0) {
+                    <div>
+                        <h2>{{ letter }}</h2>
+
+                        @for (contact of contactsByLetter[letter]; track contact.id) {
+                            <div class="contact">
+                                <div class="contact-initials">{{ getInitials(contact.name) }}</div>
+                                <div class="contact-info">
+                                    <h3>{{ contact.name }}</h3>
+                                    <p>{{ contact.email }}</p>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                }
+            }
+        </main>
+        <footer>
+            <a href=""><img src="assets/icons/person_add.png"></a>
+        </footer>
+    }
+</section>
