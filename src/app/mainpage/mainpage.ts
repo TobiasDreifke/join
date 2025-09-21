@@ -5,7 +5,7 @@ import { AddContact } from "./contacts/add-contact/add-contact";
 
 @Component({
   selector: 'app-mainpage',
-  imports: [Contacts, Sidebar, AddContact],
+  imports: [Contacts, AddContact],
   templateUrl: './mainpage.html',
   styleUrl: './mainpage.scss'
 })
