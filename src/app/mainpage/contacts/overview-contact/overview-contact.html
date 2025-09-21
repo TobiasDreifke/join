@@ -10,8 +10,10 @@
                         <h2>{{ letter }}</h2>
 
                         @for (contact of contactsByLetter[letter]; track contact.id) {
-                            <div class="contact">
-                                <div class="contact-initials">{{ getInitials(contact.name) }}</div>
+                            <div class="contact" (click)="selectContact(contact)" [class.active]="activeContactId === contact.id">
+                                <div class="contact-initials" [style.background-color]="assignedColorById[contact.id!]">
+                                    {{ getInitials(contact.name) }}
+                                </div>
                                 <div class="contact-info">
                                     <h3>{{ contact.name }}</h3>
                                     <p>{{ contact.email }}</p>
@@ -30,8 +32,10 @@
                         <h2>{{ letter }}</h2>
 
                         @for (contact of contactsByLetter[letter]; track contact.id) {
-                            <div class="contact">
-                                <div class="contact-initials">{{ getInitials(contact.name) }}</div>
+                            <div class="contact" (click)="selectContact(contact)" [class.active]="activeContactId === contact.id">
+                                <div class="contact-initials" [style.background-color]="assignedColorById[contact.id!]">
+                                    {{ getInitials(contact.name) }}
+                                </div>
                                 <div class="contact-info">
                                     <h3>{{ contact.name }}</h3>
                                     <p>{{ contact.email }}</p>

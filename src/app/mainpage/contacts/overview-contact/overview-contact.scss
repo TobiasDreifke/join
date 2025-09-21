@@ -1,0 +1,106 @@
+@use 'mixins' as *;
+@use 'variables' as *;
+
+section {
+    @include WidthAndHeight($w: 400px, $h: calc(100vh - 105px));
+    @include PositionBox($ai: center, $fd: column);
+    overflow-y: auto;
+    scrollbar-width: thin;
+}
+
+header {
+    @include PositionBox();
+    @include WidthAndHeight($w: 350px, $h: 8%);
+    position: fixed;
+    top: 100px;
+    background-color: $color_background_main;
+
+    >a {
+        @include WidthAndHeight($w: 340px, $h: 60px);
+        @include button_w_background($text-color: $color_white, $bg-color: $color_main, $radius: 0.5rem, $gap: 1rem);
+        text-decoration: none;
+    }
+}
+
+main {
+    @include WidthAndHeight($w: 340px, $h: calc(100% - 210px));
+
+    >div {
+        >h2 {
+            font-size: 20px;
+            font-weight: normal;
+            padding: 15px 25px;
+            border-bottom: 1px solid $color_grey;
+        }
+
+        >.contact {
+            @include PositionBox($jc: start);
+            margin: 10px 0;
+            padding: 15px 25px;
+            border-radius: 10px;
+
+            &:hover {
+                cursor: pointer;
+                background-color: $color_grey;
+            }
+
+            &.active {
+                cursor: auto;
+                background-color: $color_main;
+
+                >.contact-info {
+                    >h3 {
+                        color: $color_white;
+                    }
+                }
+            }
+
+            >.contact-initials {
+                @include PositionBox();
+                @include WidthAndHeight($w: 42px, $h: 42px);
+                border-radius: 150px;
+                margin-right: 30px;
+                border: solid 2px $color_background_main;
+            }
+
+            >.contact-info {
+
+                >h3 {
+                    font-weight: normal;
+                    font-size: 20px
+                }
+
+                >p {
+                    color: $color_highlight;
+                }
+            }
+        }
+    }
+}
+
+footer {
+    @include PositionBox($ai: end, $jc: end);
+    @include WidthAndHeight($w: 350px, $h: 8%);
+    position: fixed;
+    bottom: 20px;
+
+    >a {
+        @include PositionBox();
+        @include WidthAndHeight($w: 46px, $h: 46px);
+        text-decoration: none;
+        border-radius: 150px;
+        background-color: $color_secondary;
+
+        &:hover {
+            cursor: pointer;
+            background-color: $color_highlight;
+        }
+    }
+}
+
+@media (max-width: 900px) {
+    main {
+        @include WidthAndHeight($w: 340px, $h: 100%);
+        padding-top: 20px;
+    }
+}
