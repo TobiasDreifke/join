@@ -1,4 +1,4 @@
-import { Component, HostListener } from '@angular/core';
+import { Component, EventEmitter, HostListener, inject, Output } from '@angular/core';
 import { ContactService } from '../../../services/contact-service';
 
 @Component({
@@ -8,22 +8,17 @@ import { ContactService } from '../../../services/contact-service';
   styleUrl: './overview-contact.scss'
 })
 export class OverviewContact {
+  @Output() addNew = new EventEmitter<void>();
+  contactService = inject(ContactService);
 
-  contactColors = [
-    '#FF7A00', '#FF5EB3', '#6E52FF', '#9327FF', '#00BEE8',
-    '#1FD7C1', '#FF745E', '#FFA35E', '#FC71FF', '#FFC701',
-    '#0038FF', '#C3FF2B', '#FFE62B', '#FF4646', '#FFBB2B'
-  ];
   letters = Array.from({ length: 26 }, (_, i) =>
     String.fromCharCode(65 + i)
   );
   contactsByLetter: { [key: string]: Contact[] } = {};
-  assignedColorById: { [contactId: string]: string } = {};
   activeContactId: string | null = null;
-  activeContactData: { name: string; color: string } | null = null;
   isMobile = false;
 
-  constructor(private contactService: ContactService) {
+  constructor() {
     this.checkViewport();
   }
 
@@ -37,8 +32,8 @@ export class OverviewContact {
   }
 
   groupContacts(contacts: Contact[]) {
+    this.contactsByLetter = {};
     this.letters.forEach(l => this.contactsByLetter[l] = []);
-    let counter = 0;
 
     contacts.forEach(contact => {
       const firstLetter = contact.name[0]?.toUpperCase();
@@ -46,24 +41,10 @@ export class OverviewContact {
         this.contactsByLetter[firstLetter].push(contact);
       }
     });
-
-    for (let letter of this.letters) {
-      for (let contact of this.contactsByLetter[letter]) {
-        if (!this.assignedColorById[contact.id!]) {
-          this.assignedColorById[contact.id!] =
-            this.contactColors[counter % this.contactColors.length];
-          counter++;
-        }
-      }
-    }
   }
 
   selectContact(contact: Contact) {
     this.activeContactId = contact.id!;
-    this.activeContactData = {
-      name: contact.name,
-      color: this.assignedColorById[contact.id!]
-    };
   }
 
   getInitials(fullName: string): string {
@@ -79,6 +60,6 @@ export class OverviewContact {
   }
 
   private checkViewport() {
-    this.isMobile = window.innerWidth <= 900;
+    this.isMobile = window.innerWidth <= 1080;
   }
 }

@@ -2,7 +2,7 @@
 @use 'variables' as *;
 
 section {
-    @include WidthAndHeight($w: 400px, $h: calc(100vh - 105px));
+    @include WidthAndHeight($w: clamp(20rem, 15.221rem + 19.118vw, 28.125rem), $h: calc(100vh - 105px));
     @include PositionBox($ai: center, $fd: column);
     overflow-y: auto;
     scrollbar-width: thin;
@@ -10,20 +10,20 @@ section {
 
 header {
     @include PositionBox();
-    @include WidthAndHeight($w: 350px, $h: 8%);
+    @include WidthAndHeight($w: clamp(19.375rem, 16.066rem + 13.235vw, 25rem), $h: 8%);
     position: fixed;
     top: 100px;
     background-color: $color_background_main;
 
     >a {
-        @include WidthAndHeight($w: 340px, $h: 60px);
+        @include WidthAndHeight($w: clamp(18.75rem, 15.441rem + 13.235vw, 24.375rem), $h: 60px);
         @include button_w_background($text-color: $color_white, $bg-color: $color_main, $radius: 0.5rem, $gap: 1rem);
         text-decoration: none;
     }
 }
 
 main {
-    @include WidthAndHeight($w: 340px, $h: calc(100% - 210px));
+    @include WidthAndHeight($w: clamp(18.75rem, 15.441rem + 13.235vw, 24.375rem), $h: calc(100% - 210px));
 
     >div {
         >h2 {
@@ -57,9 +57,9 @@ main {
 
             >.contact-initials {
                 @include PositionBox();
-                @include WidthAndHeight($w: 42px, $h: 42px);
+                @include WidthAndHeight($w: clamp(1.875rem, 1.434rem + 1.765vw, 2.625rem), $h: clamp(1.875rem, 1.434rem + 1.765vw, 2.625rem));
                 border-radius: 150px;
-                margin-right: 30px;
+                margin-right: clamp(0.938rem, 0.386rem + 2.206vw, 1.875rem);
                 border: solid 2px $color_background_main;
             }
 
@@ -80,7 +80,7 @@ main {
 
 footer {
     @include PositionBox($ai: end, $jc: end);
-    @include WidthAndHeight($w: 350px, $h: 8%);
+    @include WidthAndHeight($w: clamp(19.375rem, 16.066rem + 13.235vw, 25rem), $h: 8%);
     position: fixed;
     bottom: 20px;
 
@@ -98,9 +98,17 @@ footer {
     }
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1080px) {
     main {
-        @include WidthAndHeight($w: 340px, $h: 100%);
+        @include WidthAndHeight($w: 390px, $h: 100%);
         padding-top: 20px;
+
+        >div {
+            >.contact {
+                >.contact-initials {
+                    font-size: 12px;
+                }
+            }
+        }
     }
 }

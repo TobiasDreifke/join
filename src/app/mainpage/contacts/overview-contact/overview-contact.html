@@ -1,7 +1,7 @@
 <section>
     @if (!isMobile) {
         <header>
-            <a href=""><p>Add new contact</p><img src="assets/icons/person_add.png"></a>
+            <a (click)="addNew.emit()"><p>Add new contact</p><img src="assets/icons/person_add.png"></a>
         </header>
         <main>
             @for (letter of letters; track letter) {
@@ -11,7 +11,7 @@
 
                         @for (contact of contactsByLetter[letter]; track contact.id) {
                             <div class="contact" (click)="selectContact(contact)" [class.active]="activeContactId === contact.id">
-                                <div class="contact-initials" [style.background-color]="assignedColorById[contact.id!]">
+                                <div class="contact-initials" [style.background-color]="contact. initial_avatar_color">
                                     {{ getInitials(contact.name) }}
                                 </div>
                                 <div class="contact-info">
@@ -33,7 +33,7 @@
 
                         @for (contact of contactsByLetter[letter]; track contact.id) {
                             <div class="contact" (click)="selectContact(contact)" [class.active]="activeContactId === contact.id">
-                                <div class="contact-initials" [style.background-color]="assignedColorById[contact.id!]">
+                                <div class="contact-initials" [style.background-color]="contact. initial_avatar_color">
                                     {{ getInitials(contact.name) }}
                                 </div>
                                 <div class="contact-info">
@@ -47,7 +47,7 @@
             }
         </main>
         <footer>
-            <a href=""><img src="assets/icons/person_add.png"></a>
+            <a (click)="addNew.emit()"><img src="assets/icons/person_add.png"></a>
         </footer>
     }
 </section>
