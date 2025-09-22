@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
 import { AddContact } from "./add-contact/add-contact";
 import { OverviewContact } from "./overview-contact/overview-contact";
 import { SingleContact } from "./single-contact/single-contact";
@@ -11,11 +11,17 @@ import { ContactService } from '../../services/contact-service';
   styleUrl: './contacts.scss'
 })
 export class Contacts {
+  @Input() isActive = Event;
 
-  activeContact: Contact | null = null;
-  
-  onSelectContact(contact: Contact) {
-    this.activeContact = contact;
+  activeContactId: string | null = null;
+
+  onSelectContact(contactId: string | null) {
+    this.activeContactId = contactId;
+  }
+
+  receiveSelectedData(contactId: string | null) {
+    console.log("Contact main is receiving:", contactId);
+    this.activeContactId = contactId;
   }
 
   // ---------- working tree beneath -----------
@@ -36,6 +42,4 @@ export class Contacts {
   onClosePopup() {
     this.showPopUpAddContact = false;
   }
-
-
 }

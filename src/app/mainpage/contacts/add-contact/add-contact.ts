@@ -9,17 +9,26 @@ import { ContactService } from '../../../services/contact-service';
 })
 export class AddContact {
   contactService = inject(ContactService)
-  
-  // @Input() contact!: Contact | null; 
 
+  @Input() contactId: string | null = null;
   @Input() editMode = false;
   @Output() close = new EventEmitter<void>();
+
+
+  get contact() {
+    return this.contactService.contactsList.find(contact => contact.id === this.contactId);
+  }
+
+  ngOnInit() {
+    console.log("contact add-contact received contactId:", this.contact);
+  }
 
   htmlinput = {
     name: "",
     email: "",
     phone: ""
   }
+
 
   onSubmit() {
     console.log(this.htmlinput);
