@@ -9,6 +9,7 @@ import { ContactService } from '../../../services/contact-service';
 })
 export class OverviewContact {
   @Output() addNew = new EventEmitter<void>();
+  @Output() isActive = new EventEmitter<string | null>();
   contactService = inject(ContactService);
 
   letters = Array.from({ length: 26 }, (_, i) =>
@@ -22,6 +23,11 @@ export class OverviewContact {
     this.checkViewport();
   }
 
+  selectContact(contact: Contact) {
+    this.activeContactId = contact.id!;
+    this.sendSelectedData();
+  }
+  
   ngOnInit() {
     this.letters.forEach(l => this.contactsByLetter[l] = []);
     this.contactService.unsubContactsList;
