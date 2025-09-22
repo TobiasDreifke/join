@@ -28,16 +28,8 @@ export class OverviewContact {
     this.activeContactId = contact.id!;
     this.sendSelectedData();
   }
-
-  sendSelectedData() {
-    this.isActive.emit(this.activeContactId);
-  }
-
-  getContactData() {
-    return this.contactService.contactsList
-  }
-
-  ngOnInit() {    
+  
+  ngOnInit() {
     this.letters.forEach(l => this.contactsByLetter[l] = []);
   }
 
