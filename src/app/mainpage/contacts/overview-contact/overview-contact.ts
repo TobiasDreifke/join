@@ -18,6 +18,7 @@ export class OverviewContact {
   contactsByLetter: { [key: string]: Contact[] } = {};
   activeContactId: string | null = null;
   isMobile = false;
+  contactListFromService = [];
 
   constructor() {
     this.checkViewport();
@@ -27,17 +28,20 @@ export class OverviewContact {
     this.activeContactId = contact.id!;
     this.sendSelectedData();
   }
-  
-  ngOnInit() {
-    this.letters.forEach(l => this.contactsByLetter[l] = []);
-    this.contactService.unsubContactsList;
 
-    setInterval(() => {
-      this.groupContacts(this.contactService.contactsList);
-    }, 500);
+  sendSelectedData() {
+    this.isActive.emit(this.activeContactId);
   }
 
-  groupContacts(contacts: Contact[]) {
+  getContactData() {
+    return this.contactService.contactsList
+  }
+
+  ngOnInit() {    
+    this.letters.forEach(l => this.contactsByLetter[l] = []);
+  }
+
+  groupContacts(contacts: Contact[]) {    
     this.contactsByLetter = {};
     this.letters.forEach(l => this.contactsByLetter[l] = []);
 
@@ -47,14 +51,10 @@ export class OverviewContact {
         this.contactsByLetter[firstLetter].push(contact);
       }
     });
-  }
-
-  selectContact(contact: Contact) {
-    this.activeContactId = contact.id!;
+    return this.contactsByLetter;
   }
 
   getInitials(fullName: string): string {
-    if (!fullName) return '';
     const parts = fullName.trim().split(' ');
     if (parts.length < 2) return parts[0][0].toUpperCase();
     return parts[0][0].toUpperCase() + parts[1][0].toUpperCase();

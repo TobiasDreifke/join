@@ -5,13 +5,13 @@
         </header>
         <main>
             @for (letter of letters; track letter) {
-                @if (contactsByLetter[letter].length > 0) {
+                @if (groupContacts(getContactData())[letter].length > 0) {
                     <div>
                         <h2>{{ letter }}</h2>
 
-                        @for (contact of contactsByLetter[letter]; track contact.id) {
+                        @for (contact of groupContacts(getContactData())[letter]; track contact.id) {
                             <div class="contact" (click)="selectContact(contact)" [class.active]="activeContactId === contact.id">
-                                <div class="contact-initials" [style.background-color]="contact. initial_avatar_color">
+                                <div class="contact-initials" [style.background-color]="contact.initial_avatar_color">
                                     {{ getInitials(contact.name) }}
                                 </div>
                                 <div class="contact-info">
@@ -27,13 +27,13 @@
     } @else {
         <main>
             @for (letter of letters; track letter) {
-                @if (contactsByLetter[letter].length > 0) {
+                @if (groupContacts(getContactData())[letter].length > 0) {
                     <div>
                         <h2>{{ letter }}</h2>
 
-                        @for (contact of contactsByLetter[letter]; track contact.id) {
+                        @for (contact of groupContacts(getContactData())[letter]; track contact.id) {
                             <div class="contact" (click)="selectContact(contact)" [class.active]="activeContactId === contact.id">
-                                <div class="contact-initials" [style.background-color]="contact. initial_avatar_color">
+                                <div class="contact-initials" [style.background-color]="contact.initial_avatar_color">
                                     {{ getInitials(contact.name) }}
                                 </div>
                                 <div class="contact-info">
