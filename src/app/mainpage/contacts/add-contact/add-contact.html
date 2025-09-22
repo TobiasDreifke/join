@@ -1,13 +1,13 @@
 <div class="left_wrapper">
     <img src="assets/icons/logo/logo_white.png" alt="">
     <div class="text_wrapper_left">
-        <h2>Add contact</h2>
+        <h2>{{ editMode ? 'Edit Contact' : 'Add Contact' }}</h2>
         <h3>Tasks are better with a team!</h3>
         <div class="seperator_left"></div>
     </div>
 </div>
 <div class="right_wrapper">
-    <p>X</p>
+    <p (click)="close.emit()">X</p>
     <!-- <div class="form_wrapper">
 
     </div> -->
@@ -32,13 +32,13 @@
                 </div>
             </div>
             <div class="button_wrapper">
-                <!-- hier noch router link einfügen -->
-                <a routerLink="/" class="button_w_border">
-                    <p>Cancel</p><img src="assets/icons/button_x_check/button_x.png">
+                <a (click)="close.emit()" class="button_w_border">
+                    <p>{{ editMode ? 'Delete' : 'Cancel' }}</p><img src="assets/icons/button_x_check/button_x.png">
                 </a>
                 <div class="button_w_background">
-                    <input type="submit" [disabled]="!htmlinput.name" value="Create contact">
-                    <img src="assets/icons/button_x_check/button_check.png">
+                    <input type="submit" [disabled]="!htmlinput.name"
+                        value="{{ editMode ? 'Save' : 'Create Contact' }}">
+                    <img src=" assets/icons/button_x_check/button_check.png">
                 </div>
             </div>
         </div>
