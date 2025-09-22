@@ -1,5 +1,5 @@
-<section>
-    <div class="single-contact">
+<section #appSection>
+    <div class="single-contact" >
         <div class="contact-header">
             <h2 class="contact">Contacts</h2>
             <hr class="line-mittel">
@@ -46,22 +46,26 @@
             </div>
         </div>
         <div class="menu-details" (click)="toggleMenu(); $event.stopPropagation()">
-            <button class="menu-button" >
+            <button class="menu-button">
                 <img src="./assets/icons/more_vert.png" alt="Menu" />
             </button>
         </div>
 
+        <div class="popup-menu" *ngIf="isMenuOpen || isClosing" [ngClass]="{ 'popup-menu-closing': isClosing }"
+            (click)="$event.stopPropagation()">
 
-        <div class="popup-menu" *ngIf="isMenuOpen">
             <a href="#" (click)="edit.emit()">
                 <img src="./assets/icons/edit.png" alt="Edit" />
                 <span>Edit</span>
             </a>
+
             <a href="#">
                 <img src="./assets/icons/delete.png" alt="Delete" />
                 <span>Delete</span>
             </a>
         </div>
+
+
 
     </div>
 

@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
-import {Component,ElementRef,EventEmitter,HostListener,Output,} from '@angular/core';
+import {Component,ElementRef,EventEmitter,HostListener,inject,Input,Output, ViewChild,} from '@angular/core';
+import { ContactService } from '../../../services/contact-service';
 
 @Component({
   selector: 'app-single-contact',
@@ -9,31 +10,40 @@ import {Component,ElementRef,EventEmitter,HostListener,Output,} from '@angular/c
   styleUrl: './single-contact.scss',
 })
 export class SingleContact {
+
+  @ViewChild('appSection',{ static: true }) appSection!: ElementRef<HTMLElement>;
+
   @Output() edit = new EventEmitter<void>();
 
-  isMenuOpen = false;
-  hoverActive = false;
+ 
 
 
-  constructor(private elementRef: ElementRef) {}
+   isMenuOpen = false;
+  isClosing = false;
 
 toggleMenu() {
-  this.isMenuOpen = !this.isMenuOpen;
-
-  if (!this.isMenuOpen) {
-    this.hoverActive = true;
-    setTimeout(() => {
-      this.hoverActive = false;
-    }, 300); 
+  if (this.isMenuOpen) {
+    this.startClosing();
+  } else {
+    this.isMenuOpen = true;
   }
 }
-  
-  @HostListener('document:click', ['$event'])
-  handleClick(event: MouseEvent) {
-    const clickedInside = this.elementRef.nativeElement.contains(event.target);
 
+startClosing() {
+  this.isClosing = true;
+  setTimeout(() => {
+    this.isMenuOpen = false;
+    this.isClosing = false;
+  }, 300); 
+}
+
+@HostListener('document:click', ['$event'])
+handleClick(event: MouseEvent) {
+  if (this.appSection.nativeElement.contains(event.target as Node)) {
     if (this.isMenuOpen) {
-      this.isMenuOpen = false;
-    }
+      this.startClosing();
+    
   }
-}
+
+  }
+}}
