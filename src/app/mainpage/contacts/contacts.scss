@@ -2,8 +2,7 @@
 @use 'variables' as *;
 
 :host {
-    @include PositionBox($jc: start);
-    gap: 1rem;
+    @include PositionBox($d: flex, $jc: start, $ai: center, $fd: row);
     background-color: $color_background_main;
 
     >app-overview-contact {

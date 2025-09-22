@@ -90,12 +90,15 @@ nav {
         nav {
             flex-direction: row;
             justify-content: space-evenly;
+            gap: 0;
+            padding: 0px 4px;
 
             a {
                 flex-direction: column;
-                padding: 12px 12px;
+                padding: 12px 4px;
                 border-radius: 12px;
                 width: 100px;
+                font-size: 14px;
             }
         }
     }
