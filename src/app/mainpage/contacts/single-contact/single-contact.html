@@ -18,7 +18,7 @@
                     <h3 class="contact-name-text">Tatiana Wolf</h3>
                 </div>
                 <div class="contact-group">
-                    <div class="contact-edit" (click)="edit.emit()" >
+                    <div class="contact-edit" (click)="edit.emit()">
                         <a href="#">
                             <img class="contact-edit-image" src="./assets/icons/edit.png" alt="Edit">
                             <p>Edit</p>
@@ -45,22 +45,24 @@
                 <p class="contact-details-Phone">(123) 456-7890</p>
             </div>
         </div>
-            <div class="menu-details">
-                <button class="menu-button" (click)="toggleMenu()">
-                    <img src="./assets/icons/more_vert.png" alt="Menu">
-                </button>
-            </div>
-
-            <div class="popup-menu" *ngIf="isMenuOpen">
-                <a href="#" (click)="edit.emit()">
-                    <img src="./assets/icons/edit.png" alt="Edit">
-                    <span>Edit</span>
-                </a>
-                <a href="#">
-                    <img src="./assets/icons/delete.png" alt="Delete">
-                    <span>Delete</span>
-                </a>
-            </div>
+        <div class="menu-details" (click)="toggleMenu(); $event.stopPropagation()">
+            <button class="menu-button" >
+                <img src="./assets/icons/more_vert.png" alt="Menu" />
+            </button>
         </div>
-    
+
+
+        <div class="popup-menu" *ngIf="isMenuOpen">
+            <a href="#" (click)="edit.emit()">
+                <img src="./assets/icons/edit.png" alt="Edit" />
+                <span>Edit</span>
+            </a>
+            <a href="#">
+                <img src="./assets/icons/delete.png" alt="Delete" />
+                <span>Delete</span>
+            </a>
+        </div>
+
+    </div>
+
 </section>
