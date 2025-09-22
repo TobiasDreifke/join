@@ -2,7 +2,7 @@
 @use 'variables' as *;
 
 :host {
-    @include PositionBox($d: flex, $jc: start, $ai: center, $fd: column);
+    @include PositionBox($jc: start);
     gap: 1rem;
     background-color: $color_background_main;
 
