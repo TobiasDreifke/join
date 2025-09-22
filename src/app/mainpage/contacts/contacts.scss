@@ -7,12 +7,12 @@
     background-color: $color_background_main;
 
     >app-overview-contact {
-        width: 40%;
+        width: 400px;
         border: 1px solid red;
     }
 
     >app-single-contact {
-        width: 60%;
+        width: calc(100% - 400px);
         border: 1px solid rgb(60, 43, 171);
     }
 
