@@ -30,12 +30,16 @@
     }
 }
 
-// ------- tablet landscape -------
-// @media (max-width: 1080px) {
-//     :host {
-//         @include PositionBox($d: flex, $jc: start, $ai: center, $fd: column);
-//         // >app-single-contact {
-//         //     display: none;
-//         // }
-//     }
-// }
+@media (max-width: 1080px) {
+    :host {
+
+        >app-overview-contact {
+            width: 100%;
+            border: 1px solid red;
+        }
+
+        >app-single-contact {
+            display: none;
+        }
+    }
+}

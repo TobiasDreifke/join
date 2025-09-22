@@ -10,3 +10,18 @@
     width: 100%;
     min-height: 100vh;
 }
+
+@media (max-width: 1080px) {
+    :host {
+        flex-direction: column-reverse;
+        
+    }
+
+    >app-sidebar {
+        
+    }
+
+    .content {
+        min-height: calc(100vh - 100px);
+    }
+}

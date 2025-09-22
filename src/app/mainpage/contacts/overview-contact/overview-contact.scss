@@ -82,7 +82,9 @@ footer {
     @include PositionBox($ai: end, $jc: end);
     @include WidthAndHeight($w: clamp(19.375rem, 16.066rem + 13.235vw, 25rem), $h: 8%);
     position: fixed;
-    bottom: 20px;
+    bottom: 120px;
+    right: 16px;
+    width: fit-content;
 
     >a {
         @include PositionBox();
@@ -110,5 +112,12 @@ footer {
                 }
             }
         }
+    }
+}
+
+@media (max-width: 1080px) {
+    section {
+        width: 100%;
+        height: calc(100vh - 210px);
     }
 }
