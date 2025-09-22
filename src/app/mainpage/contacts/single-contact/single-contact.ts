@@ -14,6 +14,18 @@ export class SingleContact {
   @ViewChild('appSection',{ static: true }) appSection!: ElementRef<HTMLElement>;
 
   @Output() edit = new EventEmitter<void>();
+     contactService = inject(ContactService);
+  @Input() contactId: string | null = null;
+
+
+  get contact() {
+    return this.contactService.contactsList.find(contact => contact.id === this.contactId);
+  }
+
+  ngOnChanges() {
+    console.log("single-contacts received contactId:", this.contact);
+  } 
+
 
  
 
