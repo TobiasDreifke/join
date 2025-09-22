@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, EventEmitter, inject, Input, OnDestroy, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ContactService } from '../../../services/contact-service';
 @Component({
@@ -9,6 +9,11 @@ import { ContactService } from '../../../services/contact-service';
 })
 export class AddContact {
   contactService = inject(ContactService)
+  
+  // @Input() contact!: Contact | null; 
+
+  @Input() editMode = false;
+  @Output() close = new EventEmitter<void>();
 
   htmlinput = {
     name: "",
@@ -19,8 +24,9 @@ export class AddContact {
   onSubmit() {
     console.log(this.htmlinput);
     // ------------------ ENABLE THIS FOR LIVE DATABASE SAVING ----------------
-    // this.contactService.addContact(this.htmlinput);
+    this.contactService.addContact(this.htmlinput);
     this.clearInputFields();
+    this.close.emit();
   }
 
   clearInputFields() {

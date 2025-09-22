@@ -1,3 +1,15 @@
-<app-overview-contact></app-overview-contact>
-<app-single-contact></app-single-contact>
-<app-add-contact></app-add-contact>
+<app-overview-contact (addNew)="onAddNewContact()">
+</app-overview-contact>
+<!-- (active)="isActive()"> -->
+<!-- (selectContact)="onSelectContact($event)" -->
+
+<app-single-contact (edit)="onEditContact()">
+</app-single-contact>
+<!-- [contact]="activeContact" -->
+
+@if (showPopUpAddContact) {
+<app-add-contact [editMode]="editMode" (close)="onClosePopup()">
+</app-add-contact>
+
+<!-- [contact]="activeContact"  -->
+}
