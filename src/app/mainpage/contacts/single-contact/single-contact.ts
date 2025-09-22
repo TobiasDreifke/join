@@ -8,6 +8,8 @@ import { Component } from '@angular/core';
   styleUrl: './single-contact.scss'
 })
 export class SingleContact {
+
+
   isMenuOpen = false;
 
 toggleMenu() {
