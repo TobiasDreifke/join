@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-single-contact',
@@ -8,6 +8,7 @@ import { Component } from '@angular/core';
   styleUrl: './single-contact.scss'
 })
 export class SingleContact {
+  @Output() edit = new EventEmitter<void>();
 
   isMenuOpen = false;
 
