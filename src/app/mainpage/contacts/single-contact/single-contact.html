@@ -19,7 +19,7 @@
                 </div>
                 <div class="contact-group">
                     <div class="contact-edit">
-                        <a href="#">
+                        <a (click)="edit.emit()">
                             <img class="contact-edit-image" src="./assets/icons/edit.png" alt="Edit">
                             <p>Edit</p>
                         </a>
@@ -54,7 +54,7 @@
         <div class="popup-menu" *ngIf="isMenuOpen || isClosing" [ngClass]="{ 'popup-menu-closing': isClosing }"
             (click)="$event.stopPropagation()">
 
-            <a href="#" >
+            <a (click)="edit.emit()" >
                 <img src="./assets/icons/edit.png" alt="Edit" />
                 <span>Edit</span>
             </a>
