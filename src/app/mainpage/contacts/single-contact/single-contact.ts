@@ -51,5 +51,15 @@ export class SingleContact implements OnChanges {
     if (!this.appSection.nativeElement.contains(event.target as Node) && this.isMenuOpen) {
       this.startClosing();
     }
-  }
+  }//#endregion
+
+  getInitials(name?: string): string {
+  if (!name) return '';
+  return name
+    .split(' ')
+    .map(word => word[0])
+    .join('')
+    .toUpperCase();
+}
+
 }
