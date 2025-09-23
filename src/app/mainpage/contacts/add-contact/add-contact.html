@@ -1,42 +1,48 @@
-<div class="left_wrapper">
-    <img src="assets/icons/logo/logo_white.png" alt="">
-    <div class="text_wrapper_left">
-        <h2>{{ editMode ? 'Edit Contact' : 'Add Contact' }}</h2>
-        <h3>Tasks are better with a team!</h3>
-        <div class="seperator_left"></div>
+<section class="add_content_wrapper">
+    <div class="left_wrapper">
+        <p class="close_button_mobile" (click)="close.emit()">X</p>
+        <img src="assets/icons/logo/logo_white.png" alt="">
+        <div class="text_wrapper_left">
+            <h2>{{ editMode ? 'Edit Contact' : 'Add Contact' }}</h2>
+            <h3>Tasks are better with a team!</h3>
+            <div class="seperator_left"></div>
+        </div>
     </div>
-</div>
-<div class="right_wrapper">
-    <p (click)="close.emit()">X</p>
-    <form (ngSubmit)="onSubmit()" class="form_wrapper">
-        <div class="person_icon">
-            <img src="assets/icons/person.png" alt="">
-        </div>
-        <div class="form_container">
-            <div class="form">
-                <div class="button_w_border">
-                    <input name="name" type="text" [(ngModel)]="htmlinput.name" id="name" placeholder="name">
-                    <img src="assets/icons/person.png">
+    <div class="person_icon_mobile d_none">
+        <img src="assets/icons/person.png" alt="">
+    </div>
+    <div class="right_wrapper">
+        <p (click)="close.emit()">X</p>
+        <form (ngSubmit)="onSubmit()" class="form_wrapper">
+            <div class="person_icon d_none">
+                <img src="assets/icons/person.png" alt="">
+            </div>
+            <div class="form_container">
+                <div class="form">
+                    <div class="button_w_border">
+                        <input name="name" type="text" [(ngModel)]="htmlinput.name" id="name" placeholder="name">
+                        <img src="assets/icons/person.png">
+                    </div>
+                    <div class="button_w_border">
+                        <input name="email" type="email" [(ngModel)]="htmlinput.email" id="email" placeholder="email">
+                        <img src="assets/icons/mail.png">
+                    </div>
+                    <div class="button_w_border">
+                        <input name="phone" type="tel" id="phone" [(ngModel)]="htmlinput.phone" placeholder="phone">
+                        <img src="assets/icons/call.png">
+                    </div>
                 </div>
-                <div class="button_w_border">
-                    <input name="email" type="email" [(ngModel)]="htmlinput.email" id="email" placeholder="email">
-                    <img src="assets/icons/mail.png">
-                </div>
-                <div class="button_w_border">
-                    <input name="phone" type="tel" id="phone" [(ngModel)]="htmlinput.phone" placeholder="phone">
-                    <img src="assets/icons/call.png">
+                <div class="button_wrapper">
+                    <a (click)="onClose()" class="button_w_border cancel_button">
+                        <p>{{ editMode ? 'Delete' : 'Cancel' }}</p><img src="assets/icons/button_x_check/button_x.png">
+                    </a>
+                    <div class="button_w_background">
+                        <input type="submit" [disabled]="!htmlinput.name"
+                            value="{{ editMode ? 'Save' : 'Create Contact' }}">
+                        <img src=" assets/icons/button_x_check/button_check.png">
+                    </div>
                 </div>
             </div>
-            <div class="button_wrapper">
-                <a (click)="onClose()" class="button_w_border">
-                    <p>{{ editMode ? 'Delete' : 'Cancel' }}</p><img src="assets/icons/button_x_check/button_x.png">
-                </a>
-                <div class="button_w_background">
-                    <input type="submit" [disabled]="!htmlinput.name"
-                        value="{{ editMode ? 'Save' : 'Create Contact' }}">
-                    <img src=" assets/icons/button_x_check/button_check.png">
-                </div>
-            </div>
-        </div>
-    </form>
-</div>
+        </form>
+    </div>
+</section>
