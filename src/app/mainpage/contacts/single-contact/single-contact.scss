@@ -96,9 +96,11 @@
     display: flex;
     flex-direction: row;
     gap: 40px;
-
-
+      transform: translateX(100%);
+    animation: slideIn 0.2s ease-out forwards;
 }
+
+
 
 .contact-image {
     width: 120px;
@@ -127,7 +129,7 @@
         line-height: 120%;
         letter-spacing: 0;
         vertical-align: middle;
-         margin: 10px 0 0 0;
+        margin: 10px 0 0 0;
     }
 
     @media (max-width: 1080px) {
@@ -165,7 +167,10 @@
     align-items: center;
     gap: 20px;
     margin: 10px 0 0 0;
+    transform: translateX(100%);
+    animation: slideIn 0.2s ease-out forwards;
 }
+
 
 .contact-edit a,
 .contact-delete a {
@@ -220,6 +225,8 @@
     flex-direction: column;
     justify-content: flex-start;
     gap: 3rem;
+    transform: translateX(100%);
+    animation: slideIn 0.2s ease-out forwards;
 
     .contact-information {
         font-family: 'Inter', sans-serif;
