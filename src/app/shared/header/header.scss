@@ -19,6 +19,10 @@ header {
         align-items: center;
         gap: 12px
     }
+
+    >img:first-of-type {
+        display: none;
+    }
 }
 
 .info {
@@ -82,4 +86,20 @@ header {
 
 .not_visible {
     display: none;
+}
+
+@media (max-width: 1080px) {
+    
+    header {
+        padding: 25px 50px;
+
+        >p:first-of-type {
+            display: none;
+        }
+
+        >img:first-of-type {
+            display: block;
+            width: 40px;
+        }
+    }
 }

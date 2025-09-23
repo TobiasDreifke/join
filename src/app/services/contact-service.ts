@@ -15,10 +15,12 @@ export class ContactService implements OnDestroy{
   }
 
   getContactData(){
-    const q = query(this.getContactsRef(), orderBy("name"))
+    const q = query(this.getContactsRef(), orderBy("name"));
+
     return onSnapshot(q, (contactsList) => {
+      this.contactsList = [];
       contactsList.docs.forEach((contact, index)=> {
-        this.contactsList.push(this.setObjectTypeToContact(contact.data(), contact.id, index))
+        this.contactsList.push(this.setObjectTypeToContact(contact.data(), contact.id, index));
       })
     })
   }
@@ -32,7 +34,7 @@ export class ContactService implements OnDestroy{
   }
 
   async updateContact(contactId: string, contactData: Contact){
-    await updateDoc(this.getSingleContactRef(contactId), this.getCleanJson(contactData))
+    await updateDoc(this.getSingleContactRef(contactId), this.getCleanJson(contactData));
   }
 
   getContactsRef(){
@@ -40,7 +42,7 @@ export class ContactService implements OnDestroy{
   }
 
   getSingleContactRef(docId: string){
-    return doc(collection(this.firestore, 'contact'), docId)
+    return doc(collection(this.firestore, 'contact'), docId);
   }
 
   getCleanJson(obj: Contact){
@@ -68,7 +70,7 @@ export class ContactService implements OnDestroy{
       '#0038FF', '#C3FF2B', '#FFE62B', '#FF4646', '#FFBB2B'
     ];
 
-    return contactColors[index % contactColors.length]
+    return contactColors[index % contactColors.length];
   }
 
   ngOnDestroy(): void {
