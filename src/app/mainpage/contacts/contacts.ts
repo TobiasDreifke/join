@@ -8,7 +8,7 @@ import { ContactService } from '../../services/contact-service';
   selector: 'app-contacts',
   imports: [AddContact, OverviewContact, SingleContact, CommonModule],
   templateUrl: './contacts.html',
-  styleUrls: ['./contacts.scss']
+  styleUrl: './contacts.scss'
 })
 export class Contacts {
   @Input() isActive = Event;
