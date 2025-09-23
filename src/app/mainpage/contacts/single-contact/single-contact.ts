@@ -53,6 +53,13 @@ export class SingleContact implements OnChanges {
     }
   }//#endregion
 
+contactDeleted = false;
+
+deleteElements() {
+  this.contactService.deleteContact(this.contactId!);
+  this.contactDeleted = true; 
+}
+
   getInitials(name?: string): string {
   if (!name) return '';
   return name

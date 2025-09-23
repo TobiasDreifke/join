@@ -20,6 +20,8 @@
                 <div class="contact-name">
                     <h3 class="contact-name-text">{{ contact?.name }}</h3>
                 </div>
+                
+                    
                 <div class="contact-group">
                     <div class="contact-edit">
                         <a (click)="edit.emit()">
@@ -29,7 +31,7 @@
                     </div>
 
                     <div class="contact-delete">
-                        <a href="#">
+                        <a (click)="deleteElements()">
                             <img class="contact-delete-image" src="./assets/icons/delete.png" alt="Delete">
                             <p>Delete</p>
                         </a>
@@ -48,6 +50,7 @@
                 <p class="contact-details-Phone">{{ contact?.phone }}</p>
             </div>
         </div>
+    
         <div class="menu-details" (click)="toggleMenu(); $event.stopPropagation()">
             <button class="menu-button">
                 <img src="./assets/icons/more_vert.png" alt="Menu" />
@@ -62,7 +65,7 @@
                 <span>Edit</span>
             </a>
 
-            <a href="#">
+            <a (click)="deleteElements()">
                 <img src="./assets/icons/delete.png" alt="Delete" />
                 <span>Delete</span>
             </a>
