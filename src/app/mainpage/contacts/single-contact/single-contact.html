@@ -14,18 +14,18 @@
             <div class="contact-image">
             </div>
             <div class="contact-details">
-                <div class="contact-name">
-                    <h3 class="contact-name-text">Tatiana Wolf</h3>
+                <div class="contact-name" >
+                    <h3 class="contact-name-text">{{ contact?.name }}</h3>
                 </div>
                 <div class="contact-group">
-                    <div class="contact-edit"(click)="edit.emit()" >
+                    <div class="contact-edit">
                         <a href="#">
                             <img class="contact-edit-image" src="./assets/icons/edit.png" alt="Edit">
                             <p>Edit</p>
                         </a>
                     </div>
 
-                    <div class="contact-delete">
+                    <div class="contact-delete" >
                         <a href="#">
                             <img class="contact-delete-image" src="./assets/icons/delete.png" alt="Delete">
                             <p>Delete</p>
@@ -38,11 +38,11 @@
             <div class="contact-information">
                 <p>Contact Information</p>
             </div>
-            <div class="contact-details-info">
+            <div class="contact-details-info" >
                 <p class="contact-details-label">Email</p>
-                <p class="contact-details-Email">tatiana.wolf@example.com</p>
+                <p class="contact-details-Email">{{ contact?.email }}</p>
                 <p class="contact-details-label">Phone</p>
-                <p class="contact-details-Phone">(123) 456-7890</p>
+                <p class="contact-details-Phone">{{ contact?.phone }}</p>
             </div>
         </div>
         <div class="menu-details" (click)="toggleMenu(); $event.stopPropagation()">
@@ -54,7 +54,7 @@
         <div class="popup-menu" *ngIf="isMenuOpen || isClosing" [ngClass]="{ 'popup-menu-closing': isClosing }"
             (click)="$event.stopPropagation()">
 
-            <a href="#" (click)="edit.emit()">
+            <a href="#" >
                 <img src="./assets/icons/edit.png" alt="Edit" />
                 <span>Edit</span>
             </a>

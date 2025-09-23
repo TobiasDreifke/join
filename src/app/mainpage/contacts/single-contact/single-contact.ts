@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import {Component,ElementRef,EventEmitter,HostListener,inject,Input,Output, ViewChild,} from '@angular/core';
+import { Component, ElementRef, EventEmitter, HostListener, inject, Input, Output, ViewChild, OnChanges } from '@angular/core';
 import { ContactService } from '../../../services/contact-service';
 
 @Component({
@@ -7,16 +7,14 @@ import { ContactService } from '../../../services/contact-service';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './single-contact.html',
-  styleUrl: './single-contact.scss',
+  styleUrls: ['./single-contact.scss'],
 })
-export class SingleContact {
+export class SingleContact implements OnChanges {
 
-  @ViewChild('appSection',{ static: true }) appSection!: ElementRef<HTMLElement>;
+  @ViewChild('appSection', { static: true }) appSection!: ElementRef<HTMLElement>;
 
-  @Output() edit = new EventEmitter<void>();
-     contactService = inject(ContactService);
+  contactService = inject(ContactService);
   @Input() contactId: string | null = null;
-
 
   get contact() {
     return this.contactService.contactsList.find(contact => contact.id === this.contactId);
@@ -24,38 +22,34 @@ export class SingleContact {
 
   ngOnChanges() {
     console.log("single-contacts received contactId:", this.contact);
-  } 
+  }
+
+  @Output() edit = new EventEmitter<void>();
 
 
- 
-
-
-   isMenuOpen = false;
+  isMenuOpen = false;
   isClosing = false;
 
-toggleMenu() {
-  if (this.isMenuOpen) {
-    this.startClosing();
-  } else {
-    this.isMenuOpen = true;
-  }
-}
-
-startClosing() {
-  this.isClosing = true;
-  setTimeout(() => {
-    this.isMenuOpen = false;
-    this.isClosing = false;
-  }, 300); 
-}
-
-@HostListener('document:click', ['$event'])
-handleClick(event: MouseEvent) {
-  if (this.appSection.nativeElement.contains(event.target as Node)) {
+  toggleMenu() {
     if (this.isMenuOpen) {
       this.startClosing();
-    
+    } else {
+      this.isMenuOpen = true;
+    }
   }
 
+  startClosing() {
+    this.isClosing = true;
+    setTimeout(() => {
+      this.isMenuOpen = false;
+      this.isClosing = false;
+    }, 300);
   }
-}}
+
+  @HostListener('document:click', ['$event'])
+  handleClick(event: MouseEvent) {
+    if (!this.appSection.nativeElement.contains(event.target as Node) && this.isMenuOpen) {
+      this.startClosing();
+    }
+  }
+}
