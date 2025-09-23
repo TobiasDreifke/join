@@ -21,6 +21,8 @@ $border-radius: 2rem;
 }
 
 .left_wrapper {
+    position: relative;
+
     @include PositionBox($d: flex, $jc: center, $ai: start, $fd: column);
     background-color: $color_secondary;
 
@@ -33,6 +35,10 @@ $border-radius: 2rem;
     border-bottom-left-radius: $border-radius;
     border-top-left-radius: $border-radius;
     transition: all 100ms ease;
+
+    .close_button_mobile {
+        display: none;
+    }
 }
 
 .text_wrapper_left {
@@ -187,6 +193,8 @@ $border-radius: 2rem;
         display: none;
     }
 
+
+
     .add_content_wrapper {
         @include PositionBox($fd: column);
         height: calc(100% - 200px);
@@ -210,6 +218,24 @@ $border-radius: 2rem;
 
         >img {
             display: none;
+        }
+
+        .close_button_mobile {
+            @include PositionBox($d: flex, $jc: center, $ai: center, $fd: row);
+
+            width: 2rem;
+            height: 2rem;
+            display: flex;
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            color: white;
+
+            &:hover {
+                background-color: $color_main;
+                border-radius: 100%;
+                cursor: pointer;
+            }
         }
     }
 
