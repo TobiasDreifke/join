@@ -8,10 +8,6 @@
 </div>
 <div class="right_wrapper">
     <p (click)="close.emit()">X</p>
-    <!-- <div class="form_wrapper">
-
-    </div> -->
-
     <form (ngSubmit)="onSubmit()" class="form_wrapper">
         <div class="person_icon">
             <img src="assets/icons/person.png" alt="">
@@ -32,7 +28,7 @@
                 </div>
             </div>
             <div class="button_wrapper">
-                <a (click)="close.emit()" class="button_w_border">
+                <a (click)="onClose()" class="button_w_border">
                     <p>{{ editMode ? 'Delete' : 'Cancel' }}</p><img src="assets/icons/button_x_check/button_x.png">
                 </a>
                 <div class="button_w_background">
