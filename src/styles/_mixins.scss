@@ -8,9 +8,23 @@
     flex-direction: $fd
 }
 
-@mixin WidthAndHeight($w: 100%, $h: 100%) {
+@mixin BoxSize($w: 100%, $h: 100%) {
     width: $w;
     height: $h;
+}
+
+@mixin BoxPosition($pos: null, $tp: null, $bm: null, $lt: null, $rt: null) {
+    @if $pos !=null { position: $pos; }
+    @if $tp !=null { top: $tp; }
+    @if $bm !=null { bottom: $bm; }
+    @if $lt !=null { left: $lt; }
+    @if $rt !=null { right: $rt; }
+}
+
+@mixin SpaceBox($mg: null, $pd: null, $gp: null) {
+    @if $mg != null { margin: $mg; }
+    @if $pd != null { padding: $pd; }
+    @if $gp != null { gap: $gp; }
 }
 
 @mixin button_w_border($text-color: $color_main, $border-color: $color_secondary, $radius: 0.5rem, $gap: 1rem) {
@@ -25,27 +39,21 @@
     color: $border-color;
     transition: all 250ms ease;
     padding: 0.75rem 1.5rem;
-    cursor: pointer;
 
     >p {
         margin: 0;
         color: $text-color;
         transition: all 250ms ease;
-
     }
 
     >img {
         display: block;
         transition: all 250ms ease;
-
     }
 
-    cursor: pointer;
-    padding: 0.75rem 1.5rem;
-
     &:hover {
+        cursor: pointer;
         border-color: $color_highlight;
-        // border: 10px dotted $border-color-hover;
 
         >img {
             filter: brightness(0) saturate(100%) invert(56%) sepia(90%) saturate(1042%) hue-rotate(165deg) brightness(93%) contrast(91%);
@@ -64,7 +72,6 @@
     gap: $gap;
     border-radius: $radius;
     padding: 0.75rem 1.5rem;
-    cursor: pointer;
 
     background-color: $bg-color;
     border: none;
@@ -74,19 +81,15 @@
         margin: 0;
         color: $text-color;
         transition: all 250ms ease;
-
     }
 
     >img {
         display: block;
         transition: all 250ms ease;
-
     }
 
-    cursor: pointer;
-    padding: 0.75rem 1.5rem;
-
     &:hover {
+        cursor: pointer;
         background-color: $color_highlight;
     }
 }
