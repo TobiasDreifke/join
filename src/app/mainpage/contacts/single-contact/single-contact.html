@@ -1,5 +1,5 @@
 <section #appSection>
-    <div class="single-contact" >
+    <div class="single-contact">
         <div class="contact-header">
             <h2 class="contact">Contacts</h2>
             <hr class="line-mittel">
@@ -10,41 +10,49 @@
                 </a>
             </div>
         </div>
-        <div class="contact-info">
-            <div class="contact-image">
-            </div>
-            <div class="contact-details">
-                <div class="contact-name" >
-                    <h3 class="contact-name-text">{{ contact?.name }}</h3>
+        
+            <div class="contact-info" [ngClass]="{ 'd-none': isDeleted }">
+                <div class="contact-image" [style.background-color]="contact?.initial_avatar_color">
+                    {{ getInitials(contact?.name) }}
                 </div>
-                <div class="contact-group">
-                    <div class="contact-edit">
-                        <a href="#">
-                            <img class="contact-edit-image" src="./assets/icons/edit.png" alt="Edit">
-                            <p>Edit</p>
-                        </a>
+
+                <div class="contact-details">
+                    <div class="contact-name">
+                        <h3 class="contact-name-text">{{ contact?.name }}</h3>
                     </div>
 
-                    <div class="contact-delete" >
-                        <a href="#">
-                            <img class="contact-delete-image" src="./assets/icons/delete.png" alt="Delete">
-                            <p>Delete</p>
-                        </a>
+                    <div class="contact-group">
+                        <div class="contact-edit">
+                            <a (click)="edit.emit()">
+                                <img class="contact-edit-image" src="./assets/icons/edit.png" alt="Edit">
+                                <p>Edit</p>
+                            </a>
+                        </div>
+
+                        <div class="contact-delete">
+                            <a (click)="deleteElements()">
+                                <img class="contact-delete-image" src="./assets/icons/delete.png" alt="Delete">
+                                <p>Delete</p>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="contact-data">
-            <div class="contact-information">
-                <p>Contact Information</p>
+
+            <div class="contact-data" [ngClass]="{ 'd-none': isDeleted }">
+                <div class="contact-information">
+                    <p>Contact Information</p>
+                </div>
+                <div class="contact-details-info">
+                    <p class="contact-details-label">Email</p>
+                    <p class="contact-details-Email">{{ contact?.email }}</p>
+                    <p class="contact-details-label">Phone</p>
+                    <p class="contact-details-Phone">{{ contact?.phone }}</p>
+                </div>
             </div>
-            <div class="contact-details-info" >
-                <p class="contact-details-label">Email</p>
-                <p class="contact-details-Email">{{ contact?.email }}</p>
-                <p class="contact-details-label">Phone</p>
-                <p class="contact-details-Phone">{{ contact?.phone }}</p>
-            </div>
-        </div>
+    
+
+
         <div class="menu-details" (click)="toggleMenu(); $event.stopPropagation()">
             <button class="menu-button">
                 <img src="./assets/icons/more_vert.png" alt="Menu" />
@@ -54,19 +62,20 @@
         <div class="popup-menu" *ngIf="isMenuOpen || isClosing" [ngClass]="{ 'popup-menu-closing': isClosing }"
             (click)="$event.stopPropagation()">
 
-            <a href="#" >
+            <a (click)="edit.emit()">
                 <img src="./assets/icons/edit.png" alt="Edit" />
                 <span>Edit</span>
             </a>
 
-            <a href="#">
+            <a (click)="deleteElements()">
                 <img src="./assets/icons/delete.png" alt="Delete" />
                 <span>Delete</span>
             </a>
         </div>
 
 
-
     </div>
+
+
 
 </section>

@@ -12,6 +12,14 @@
     >app-single-contact {
         width: calc(100% - clamp(20rem, 15.221rem + 19.118vw, 28.125rem));
         border: 1px solid rgb(60, 43, 171);
+        background-color: #ffffffbb;
+        height: 100vh;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        flex-direction: column;
+       
+           
     }
 
     >app-add-contact {

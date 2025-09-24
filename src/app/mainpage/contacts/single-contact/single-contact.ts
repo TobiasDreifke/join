@@ -10,25 +10,34 @@ import { ContactService } from '../../../services/contact-service';
   styleUrls: ['./single-contact.scss'],
 })
 export class SingleContact implements OnChanges {
+    isMenuOpen = false;
+    isClosing = false;
+    contactDeleted = false;
+    isDeleted = false;
 
   @ViewChild('appSection', { static: true }) appSection!: ElementRef<HTMLElement>;
+   @Output() edit = new EventEmitter<void>();
 
   contactService = inject(ContactService);
+  
   @Input() contactId: string | null = null;
 
   get contact() {
     return this.contactService.contactsList.find(contact => contact.id === this.contactId);
   }
 
-  ngOnChanges() {
-    console.log("single-contacts received contactId:", this.contact);
+ngOnChanges() {
+  const contactExists = this.contactService.contactsList.some(contact => contact.id === this.contactId);
+  if (contactExists) {
+    this.isDeleted = false;
+    this.contactDeleted = false;
   }
 
-  @Output() edit = new EventEmitter<void>();
+  console.log("single-contact received contactId:", this.contact);
+}
 
 
-  isMenuOpen = false;
-  isClosing = false;
+
 
   toggleMenu() {
     if (this.isMenuOpen) {
@@ -51,5 +60,24 @@ export class SingleContact implements OnChanges {
     if (!this.appSection.nativeElement.contains(event.target as Node) && this.isMenuOpen) {
       this.startClosing();
     }
-  }
+  }//#endregion
+
+
+deleteElements() {
+  this.contactService.deleteContact(this.contactId!);
+  this.isDeleted = true;
+  this.contactDeleted = true;
+}
+
+
+
+  getInitials(name?: string): string {
+  if (!name) return '';
+  return name
+    .split(' ')
+    .map(word => word[0])
+    .join('')
+    .toUpperCase();
+}
+
 }
