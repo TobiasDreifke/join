@@ -2,7 +2,6 @@
 @use 'variables' as *;
 
 section {
-    //320-500 / 1150-1600
     @include BoxSize($w: clamp(20rem, -8.75rem + 40vw, 31.25rem), $h: calc(100vh - 105px));
     @include PositionBox($ai: center, $fd: column);
     @include BoxPosition($pos: relative);
@@ -12,20 +11,20 @@ section {
 }
 
 header {
-    @include BoxSize($w: clamp(18.75rem, -5.208rem + 33.333vw, 28.125rem), $h: 8%);
-    @include BoxPosition($pos: absolute, $tp: 25px);
+    @include PositionBox();
+    @include BoxSize($w: clamp(18.75rem, -5.208rem + 33.333vw, 28.125rem), $h: 100px);
+    @include BoxPosition($pos: fixed, $tp: 100px);
     background-color: $color_white;
 
-
     >a {
-        @include BoxSize($w: clamp(18.125rem, -5.833rem + 33.333vw, 27.5rem), $h: 60px);
+        @include BoxSize($h: 60px);
         @include button_w_background($text-color: $color_white, $bg-color: $color_main, $radius: 0.5rem, $gap: 1rem);
         text-decoration: none;
     }
 }
 
 main {
-    @include BoxSize($w: clamp(18.125rem, -5.833rem + 33.333vw, 27.5rem), $h: calc(100% - 210px));
+    @include BoxSize($w: clamp(18.125rem, -5.833rem + 33.333vw, 27.5rem), $h: calc(100% - 200px));
 
     >div {
         >h2 {
@@ -67,6 +66,8 @@ main {
             }
 
             >.contact-info {
+                overflow-x: hidden;
+
                 >h3 {
                     font-weight: normal;
                     font-size: clamp(1rem, 0.88rem + 0.548vw, 1.25rem);
@@ -78,6 +79,10 @@ main {
                 }
             }
         }
+    }
+
+    .seperator {
+        @include BoxSize($h: 75px);
     }
 }
 
@@ -109,14 +114,20 @@ footer {
 
     header {
         @include PositionBox();
-        @include BoxSize($w: 100vw, $h: 8%);
+        @include BoxSize($w: 100%, $h: 8%);
+
+        >a {
+            @include BoxSize($w: clamp(18.125rem, -5.833rem + 33.333vw, 27.5rem), $h: 60px);
+        }
     }
 
     main {
-        @include BoxSize($w: 100vw, $h: calc(100% - 210px));
+        @include BoxSize($w: 100%, $h: calc(100% - 200px));
 
         >div {
             >.contact {
+                margin: 0 2%;
+
                 >.contact-initials {
                     margin-right: clamp(0.938rem, 0.386rem + 2.206vw, 1.875rem);
                     min-width: auto;
@@ -130,11 +141,11 @@ footer {
 
 @media (max-width: 500px) {
     section {
-        @include BoxSize($w: 100%, $h: calc(100vh - 210px));
+        @include BoxSize($w: 100%, $h: calc(100vh - 200px));
     }
 
     main {
-        @include BoxSize($w: 100vw, $h: 100%);
+        @include BoxSize();
         padding-top: 20px;
 
         >div {
