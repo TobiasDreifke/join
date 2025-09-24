@@ -1,4 +1,4 @@
-import { Component, inject, Input } from '@angular/core';
+import { Component, HostBinding, inject, Input } from '@angular/core';
 import { AddContact } from "./add-contact/add-contact";
 import { OverviewContact } from "./overview-contact/overview-contact";
 import { SingleContact } from "./single-contact/single-contact";
@@ -22,6 +22,22 @@ export class Contacts {
   receiveSelectedData(contactId: string | null) {
     console.log("Contact main is receiving:", contactId);
     this.activeContactId = contactId;
+  }
+
+  @HostBinding('class.display-contacts-list')
+  displayContactList = true;
+
+  @HostBinding('class.display-single-contact')
+  displaySingleContact = false;
+
+  showContactList(){
+    this.displayContactList = true;
+    this.displaySingleContact = false;
+  }
+
+  showSingleContact(){
+    this.displayContactList = false;
+    this.displaySingleContact = true;
   }
 
   // ---------- working tree beneath -----------

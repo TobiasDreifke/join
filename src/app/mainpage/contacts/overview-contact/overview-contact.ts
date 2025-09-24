@@ -10,6 +10,7 @@ import { ContactService } from '../../../services/contact-service';
 export class OverviewContact {
   @Output() addNew = new EventEmitter<void>();
   @Output() isActive = new EventEmitter<string | null>();
+  @Output() showSingleContact = new EventEmitter<void>();
   contactService = inject(ContactService);
 
   letters = Array.from({ length: 26 }, (_, i) =>
@@ -27,6 +28,12 @@ export class OverviewContact {
   selectContact(contact: Contact) {
     this.activeContactId = contact.id!;
     this.sendSelectedData();
+    console.log('TEST: selectContact');
+  }
+
+  onShowSingleContact(){
+    console.log('TEST: SingleContact');
+    this.showSingleContact.emit(); 
   }
   
   sendSelectedData() {

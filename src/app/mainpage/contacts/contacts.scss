@@ -2,7 +2,7 @@
 @use 'variables' as *;
 
 :host {
-    @include PositionBox($d: flex, $jc: start, $ai: center, $fd: row);
+    @include PositionBox($d: flex, $jc: flex-start, $ai: stretch, $fd: row);
     background-color: $color_background_main;
 
     >app-overview-contact {
@@ -36,12 +36,26 @@
 
 @media (max-width: 1080px) {
     :host {
-        >app-overview-contact {
-            width: 100%;
+
+        &.display-contacts-list {
+            >app-overview-contact {
+                width: 100%;
+            }
+
+            >app-single-contact {
+                display: none;
+            }
         }
 
-        >app-single-contact {
-            display: none;
+        &.display-single-contact {
+            >app-overview-contact {
+                display: none;
+            }
+
+            >app-single-contact {     
+                width: 100%;
+            }
         }
+
     }
 }
