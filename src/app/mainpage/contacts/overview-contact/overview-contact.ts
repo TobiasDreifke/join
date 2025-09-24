@@ -28,7 +28,7 @@ export class OverviewContact {
     this.activeContactId = contact.id!;
     this.sendSelectedData();
   }
-  
+
   sendSelectedData() {
     this.isActive.emit(this.activeContactId);
   }
@@ -37,11 +37,11 @@ export class OverviewContact {
     return this.contactService.contactsList
   }
 
-  ngOnInit() {    
+  ngOnInit() {
     this.letters.forEach(l => this.contactsByLetter[l] = []);
   }
 
-  groupContacts(contacts: Contact[]) {    
+  groupContacts(contacts: Contact[]) {
     this.contactsByLetter = {};
     this.letters.forEach(l => this.contactsByLetter[l] = []);
 
@@ -54,10 +54,14 @@ export class OverviewContact {
     return this.contactsByLetter;
   }
 
-  getInitials(fullName: string): string {
-    const parts = fullName.trim().split(' ');
-    if (parts.length < 2) return parts[0][0].toUpperCase();
-    return parts[0][0].toUpperCase() + parts[1][0].toUpperCase();
+  getInitials(name?: string): string {
+    if (!name) return '';
+    const parts = name.trim().split(' ').filter(p => p);
+    if (parts.length <= 2) {
+      return parts.map(p => p[0].toUpperCase()).join('');
+    } else {
+      return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
+    }
   }
 
   @HostListener('window:resize')
@@ -66,6 +70,6 @@ export class OverviewContact {
   }
 
   private checkViewport() {
-    this.isMobile = window.innerWidth <= 1080;
+    this.isMobile = window.innerWidth <= 500;
   }
 }
