@@ -103,7 +103,7 @@ footer {
 
 @media (max-width: 1080px) {
     section {
-        @include BoxSize($w: 100%, $h: calc(100vh - 210px));
+        @include BoxSize($w: 100%, $h: calc(100vh - 200px));
         @include PositionBox($ai: start, $fd: column);
     }
 
