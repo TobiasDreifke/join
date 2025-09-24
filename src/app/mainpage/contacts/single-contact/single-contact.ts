@@ -10,13 +10,15 @@ import { ContactService } from '../../../services/contact-service';
   styleUrls: ['./single-contact.scss'],
 })
 export class SingleContact implements OnChanges {
-    isMenuOpen = false;
-    isClosing = false;
-    contactDeleted = true;
-    isDeleted = true;
+  isMenuOpen = false;
+  isClosing = false;
+  contactDeleted = true;
+  isDeleted = true;
+
+  @Output() showContactList = new EventEmitter<void>();
 
   @ViewChild('appSection', { static: true }) appSection!: ElementRef<HTMLElement>;
-   @Output() edit = new EventEmitter<void>();
+  @Output() edit = new EventEmitter<void>();
 
   contactService = inject(ContactService);
   
@@ -26,18 +28,15 @@ export class SingleContact implements OnChanges {
     return this.contactService.contactsList.find(contact => contact.id === this.contactId);
   }
 
-ngOnChanges() {
-  const contactExists = this.contactService.contactsList.some(contact => contact.id === this.contactId);
-  if (contactExists) {
-    this.isDeleted = false;
-    this.contactDeleted = false;
+  ngOnChanges() {
+    const contactExists = this.contactService.contactsList.some(contact => contact.id === this.contactId);
+    if (contactExists) {
+      this.isDeleted = false;
+      this.contactDeleted = false;
+    }
+
+    console.log("single-contact received contactId:", this.contact);
   }
-
-  console.log("single-contact received contactId:", this.contact);
-}
-
-
-
 
   toggleMenu() {
     if (this.isMenuOpen) {
@@ -60,18 +59,16 @@ ngOnChanges() {
     if (!this.appSection.nativeElement.contains(event.target as Node) && this.isMenuOpen) {
       this.startClosing();
     }
+
   }//#endregion
 
+  deleteElements() {
+    this.contactService.deleteContact(this.contactId!);
+    this.isDeleted = true;
+    this.contactDeleted = true;
+  }
 
-deleteElements() {
-  this.contactService.deleteContact(this.contactId!);
-  this.isDeleted = true;
-  this.contactDeleted = true;
-}
-
-
-
-getInitials(name?: string): string {
+  getInitials(name?: string): string {
     if (!name) return '';
     const parts = name.trim().split(' ').filter(p => p);
     if (parts.length <= 2) {
@@ -81,6 +78,7 @@ getInitials(name?: string): string {
     }
   } 
 
-
-
+  onShowContactList(){
+    this.showContactList.emit();
+  }
 }
