@@ -6,13 +6,15 @@ section {
     @include PositionBox($ai: center, $fd: column);
     overflow-y: auto;
     scrollbar-width: thin;
+    background-color: $color_white;
 }
 
 header {
     @include PositionBox();
     @include BoxSize($w: clamp(19.375rem, 16.066rem + 13.235vw, 25rem), $h: 8%);
     @include BoxPosition($pos: fixed, $tp: 100px);
-    background-color: $color_background_main;
+    background-color: $color_white;
+    
 
     >a {
         @include BoxSize($w: clamp(18.75rem, 15.441rem + 13.235vw, 24.375rem), $h: 60px);
