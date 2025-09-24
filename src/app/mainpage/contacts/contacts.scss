@@ -5,19 +5,13 @@
     @include PositionBox($d: flex, $jc: flex-start, $ai: stretch, $fd: row);
     background-color: $color_background_main;
 
-    >app-overview-contact {
-        width: clamp(20rem, 15.221rem + 19.118vw, 28.125rem);
-    }
-
     >app-single-contact {
-        width: calc(100% - clamp(20rem, 15.221rem + 19.118vw, 28.125rem));
+        width: calc(100% - clamp(20rem, -8.75rem + 40vw, 31.25rem));
         height: calc(100vh - 105px);
         display: flex;
         justify-content: flex-start;
         align-items: flex-start;
         flex-direction: column;
-       
-           
     }
 
     >app-add-contact {

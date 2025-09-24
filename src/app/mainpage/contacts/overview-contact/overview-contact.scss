@@ -2,29 +2,30 @@
 @use 'variables' as *;
 
 section {
-    @include BoxSize($w: clamp(20rem, 15.221rem + 19.118vw, 28.125rem), $h: calc(100vh - 105px));
+    //320-500 / 1150-1600
+    @include BoxSize($w: clamp(20rem, -8.75rem + 40vw, 31.25rem), $h: calc(100vh - 105px));
     @include PositionBox($ai: center, $fd: column);
+    @include BoxPosition($pos: relative);
     overflow-y: auto;
     scrollbar-width: thin;
     background-color: $color_white;
 }
 
 header {
-    @include PositionBox();
-    @include BoxSize($w: clamp(19.375rem, 16.066rem + 13.235vw, 25rem), $h: 8%);
-    @include BoxPosition($pos: fixed, $tp: 100px);
+    @include BoxSize($w: clamp(18.75rem, -5.208rem + 33.333vw, 28.125rem), $h: 8%);
+    @include BoxPosition($pos: absolute, $tp: 25px);
     background-color: $color_white;
-    
+
 
     >a {
-        @include BoxSize($w: clamp(18.75rem, 15.441rem + 13.235vw, 24.375rem), $h: 60px);
+        @include BoxSize($w: clamp(18.125rem, -5.833rem + 33.333vw, 27.5rem), $h: 60px);
         @include button_w_background($text-color: $color_white, $bg-color: $color_main, $radius: 0.5rem, $gap: 1rem);
         text-decoration: none;
     }
 }
 
 main {
-    @include BoxSize($w: clamp(18.75rem, 15.441rem + 13.235vw, 24.375rem), $h: calc(100% - 210px));
+    @include BoxSize($w: clamp(18.125rem, -5.833rem + 33.333vw, 27.5rem), $h: calc(100% - 210px));
 
     >div {
         >h2 {
@@ -58,8 +59,10 @@ main {
             >.contact-initials {
                 @include PositionBox();
                 @include BoxSize($w: clamp(1.875rem, 1.434rem + 1.765vw, 2.625rem), $h: clamp(1.875rem, 1.434rem + 1.765vw, 2.625rem));
+                min-width: 42px;
+                min-height: 42px;
                 border-radius: 150px;
-                margin-right: clamp(0.938rem, 0.386rem + 2.206vw, 1.875rem);
+                margin-right: clamp(0.938rem, -1.458rem + 3.333vw, 1.875rem);
                 border: solid 2px $color_background_main;
             }
 
@@ -80,7 +83,7 @@ main {
 
 footer {
     @include PositionBox($ai: end, $jc: end);
-    @include BoxSize($w: clamp(19.375rem, 16.066rem + 13.235vw, 25rem), $h: 8%);
+    @include BoxSize($w: 100vw, $h: 8%);
     @include BoxPosition($pos: fixed, $bm: 130px, $rt: 30px);
     width: fit-content;
 
@@ -101,10 +104,37 @@ footer {
 @media (max-width: 1080px) {
     section {
         @include BoxSize($w: 100%, $h: calc(100vh - 210px));
+        @include PositionBox($ai: start, $fd: column);
+    }
+
+    header {
+        @include PositionBox();
+        @include BoxSize($w: 100vw, $h: 8%);
     }
 
     main {
-        @include BoxSize($w: clamp(18.75rem, 15.441rem + 13.235vw, 24.375rem), $h: 100%);
+        @include BoxSize($w: 100vw, $h: calc(100% - 210px));
+
+        >div {
+            >.contact {
+                >.contact-initials {
+                    margin-right: clamp(0.938rem, 0.386rem + 2.206vw, 1.875rem);
+                    min-width: auto;
+                    min-height: auto;
+                }
+            }
+        }
+
+    }
+}
+
+@media (max-width: 500px) {
+    section {
+        @include BoxSize($w: 100%, $h: calc(100vh - 210px));
+    }
+
+    main {
+        @include BoxSize($w: 100vw, $h: 100%);
         padding-top: 20px;
 
         >div {
