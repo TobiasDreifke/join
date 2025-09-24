@@ -1,5 +1,5 @@
 import { Component, EventEmitter, inject, Input, OnDestroy, Output } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 import { ContactService } from '../../../services/contact-service';
 @Component({
   selector: 'app-add-contact',
@@ -69,7 +69,12 @@ export class AddContact {
     this.close.emit();
   }
 
-  onSubmit() {
+  onSubmit(form: NgForm) {
+    if (form.invalid) {
+      form.control.markAllAsTouched();
+      return;
+    }
+
     if (this.editMode && this.contactId) {
       this.contactService.updateContact(this.contactId, this.htmlinput)
       console.log("you edited something old:", this.htmlinput);
@@ -85,13 +90,6 @@ export class AddContact {
       console.log("something went wrong");
     }
   }
-
-  // onSubmit() {
-  //   this.contactService.addContact(this.htmlinput);
-  //   console.log("you created something new:", this.htmlinput);
-  //   this.clearInputFields();
-  //   this.close.emit();
-  // }
 
   clearInputFields() {
     this.htmlinput.name = "";
