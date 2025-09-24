@@ -149,7 +149,23 @@ $border-radius: 2rem;
                 filter: brightness(0) saturate(100%) invert(78%) sepia(47%) saturate(0%) hue-rotate(187deg) brightness(101%) contrast(87%);
             }
 
-            >input {
+            input {
+                flex: 1;
+                min-width: 0;
+            }
+
+            small {
+                // border: 1px dotted blue;
+                font-size: 0.8rem;
+                color: red;
+                display: inline-block;
+                white-space: nowrap;
+                justify-content: end;
+                margin-left: auto;
+                max-width: 50%;
+            }
+
+            .input_no_error {
                 width: 100%;
                 height: 100%;
                 background-color: transparent;
@@ -158,7 +174,7 @@ $border-radius: 2rem;
                 padding: 0 0.5rem;
                 font-size: 1rem;
                 color: $color_main;
-
+                z-index: 99;
                 &::placeholder {
                     color: $color_grey;
                 }
@@ -194,6 +210,8 @@ $border-radius: 2rem;
             color: $color_white;
             cursor: pointer;
 
+
+
             &::placeholder {
                 color: $color_grey;
             }
@@ -205,6 +223,14 @@ $border-radius: 2rem;
     font-size: 1rem;
     margin: 0;
     padding: 0;
+}
+
+
+
+.input_error_text,
+span.ng-error {
+    color: $color_error;
+    font-size: 0.9rem;
 }
 
 // -------------------------- RESPONSIVE --------------
