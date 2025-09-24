@@ -21,6 +21,7 @@
 }
 
 
+
 .contact-header {
     display: flex;
     flex-direction: row;
@@ -100,6 +101,9 @@
     animation: slideIn 0.2s ease-out forwards;
 }
 
+    .d-none {
+  display: none !important;
+}
 
 
 .contact-image {
@@ -245,6 +249,7 @@
         justify-content: flex-start;
         gap: 1rem;
     }
+
 
 }
 
