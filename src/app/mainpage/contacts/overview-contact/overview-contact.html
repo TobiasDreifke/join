@@ -10,7 +10,7 @@
                         <h2>{{ letter }}</h2>
 
                         @for (contact of groupContacts(getContactData())[letter]; track contact.id) {
-                            <div class="contact" (click)="selectContact(contact)" [class.active]="activeContactId === contact.id">
+                            <div class="contact" (click)="selectContact(contact); onShowSingleContact()" [class.active]="activeContactId === contact.id">
                                 <div class="contact-initials" [style.background-color]="contact.initial_avatar_color">
                                     {{ getInitials(contact.name) }}
                                 </div>

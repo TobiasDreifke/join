@@ -28,11 +28,9 @@ export class OverviewContact {
   selectContact(contact: Contact) {
     this.activeContactId = contact.id!;
     this.sendSelectedData();
-    console.log('TEST: selectContact');
   }
 
   onShowSingleContact(){
-    console.log('TEST: SingleContact');
     this.showSingleContact.emit(); 
   }
 
