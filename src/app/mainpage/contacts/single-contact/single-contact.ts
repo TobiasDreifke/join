@@ -12,8 +12,8 @@ import { ContactService } from '../../../services/contact-service';
 export class SingleContact implements OnChanges {
     isMenuOpen = false;
     isClosing = false;
-    contactDeleted = false;
-    isDeleted = false;
+    contactDeleted = true;
+    isDeleted = true;
 
   @ViewChild('appSection', { static: true }) appSection!: ElementRef<HTMLElement>;
    @Output() edit = new EventEmitter<void>();
@@ -68,7 +68,6 @@ deleteElements() {
   this.isDeleted = true;
   this.contactDeleted = true;
 }
-
 
 
   getInitials(name?: string): string {
