@@ -59,7 +59,7 @@ export class AddContact {
 
     } if (!this.editMode) {
       // ------------------ ENABLE THIS FOR LIVE DATABASE SAVING ----------------
-       this.contactService.addContact(this.htmlinput);
+      this.contactService.addContact(this.htmlinput);
       console.log("you created something new:", this.htmlinput);
       this.clearInputFields();
       this.close.emit();

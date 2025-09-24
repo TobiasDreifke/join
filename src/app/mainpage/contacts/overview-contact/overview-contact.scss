@@ -2,7 +2,7 @@
 @use 'variables' as *;
 
 section {
-    @include WidthAndHeight($w: clamp(20rem, 15.221rem + 19.118vw, 28.125rem), $h: calc(100vh - 105px));
+    @include BoxSize($w: clamp(20rem, 15.221rem + 19.118vw, 28.125rem), $h: calc(100vh - 105px));
     @include PositionBox($ai: center, $fd: column);
     overflow-y: auto;
     scrollbar-width: thin;
@@ -10,33 +10,31 @@ section {
 
 header {
     @include PositionBox();
-    @include WidthAndHeight($w: clamp(19.375rem, 16.066rem + 13.235vw, 25rem), $h: 8%);
-    position: fixed;
-    top: 100px;
+    @include BoxSize($w: clamp(19.375rem, 16.066rem + 13.235vw, 25rem), $h: 8%);
+    @include BoxPosition($pos: fixed, $tp: 100px);
     background-color: $color_background_main;
 
     >a {
-        @include WidthAndHeight($w: clamp(18.75rem, 15.441rem + 13.235vw, 24.375rem), $h: 60px);
+        @include BoxSize($w: clamp(18.75rem, 15.441rem + 13.235vw, 24.375rem), $h: 60px);
         @include button_w_background($text-color: $color_white, $bg-color: $color_main, $radius: 0.5rem, $gap: 1rem);
         text-decoration: none;
     }
 }
 
 main {
-    @include WidthAndHeight($w: clamp(18.75rem, 15.441rem + 13.235vw, 24.375rem), $h: calc(100% - 210px));
+    @include BoxSize($w: clamp(18.75rem, 15.441rem + 13.235vw, 24.375rem), $h: calc(100% - 210px));
 
     >div {
         >h2 {
             font-size: 20px;
             font-weight: normal;
-            padding: 15px 25px;
+            padding: 15px 35px;
             border-bottom: 1px solid $color_grey;
         }
 
         >.contact {
             @include PositionBox($jc: start);
-            margin: 10px 0;
-            padding: 15px 25px;
+            @include SpaceBox($mg: 10px 0, $pd: 15px 25px);
             border-radius: 10px;
 
             &:hover {
@@ -57,21 +55,21 @@ main {
 
             >.contact-initials {
                 @include PositionBox();
-                @include WidthAndHeight($w: clamp(1.875rem, 1.434rem + 1.765vw, 2.625rem), $h: clamp(1.875rem, 1.434rem + 1.765vw, 2.625rem));
+                @include BoxSize($w: clamp(1.875rem, 1.434rem + 1.765vw, 2.625rem), $h: clamp(1.875rem, 1.434rem + 1.765vw, 2.625rem));
                 border-radius: 150px;
                 margin-right: clamp(0.938rem, 0.386rem + 2.206vw, 1.875rem);
                 border: solid 2px $color_background_main;
             }
 
             >.contact-info {
-
                 >h3 {
                     font-weight: normal;
-                    font-size: 20px
+                    font-size: clamp(1rem, 0.88rem + 0.548vw, 1.25rem);
                 }
 
                 >p {
                     color: $color_highlight;
+                    font-size: clamp(0.875rem, 0.815rem + 0.274vw, 1rem);
                 }
             }
         }
@@ -80,15 +78,13 @@ main {
 
 footer {
     @include PositionBox($ai: end, $jc: end);
-    @include WidthAndHeight($w: clamp(19.375rem, 16.066rem + 13.235vw, 25rem), $h: 8%);
-    position: fixed;
-    bottom: 130px;
-    right: 30px;
+    @include BoxSize($w: clamp(19.375rem, 16.066rem + 13.235vw, 25rem), $h: 8%);
+    @include BoxPosition($pos: fixed, $bm: 130px, $rt: 30px);
     width: fit-content;
 
     >a {
         @include PositionBox();
-        @include WidthAndHeight($w: 46px, $h: 46px);
+        @include BoxSize($w: 46px, $h: 46px);
         text-decoration: none;
         border-radius: 150px;
         background-color: $color_secondary;
@@ -101,8 +97,12 @@ footer {
 }
 
 @media (max-width: 1080px) {
+    section {
+        @include BoxSize($w: 100%, $h: calc(100vh - 210px));
+    }
+
     main {
-        @include WidthAndHeight($w: 390px, $h: 100%);
+        @include BoxSize($w: clamp(18.75rem, 15.441rem + 13.235vw, 24.375rem), $h: 100%);
         padding-top: 20px;
 
         >div {
@@ -112,12 +112,5 @@ footer {
                 }
             }
         }
-    }
-}
-
-@media (max-width: 1080px) {
-    section {
-        width: 100%;
-        height: calc(100vh - 210px);
     }
 }
