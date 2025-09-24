@@ -14,12 +14,20 @@ export class AddContact {
   @Input() editMode = false;
   @Output() close = new EventEmitter<void>();
 
+  currentContact?: Contact;
+  currentContactInitials: string = '';
+
 
   get contact() {
     return this.contactService.contactsList.find(contact => contact.id === this.contactId);
   }
 
   ngOnInit() {
+    if (this.contactId) {
+      this.currentContact = this.contactService.contactsList.find(currentContact => currentContact.id === this.contactId);
+      this.currentContactInitials = this.getInitials(this.currentContact?.name);
+    }
+
     if (this.contact && this.editMode) {
       this.htmlinput = {
         name: this.contact.name,
@@ -36,6 +44,16 @@ export class AddContact {
     }
   }
 
+  getInitials(name?: string): string {
+    if (!name) return '';
+    const parts = name.trim().split(' ').filter(p => p);
+    if (parts.length <= 2) {
+      return parts.map(p => p[0].toUpperCase()).join('');
+    } else {
+      return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
+    }
+  }
+
   htmlinput = {
     name: "",
     email: "",
@@ -48,7 +66,7 @@ export class AddContact {
       console.log("you deleted:", this.contact);
     }
 
-    this.close.emit(); 
+    this.close.emit();
   }
 
   onSubmit() {
