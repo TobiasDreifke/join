@@ -2,9 +2,9 @@
 <p><strong>Title:</strong> {{ item.title }}</p>
 <p><strong>Description:</strong> {{ item.description }}</p>
 <p><strong>Due date:</strong> {{ item.due_date.toDate() }}</p>
-<p><strong>Priority:</strong> {{ item.priority }}</p>
-<p><strong>Category:</strong> {{ item.category }}</p>
-<p><strong>Stage:</strong> {{ item.stage }}</p>
+<p><strong>Priority:</strong> {{ item.priority[1] }}</p>
+<p><strong>Category:</strong> {{ item.category[0] }}</p>
+<p><strong>Stage:</strong> {{ item.stage[1] }}</p>
 
 <p><strong>Subtasks:</strong></p>
 @for (item of item.subtask; track $index) {
