@@ -18,7 +18,7 @@ header {
 
     >a {
         @include BoxSize($h: 60px);
-        @include button_w_background($text-color: $color_white, $bg-color: $color_main, $radius: 0.5rem, $gap: 1rem);
+        @include button_w_background($text-color: $color_white, $bg-color: $color_secondary, $radius: 0.5rem, $gap: 1rem);
         text-decoration: none;
     }
 }
@@ -46,7 +46,7 @@ main {
 
             &.active {
                 cursor: auto;
-                background-color: $color_main;
+                background-color: $color_secondary;
 
                 >.contact-info {
                     >h3 {
@@ -88,13 +88,12 @@ main {
 
 footer {
     @include PositionBox($ai: end, $jc: end);
-    @include BoxSize($w: 100vw, $h: 8%);
-    @include BoxPosition($pos: fixed, $bm: 130px, $rt: 30px);
+    @include BoxPosition($pos: fixed, $bm: 120px, $rt: 12px);
     width: fit-content;
 
     >a {
         @include PositionBox();
-        @include BoxSize($w: 46px, $h: 46px);
+        @include BoxSize($w: 56px, $h: 56px);
         text-decoration: none;
         border-radius: 150px;
         background-color: $color_secondary;
@@ -110,6 +109,7 @@ footer {
     section {
         @include BoxSize($w: 100%, $h: calc(100vh - 200px));
         @include PositionBox($ai: start, $fd: column);
+        padding: 0 24px;
     }
 
     header {
@@ -126,7 +126,7 @@ footer {
 
         >div {
             >.contact {
-                margin: 0 2%;
+                margin: 2% 2%;
 
                 >.contact-initials {
                     margin-right: clamp(0.938rem, 0.386rem + 2.206vw, 1.875rem);

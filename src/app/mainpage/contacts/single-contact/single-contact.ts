@@ -16,13 +16,11 @@ export class SingleContact implements OnChanges {
   isDeleted = true;
 
   @Output() showContactList = new EventEmitter<void>();
-
-  @ViewChild('appSection', { static: true }) appSection!: ElementRef<HTMLElement>;
   @Output() edit = new EventEmitter<void>();
+  @Input() contactId: string | null = null;
+  @ViewChild('appSection', { static: true }) appSection!: ElementRef<HTMLElement>;
 
   contactService = inject(ContactService);
-  
-  @Input() contactId: string | null = null;
 
   get contact() {
     return this.contactService.contactsList.find(contact => contact.id === this.contactId);
@@ -52,13 +50,12 @@ export class SingleContact implements OnChanges {
     }, 300);
   }
 
-  @HostListener('document:click', ['$event'])
-  handleClick(event: MouseEvent) {
-    if (!this.appSection.nativeElement.contains(event.target as Node) && this.isMenuOpen) {
+  @HostListener('document:click')
+  handleClick() {
+    if (this.isMenuOpen) {
       this.startClosing();
     }
-
-  }//#endregion
+  }
 
   deleteElements() {
     this.contactService.deleteContact(this.contactId!);
