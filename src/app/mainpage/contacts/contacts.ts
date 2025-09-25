@@ -17,7 +17,7 @@ export class Contacts {
 
   onSelectContact(contactId: string | null) {
     this.activeContactId = contactId;
-  }
+  } 
 
   receiveSelectedData(contactId: string | null) {
     console.log("Contact main is receiving:", contactId);
