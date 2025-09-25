@@ -20,7 +20,6 @@ export class Contacts {
   }
 
   receiveSelectedData(contactId: string | null) {
-    console.log("Contact main is receiving:", contactId);
     this.activeContactId = contactId;
   }
 

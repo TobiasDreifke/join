@@ -34,8 +34,6 @@ export class SingleContact implements OnChanges {
       this.isDeleted = false;
       this.contactDeleted = false;
     }
-
-    console.log("single-contact received contactId:", this.contact);
   }
 
   toggleMenu() {

@@ -1,5 +1,5 @@
 import { NgClass } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
@@ -11,11 +11,14 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 export class Header {
   notVisible = true;
 
-  toggleUserMenu(){
-    if(this.notVisible == true){
-      this.notVisible = false;
-    }else{
-      this.notVisible = true;
-    }
+  toggleUserMenu(event: Event){
+    this.notVisible = !this.notVisible;
+    event.stopPropagation();
   }
+
+  @HostListener('document:click')
+  onDocClick(){
+    this.notVisible = true;
+  }
+
 }
