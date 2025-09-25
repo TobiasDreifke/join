@@ -36,57 +36,59 @@
                     <div class="button_w_border">
                         <input class="input_no_error" name="name" type="text" [(ngModel)]="htmlinput.name" id="name"
                             required #nameInput="ngModel" pattern="^\s*\S+\s+\S+.*$"
-                            [class.input_error]="nameInput.invalid && (nameInput.dirty || nameInput.touched || contactForm.submitted)"
-                            placeholder="full name">
-                        @if (nameInput.invalid && (nameInput.dirty || nameInput.touched || contactForm.submitted)) {
-                        <div class="error">
-                            @if (nameInput.errors?.['required']) {
-                            <small>enter Name</small>
-                            }
-                            @if (nameInput.errors?.['pattern']) {
-                            <small>enter first-/ last name</small>
-                            }
-                        </div>
-                        }
+                            placeholder="Full Name">
                         <img src="assets/icons/person.png">
                     </div>
 
+                    @if (nameInput.invalid && (nameInput.errors?.['pattern'] || nameInput.dirty || nameInput.touched || contactForm.submitted)) {
+                    <div class="error">
+                        @if (nameInput.errors?.['required']) {
+                        <span>Enter Name</span>
+                        }
+                        @if (nameInput.errors?.['pattern']) {
+                        <span>Enter first-/ last Name</span>
+                        }
+                    </div>
+                    }
+
                     <div class="button_w_border">
                         <input class="input_no_error" name="email" type="email" [(ngModel)]="htmlinput.email" id="email"
-                            required email #emailInput="ngModel"
-                            [class.input_error]="emailInput.invalid && (emailInput.dirty || emailInput.touched || contactForm.submitted)"
-                            placeholder="email"> @if (emailInput.invalid && (emailInput.dirty || emailInput.touched ||
-                        contactForm.submitted)) {
-                        <div class="error">
-                            @if (emailInput.errors?.['required']){
-                            <small>enter Email</small>
-                            }
-                            @if (emailInput.errors?.['email']) {
-                            <small>enter valid email</small>
-                            }
-                        </div>
-                        }
+                            required #emailInput="ngModel" pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}"
+                            placeholder="Email">
                         <img src="assets/icons/mail.png">
                     </div>
 
-                    <div class="button_w_border">
-                        <input class="input_no_error" name="phone" type="tel" [(ngModel)]="htmlinput.phone" id="phone"
-                            required #phoneInput="ngModel" pattern="^\+?[0-9\s\-()]{7,}$"
-                            [class.input_error]="phoneInput.invalid && (phoneInput.dirty || phoneInput.touched || contactForm.submitted)"
-                            placeholder="phone">
-                        @if (phoneInput.invalid && (phoneInput.dirty || phoneInput.touched || contactForm.submitted)) {
-                        <div class="error">
-                            @if (phoneInput.errors?.['required']) {
-                            <small>enter Phone</small>
-                            }
-                            @if (phoneInput.errors?.['pattern']) {
-                            <small>enter valid number</small>}
-                        </div>
+                    @if (emailInput.invalid && ( emailInput.errors?.['pattern'] || emailInput.dirty || emailInput.touched || contactForm.submitted)) {
+                    <div class="error">
+                        @if (emailInput.errors?.['required']){
+                        <span>Enter Email</span>
                         }
+                        @if (emailInput.errors?.['pattern']) {
+                        <span>Enter valid Email</span>
+                        }
+                    </div>
+                    }
+
+                    <div class="button_w_border">
+                        <input class="input_no_error" name="telNo" type="tel" [(ngModel)]="htmlinput.phone" id="telNo"
+                            required #phoneInput="ngModel" pattern="^[0-9]{7,}$" placeholder="Phone">
                         <img src="assets/icons/call.png">
+
                     </div>
 
+                    @if (phoneInput.invalid && ( phoneInput.errors?.['pattern'] || phoneInput.dirty || phoneInput.touched || contactForm.submitted)) {
+                    <div class="error">
+                        @if (phoneInput.errors?.['required']) {
+                        <span>Enter Phone</span>
+                        }
+                        @if (phoneInput.errors?.['pattern']) {
+                        <span>Enter valid number (at least 7 digits)</span>
+                        }
+                    </div>
+                    }
+
                 </div>
+
                 <div class="button_wrapper">
                     <a (click)="onClose()" class="button_w_border cancel_button">
                         <p>{{ editMode ? 'Delete' : 'Cancel' }}</p><img src="assets/icons/button_x_check/button_x.png">
