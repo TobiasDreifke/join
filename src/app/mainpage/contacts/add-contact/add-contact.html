@@ -44,10 +44,10 @@
                     @if (nameInput.invalid && (nameInput.dirty || nameInput.touched || contactForm.submitted)) {
                     <div class="error">
                         @if (nameInput.errors?.['required']) {
-                        <small>enter Name</small>
+                        <span>enter Name</span>
                         }
                         @if (nameInput.errors?.['pattern']) {
-                        <small>enter first-/ last name</small>
+                        <span>enter first-/ last name</span>
                         }
                     </div>
                     }
@@ -64,10 +64,10 @@
                     contactForm.submitted)) {
                     <div class="error">
                         @if (emailInput.errors?.['required']){
-                        <small>enter Email</small>
+                        <span>enter Email</span>
                         }
                         @if (emailInput.errors?.['email']) {
-                        <small>enter valid email</small>
+                        <span>enter valid email</span>
                         }
                     </div>
                     }
@@ -84,10 +84,10 @@
                     @if (phoneInput.invalid && (phoneInput.dirty || phoneInput.touched || contactForm.submitted)) {
                     <div class="error">
                         @if (phoneInput.errors?.['required']) {
-                        <small>enter Phone</small>
+                        <span>enter Phone</span>
                         }
                         @if (phoneInput.errors?.['pattern']) {
-                        <small>enter valid number</small>}
+                        <span>enter valid number</span>}
                     </div>
                     }
                     

@@ -131,13 +131,27 @@ $border-radius: 2rem;
 }
 
 
+
 .form_container {
     .form {
         @include PositionBox($d: flex, $jc: space-between, $ai: center, $fd: column);
         gap: 1rem;
 
         .error {
-            color: red;
+            width: 100%;
+
+            span {
+                // border: 1px dotted blue;
+                font-size: 0.8rem;
+                color: red;
+                display: inline-block;
+                white-space: nowrap;
+                justify-content: end;
+                margin-left: auto;
+                max-width: 50%;
+                margin-left: 2rem;
+                padding: 0;
+            }
         }
 
         .button_w_border {
@@ -159,16 +173,7 @@ $border-radius: 2rem;
                 min-width: 0;
             }
 
-            small {
-                // border: 1px dotted blue;
-                font-size: 0.8rem;
-                color: red;
-                display: inline-block;
-                white-space: nowrap;
-                justify-content: end;
-                margin-left: auto;
-                max-width: 50%;
-            }
+
 
             .input_no_error {
                 width: 100%;
