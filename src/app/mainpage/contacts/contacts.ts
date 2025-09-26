@@ -65,6 +65,6 @@ export class Contacts {
     this.addedContactParam = true;
     setTimeout(()=> {
       this.addedContactParam = false;
-    }, 3000)
+    }, 4000)
   }
 }
