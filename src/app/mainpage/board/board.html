@@ -1,4 +1,11 @@
-@for (item of taskService.tasksList; track $index) {
+<app-searchbar-header></app-searchbar-header>
+<app-overview-tasks></app-overview-tasks>
+
+<app-single-task-popup></app-single-task-popup>
+
+
+
+<!-- @for (item of taskService.tasksList; track $index) {
 <p><strong>Title:</strong> {{ item.title }}</p>
 <p><strong>Description:</strong> {{ item.description }}</p>
 <p><strong>Due date:</strong> {{ item.due_date.toDate() }}</p>
@@ -23,4 +30,4 @@
 
 <p>ID is: {{ contactId || (contactService.contactsList[0]?.id) }}</p>
 @if (!contactId) {<p>Default contact: {{ contactService.contactsList[0]?.name }}</p>
-}
+} -->

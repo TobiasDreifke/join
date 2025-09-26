@@ -1,0 +1,12 @@
+  @use 'mixins' as *;
+  @use 'variables' as *;
+
+  :host {
+      @include PositionBox($d: flex, $jc: flex-start, $ai: stretch, $fd: column);
+      background-color: $color_background_main;
+
+      >app-overview-tasks {
+          width: 100%;
+          height: calc(100vh - 200px);
+      }
+  }
