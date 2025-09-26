@@ -7,7 +7,7 @@ export interface TaskInterface {
     due_date: Timestamp;
     priority: 'urgent' | 'medium' | 'low';    
     assigned_to: Contact[];
-    category: 'technical-task' | 'user-story' | string;
+    category: 'technical-task' | 'user-story';
     subtask: string[];
-    stage: 'to-do' | 'in-progress' | 'await-feedback' | 'done' | string;
+    stage: 'to-do' | 'in-progress' | 'await-feedback' | 'done';
 }

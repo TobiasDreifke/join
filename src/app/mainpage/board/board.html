@@ -2,9 +2,9 @@
 <p><strong>Title:</strong> {{ item.title }}</p>
 <p><strong>Description:</strong> {{ item.description }}</p>
 <p><strong>Due date:</strong> {{ item.due_date.toDate() }}</p>
-<p><strong>Priority:</strong> {{ item.priority[1] }}</p>
-<p><strong>Category:</strong> {{ item.category[0] }}</p>
-<p><strong>Stage:</strong> {{ item.stage[1] }}</p>
+<p><strong>Priority:</strong> {{ item.priority }}</p>
+<p><strong>Category:</strong> {{ item.category }}</p>
+<p><strong>Stage:</strong> {{ item.stage }}</p>
 
 <p><strong>Subtasks:</strong></p>
 @for (item of item.subtask; track $index) {
@@ -14,6 +14,13 @@
 }}
 
 <br>
+
+@for (item of contactService.contactsList; track $index) {
+<p>{{ item.name }}</p>
+}
+
+<br>
+
 <p>ID is: {{ contactId || (contactService.contactsList[0]?.id) }}</p>
 @if (!contactId) {<p>Default contact: {{ contactService.contactsList[0]?.name }}</p>
 }
