@@ -3,7 +3,6 @@ import { TaskService } from '../../services/task-service';
 import { ContactService } from '../../services/contact-service';
 import { CommonModule } from '@angular/common';
 import { NgModel } from '@angular/forms';
-
 @Component({
   selector: 'app-board',
   imports: [CommonModule],

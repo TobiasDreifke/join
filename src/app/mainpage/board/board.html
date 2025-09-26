@@ -1,3 +1,4 @@
+<<<<<<<<< Temporary merge branch 1
 @for (item of taskService.tasksList; track $index) {
 <p><strong>Title:</strong> {{ item.title }}</p>
 <p><strong>Description:</strong> {{ item.description }}</p>
@@ -24,3 +25,6 @@
 <p>ID is: {{ contactId || (contactService.contactsList[0]?.id) }}</p>
 @if (!contactId) {<p>Default contact: {{ contactService.contactsList[0]?.name }}</p>
 }
+=========
+<app-searchbar-header></app-searchbar-header>
+>>>>>>>>> Temporary merge branch 2
