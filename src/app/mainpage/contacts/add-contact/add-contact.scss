@@ -20,7 +20,7 @@ $border-radius: 2rem;
     display: none;
 
     >p {
-        font-size: 47px;
+        font-size: 40px;
         color: white;
     }
 }
@@ -40,6 +40,11 @@ $border-radius: 2rem;
     border-bottom-left-radius: $border-radius;
     border-top-left-radius: $border-radius;
     transition: all 100ms ease;
+
+    
+    >img:first-of-type {
+        width: 70px;
+    }
 
     .close_button_mobile {
         display: none;
@@ -87,13 +92,16 @@ $border-radius: 2rem;
     border-top-right-radius: $border-radius;
 
     transition: all 100ms ease;
+    position: relative;
 
     >p {
         @include PositionBox($d: flex, $jc: center, $ai: center, $fd: row);
 
         width: 2rem;
         height: 2rem;
-        // padding: 0.5rem;
+        position: absolute;
+        top: 32px;
+        right: 32px;
 
         &:hover {
             background-color: $color_grey;
@@ -105,6 +113,7 @@ $border-radius: 2rem;
 
 .form_wrapper {
     @include PositionBox($d: flex, $jc: space-between, $ai: center, $fd: row);
+    gap: 24px;
     // gap: 1rem;
     // width: 95%;
 
@@ -115,6 +124,8 @@ $border-radius: 2rem;
         height: 120px;
         border-radius: 100%;
         margin: 1rem;
+        box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+        border: 4px solid white;
 
         >p {
             font-size: 47px;
@@ -124,8 +135,7 @@ $border-radius: 2rem;
         >img {
             // button greyed out 
             filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(7419%) hue-rotate(115deg) brightness(117%) contrast(119%);
-            height: 45px;
-            width: 45px;
+            width: 70px;
         }
     }
 }
@@ -155,19 +165,20 @@ $border-radius: 2rem;
         }
 
         .button_w_border {
-            @include button_w_border($border-color: $color_secondary);
+            @include button_w_border($border-color: $color_grey);
             @include PositionBox($d: flex, $jc: space-between, $ai: center, $fd: row);
             cursor: default;
             width: 422px;
             height: 50px;
-            color: #D1D1D1;
+            color: $color_grey;
             padding-top: 0;
             padding-bottom: 0;
 
-            margin-top: 1rem;
+            margin-top: 8px;
 
             >img {
                 filter: brightness(0) saturate(100%) invert(78%) sepia(47%) saturate(0%) hue-rotate(187deg) brightness(101%) contrast(87%);
+                width: 30px;
             }
 
             input {
@@ -235,6 +246,8 @@ $border-radius: 2rem;
 }
 
 .error {
+    display: inline-block;
+    min-height: 20px;
     font-size: 1rem;
     margin: 0;
     padding: 0;
@@ -304,6 +317,7 @@ span.ng-error {
 
             background-color: $color_grey;
             position: absolute;
+            z-index: 10;
             display: flex;
             border: 3px solid white;
 
@@ -317,8 +331,7 @@ span.ng-error {
 
             >img {
                 filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(7419%) hue-rotate(115deg) brightness(117%) contrast(119%);
-                height: 45px;
-                width: 45px;
+                width: 60px;
             }
         }
     }
@@ -358,11 +371,9 @@ span.ng-error {
             width: 100%;
 
             .button_w_border {
-                @include button_w_border($border-color: $color_secondary);
+                @include button_w_border($border-color: $color_grey);
                 @include PositionBox($d: flex, $jc: space-between, $ai: center, $fd: row);
                 cursor: default;
-
-
 
                 width: 100%;
                 height: 50px;

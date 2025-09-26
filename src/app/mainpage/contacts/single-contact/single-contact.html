@@ -6,7 +6,7 @@
             <p class="contact-description">Better with a team</p>
             <div class="back-responsive">
                 <a (click)="onShowContactList()">
-                    <img src="./assets/icons/arrow_left_blue.png" alt="back-button">
+                    <img src="./assets/icons/arrow-left-line.svg" alt="back-button">
                 </a>
             </div>
         </div>
@@ -24,14 +24,14 @@
                     <div class="contact-group">
                         <div class="contact-edit">
                             <a (click)="edit.emit()">
-                                <img class="contact-edit-image" src="./assets/icons/edit.png" alt="Edit">
+                                <img class="contact-edit-image" src="./assets/icons/edit.svg" alt="Edit">
                                 <p>Edit</p>
                             </a>
                         </div>
 
                         <div class="contact-delete">
                             <a (click)="deleteElements()">
-                                <img class="contact-delete-image" src="./assets/icons/delete.png" alt="Delete">
+                                <img class="contact-delete-image" src="./assets/icons/delete.svg" alt="Delete">
                                 <p>Delete</p>
                             </a>
                         </div>
@@ -55,7 +55,7 @@
 
         <div class="menu-details" (click)="toggleMenu(); $event.stopPropagation()">
             <button class="menu-button">
-                <img src="./assets/icons/more_vert.png" alt="Menu" />
+                <img src="./assets/icons/more_vert.svg" alt="Menu" />
             </button>
         </div>
 
@@ -63,12 +63,12 @@
             (click)="$event.stopPropagation()">
 
             <a (click)="edit.emit()">
-                <img src="./assets/icons/edit.png" alt="Edit" />
+                <img src="./assets/icons/edit.svg" alt="Edit" />
                 <span>Edit</span>
             </a>
 
             <a (click)="deleteElements()">
-                <img src="./assets/icons/delete.png" alt="Delete" />
+                <img src="./assets/icons/delete.svg" alt="Delete" />
                 <span>Delete</span>
             </a>
         </div>
