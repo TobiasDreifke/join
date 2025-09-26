@@ -23,7 +23,7 @@ interface Task {
 @Component({
   selector: 'app-searchbar-header',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule,],
   templateUrl: './searchbar-header.html',
   styleUrls: ['./searchbar-header.scss']
 })
@@ -135,6 +135,7 @@ filterList() {
     );
   }
 }
+
 
 }
 

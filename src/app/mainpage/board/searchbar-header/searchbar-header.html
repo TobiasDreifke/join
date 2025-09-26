@@ -1,20 +1,37 @@
 <section class="searchbar_header">
     <div class="wrapper_header">
+
         <div class="title_header">
             <h1>Board</h1>
         </div>
-
         <div class="searchbar">
             <div class="input-wrapper">
+               
                 <a href="#">
-                    <img src="./assets/icons/search.png" class="search-icon" /> </a>
+                    <img src="./assets/icons/search.png" class="search-icon" />
+                </a>
+
+        
                 <div class="divider"></div>
-                <input type="text" placeholder="Find Task" [(ngModel)]="searcheTerm" (input)="filterList()" class="search-input" />
+                <input type="text" aria-label="Search Tasks" placeholder="Find Task" [(ngModel)]="searcheTerm"
+                    (input)="filterList()" class="search-input" />
             </div>
             <button class="add-button">
                 Add Task
-                <img src="./assets/icons/add (1).png" alt="" />
+                <img src="./assets/icons/add (1).png" alt="Add Icon" />
             </button>
         </div>
+
+    </div>
+
+    <div class="search-results">
+        <ul>
+            @for (task of filteredTaskList; track task.title) {
+            <li>
+                <strong>{{ task.title }}</strong><br />
+                <small>{{ task.description }}</small>
+            </li>
+            }
+        </ul>
     </div>
 </section>
