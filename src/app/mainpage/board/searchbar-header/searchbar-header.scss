@@ -74,6 +74,38 @@
                 }
             }
 
+            .add-button-respnsive {
+                display: none;
+
+                @media (max-width : 1080px) {
+                    display: block;
+                    display: flex;
+                    align-items: center;
+                    gap: 0.5rem;
+                    padding: 0.6rem 0.7rem;
+                    background-color: #2A3647;
+                    color: #fff;
+                    border: none;
+                    border-radius: 8px;
+                    cursor: pointer;
+                    transition: background-color 0.3s ease;
+
+                    img {
+                        width: 18px;
+                        height: 18px;
+                    }
+
+                    &:hover {
+                        background-color: #29ABE2;
+                    }
+
+                    &:active {
+                        background-color: #29ABE2;
+                    }
+
+                }
+            }
+
             .add-button {
                 display: flex;
                 align-items: center;
@@ -100,6 +132,10 @@
 
                 &:active {
                     background-color: #29ABE2;
+                }
+
+                @media (max-width :1080px) {
+                    display: none;
                 }
             }
         }
