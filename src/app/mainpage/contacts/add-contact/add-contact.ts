@@ -79,11 +79,10 @@ export class AddContact {
 
     } if (!this.editMode) {
       // ------------------ ENABLE THIS FOR LIVE DATABASE SAVING ----------------
-      this.contactService.addContact(this.htmlinput);
+      let addedContactId = await this.contactService.addContact(this.htmlinput);
       this.clearInputFields();
       this.close.emit();
       this.addedContact.emit(addedContactId);
-    } else {
     }
   }
 
