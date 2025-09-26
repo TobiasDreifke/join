@@ -18,6 +18,7 @@ export class SingleContact implements OnChanges {
   @Output() showContactList = new EventEmitter<void>();
   @Output() edit = new EventEmitter<void>();
   @Input() contactId: string | null = null;
+  @Input() createdContact = false;
   @ViewChild('appSection', { static: true }) appSection!: ElementRef<HTMLElement>;
 
   contactService = inject(ContactService);

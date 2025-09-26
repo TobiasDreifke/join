@@ -3,7 +3,7 @@ import { AddContact } from "./add-contact/add-contact";
 import { OverviewContact } from "./overview-contact/overview-contact";
 import { SingleContact } from "./single-contact/single-contact";
 import { CommonModule } from '@angular/common';
-import { ContactService } from '../../services/contact-service';
+
 @Component({
   selector: 'app-contacts',
   imports: [AddContact, OverviewContact, SingleContact, CommonModule],
@@ -14,6 +14,7 @@ export class Contacts {
   @Input() isActive = Event;
 
   activeContactId: string | null = null;
+  addedContactParam = false;
 
   onSelectContact(contactId: string | null) {
     this.activeContactId = contactId;
@@ -56,5 +57,14 @@ export class Contacts {
 
   onClosePopup() {
     this.showPopUpAddContact = false;
+  }
+
+  addedContact(createdContactId: string){
+    this.activeContactId = createdContactId;
+    
+    this.addedContactParam = true;
+    setTimeout(()=> {
+      this.addedContactParam = false;
+    }, 3000)
   }
 }

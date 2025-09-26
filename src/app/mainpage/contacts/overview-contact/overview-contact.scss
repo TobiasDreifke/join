@@ -2,7 +2,7 @@
 @use 'variables' as *;
 
 section {
-    @include BoxSize($w: clamp(20rem, -8.75rem + 40vw, 31.25rem), $h: calc(100vh - 105px));
+    @include BoxSize($w: clamp(20rem, -8.75rem + 40vw, 31.25rem), $h: calc(100dvh - 105px));
     @include PositionBox($ai: center, $fd: column);
     @include BoxPosition($pos: relative);
     overflow-y: auto;
@@ -57,12 +57,12 @@ main {
 
             >.contact-initials {
                 @include PositionBox();
-                @include BoxSize($w: clamp(1.875rem, 1.434rem + 1.765vw, 2.625rem), $h: clamp(1.875rem, 1.434rem + 1.765vw, 2.625rem));
-                min-width: 42px;
-                min-height: 42px;
+                @include BoxSize($w: clamp(3rem, 1.434rem + 1.765vw, 2.625rem), $h: clamp(3rem, 1.434rem + 1.765vw, 2.625rem));
+                aspect-ratio: 1/1;
                 border-radius: 150px;
                 margin-right: clamp(0.938rem, -1.458rem + 3.333vw, 1.875rem);
                 border: solid 2px $color_background_main;
+                color: white;
             }
 
             >.contact-info {
@@ -107,7 +107,7 @@ footer {
 
 @media (max-width: 1080px) {
     section {
-        @include BoxSize($w: 100%, $h: calc(100vh - 200px));
+        @include BoxSize($w: 100%, $h: calc(100dvh - 200px));
         @include PositionBox($ai: start, $fd: column);
         padding: 0 24px;
     }
@@ -141,7 +141,7 @@ footer {
 
 @media (max-width: 500px) {
     section {
-        @include BoxSize($w: 100%, $h: calc(100vh - 200px));
+        @include BoxSize($w: 100%, $h: calc(100dvh - 200px));
     }
 
     main {

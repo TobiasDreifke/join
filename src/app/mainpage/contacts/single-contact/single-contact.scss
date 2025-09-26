@@ -1,3 +1,5 @@
+@use './../../../../styles/variables' as *;
+
 section {
     width: 100%;
     overflow-y: auto;
@@ -12,6 +14,7 @@ section {
     gap: 3rem;
     position: relative;
     width: 100%;
+    position: relative;
 
     @media (max-width: 1080px) {
         .single-contact {
@@ -26,7 +29,6 @@ section {
     flex-direction: row;
     align-items: center;
     gap: 30px;
-
 }
 
 .contact-header .contact {
@@ -59,6 +61,24 @@ section {
 .back-responsive {
     display: none;
     margin-left: auto;
+}
+
+.contact-created {
+    width: fit-content;
+    border-radius: 12px;
+    padding: 16px 24px;
+    background-color: #2A3647;
+    color: white;
+    margin-top: 50px;
+    position: relative;
+    right: 0px;
+    bottom: 0px;
+    transform: translateX(100vw);
+    transition: all 500ms ease;
+
+    &.slide-in {
+        transform: translateX(0);
+    }
 }
 
 @media (max-width: 1080px) {
@@ -296,6 +316,7 @@ section {
     position: fixed;
     bottom: 120px;
     right: 12px;
+    display: none;
     flex-direction: row;
     align-items: center;
     justify-content: center;
@@ -306,12 +327,11 @@ section {
     gap: 10px;
     background-color: #2A3647;
     cursor: pointer;
+    transition: all 125ms ease;
 
     &.hover-active,
     &.menu-details:hover {
         background-color: #007CEE;
-        border-radius: 50%;
-        transform: scale(1.05);
     }
 
     button {
