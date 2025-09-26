@@ -34,12 +34,10 @@ export class AddContact {
         email: this.contact.email,
         phone: this.contact.phone
       };
-      console.log("contact add-contact received contactId:", this.contact);
 
     } else {
       this.clearInputFields();
       this.editMode = false;
-      console.log("no ID was send");
 
     }
   }
@@ -63,7 +61,6 @@ export class AddContact {
   onClose() {
     if (this.editMode && this.contactId) {
       this.contactService.deleteContact(this.contactId);
-      console.log("you deleted:", this.contact);
     }
 
     this.close.emit();
@@ -77,17 +74,14 @@ export class AddContact {
 
     if (this.editMode && this.contactId) {
       this.contactService.updateContact(this.contactId, this.htmlinput)
-      console.log("you edited something old:", this.htmlinput);
       this.close.emit();
 
     } if (!this.editMode) {
       // ------------------ ENABLE THIS FOR LIVE DATABASE SAVING ----------------
       this.contactService.addContact(this.htmlinput);
-      console.log("you created something new:", this.htmlinput);
       this.clearInputFields();
       this.close.emit();
     } else {
-      console.log("something went wrong");
     }
   }
 
