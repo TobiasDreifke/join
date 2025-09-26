@@ -9,7 +9,7 @@
                 <a href="#">
                     <img src="./assets/icons/search.png" class="search-icon" /> </a>
                 <div class="divider"></div>
-                <input type="text" placeholder="Find Task" />
+                <input type="text" placeholder="Find Task" [(ngModel)]="searcheTerm" (input)="filterList()" class="search-input" />
             </div>
             <button class="add-button">
                 Add Task

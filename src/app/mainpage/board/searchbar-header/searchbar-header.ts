@@ -110,94 +110,35 @@ export class SearchbarHeader {
     category: "user-story",
     subtask: ["Testplan erstellen", "Test durchführen", "Fehler dokumentieren"],
     stage: "in-progress"
-  },
-  {
-    title: "Performance-Optimierung Webseite",
-    description: "Ladezeiten der Hauptseite um 20% reduzieren.",
-    due_date: "15/10/2025",
-    priority: "medium",
-    assigned_to: [
-      {
-        id: "5",
-        name: "Felix Wagner",
-        email: "felix.wagner@example.com",
-        phone: "+4915123456793"
-      },
-      {
-        id: "6",
-        name: "Sophie Klein",
-        email: "sophie.klein@example.com",
-        phone: "+4915123456796"
-      }
-    ],
-    category: "technical-task",
-    subtask: ["Bilder komprimieren", "Caching implementieren", "Code refactoring"],
-    stage: "to-do"
-  },
-  {
-    title: "Feedback-Formular implementieren",
-    description: "Ein neues Formular für Nutzerfeedback einbauen.",
-    due_date: "12/10/2025",
-    priority: "medium",
-    assigned_to: [
-      {
-        id: "7",
-        name: "Julia Neumann",
-        email: "julia.neumann@example.com",
-        phone: "+4915123456794"
-      }
-    ],
-    category: "user-story",
-    subtask: ["Formular erstellen", "Backend-Anbindung", "Design finalisieren"],
-    stage: "to-do"
-  },
-  {
-    title: "E-Mail Benachrichtigungen testen",
-    description: "Überprüfung, ob E-Mail-Benachrichtigungen korrekt versendet werden.",
-    due_date: "29/09/2025",
-    priority: "urgent",
-    assigned_to: [
-      {
-        id: "8",
-        name: "Lukas Fischer",
-        email: "lukas.fischer@example.com",
-        phone: "+4915123456795"
-      },
-      {
-        id: "1",
-        name: "Max Mustermann",
-        email: "max.mustermann@example.com",
-        phone: "+4915123456789"
-      }
-    ],
-    category: "technical-task",
-    subtask: ["Testaccounts erstellen", "Benachrichtigungen senden", "Ergebnisse dokumentieren"],
-    stage: "await-feedback"
-  },
-  {
-    title: "Dark Mode für App hinzufügen",
-    description: "Dark Mode als optionales Theme implementieren.",
-    due_date: "20/10/2025",
-    priority: "low",
-    assigned_to: [
-      {
-        id: "6",
-        name: "Sophie Klein",
-        email: "sophie.klein@example.com",
-        phone: "+4915123456796"
-      },
-      {
-        id: "5",
-        name: "Felix Wagner",
-        email: "felix.wagner@example.com",
-        phone: "+4915123456793"
-      }
-    ],
-    category: "user-story",
-    subtask: ["Design entwerfen", "Implementierung", "Testen auf Geräten"],
-    stage: "to-do"
+  },]
+
+  searcheTerm :string ='';
+
+  filteredTaskList: Task[] = [];
+
+filterList() {
+  const term = this.searcheTerm.trim().toLowerCase();
+
+  if (!term) {
+    this.filteredTaskList = [...this.taskData];
+  } else if (term.length === 1) {
+    
+    this.filteredTaskList = this.taskData.filter(task =>
+      task.title.toLowerCase().startsWith(term) ||
+      task.description?.toLowerCase().startsWith(term)
+    );
+  } else {
+   
+    this.filteredTaskList = this.taskData.filter(task =>
+      task.title.toLowerCase().includes(term) ||
+      task.description?.toLowerCase().includes(term)
+    );
   }
-]
+}
+
+}
+
+
+
 
   
-}
