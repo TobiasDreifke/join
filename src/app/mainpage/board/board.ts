@@ -8,6 +8,7 @@ import { NgModel } from '@angular/forms';
   selector: 'app-board',
   imports: [CommonModule],
   templateUrl: './board.html',
+  imports: [SearchbarHeader],
   styleUrl: './board.scss'
 })
 export class Board {
