@@ -1,7 +1,7 @@
 <section>
     @if (!isMobile) {
         <header>
-            <a (click)="addNew.emit()"><p>Add new contact</p><img src="assets/icons/person_add.png"></a>
+            <a (click)="addNew.emit()"><p>Add new contact</p><img src="assets/icons/person_add.svg"></a>
         </header>
         <main>
             @for (letter of letters; track letter) {
@@ -48,7 +48,7 @@
             <div class="seperator"></div>
         </main>
         <footer>
-            <a (click)="addNew.emit()"><img src="assets/icons/person_add.png"></a>
+            <a (click)="addNew.emit()"><img src="assets/icons/person_add.svg"></a>
         </footer>
     }
 </section>

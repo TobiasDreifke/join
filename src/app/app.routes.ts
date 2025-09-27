@@ -9,7 +9,7 @@ import { Tasks } from './mainpage/tasks/tasks';
 import { Board } from './mainpage/board/board';
 
 export const routes: Routes = [
-    { path: '', component: Contacts },
+    { path: '', redirectTo: '/contacts', pathMatch: 'full'},
     { path: 'legal', component: Legal },
     { path: 'privacy', component: Privacy },
     { path: 'contacts', component: Contacts},
