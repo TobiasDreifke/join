@@ -51,10 +51,6 @@ nav {
             width: 25px;
             height: 25px;
         }
-
-        &:hover {
-            background-color: $color_hover_user_menu;
-        }
     }
 }
 
@@ -99,6 +95,16 @@ nav {
                 border-radius: 12px;
                 width: 100px;
                 font-size: 14px;
+            }
+        }
+    }
+}
+
+@media (hover: hover) and (pointer: fine){
+    nav {
+        a {      
+            &:hover {
+                background-color: $color_hover_user_menu;
             }
         }
     }

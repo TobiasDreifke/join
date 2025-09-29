@@ -3,12 +3,12 @@
     <img src="./assets/icons/logo/logo_blue.svg" alt="">
     <div>
         <p class="info">?</p>
-        <p (click)="toggleUserMenu()" class="user">SM</p>
+        <p (click)="toggleUserMenu($event)" class="user">SM</p>
     </div>
 
     <div class="user_menu" [ngClass]="{'not_visible': notVisible}">
-        <a (click)="toggleUserMenu()" routerLink="/legal" routerLinkActive="active">Legal Notice</a>
-        <a (click)="toggleUserMenu()" routerLink="/privacy" routerLinkActive="active">Privacy Policy</a>
+        <a (click)="toggleUserMenu($event)" routerLink="/legal" routerLinkActive="active">Legal Notice</a>
+        <a (click)="toggleUserMenu($event)" routerLink="/privacy" routerLinkActive="active">Privacy Policy</a>
         <a>Log out</a>
     </div>
 </header>
