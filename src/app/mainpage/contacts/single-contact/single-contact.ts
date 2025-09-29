@@ -17,6 +17,7 @@ export class SingleContact implements OnChanges {
 
   @Output() showContactList = new EventEmitter<void>();
   @Output() edit = new EventEmitter<void>();
+  @Output() delete = new EventEmitter<void>();
   @Input() contactId: string | null = null;
   @Input() createdContact = false;
   @ViewChild('appSection', { static: true }) appSection!: ElementRef<HTMLElement>;
@@ -62,6 +63,8 @@ export class SingleContact implements OnChanges {
     this.contactService.deleteContact(this.contactId!);
     this.isDeleted = true;
     this.contactDeleted = true;
+    this.delete.emit();
+    this.isMenuOpen = false;
   }
 
   getInitials(name?: string): string {
