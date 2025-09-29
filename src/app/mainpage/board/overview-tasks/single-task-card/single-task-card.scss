@@ -1,0 +1,77 @@
+.card {
+    padding: 20px 16px;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.category {
+    padding: 8px 16px;
+    background-color: #1fd7c1;
+    border-radius: 8px;
+    color: white;
+    margin-bottom: 12px;
+    width: fit-content;
+}
+
+.title {
+    font-weight: bold;
+    color: #2A3647;
+}
+
+.description {
+    color: #A8A8A8;
+}
+
+.subtask {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    margin: 12px 0;
+
+
+    >p:first-of-type {
+        border-radius: 12px;
+        flex-grow: 1;
+        height: 12px;
+        background-color: #f4f4f4;
+        position: relative;
+
+        &::before {
+            content: '';
+            position: absolute;
+            height: 12px;
+            width: 33.33%;
+            border-radius: 12px;
+            background-color: #4589ff;
+        }
+    }
+}
+
+.assigned-priority {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    >div:first-of-type {
+        display: flex;
+
+        p{
+            width: 45px;
+            aspect-ratio: 1/1;
+            border-radius: 50%;
+            border: 2px solid white;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            &:not(:first-child) {
+                transform: translateX(-10px);
+            }
+        }
+    }
+}

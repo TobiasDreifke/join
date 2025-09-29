@@ -1,1 +1,17 @@
-<p>single-task-card works!</p>
+<div class="card">
+    <p class="category">{{allTasksList[0].category}}</p>
+    <p class="title">{{allTasksList[0].title}}</p>
+    <p class="description">{{allTasksList[0].description}}</p>
+    <div class="subtask">
+        <p></p>
+        <p>1/{{allTasksList[0].subtask.length}} Subtasks</p>
+    </div>
+    <div class="assigned-priority">
+        <div>
+            @for (contact of allTasksList[0].assigned_to; track $index) {
+                <p [ngStyle]="{'background-color': contact.initial_avatar_color}">{{getInitials(contact.name)}}</p>
+            }
+        </div>
+        <img src="./assets/icons/{{allTasksList[0].priority}}.svg" alt="">
+    </div>
+</div>
