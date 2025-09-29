@@ -144,6 +144,54 @@
 
 
     }
+    .task-list {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+  width: 299px;
+
+  .task-card {
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 15px 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    cursor: pointer;
+    transition: box-shadow 0.3s ease;
+
+    h3 {
+      margin: 0 0 8px 0;
+      color: #2a3647;
+    }
+
+    p {
+      margin: 0 0 8px 0;
+      color: #555;
+    }
+
+    .details {
+      margin-top: 15px;
+      border-top: 1px solid #eee;
+      padding-top: 15px;
+      color: #444;
+
+      ul {
+        margin: 5px 0 10px 20px;
+        list-style-type: disc;
+      }
+    }
+
+    &:hover {
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    }
+
+    &.expanded {
+      background-color: #f9faff;
+      border-color: #29ABE2;
+    }
+  }
+}
+
 
     .wrapper_add {
         display: flex;
