@@ -6,15 +6,12 @@
         </div>
         <div class="searchbar">
             <div class="input-wrapper">
-               
-                <a href="#">
+                <a href="#"(click)="onSearch($event)">
                     <img src="./assets/icons/search.png" class="search-icon" />
                 </a>
-
-        
                 <div class="divider"></div>
-                <input type="text" aria-label="Search Tasks" placeholder="Find Task" [(ngModel)]="searcheTerm"
-                    (input)="filterList()" class="search-input" />
+                <input type="text" aria-label="Search Tasks" placeholder="Find Task" [(ngModel)]="searchTerm"
+                    class="search-input" />
             </div>
             <button class="add-button">
                 Add Task
@@ -27,14 +24,40 @@
 
     </div>
 
-    <div class="search-results">
-        <ul>
-            @for (task of filteredTaskList; track task.title) {
-            <li>
-                <strong>{{ task.title }}</strong><br />
-                <small>{{ task.description }}</small>
-            </li>
-            }
-        </ul>
+    <div class="task-list">
+        @if (filteredTaskList.length > 0) {
+        @for (task of filteredTaskList; track task.title) {
+        <div class="task-card">
+            <h3>{{ task.title }}</h3>
+            <p>{{ task.description }}</p>
+            <p><strong>Fälligkeitsdatum:</strong> {{ task.due_date }}</p>
+            <p><strong>Priorität:</strong> {{ task.priority }}</p>
+            <p><strong>Kategorie:</strong> {{ task.category }}</p>
+            <p><strong>Status:</strong> {{ task.stage }}</p>
+
+            <div>
+                <strong>Zugewiesen an:</strong>
+                <ul>
+                    @for (user of task.assigned_to; track user.id) {
+                    <li>{{ user.name }} ({{ user.email }})</li>
+                    }
+                </ul>
+            </div>
+
+            <div>
+                <strong>Teilaufgaben:</strong>
+                <ul>
+                    @for (sub of task.subtask; track sub) {
+                    <li>{{ sub }}</li>
+                    }
+                </ul>
+            </div>
+        </div>
+        }
+        } @else {
+        <p>Keine Aufgaben gefunden.</p>
+        }
+
     </div>
+
 </section>

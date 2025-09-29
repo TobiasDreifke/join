@@ -112,32 +112,29 @@ export class SearchbarHeader {
     stage: "in-progress"
   },]
 
-  searcheTerm :string ='';
+  searchTerm :string ='';
 
-  filteredTaskList: Task[] = [];
 
-filterList() {
-  const term = this.searcheTerm.trim().toLowerCase();
+    get filteredTaskList(): Task[] {
+    if (!this.searchTerm.trim()) {
+      return this.taskData;
+    }
 
-  if (!term) {
-    this.filteredTaskList = [...this.taskData];
-  } else if (term.length === 1) {
-    
-    this.filteredTaskList = this.taskData.filter(task =>
-      task.title.toLowerCase().startsWith(term) ||
-      task.description?.toLowerCase().startsWith(term)
-    );
-  } else {
-   
-    this.filteredTaskList = this.taskData.filter(task =>
+    const term = this.searchTerm.toLowerCase();
+    return this.taskData.filter(task =>
       task.title.toLowerCase().includes(term) ||
-      task.description?.toLowerCase().includes(term)
-    );
+      task.description.toLowerCase().includes(term) 
+      );
   }
+  onSearch(event: Event): void {
+  event.preventDefault();
+  console.log(this.searchTerm);
 }
 
 
+
 }
+
 
 
 
