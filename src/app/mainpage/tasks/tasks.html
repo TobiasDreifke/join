@@ -1,1 +1,44 @@
-<p>tasks works!</p>
+<section>
+    <header>
+        <h1>Add Task</h1>
+        <a>X</a>
+    </header>
+
+    <form #contactForm="ngForm" (ngSubmit)="onSubmit(contactForm)">
+        <main>
+            <div class="left_box">
+                <div>
+                    <label for="#"></label>
+                    <input type="text" [(ngModel)]="" id="#" required #_Input="ngModel" pattern=# placeholder="#">
+                </div>
+
+                <div class="error">
+                    @if (_Input.invalid && (_Input.errors?.['pattern'] || _Input.dirty || _Input.touched || contactForm.submitted)) {
+                    <span>
+                        @if (_Input.errors?.['required']) {
+                        UPS Veergessen
+                        }@else if (_Input.errors?.['pattern']) {
+                        false
+                        }
+                    </span>
+                    }
+                </div>
+            </div>
+
+            <div class="right_box">
+
+            </div>
+        </main>
+
+        <footer>
+            <div>
+                <p>*This field is required</p>
+            </div>
+
+            <div>
+                <a>Clear <img src=""></a>
+                <a>Create Task <img src=""></a>
+            </div>
+        </footer>
+    </form>
+</section>
