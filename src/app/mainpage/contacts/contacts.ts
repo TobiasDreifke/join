@@ -60,6 +60,8 @@ export class Contacts {
   }
 
   addedContact(createdContactId: string){
+    this.showSingleContact();
+
     this.activeContactId = createdContactId;
     
     this.addedContactParam = true;

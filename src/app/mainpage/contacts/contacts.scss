@@ -7,7 +7,7 @@
 
     >app-single-contact {
         width: calc(100% - clamp(20rem, -8.75rem + 40vw, 31.25rem));
-        height: calc(100vh - 200px);
+        height: calc(100dvh - 200px);
         display: flex;
         justify-content: flex-start;
         align-items: flex-start;
