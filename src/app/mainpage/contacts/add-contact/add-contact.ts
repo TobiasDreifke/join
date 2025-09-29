@@ -13,6 +13,7 @@ export class AddContact {
   @Input() contactId: string | null = null;
   @Input() editMode = false;
   @Output() close = new EventEmitter<void>();
+  @Output() addedContact = new EventEmitter<string>();
 
   currentContact?: Contact;
   currentContactInitials: string = '';
@@ -66,7 +67,7 @@ export class AddContact {
     this.close.emit();
   }
 
-  onSubmit(form: NgForm) {
+  async onSubmit(form: NgForm) {
     if (form.invalid) {
       form.control.markAllAsTouched();
       return;
@@ -78,10 +79,10 @@ export class AddContact {
 
     } if (!this.editMode) {
       // ------------------ ENABLE THIS FOR LIVE DATABASE SAVING ----------------
-      this.contactService.addContact(this.htmlinput);
+      let addedContactId = await this.contactService.addContact(this.htmlinput);
       this.clearInputFields();
       this.close.emit();
-    } else {
+      this.addedContact.emit(addedContactId);
     }
   }
 

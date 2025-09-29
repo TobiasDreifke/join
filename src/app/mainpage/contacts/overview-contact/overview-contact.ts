@@ -1,4 +1,4 @@
-import { Component, EventEmitter, HostListener, inject, Output } from '@angular/core';
+import { Component, EventEmitter, HostListener, inject, Input, Output } from '@angular/core';
 import { ContactService } from '../../../services/contact-service';
 
 @Component({
@@ -11,13 +11,13 @@ export class OverviewContact {
   @Output() addNew = new EventEmitter<void>();
   @Output() isActive = new EventEmitter<string | null>();
   @Output() showSingleContact = new EventEmitter<void>();
+  @Input() activeContactId: string | null = null;
   contactService = inject(ContactService);
 
   letters = Array.from({ length: 26 }, (_, i) =>
     String.fromCharCode(65 + i)
   );
   contactsByLetter: { [key: string]: Contact[] } = {};
-  activeContactId: string | null = null;
   isMobile = false;
   contactListFromService = [];
 

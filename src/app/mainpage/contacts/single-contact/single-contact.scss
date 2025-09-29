@@ -1,31 +1,34 @@
+@use './../../../../styles/variables' as *;
+
+section {
+    width: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
 .single-contact {
     display: flex;
     justify-content: flex-start;
     flex-direction: column;
     padding: 30px;
-    width: auto;
     gap: 3rem;
     position: relative;
-    height: auto;
+    width: 100%;
+    position: relative;
 
     @media (max-width: 1080px) {
         .single-contact {
             margin: 20px 10px;
             padding: 20px;
-            gap: 20px;
-            width: 100%;
         }
     }
 }
-
-
 
 .contact-header {
     display: flex;
     flex-direction: row;
     align-items: center;
     gap: 30px;
-
 }
 
 .contact-header .contact {
@@ -60,11 +63,25 @@
     margin-left: auto;
 }
 
-@media (max-width: 1080px) {
-    section {
-        width: 100%;
-    }
+.contact-created {
+    width: fit-content;
+    border-radius: 12px;
+    padding: 16px 24px;
+    background-color: #2A3647;
+    color: white;
+    margin-top: 50px;
+    position: relative;
+    right: 0px;
+    bottom: 0px;
+    transform: translateX(100vw);
+    transition: all 500ms ease;
 
+    &.slide-in {
+        transform: translateX(0);
+    }
+}
+
+@media (max-width: 1080px) {
     .back-responsive {
         display: block;
     }
@@ -72,6 +89,7 @@
     .contact-header {
         flex-direction: column;
         align-items: flex-start;
+        gap: 16px;
     }
 
     .contact-header .contact {
@@ -84,35 +102,39 @@
         order: 2;
     }
 
-
     .contact-header .line-mittel {
         width: 90px;
         height: 3px;
         margin: 10px 0;
         order: 3;
+    }
 
+    .contact-info {
+        flex-wrap: wrap;
+        gap: 24px !important;
+    }
+
+    .single-contact{
+        gap: 24px;
     }
 }
 
-
 .contact-info {
     display: flex;
-    flex-direction: row;
+    align-items: center;
     gap: 40px;
-      transform: translateX(100%);
+    transform: translateX(100%);
     animation: slideIn 0.2s ease-out forwards;
 }
 
-    .d-none {
-  display: none !important;
+.d-none {
+    display: none !important;
 }
 
-
 .contact-image {
-    width: 120px;
-    height: 120px;
-    min-width:120px;
-    min-height: 120px;
+    width: 130px;
+    height: 130px;
+    aspect-ratio: 1/1;
     border-radius: 50%;
     color: #fff;
     display: flex;
@@ -121,6 +143,7 @@
     font-size: 47px;
     font-weight: 500;
     font-family: 'Inter', sans-serif;
+    border: 6px solid white;
 }
 
 
@@ -137,15 +160,12 @@
         line-height: 120%;
         letter-spacing: 0;
         vertical-align: middle;
-        margin: 10px 0 0 0;
     }
 
     @media (max-width: 1080px) {
         .contact-name-text {
             font-size: 36px;
             font-weight: 700;
-            margin-top: 40px;
-
         }
 
         .contact-group {
@@ -160,7 +180,6 @@
         .contact-info {
             display: flex;
             flex-direction: row;
-            gap: 10px;
         }
 
 
@@ -233,7 +252,7 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    gap: 3rem;
+    gap: 36px;
     transform: translateX(100%);
     animation: slideIn 0.2s ease-out forwards;
 
@@ -246,6 +265,10 @@
         letter-spacing: 0;
         vertical-align: middle;
         margin: 0;
+
+        >p:first-of-type {
+            font-size: 20px;
+        }
     }
 
     .contact-details-info {
@@ -290,26 +313,25 @@
 }
 
 .menu-details {
-    position: absolute;
-    bottom: 0;
-    right: 20px;
+    position: fixed;
+    bottom: 120px;
+    right: 12px;
     display: none;
     flex-direction: row;
     align-items: center;
     justify-content: center;
     width: 56px;
     height: 56px;
-    border-radius: 56px;
+    border-radius: 50%;
     padding: 12px;
     gap: 10px;
     background-color: #2A3647;
     cursor: pointer;
+    transition: all 125ms ease;
 
     &.hover-active,
     &.menu-details:hover {
         background-color: #007CEE;
-        border-radius: 50%;
-        transform: scale(1.05);
     }
 
     button {
@@ -328,9 +350,9 @@
 }
 
 .popup-menu {
-    position: absolute;
-    bottom: 0px;
-    right: 5px;
+    position: fixed;
+    bottom: 115px;
+    right: 10px;
     background-color: #FFFFFF;
     border: 1px solid #ccc;
     border-radius: 12px 12px 0px 12px;
@@ -382,6 +404,7 @@
     gap: 8px;
     text-decoration: none;
     color: #2A3647;
+    cursor: pointer;
 }
 
 .popup-menu img {

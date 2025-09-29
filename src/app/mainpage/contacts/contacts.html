@@ -1,11 +1,10 @@
-<app-overview-contact (addNew)="onAddNewContact()" (isActive)="receiveSelectedData($event)" (showSingleContact)="showSingleContact()">
+<app-overview-contact (addNew)="onAddNewContact()" (isActive)="receiveSelectedData($event)" (showSingleContact)="showSingleContact()" [activeContactId]="activeContactId">
 </app-overview-contact>
 
-<app-single-contact (edit)="onEditContact()" (showContactList)="showContactList()" [contactId]="activeContactId">
+<app-single-contact (edit)="onEditContact()" (delete)="showContactList()" (showContactList)="showContactList()" [contactId]="activeContactId" [createdContact]="addedContactParam">
 </app-single-contact>
 
 @if (showPopUpAddContact) {
-<app-add-contact [editMode]="editMode" (close)="onClosePopup()" [contactId]="activeContactId">
-</app-add-contact>
-
+    <app-add-contact [editMode]="editMode" (close)="onClosePopup()" (addedContact)="addedContact($event)" [contactId]="activeContactId">
+    </app-add-contact>
 }

@@ -26,7 +26,8 @@ export class ContactService implements OnDestroy{
   }
 
   async addContact(contact: Contact){
-    await addDoc(this.getContactsRef(), contact);
+    const addedContact = await addDoc(this.getContactsRef(), contact);
+    return addedContact.id;
   }
 
   async deleteContact(contactId: string){
