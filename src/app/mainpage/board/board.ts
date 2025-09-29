@@ -2,9 +2,13 @@ import { Component, inject, Input } from '@angular/core';
 import { TaskService } from '../../services/task-service';
 import { ContactService } from '../../services/contact-service';
 import { CommonModule } from '@angular/common';
+
+import { NgModel } from '@angular/forms';
+
 import { OverviewTasks } from './overview-tasks/overview-tasks';
 import { SearchbarHeader } from './searchbar-header/searchbar-header';
 import { SingleTaskPopup } from './single-task-popup/single-task-popup';
+
 @Component({
   selector: 'app-board',
   imports: [CommonModule, OverviewTasks, SearchbarHeader, SingleTaskPopup],
