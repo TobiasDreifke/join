@@ -64,6 +64,7 @@ export class SingleContact implements OnChanges {
     this.isDeleted = true;
     this.contactDeleted = true;
     this.delete.emit();
+    this.isMenuOpen = false;
   }
 
   getInitials(name?: string): string {
