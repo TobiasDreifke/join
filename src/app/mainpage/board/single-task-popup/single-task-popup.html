@@ -1,21 +1,45 @@
 <section class="container">
   <div class="card_task">
-    <div class="card_inhalt">
-      <button class="btn_user">User Story</button>
+    @for (item of taskService.tasksList; track $index) {
+    <div class="card_container">
+      <button class="btn_user">{{ item.category }}</button>
       <button class="btn_close">
         <img src="./assets/icons/close.svg" alt="Close button">
       </button>
     </div>
-    <div class="title_header">
-      <h1>CSS Architecture Planning</h1>
+
+    <div class="title_card">
+      <h1>{{ item.title }}</h1>
     </div>
-    <div class="description_header">
-        <p>Define CSS naming conventions and structure</p>
+    <div class="description_card">
+      <p>{{ item.description }}</p>
     </div>
-   <div class="due-date">
-  <span class="label">Due date:</span>
-  <span class="date">02/09/2023</span>
-</div>
+    <div class="due-date">
+      <span class="label">Due date:</span>
+      <span class="date">{{ item.due_date.toDate() }}</span>
+    </div>
+    <div class="priority_card">
+      <p class="priority">Priority:</p>
+      <p class="priority_data">{{ item.priority }}</p>
+    </div>
+    <div class="assigned_to">
+      <p class="label">Assigned To:</p>
+      <div class="assigned_list">
+        @for (item of contactService.contactsList; track $index) {
+        <div class="avatar-wrapper" role="button" tabindex="0" (click)="toggleActive(item)" [class.active]="item.active">
+          <div class="image_color" [style.background-color]="item.initial_avatar_color">
+            {{ getInitials(item.name) }}
+          </div>
+          <p class="name">{{ item.name }}</p>
+        </div>
+        }
+
+      </div>
+    </div>
+
+
+
+    }
 
   </div>
 </section>
