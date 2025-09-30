@@ -1,3 +1,26 @@
-<div>
-    <app-single-task-card></app-single-task-card>
+<div class="task-process">
+    <div>
+        @for (singleTaskData of tasksData; track $index) {
+            <app-single-task-card [task]="singleTaskData"></app-single-task-card> 
+        }
+    </div>
+
+    <div>
+        @for (singleTaskData of tasksData; track $index) {
+            <app-single-task-card [task]="singleTaskData"></app-single-task-card> 
+        }
+    </div>
+
+    <div>
+        @for (singleTaskData of tasksData; track $index) {
+            <app-single-task-card [task]="singleTaskData"></app-single-task-card> 
+        }
+    </div>
+
+    <div>
+        @for (singleTaskData of tasksData; track $index) {
+            <app-single-task-card [task]="singleTaskData"></app-single-task-card> 
+        }
+    </div>
+
 </div>

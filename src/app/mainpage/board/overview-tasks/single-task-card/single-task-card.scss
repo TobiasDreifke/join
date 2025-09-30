@@ -6,6 +6,7 @@
     display: flex;
     flex-direction: column;
     gap: 12px;
+    min-width: 270px;
 }
 
 .category {
@@ -44,7 +45,7 @@
             content: '';
             position: absolute;
             height: 12px;
-            width: 33.33%;
+            width: var(--progress-width);
             border-radius: 12px;
             background-color: #4589ff;
         }
@@ -58,9 +59,10 @@
 
     >div:first-of-type {
         display: flex;
+        overflow-x: hidden;
 
         p{
-            width: 45px;
+            min-width: 45px;
             aspect-ratio: 1/1;
             border-radius: 50%;
             border: 2px solid white;
@@ -70,8 +72,16 @@
             align-items: center;
 
             &:not(:first-child) {
-                transform: translateX(-10px);
+                transform: translateX(var(--translateX));
             }
         }
     }
+}
+
+.and-ohters {
+    color: #A8A8A8;
+    font-size: 14px;
+    transform: translateX(-18px);
+    display: flex;
+    align-items: flex-end;
 }

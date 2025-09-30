@@ -1,0 +1,14 @@
+:host {
+    padding: 32px;
+}
+
+.task-process {
+    display: flex;
+    gap: 24px;
+
+    >div {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+}
