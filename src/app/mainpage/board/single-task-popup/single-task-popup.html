@@ -36,7 +36,19 @@
 
       </div>
     </div>
-
+  <div class="Subtasks_card">
+  <p class="Subtasks">Subtasks:</p>
+  
+    @for (subtask of item.subtask; track $index) {
+      <div class="subtask-item">
+        <label>
+          <input type="checkbox" />
+          <span class="subtask-label">{{ subtask }}</span>
+        </label>
+      </div>
+    }
+  
+</div>
 
 
     }

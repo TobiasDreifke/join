@@ -61,6 +61,7 @@ export class ContactService implements OnDestroy{
       email: obj.email,
       phone: obj.phone,
       initial_avatar_color: this.setInitialAvatarColor(index),
+      
     }
   }
 
