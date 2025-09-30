@@ -39,6 +39,23 @@ export class SingleTaskPopup {
     }
   } 
 
+  /**
+ * Converts a given due date (either a JavaScript Date or a Firebase Timestamp)
+ * into a readable date string.
+ * If the input has a `toDate()` method (i.e., it's a Timestamp), it converts it to a Date object.
+ * The resulting date is formatted using the 'en-GB' locale (DD/MM/YYYY).
+ *
+ * @param due - The date value to be formatted (Date or Timestamp)
+ * @returns A string representation of the date
+ */
+
+  formatDueDate(due: any): string {
+  if (!due) return '';
+  const date = due.toDate ? due.toDate() : new Date(due); 
+  return date.toLocaleDateString('en-GB'); 
+}
+
+
   
 }
 

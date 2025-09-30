@@ -14,10 +14,13 @@
     <div class="description_card">
       <p>{{ item.description }}</p>
     </div>
-    <div class="due-date">
-      <span class="label">Due date:</span>
-      <span class="date">{{ item.due_date.toDate() }}</span>
-    </div>
+   <div class="due-date">
+  <span class="label">Due date:</span>
+  <span class="date">
+    <p>{{ formatDueDate(item.due_date) }}</p>
+  </span>
+</div>
+
     <div class="priority_card">
       <p class="priority">Priority:</p>
       <p class="priority_data">{{ item.priority }}</p>
