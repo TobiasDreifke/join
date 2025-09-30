@@ -14,12 +14,12 @@
     <div class="description_card">
       <p>{{ item.description }}</p>
     </div>
-   <div class="due-date">
-  <span class="label">Due date:</span>
-  <span class="date">
-    <p>{{ formatDueDate(item.due_date) }}</p>
-  </span>
-</div>
+    <div class="due-date">
+      <span class="label">Due date:</span>
+      <span class="date">
+        <p>{{ formatDueDate(item.due_date) }}</p>
+      </span>
+    </div>
 
     <div class="priority_card">
       <p class="priority">Priority:</p>
@@ -29,7 +29,8 @@
       <p class="label">Assigned To:</p>
       <div class="assigned_list">
         @for (item of contactService.contactsList; track $index) {
-        <div class="avatar-wrapper" role="button" tabindex="0" (click)="toggleActive(item)" [class.active]="item.active">
+        <div class="avatar-wrapper" role="button" tabindex="0" (click)="toggleActive(item)"
+          [class.active]="item.active">
           <div class="image_color" [style.background-color]="item.initial_avatar_color">
             {{ getInitials(item.name) }}
           </div>
@@ -39,20 +40,37 @@
 
       </div>
     </div>
-  <div class="Subtasks_card">
-  <p class="Subtasks">Subtasks:</p>
-  
-    @for (subtask of item.subtask; track $index) {
+    <div class="Subtasks_card">
+      <p class="Subtasks">Subtasks:</p>
+
+      @for (subtask of item.subtask; track $index) {
       <div class="subtask-item">
         <label>
           <input type="checkbox" />
           <span class="subtask-label">{{ subtask }}</span>
         </label>
       </div>
-    }
-  
-</div>
+      }
 
+    </div>
+
+
+    <div class="btn_group">
+      <div class="delete_btn">
+        <button>
+          <img src="./assets/icons/delete.png" alt="">
+          <p>Delete</p>
+        </button>
+      </div>
+      <div class="border_bn"></div>
+      <div class="etid_btn">
+        <button >
+          <img src="./assets/icons/edit.png" alt="">
+          <p>Edit</p>
+        </button>
+      </div>
+
+    </div>
 
     }
 
