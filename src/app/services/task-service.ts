@@ -1,5 +1,5 @@
 import { inject, Injectable } from '@angular/core';
-import { addDoc, collection, Firestore, onSnapshot } from '@angular/fire/firestore';
+import { addDoc, collection, deleteDoc, doc, Firestore, onSnapshot, updateDoc } from '@angular/fire/firestore';
 import { TaskInterface } from '../interfaces/tasks.interface';
 ; @Injectable({
   providedIn: 'root'
@@ -13,14 +13,43 @@ export class TaskService {
     this.unsubscribeTasksList = onSnapshot(collection(this.firestore, "tasks"), (tasksObject) => {
       this.tasksList = [];
       tasksObject.forEach((element) => {
-        console.log(element.id, element.data());
+        // console.log(element.id, element.data());
         this.tasksList.push(this.setTaskObject(element.id, element.data() as TaskInterface))
       });
     });
   }
 
-  async addDocumentToServer(task: TaskInterface) {
+  async addTask(task: TaskInterface) {
     await addDoc(collection(this.firestore, "tasks"), task);
+  }
+
+  async deleteTask(taskId: string) {
+    await deleteDoc(this.getSingleTaskRef(taskId));
+  }
+
+  async updateTask(taskId: string, taskData: TaskInterface) {
+    await updateDoc(this.getSingleTaskRef(taskId), this.getCleanJson(taskData));
+  }
+
+  getCleanJson(obj: TaskInterface) {
+    return {
+      title: obj.title,
+      description: obj.description,
+      due_date: obj.due_date,
+      priority: obj.priority,
+      category: obj.category,
+      stage: obj.stage,
+      subtask: obj.subtask || [],
+      assigned_to: obj.assigned_to,
+    };
+  }
+
+  getTaskRef() {
+    return collection(this.firestore, 'tasks');
+  }
+
+  getSingleTaskRef(docId: string) {
+    return doc(collection(this.firestore, 'tasks'), docId);
   }
 
   setTaskObject(id: string, obj: TaskInterface, assignedContacts: Contact[] = []): TaskInterface {

@@ -3,38 +3,97 @@ import { TaskService } from '../../services/task-service';
 import { ContactService } from '../../services/contact-service';
 import { CommonModule } from '@angular/common';
 
-import { NgModel } from '@angular/forms';
+import { FormsModule, NgForm, NgModel } from '@angular/forms';
 
 import { OverviewTasks } from './overview-tasks/overview-tasks';
 import { SearchbarHeader } from './searchbar-header/searchbar-header';
 import { SingleTaskPopup } from './single-task-popup/single-task-popup';
+import { TaskInterface } from '../../interfaces/tasks.interface';
+import { Timestamp } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-board',
-  imports: [CommonModule, OverviewTasks, SearchbarHeader, SingleTaskPopup],
+  imports: [CommonModule, OverviewTasks, SearchbarHeader, SingleTaskPopup, FormsModule],
   templateUrl: './board.html',
   styleUrl: './board.scss'
 })
 export class Board {
-
-
-
-
-
-  
-  // ↓↓↓↓↓↓↓↓↓↓↓ HOW TO INJECT BOTH SERVICES ↓↓↓↓↓↓↓↓↓↓↓
   taskService = inject(TaskService)
   contactService = inject(ContactService);
 
   contactId: string | null = null;
+
+  subtaskTitle = '';
+
+  newTask: TaskInterface = {
+    title: '',
+    description: '',
+    due_date: Timestamp.now(),
+    priority: 'Low',
+    category: 'Technical Task',
+    stage: 'To do',
+    subtask: [],
+    assigned_to: []
+  };
 
   constructor() {
     if (this.contactService.contactsList.length > 0) {
       this.contactId = this.contactService.contactsList[0].id || null;
     }
   }
-  
-  get contact(): Contact | undefined {
-    return this.contactService.contactsList.find(c => c.id === this.contactId);
+
+  async onSubmit(form: NgForm) {
+    const addedTaskId = await this.taskService.addTask(this.newTask);
+    console.log("subtask added:", this.newTask);
+    console.log(this.taskService.tasksList);
+
+    this.clearInputFields();
+    form.resetForm();
   }
+
+  // --------------- Delete and Clear ----------------
+
+  async deleteTask(taskId: string | undefined) {
+    if (!taskId) return;
+    await this.taskService.deleteTask(taskId);
+  }
+
+  clearInputFields() {
+    this.newTask = {
+      title: '',
+      description: '',
+      due_date: Timestamp.now(),
+      priority: 'Low',
+      category: 'Technical Task',
+      stage: 'To do',
+      subtask: [],
+      assigned_to: []
+    };
+    this.subtaskTitle = '';
+  }
+
+  // --------------- Subtask ----------------
+
+  addSubtask() {
+
+    this.newTask.subtask.push({ title: this.subtaskTitle, completed: false });
+    console.log("subtask added:", this.subtaskTitle);
+    this.subtaskTitle = '';
+  }
+
+  removeSubtask(index: number) {
+    this.newTask.subtask.splice(index, 1);
+  }
+
+  // --------------- toggle assigned not yet working ---------------
+
+  toggleAssigned(contact: Contact, event: Event) {
+    const checked = (event.target as HTMLInputElement).checked;
+    if (checked) {
+      this.newTask.assigned_to.push(contact);
+    } else {
+      this.newTask.assigned_to = this.newTask.assigned_to.filter(c => c.id !== contact.id);
+    }
+  }
+
 }
