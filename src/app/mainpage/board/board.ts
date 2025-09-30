@@ -18,6 +18,10 @@ import { Timestamp } from '@angular/fire/firestore';
   styleUrl: './board.scss'
 })
 export class Board {
+
+
+
+  //  ------------ EVERYTHING TO RUN YOUR COMPONENT WITH THE SERVICE -----------------
   taskService = inject(TaskService)
   contactService = inject(ContactService);
 
@@ -44,7 +48,6 @@ export class Board {
 
   async onSubmit(form: NgForm) {
     const addedTaskId = await this.taskService.addTask(this.newTask);
-    console.log("subtask added:", this.newTask);
     console.log(this.taskService.tasksList);
 
     this.clearInputFields();
@@ -75,9 +78,7 @@ export class Board {
   // --------------- Subtask ----------------
 
   addSubtask() {
-
     this.newTask.subtask.push({ title: this.subtaskTitle, completed: false });
-    console.log("subtask added:", this.subtaskTitle);
     this.subtaskTitle = '';
   }
 

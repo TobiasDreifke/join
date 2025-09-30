@@ -76,13 +76,15 @@
     <p><strong>Priority:</strong> {{ task.priority }}</p>
     <p><strong>Category:</strong> {{ task.category }}</p>
     <p><strong>Stage:</strong> {{ task.stage }}</p>
+    
 
     <p><strong>Subtasks:</strong></p>
     <ul>
         @for (subtask of task.subtask; track $index) {
-        <li>{{ subtask }}</li>
+        <li>{{ subtask.title }}</li>
         }
     </ul>
+
     <p><strong>Assigned To:</strong></p>
     <ul>
         @for (assignedContact of task.assigned_to; track $index) {
@@ -98,3 +100,5 @@
 <hr />
 <br>
 }
+
+
