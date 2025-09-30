@@ -1,26 +1,73 @@
 <div class="task-process">
     <div>
-        @for (singleTaskData of tasksData; track $index) {
-            <app-single-task-card [task]="singleTaskData"></app-single-task-card> 
+        <div>
+            <p>To do</p>
+            <button>
+                <img src="./assets/icons/Capa_1.svg" alt="">
+            </button>
+        </div>
+        @if (tasksToDo.length == 0) {
+            <div class="no-task">
+                No tasks To do
+            </div>
+        }@else {
+            @for (singleTaskData of tasksToDo; track $index) {
+                <app-single-task-card [task]="singleTaskData"></app-single-task-card> 
+            } 
         }
     </div>
 
     <div>
-        @for (singleTaskData of tasksData; track $index) {
-            <app-single-task-card [task]="singleTaskData"></app-single-task-card> 
+        <div>
+            <p>In progress</p>
+            <button>
+                <img src="./assets/icons/Capa_1.svg" alt="">
+            </button>
+        </div>
+        @if (tasksInProgress.length == 0) {
+            <div class="no-task">
+                No tasks In progress
+            </div>
+        }@else {
+            @for (singleTaskData of tasksInProgress; track $index) {
+                <app-single-task-card [task]="singleTaskData"></app-single-task-card> 
+            }
         }
     </div>
 
     <div>
-        @for (singleTaskData of tasksData; track $index) {
-            <app-single-task-card [task]="singleTaskData"></app-single-task-card> 
+        <div>
+            <p>Await feedback</p>
+            <button>
+                <img src="./assets/icons/Capa_1.svg" alt="">
+            </button>
+        </div>
+        @if (tasksAwaitFeedback.length == 0) {
+            <div class="no-task">
+                No tasks Await feedback
+            </div>
+        }@else {
+            @for (singleTaskData of tasksAwaitFeedback; track $index) {
+                <app-single-task-card [task]="singleTaskData"></app-single-task-card> 
+            }
         }
     </div>
 
     <div>
-        @for (singleTaskData of tasksData; track $index) {
-            <app-single-task-card [task]="singleTaskData"></app-single-task-card> 
+        <div>
+            <p>Done</p>
+            <button>
+                <img src="./assets/icons/Capa_1.svg" alt="">
+            </button>
+        </div>
+        @if (tasksDone.length == 0) {
+            <div class="no-task">
+                No tasks Done
+            </div>
+        }@else {
+            @for (singleTaskData of tasksDone; track $index) {
+                <app-single-task-card [task]="singleTaskData"></app-single-task-card> 
+            }
         }
     </div>
-
 </div>

@@ -11,12 +11,22 @@
 
 .category {
     padding: 8px 16px;
-    background-color: #1fd7c1;
+    
     border-radius: 8px;
     color: white;
     margin-bottom: 12px;
     width: fit-content;
+
+    &.user-story {
+        background-color: #0038ff;
+    }
+    
+    &.technical-task {
+        background-color: #1fd7c1;
+    }
 }
+
+
 
 .title {
     font-weight: bold;

@@ -1,11 +1,10 @@
-import { NgStyle } from '@angular/common';
+import { NgClass, NgStyle } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { TaskInterface } from '../../../../interfaces/tasks.interface';
-import { Timestamp } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-single-task-card',
-  imports: [NgStyle],
+  imports: [NgStyle, NgClass],
   templateUrl: './single-task-card.html',
   styleUrl: './single-task-card.scss'
 })

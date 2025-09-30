@@ -4,11 +4,53 @@
 
 .task-process {
     display: flex;
+    justify-content: space-between;
     gap: 24px;
 
     >div {
+        flex: 1;
         display: flex;
         flex-direction: column;
         gap: 20px;
+
+        >div:first-of-type {
+            display: flex;
+            justify-content: space-between;
+
+            >p {
+                color: #42526E;
+                font-size: 20px;
+                font-weight: 700;
+            }
+
+            >button {
+                border: 3px solid #2A3647;
+                border-radius: 8px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 25px;
+                aspect-ratio: 1/1;
+                cursor: pointer;
+
+                img {
+                    width: 10px;
+                }
+            }
+        }
     }
+}
+
+.no-task {
+    flex: 1;
+    min-width: 270px;
+    max-height: 50px;
+    min-height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #a8a8a8;
+    background-color: #e7e7e7;
+    border-radius: 12px;
+    border: 3px dotted #9b9b9b;
 }
