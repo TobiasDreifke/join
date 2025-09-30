@@ -13,22 +13,22 @@ export class TaskService {
     this.unsubscribeTasksList = onSnapshot(collection(this.firestore, "tasks"), (tasksObject) => {
       this.tasksList = [];
       tasksObject.forEach((element) => {
-        console.log(element.id, element.data());
+        // console.log(element.id, element.data());
         this.tasksList.push(this.setTaskObject(element.id, element.data() as TaskInterface))
       });
     });
   }
 
-  async addTasks(task: TaskInterface) {
+  async addTask(task: TaskInterface) {
     await addDoc(collection(this.firestore, "tasks"), task);
   }
 
-  async deleteTasks(taskId: string) {
-    await deleteDoc(this.getSingleTasksRef(taskId));
+  async deleteTask(taskId: string) {
+    await deleteDoc(this.getSingleTaskRef(taskId));
   }
 
-  async updateTasks(taskId: string, taskData: TaskInterface) {
-    await updateDoc(this.getSingleTasksRef(taskId), this.getCleanJson(taskData));
+  async updateTask(taskId: string, taskData: TaskInterface) {
+    await updateDoc(this.getSingleTaskRef(taskId), this.getCleanJson(taskData));
   }
 
   getCleanJson(obj: TaskInterface) {
@@ -40,15 +40,15 @@ export class TaskService {
       category: obj.category,
       stage: obj.stage,
       subtask: obj.subtask || [],
-      // assigned_to: assignedContacts ------- HOW TO SAFE THIS
+      assigned_to: obj.assigned_to,
     };
   }
 
-  getTasksRef() {
+  getTaskRef() {
     return collection(this.firestore, 'tasks');
   }
 
-  getSingleTasksRef(docId: string) {
+  getSingleTaskRef(docId: string) {
     return doc(collection(this.firestore, 'tasks'), docId);
   }
 
