@@ -1,1 +1,22 @@
-<p>single-task-card works!</p>
+<div class="card">
+    <p class="category" [ngClass]="task.category == 'User Story' ? 'user-story' : 'technical-task'">{{task.category}}</p>
+    <p class="title">{{task.title}}</p>
+    <p class="description">{{task.description}}</p>
+    @if(task.subtask.length > 0){
+        <div class="subtask">
+            <p [ngStyle]="{'--progress-width': ((getCountOfCompletedSubtasks(task.subtask)/task.subtask.length)*100) + '%'}" ></p>
+            <p>{{getCountOfCompletedSubtasks(task.subtask)}}/{{task.subtask.length}} Subtasks</p>
+        </div>
+    }
+    <div class="assigned-priority">
+        <div>
+            @for (contact of task.assigned_to.slice(0,3); track $index) {
+                <p [ngStyle]="{'background-color': contact.initial_avatar_color, '--translateX': (-10*$index) + 'px'}">{{getInitials(contact.name)}}</p>
+            }
+            @if(task.assigned_to.length > 3){
+                <span class="and-ohters">and others</span>
+            }
+        </div>
+        <img src="./assets/icons/{{task.priority}}.svg" alt="">
+    </div>
+</div>
