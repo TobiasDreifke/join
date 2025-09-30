@@ -10,3 +10,8 @@
           height: calc(100vh - 200px);
       }
   }
+
+  form {
+      @include PositionBox($d: flex, $jc: flex-start, $ai: start, $fd: column);
+      gap: 0.5rem;
+  }
