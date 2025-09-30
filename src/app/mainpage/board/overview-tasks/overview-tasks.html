@@ -1,5 +1,11 @@
 <div class="task-process">
-    <div>
+    <div 
+        cdkDropList
+        #todoList="cdkDropList"
+        [cdkDropListData]="tasksToDo"
+        [cdkDropListConnectedTo]="[inProgressList, awaitFeedbackList, doneList]"
+        (cdkDropListDropped)="drop($event)"
+        class="example-list">
         <div>
             <p>To do</p>
             <button>
@@ -12,12 +18,18 @@
             </div>
         }@else {
             @for (singleTaskData of tasksToDo; track $index) {
-                <app-single-task-card [task]="singleTaskData"></app-single-task-card> 
+                <app-single-task-card class="example-box" [task]="singleTaskData" cdkDrag></app-single-task-card> 
             } 
         }
     </div>
 
-    <div>
+    <div
+        cdkDropList
+        #inProgressList="cdkDropList"
+        [cdkDropListData]="tasksInProgress"
+        [cdkDropListConnectedTo]="[todoList, awaitFeedbackList, doneList]"
+        (cdkDropListDropped)="drop($event)"
+        class="example-list">
         <div>
             <p>In progress</p>
             <button>
@@ -30,12 +42,18 @@
             </div>
         }@else {
             @for (singleTaskData of tasksInProgress; track $index) {
-                <app-single-task-card [task]="singleTaskData"></app-single-task-card> 
+                <app-single-task-card class="example-box" [task]="singleTaskData" cdkDrag></app-single-task-card> 
             }
         }
     </div>
 
-    <div>
+    <div
+        cdkDropList
+        #awaitFeedbackList="cdkDropList"
+        [cdkDropListData]="tasksAwaitFeedback"
+        [cdkDropListConnectedTo]="[todoList, inProgressList, doneList]"
+        (cdkDropListDropped)="drop($event)"
+        class="example-list">
         <div>
             <p>Await feedback</p>
             <button>
@@ -48,12 +66,18 @@
             </div>
         }@else {
             @for (singleTaskData of tasksAwaitFeedback; track $index) {
-                <app-single-task-card [task]="singleTaskData"></app-single-task-card> 
+                <app-single-task-card class="example-box" [task]="singleTaskData" cdkDrag></app-single-task-card> 
             }
         }
     </div>
 
-    <div>
+    <div
+        cdkDropList
+        #doneList="cdkDropList"
+        [cdkDropListData]="tasksDone"
+        [cdkDropListConnectedTo]="[todoList, inProgressList, awaitFeedbackList]"
+        (cdkDropListDropped)="drop($event)"
+        class="example-list">
         <div>
             <p>Done</p>
             <button>
@@ -65,8 +89,8 @@
                 No tasks Done
             </div>
         }@else {
-            @for (singleTaskData of tasksDone; track $index) {
-                <app-single-task-card [task]="singleTaskData"></app-single-task-card> 
+            @for (singleTaskData of tasksDone; track $index) { 
+                <app-single-task-card class="example-box" [task]="singleTaskData" cdkDrag></app-single-task-card>    
             }
         }
     </div>
