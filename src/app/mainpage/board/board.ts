@@ -41,79 +41,79 @@ export class Board {
 
   //  ------------ EVERYTHING TO RUN YOUR COMPONENT WITH THE SERVICE -----------------
 
-  // taskService = inject(TaskService)
-  // contactService = inject(ContactService);
+  taskService = inject(TaskService)
+  contactService = inject(ContactService);
 
-  // contactId: string | null = null;
+  contactId: string | null = null;
 
-  // subtaskTitle = '';
+  subtaskTitle = '';
 
-  // newTask: TaskInterface = {
-  //   title: '',
-  //   description: '',
-  //   due_date: Timestamp.now(),
-  //   priority: 'Low',
-  //   category: 'Technical Task',
-  //   stage: 'To do',
-  //   subtask: [],
-  //   assigned_to: []
-  // };
+  newTask: TaskInterface = {
+    title: '',
+    description: '',
+    due_date: Timestamp.now(),
+    priority: 'Low',
+    category: 'Technical Task',
+    stage: 'To do',
+    subtask: [],
+    assigned_to: []
+  };
 
-  // constructor() {
-  //   if (this.contactService.contactsList.length > 0) {
-  //     this.contactId = this.contactService.contactsList[0].id || null;
-  //   }
-  // }
+  constructor() {
+    if (this.contactService.contactsList.length > 0) {
+      this.contactId = this.contactService.contactsList[0].id || null;
+    }
+  }
 
-  // async onSubmit(form: NgForm) {
-  //   // const addedTaskId = await this.taskService.addTask(this.newTask);
-  //   console.log(this.taskService.tasksList);
+  async onSubmit(form: NgForm) {
+    // const addedTaskId = await this.taskService.addTask(this.newTask);
+    console.log(this.taskService.tasksList);
 
-  //   this.clearInputFields();
-  //   form.resetForm();
-  // }
+    this.clearInputFields();
+    form.resetForm();
+  }
 
-  // // --------------- Delete and Clear ----------------
+  // --------------- Delete and Clear ----------------
 
-  // async deleteTask(taskId: string | undefined) {
-  //   if (!taskId) return;
-  //   await this.taskService.deleteTask(taskId);
-  // }
+  async deleteTask(taskId: string | undefined) {
+    if (!taskId) return;
+    await this.taskService.deleteTask(taskId);
+  }
 
-  // clearInputFields() {
-  //   this.newTask = {
-  //     title: '',
-  //     description: '',
-  //     due_date: Timestamp.now(),
-  //     priority: 'Low',
-  //     category: 'Technical Task',
-  //     stage: 'To do',
-  //     subtask: [],
-  //     assigned_to: []
-  //   };
-  //   this.subtaskTitle = '';
-  // }
+  clearInputFields() {
+    this.newTask = {
+      title: '',
+      description: '',
+      due_date: Timestamp.now(),
+      priority: 'Low',
+      category: 'Technical Task',
+      stage: 'To do',
+      subtask: [],
+      assigned_to: []
+    };
+    this.subtaskTitle = '';
+  }
 
-  // // --------------- Subtask ----------------
+  // --------------- Subtask ----------------
 
-  // addSubtask() {
-  //   this.newTask.subtask.push({ title: this.subtaskTitle, completed: false });
-  //   this.subtaskTitle = '';
-  // }
+  addSubtask() {
+    this.newTask.subtask.push({ title: this.subtaskTitle, completed: false });
+    this.subtaskTitle = '';
+  }
 
-  // removeSubtask(index: number) {
-  //   this.newTask.subtask.splice(index, 1);
-  // }
+  removeSubtask(index: number) {
+    this.newTask.subtask.splice(index, 1);
+  }
 
-  // // --------------- toggle assigned not yet working ---------------
+  // --------------- toggle assigned not yet working ---------------
 
-  // toggleAssigned(contact: Contact, event: Event) {
-  //   const checked = (event.target as HTMLInputElement).checked;
-  //   if (checked) {
-  //     this.newTask.assigned_to.push(contact);
-  //   } else {
-  //     this.newTask.assigned_to = this.newTask.assigned_to.filter(c => c.id !== contact.id);
-  //   }
-  // }
+  toggleAssigned(contact: Contact, event: Event) {
+    const checked = (event.target as HTMLInputElement).checked;
+    if (checked) {
+      this.newTask.assigned_to.push(contact);
+    } else {
+      this.newTask.assigned_to = this.newTask.assigned_to.filter(c => c.id !== contact.id);
+    }
+  }
 
 }
