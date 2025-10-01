@@ -2,10 +2,18 @@ import { Component } from '@angular/core';
 import { SingleTaskCard } from './single-task-card/single-task-card';
 import { Timestamp } from '@angular/fire/firestore';
 import { TaskInterface } from '../../../interfaces/tasks.interface';
+import {
+  CdkDragDrop,
+  moveItemInArray,
+  transferArrayItem,
+  CdkDrag,
+  CdkDropList,
+  CdkDragStart
+} from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-overview-tasks',
-  imports: [SingleTaskCard],
+  imports: [SingleTaskCard, CdkDropList, CdkDrag],
   templateUrl: './overview-tasks.html',
   styleUrl: './overview-tasks.scss'
 })
@@ -112,4 +120,16 @@ export class OverviewTasks {
     this.tasksDone = this.tasks.filter(task => task.stage == 'Done');
   }
 
+  drop(event: CdkDragDrop<TaskInterface[]>) {
+    if (event.previousContainer === event.container) {
+      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+    } else {
+      transferArrayItem(
+        event.previousContainer.data,
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex,
+      );
+    }
+  }
 }
