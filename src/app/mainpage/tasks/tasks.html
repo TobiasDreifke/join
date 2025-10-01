@@ -58,12 +58,12 @@
 
             <div class="right_box">
                 <div>
-                    <label for="priority">priority</label>
-                    <select name="priority" id="priority" [(ngModel)]="newTask.priority">
-                        <option value="low">Low</option>
-                        <option value="medium">Medium</option>
-                        <option value="high">High</option>
-                    </select>
+                    <label>Priority</label>
+                    <div class="priority-buttons">
+                        <button type="button" [class.active_low]="newTask.priority === 'low'" (click)="newTask.priority = 'low'"> Low </button>
+                        <button type="button" [class.active_medium]="newTask.priority === 'medium'" (click)="newTask.priority = 'medium'"> Medium </button>
+                        <button type="button" [class.active_high]="newTask.priority === 'high'" (click)="newTask.priority = 'high'"> High </button>
+                    </div>
                 </div>
 
                 <div class="error"></div>
@@ -105,7 +105,8 @@
 
                 <div class="subtasks">
                     <label for="subtask">Add Subtask</label>
-                    <input type="text" id="subtask" [(ngModel)]="subtaskTitle" name="subtaskTitle" placeholder="Subtask title">
+                    <input type="text" id="subtask" [(ngModel)]="subtaskTitle" name="subtaskTitle"
+                        placeholder="Subtask title">
                     <button type="button" (click)="addSubtask()">Add</button>
                     @for (subtask of newTask.subtask; track $index) {
                     <ul>
