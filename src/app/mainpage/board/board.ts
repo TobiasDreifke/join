@@ -19,82 +19,101 @@ import { Timestamp } from '@angular/fire/firestore';
 })
 export class Board {
 
+  //  ------------ DATA TRANSITION PARENT CHILD - TASK-ID -----------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
   //  ------------ EVERYTHING TO RUN YOUR COMPONENT WITH THE SERVICE -----------------
-  taskService = inject(TaskService)
-  contactService = inject(ContactService);
 
-  contactId: string | null = null;
+  // taskService = inject(TaskService)
+  // contactService = inject(ContactService);
 
-  subtaskTitle = '';
+  // contactId: string | null = null;
 
-  newTask: TaskInterface = {
-    title: '',
-    description: '',
-    due_date: Timestamp.now(),
-    priority: 'Low',
-    category: 'Technical Task',
-    stage: 'To do',
-    subtask: [],
-    assigned_to: []
-  };
+  // subtaskTitle = '';
 
-  constructor() {
-    if (this.contactService.contactsList.length > 0) {
-      this.contactId = this.contactService.contactsList[0].id || null;
-    }
-  }
+  // newTask: TaskInterface = {
+  //   title: '',
+  //   description: '',
+  //   due_date: Timestamp.now(),
+  //   priority: 'Low',
+  //   category: 'Technical Task',
+  //   stage: 'To do',
+  //   subtask: [],
+  //   assigned_to: []
+  // };
 
-  async onSubmit(form: NgForm) {
-    const addedTaskId = await this.taskService.addTask(this.newTask);
-    console.log(this.taskService.tasksList);
+  // constructor() {
+  //   if (this.contactService.contactsList.length > 0) {
+  //     this.contactId = this.contactService.contactsList[0].id || null;
+  //   }
+  // }
 
-    this.clearInputFields();
-    form.resetForm();
-  }
+  // async onSubmit(form: NgForm) {
+  //   // const addedTaskId = await this.taskService.addTask(this.newTask);
+  //   console.log(this.taskService.tasksList);
 
-  // --------------- Delete and Clear ----------------
+  //   this.clearInputFields();
+  //   form.resetForm();
+  // }
 
-  async deleteTask(taskId: string | undefined) {
-    if (!taskId) return;
-    await this.taskService.deleteTask(taskId);
-  }
+  // // --------------- Delete and Clear ----------------
 
-  clearInputFields() {
-    this.newTask = {
-      title: '',
-      description: '',
-      due_date: Timestamp.now(),
-      priority: 'Low',
-      category: 'Technical Task',
-      stage: 'To do',
-      subtask: [],
-      assigned_to: []
-    };
-    this.subtaskTitle = '';
-  }
+  // async deleteTask(taskId: string | undefined) {
+  //   if (!taskId) return;
+  //   await this.taskService.deleteTask(taskId);
+  // }
 
-  // --------------- Subtask ----------------
+  // clearInputFields() {
+  //   this.newTask = {
+  //     title: '',
+  //     description: '',
+  //     due_date: Timestamp.now(),
+  //     priority: 'Low',
+  //     category: 'Technical Task',
+  //     stage: 'To do',
+  //     subtask: [],
+  //     assigned_to: []
+  //   };
+  //   this.subtaskTitle = '';
+  // }
 
-  addSubtask() {
-    this.newTask.subtask.push({ title: this.subtaskTitle, completed: false });
-    this.subtaskTitle = '';
-  }
+  // // --------------- Subtask ----------------
 
-  removeSubtask(index: number) {
-    this.newTask.subtask.splice(index, 1);
-  }
+  // addSubtask() {
+  //   this.newTask.subtask.push({ title: this.subtaskTitle, completed: false });
+  //   this.subtaskTitle = '';
+  // }
 
-  // --------------- toggle assigned not yet working ---------------
+  // removeSubtask(index: number) {
+  //   this.newTask.subtask.splice(index, 1);
+  // }
 
-  toggleAssigned(contact: Contact, event: Event) {
-    const checked = (event.target as HTMLInputElement).checked;
-    if (checked) {
-      this.newTask.assigned_to.push(contact);
-    } else {
-      this.newTask.assigned_to = this.newTask.assigned_to.filter(c => c.id !== contact.id);
-    }
-  }
+  // // --------------- toggle assigned not yet working ---------------
+
+  // toggleAssigned(contact: Contact, event: Event) {
+  //   const checked = (event.target as HTMLInputElement).checked;
+  //   if (checked) {
+  //     this.newTask.assigned_to.push(contact);
+  //   } else {
+  //     this.newTask.assigned_to = this.newTask.assigned_to.filter(c => c.id !== contact.id);
+  //   }
+  // }
 
 }
