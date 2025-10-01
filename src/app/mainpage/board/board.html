@@ -1,8 +1,16 @@
 <app-searchbar-header></app-searchbar-header>
 <app-overview-tasks></app-overview-tasks>
 
+
 @for (task of taskService.tasksList; track task.id) {
-<app-single-task-popup [taskId]="task.id ?? ''" (delete)="deleteTask($event)">
+<div class="task-card">
+    <button (click)="openTaskPopup(task.id ?? '')">View Details</button>
+</div>
+}
+
+
+@if (selectedTaskId) {
+<app-single-task-popup [taskId]="selectedTaskId" (delete)="deleteTask($event)" (close)="closePopup()">
 </app-single-task-popup>
 }
 

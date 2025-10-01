@@ -26,6 +26,16 @@ export class Board {
   contactService = inject(ContactService);
 
   contactId: string | null = null;
+  selectedTaskId: string | null = null;
+
+
+openTaskPopup(taskId: string) {
+  this.selectedTaskId = taskId;
+}
+
+closePopup() {
+  this.selectedTaskId = null;
+}
 
   subtaskTitle = '';
 
