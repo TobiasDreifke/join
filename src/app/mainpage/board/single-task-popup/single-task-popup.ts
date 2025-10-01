@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, Input, Output, EventEmitter } from '@angular/core';
 import { ContactService } from '../../../services/contact-service';
 import { TaskService } from '../../../services/task-service';
 
@@ -10,7 +10,9 @@ import { TaskService } from '../../../services/task-service';
 })
 export class SingleTaskPopup {
     taskService = inject(TaskService)
-  contactService = inject(ContactService);
+    contactService = inject(ContactService);
+    @Input() taskId!: string;
+    @Output() delete = new EventEmitter<string>();
 
   contactId: string | null = null;
 
@@ -20,6 +22,12 @@ export class SingleTaskPopup {
     }
   }
   
+
+
+onDelete() {
+  this.delete.emit(this.taskId);
+}
+
   get contact(): Contact | undefined {
     return this.contactService.contactsList.find(c => c.id === this.contactId);
   }

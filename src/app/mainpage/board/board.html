@@ -1,7 +1,13 @@
 <app-searchbar-header></app-searchbar-header>
 <app-overview-tasks></app-overview-tasks>
 
-<app-single-task-popup></app-single-task-popup>
+@for (task of taskService.tasksList; track task.id) {
+<app-single-task-popup [taskId]="task.id ?? ''" (delete)="deleteTask($event)">
+</app-single-task-popup>
+}
+
+
+
 
 
 <!--  ↓↓↓↓↓↓↓↓↓↓↓ HOW TO ADD DATA FROM THE SERVICES  ↓↓↓↓↓↓↓↓↓↓↓ -->
@@ -76,7 +82,7 @@
     <p><strong>Priority:</strong> {{ task.priority }}</p>
     <p><strong>Category:</strong> {{ task.category }}</p>
     <p><strong>Stage:</strong> {{ task.stage }}</p>
-    
+
 
     <p><strong>Subtasks:</strong></p>
     <ul>
@@ -100,5 +106,3 @@
 <hr />
 <br>
 }
-
-
