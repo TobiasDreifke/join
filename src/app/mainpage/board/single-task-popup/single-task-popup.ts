@@ -25,10 +25,7 @@ export class SingleTaskPopup {
   }
 
   
-  toggleActive(item: any) {
-    item.active = !item.active;
-  }
-  
+
   getInitials(name?: string): string {
     if (!name) return '';
     const parts = name.trim().split(' ').filter(p => p);

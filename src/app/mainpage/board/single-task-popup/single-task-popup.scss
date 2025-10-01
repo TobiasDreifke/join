@@ -189,23 +189,8 @@
             padding: 8px 12px;
             transition: background-color 0.3s;
 
-            &:hover {
-                background-color: #f3f4f6;
-            }
+           
 
-            &:active,
-            &.active {
-                background-color: #2A3647;
-                color: white;
-
-                .image_color {
-                    background-color: white;
-                }
-
-                .name {
-                    color: white;
-                }
-            }
         }
 
         .image_color {
