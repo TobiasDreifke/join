@@ -29,8 +29,7 @@
       <p class="label">Assigned To:</p>
       <div class="assigned_list">
         @for (item of item.assigned_to; track $index) {
-        <div class="avatar-wrapper" role="button" tabindex="0" (click)="toggleActive(item)"
-          [class.active]="item.active">
+        <div class="avatar-wrapper" role="button">
           <div class="image_color" [style.background-color]="item.initial_avatar_color">
             {{ getInitials(item.name) }}
           </div>
