@@ -5,5 +5,5 @@ interface Contact {
     email: string,
     phone: string,
     initial_avatar_color?: string,
-    active?: boolean
+ 
 }
