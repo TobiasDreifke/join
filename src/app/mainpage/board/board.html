@@ -1,104 +1,22 @@
 <app-searchbar-header></app-searchbar-header>
 <app-overview-tasks></app-overview-tasks>
 
-<app-single-task-popup></app-single-task-popup>
 
 
-<!--  ↓↓↓↓↓↓↓↓↓↓↓ HOW TO ADD DATA FROM THE SERVICES  ↓↓↓↓↓↓↓↓↓↓↓ -->
-
-<!-- <h2>Add Task</h2>
-<form (ngSubmit)="onSubmit(taskForm)" #taskForm="ngForm" class="task-form">
-    <input type="text" name="title" [(ngModel)]="newTask.title" placeholder="Title" required>
-    <input type="text" name="description" [(ngModel)]="newTask.description" placeholder="Description">
-    <input type="date" name="due_date" [(ngModel)]="newTask.due_date" required />
-
-    <label>priority</label>
-    <select name="priority" [(ngModel)]="newTask.priority">
-        <option value="low">Low</option>
-        <option value="medium">Medium</option>
-        <option value="high">High</option>
-    </select>
-
-    <label>category</label>
-    <select type="text" name="category" [(ngModel)]="newTask.category" placeholder="Category">
-        <option value="todo">Technical Task</option>
-        <option value="in-progress">User Story</option>
-    </select>
-
-    <label>stage</label>
-    <select name="stage" [(ngModel)]="newTask.stage">
-        <option value="todo">To Do</option>
-        <option value="in-progress">In Progress</option>
-        <option value="done">Done</option>
-    </select>
-
-    <div class="subtasks">
-        <label>Add Subtask</label>
-        <input type="text" [(ngModel)]="subtaskTitle" name="subtaskTitle" placeholder="Subtask title">
-        <button type="button" (click)="addSubtask()">Add</button>
-        @for (subtask of newTask.subtask; track $index) {
-        <ul>
-            <li>
-                {{ subtask.title }}
-                <button type="button" (click)="removeSubtask($index)">x</button>
-            </li>
-        </ul>
-        }
-    </div>
-
-    <div class="assigned">
-        <label>Assign contacts</label>
-        @for (contact of contactService.contactsList; track $index) {
-        <div>
-            <input type="checkbox" [value]="contact" (change)="toggleAssigned(contact, $event)">
-            {{ contact.name }}
-        </div>
-        }
-    </div>
-
-    <button type="submit">Add Task</button>
-</form> -->
-
-<!--  ↓↓↓↓↓↓↓↓↓↓↓ LIVE VIEW OF FIREBASE DATA  ↓↓↓↓↓↓↓↓↓↓↓ -->
-
-<br>
-<hr />
-<br>
-<h2>Task List</h2>
-<br>
-<hr />
-<br>
-@for (task of taskService.tasksList; track $index) {
+@for (task of taskService.tasksList; track task.id) {
 <div class="task-card">
-    <p><strong>Title:</strong> {{ task.title }}</p>
-    <p><strong>Description:</strong> {{ task.description }}</p>
-    <p><strong>Due date:</strong> {{ task.due_date?.toDate ? task.due_date.toDate() : task.due_date }}</p>
-    <p><strong>Priority:</strong> {{ task.priority }}</p>
-    <p><strong>Category:</strong> {{ task.category }}</p>
-    <p><strong>Stage:</strong> {{ task.stage }}</p>
-    
-
-    <p><strong>Subtasks:</strong></p>
-    <ul>
-        @for (subtask of task.subtask; track $index) {
-        <li>{{ subtask.title }}</li>
-        }
-    </ul>
-
-    <p><strong>Assigned To:</strong></p>
-    <ul>
-        @for (assignedContact of task.assigned_to; track $index) {
-        <li>{{ assignedContact.name }}</li>
-        }
-    </ul>
-
-
-
-    <button (click)="deleteTask(task.id)">Delete</button>
+    <button (click)="openTaskPopup(task.id ?? '')">View Details</button>
 </div>
-<br>
-<hr />
-<br>
 }
+
+
+@if (selectedTaskId) {
+<app-single-task-popup [taskId]="selectedTaskId" (delete)="deleteTask($event)" (close)="closePopup()">
+</app-single-task-popup>
+}
+
+
+
+
 
 

@@ -45,6 +45,10 @@ export class Board {
   contactService = inject(ContactService);
 
   contactId: string | null = null;
+  selectedTaskId: string | null = null;
+
+
+
 
   subtaskTitle = '';
 
@@ -104,6 +108,13 @@ export class Board {
   removeSubtask(index: number) {
     this.newTask.subtask.splice(index, 1);
   }
+  openTaskPopup(taskId: string) {
+  this.selectedTaskId = taskId;
+}
+
+closePopup() {
+  this.selectedTaskId = null;
+}
 
   // --------------- toggle assigned not yet working ---------------
 
