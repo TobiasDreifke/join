@@ -19,9 +19,28 @@ import { Timestamp } from '@angular/fire/firestore';
 })
 export class Board {
 
+  //  ------------ DATA TRANSITION PARENT CHILD - TASK-ID -----------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
   //  ------------ EVERYTHING TO RUN YOUR COMPONENT WITH THE SERVICE -----------------
+
   taskService = inject(TaskService)
   contactService = inject(ContactService);
 
@@ -51,7 +70,7 @@ export class Board {
   }
 
   async onSubmit(form: NgForm) {
-    const addedTaskId = await this.taskService.addTask(this.newTask);
+    // const addedTaskId = await this.taskService.addTask(this.newTask);
     console.log(this.taskService.tasksList);
 
     this.clearInputFields();

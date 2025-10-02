@@ -1,0 +1,292 @@
+@use 'mixins' as *;
+@use 'variables' as *;
+
+section {
+    @include BoxSize($h: calc(100% - 100px));
+    padding: 100px 50px 0 50px;
+}
+
+header {
+    h1 {
+        font-size: 60px;
+    }
+}
+
+main {
+    @include BoxSize($h: 70vh);
+    @include PositionBox();
+    padding: 50px 0 100px 0;
+}
+
+.left_box {
+    @include BoxSize($w: 50%);
+    @include PositionBox($jc: start, $ai: start, $fd: column);
+
+    >div {
+        @include PositionBox($jc: start, $ai: start, $fd: column);
+        width: 100%;
+
+        >label {
+            color: $color_secondary;
+            font-size: 20px;
+            padding-bottom: 10px;
+
+            >span {
+                color: $color_error;
+            }
+        }
+
+        >input,
+        textarea {
+            @include BoxSize();
+            font-size: 20px;
+            padding: 10px;
+            border-radius: 10px;
+            border: none;
+            border: 2px solid $color_grey;
+            outline: none;
+
+            &::placeholder {
+                color: $color_grey;
+            }
+
+            &:hover {
+                cursor: pointer;
+            }
+
+            input[type="date"] {
+                &::-webkit-datetime-edit {
+                    color: $color_grey;
+                }
+
+                &::-webkit-calendar-picker-indicator {
+                    cursor: pointer;
+                }
+
+                &::-webkit-datetime-edit-text {
+                    color: $color_grey;
+                }
+            }
+        }
+
+        >textarea {
+            @include BoxSize($h: 200px);
+        }
+    }
+
+    .error {
+        @include BoxSize($h: 20px);
+        min-height: 20px;
+        margin: 5px 0 20px 10px;
+
+        >span {
+            color: $color_error;
+        }
+    }
+}
+
+.line {
+    @include BoxSize($w: 3px);
+    background-color: $color_grey;
+    margin: 0 50px;
+}
+
+.right_box {
+    @include BoxSize($w: 50%);
+    @include PositionBox($jc: start, $ai: start, $fd: column);
+
+    >div {
+        @include PositionBox($jc: start, $ai: start, $fd: column);
+        width: 100%;
+
+        >label {
+            color: $color_secondary;
+            font-size: 20px;
+            padding-bottom: 10px;
+
+            >span {
+                color: $color_error;
+            }
+        }
+
+        >input,
+        select {
+            @include BoxSize();
+            background-color: $color_white;
+            font-size: 20px;
+            padding: 10px;
+            border-radius: 10px;
+            border: none;
+            border: 2px solid $color_grey;
+            outline: none;
+
+            &::placeholder {
+                color: $color_grey;
+            }
+
+            &:hover {
+                cursor: pointer;
+            }
+
+            input[type="date"] {
+                &::-webkit-datetime-edit {
+                    color: $color_grey;
+                }
+
+                &::-webkit-calendar-picker-indicator {
+                    cursor: pointer;
+                }
+
+                &::-webkit-datetime-edit-text {
+                    color: $color_grey;
+                }
+            }
+        }
+    }
+
+    .error {
+        @include BoxSize($h: 20px);
+        min-height: 20px;
+        margin: 5px 0 20px 10px;
+
+        >span {
+            color: $color_error;
+        }
+    }
+
+    >label {
+        color: $color_secondary;
+        font-size: 20px;
+        padding-bottom: 10px;
+    }
+
+    .ng_select {
+        @include BoxSize($h: 50px);
+        background-color: $color_white;
+        font-size: 20px;
+        padding: 10px;
+        border-radius: 10px;
+        border: none;
+        border: 2px solid $color_grey;
+        outline: none;
+
+        &::placeholder {
+            color: $color_grey;
+        }
+
+        &:hover {
+            cursor: pointer;
+        }
+
+        input[type="date"] {
+            &::-webkit-datetime-edit {
+                color: $color_grey;
+            }
+
+            &::-webkit-calendar-picker-indicator {
+                cursor: pointer;
+            }
+
+            &::-webkit-datetime-edit-text {
+                color: $color_grey;
+            }
+        }
+    }
+
+    .priority-buttons {
+        @include BoxSize();
+        @include PositionBox($jc: space-between);
+
+        >button {
+            @include PositionBox();
+            @include BoxSize($w: 32%);
+            border: none;
+            border: 2px solid $color_grey;
+            border-radius: 10px;
+            background-color: $color_white;
+            font-size: 20px;
+            padding: 0.75rem 1.5rem;
+
+            >img {
+                padding-left: 10px;
+            }
+
+            &:hover {
+                cursor: pointer;
+                box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);
+            }
+        }
+
+        >.active_high {
+            background-color: $color_prio_urgent;
+            color: $color_white;
+
+            >img {}
+
+            &:hover {
+                cursor: auto;
+                box-shadow: none;
+            }
+        }
+
+        >.active_medium {
+            background-color: $color_prio_medium;
+            color: $color_white;
+
+            >img {}
+
+            &:hover {
+                cursor: auto;
+                box-shadow: none;
+            }
+        }
+
+        >.active_low {
+            background-color: $color_prio_low;
+            color: $color_white;
+
+            >svg {
+                color: red;
+                fill: red;
+                stroke: blue;
+            }
+
+            &:hover {
+                cursor: auto;
+                box-shadow: none;
+            }
+        }
+    }
+}
+
+footer {
+    @include PositionBox($jc: space-between);
+    bottom: 0;
+
+    >div {
+        >p {
+            >span {
+                color: $color_error;
+            }
+        }
+    }
+
+    >div {
+        @include PositionBox($jc: space-between);
+        gap: 20px;
+
+        .clear {
+            @include button_w_border();
+
+            &:hover {
+                color: $color_highlight;
+            }
+        }
+
+        .add_task {
+            @include button_w_background();
+            font-weight: bolder;
+            color: $color_white;
+        }
+    }
+}

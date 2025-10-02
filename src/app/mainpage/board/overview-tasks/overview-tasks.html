@@ -1,72 +1,96 @@
 <div class="task-process">
-    <div>
+    <div 
+        cdkDropList
+        #todoList="cdkDropList"
+        [cdkDropListData]="getTasksToDo()"
+        [cdkDropListConnectedTo]="[inProgressList, awaitFeedbackList, doneList]"
+        (cdkDropListDropped)="drop($event)"
+        class="example-list">
         <div>
             <p>To do</p>
             <button>
                 <img src="./assets/icons/Capa_1.svg" alt="">
             </button>
         </div>
-        @if (tasksToDo.length == 0) {
+        @if (getTasksToDo().length == 0) {
             <div class="no-task">
                 No tasks To do
             </div>
         }@else {
-            @for (singleTaskData of tasksToDo; track $index) {
-                <app-single-task-card [task]="singleTaskData"></app-single-task-card> 
+            @for (singleTaskData of getTasksToDo(); track $index) {
+                <app-single-task-card class="example-box" [task]="singleTaskData" cdkDrag></app-single-task-card> 
             } 
         }
     </div>
 
-    <div>
+    <div
+        cdkDropList
+        #inProgressList="cdkDropList"
+        [cdkDropListData]="getTasksInProgress()"
+        [cdkDropListConnectedTo]="[todoList, awaitFeedbackList, doneList]"
+        (cdkDropListDropped)="drop($event)"
+        class="example-list">
         <div>
             <p>In progress</p>
             <button>
                 <img src="./assets/icons/Capa_1.svg" alt="">
             </button>
         </div>
-        @if (tasksInProgress.length == 0) {
+        @if (getTasksInProgress().length == 0) {
             <div class="no-task">
                 No tasks In progress
             </div>
         }@else {
-            @for (singleTaskData of tasksInProgress; track $index) {
-                <app-single-task-card [task]="singleTaskData"></app-single-task-card> 
+            @for (singleTaskData of getTasksInProgress(); track $index) {
+                <app-single-task-card class="example-box" [task]="singleTaskData" cdkDrag></app-single-task-card> 
             }
         }
     </div>
 
-    <div>
+    <div
+        cdkDropList
+        #awaitFeedbackList="cdkDropList"
+        [cdkDropListData]="getTasksAwaitFeedback()"
+        [cdkDropListConnectedTo]="[todoList, inProgressList, doneList]"
+        (cdkDropListDropped)="drop($event)"
+        class="example-list">
         <div>
             <p>Await feedback</p>
             <button>
                 <img src="./assets/icons/Capa_1.svg" alt="">
             </button>
         </div>
-        @if (tasksAwaitFeedback.length == 0) {
+        @if (getTasksAwaitFeedback().length == 0) {
             <div class="no-task">
                 No tasks Await feedback
             </div>
         }@else {
-            @for (singleTaskData of tasksAwaitFeedback; track $index) {
-                <app-single-task-card [task]="singleTaskData"></app-single-task-card> 
+            @for (singleTaskData of getTasksAwaitFeedback(); track $index) {
+                <app-single-task-card class="example-box" [task]="singleTaskData" cdkDrag></app-single-task-card> 
             }
         }
     </div>
 
-    <div>
+    <div
+        cdkDropList
+        #doneList="cdkDropList"
+        [cdkDropListData]="getTasksDone()"
+        [cdkDropListConnectedTo]="[todoList, inProgressList, awaitFeedbackList]"
+        (cdkDropListDropped)="drop($event)"
+        class="example-list">
         <div>
             <p>Done</p>
             <button>
                 <img src="./assets/icons/Capa_1.svg" alt="">
             </button>
         </div>
-        @if (tasksDone.length == 0) {
+        @if (getTasksDone().length == 0) {
             <div class="no-task">
                 No tasks Done
             </div>
         }@else {
-            @for (singleTaskData of tasksDone; track $index) {
-                <app-single-task-card [task]="singleTaskData"></app-single-task-card> 
+            @for (singleTaskData of getTasksDone(); track $index) { 
+                <app-single-task-card class="example-box" [task]="singleTaskData" cdkDrag></app-single-task-card>    
             }
         }
     </div>
