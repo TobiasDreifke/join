@@ -1,4 +1,4 @@
-import { Component, inject, Input } from '@angular/core';
+import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { TaskService } from '../../services/task-service';
 import { ContactService } from '../../services/contact-service';
 import { CommonModule } from '@angular/common';
@@ -8,123 +8,49 @@ import { FormsModule, NgForm, NgModel } from '@angular/forms';
 import { OverviewTasks } from './overview-tasks/overview-tasks';
 import { SearchbarHeader } from './searchbar-header/searchbar-header';
 import { SingleTaskPopup } from './single-task-popup/single-task-popup';
-import { TaskInterface } from '../../interfaces/tasks.interface';
-import { Timestamp } from '@angular/fire/firestore';
+import { Tasks } from '../tasks/tasks';
 
 @Component({
   selector: 'app-board',
-  imports: [CommonModule, OverviewTasks, SearchbarHeader, SingleTaskPopup, FormsModule],
+  imports: [CommonModule, OverviewTasks, SearchbarHeader, SingleTaskPopup, FormsModule, Tasks],
   templateUrl: './board.html',
   styleUrl: './board.scss'
 })
 export class Board {
 
-  //  ------------ DATA TRANSITION PARENT CHILD - TASK-ID -----------------
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  //  ------------ EVERYTHING TO RUN YOUR COMPONENT WITH THE SERVICE -----------------
+  selectedTaskId: string | null = null;
+  editMode = false;
+  editingTaskId: string | null = null;
 
   taskService = inject(TaskService)
   contactService = inject(ContactService);
 
   contactId: string | null = null;
-  selectedTaskId: string | null = null;
-
-
-
-
-  subtaskTitle = '';
-
-  newTask: TaskInterface = {
-    title: '',
-    description: '',
-    due_date: Timestamp.now(),
-    priority: 'Low',
-    category: 'Technical Task',
-    stage: 'To do',
-    subtask: [],
-    assigned_to: []
-  };
-
-  constructor() {
-    if (this.contactService.contactsList.length > 0) {
-      this.contactId = this.contactService.contactsList[0].id || null;
-    }
-  }
-
-  async onSubmit(form: NgForm) {
-    // const addedTaskId = await this.taskService.addTask(this.newTask);
-    console.log(this.taskService.tasksList);
-
-    this.clearInputFields();
-    form.resetForm();
-  }
-
-  // --------------- Delete and Clear ----------------
 
   async deleteTask(taskId: string | undefined) {
     if (!taskId) return;
     await this.taskService.deleteTask(taskId);
   }
 
-  clearInputFields() {
-    this.newTask = {
-      title: '',
-      description: '',
-      due_date: Timestamp.now(),
-      priority: 'Low',
-      category: 'Technical Task',
-      stage: 'To do',
-      subtask: [],
-      assigned_to: []
-    };
-    this.subtaskTitle = '';
-  }
-
-  // --------------- Subtask ----------------
-
-  addSubtask() {
-    this.newTask.subtask.push({ title: this.subtaskTitle, completed: false });
-    this.subtaskTitle = '';
-  }
-
-  removeSubtask(index: number) {
-    this.newTask.subtask.splice(index, 1);
-  }
   openTaskPopup(taskId: string) {
-  this.selectedTaskId = taskId;
-}
+    this.editMode = false;
+    this.selectedTaskId = taskId;
+    console.log("opening ID", this.selectedTaskId);
+  }
 
-closePopup() {
-  this.selectedTaskId = null;
-}
+  closePopup() {
+    this.selectedTaskId = null;
+  }
 
-  // --------------- toggle assigned not yet working ---------------
+  onEditTask(taskId: string) {
+    this.selectedTaskId = null;
+    this.editingTaskId = taskId;
+    this.editMode = true;
+  }
 
-  toggleAssigned(contact: Contact, event: Event) {
-    const checked = (event.target as HTMLInputElement).checked;
-    if (checked) {
-      this.newTask.assigned_to.push(contact);
-    } else {
-      this.newTask.assigned_to = this.newTask.assigned_to.filter(c => c.id !== contact.id);
-    }
+  closeEdit() {
+    this.editMode = false;
+    this.editingTaskId = null;
   }
 
 }
