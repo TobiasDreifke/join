@@ -7,7 +7,7 @@
     background: rgba(0, 0, 0, 0.5);
     z-index: 999;
     padding: 1rem;
-    overflow-y: auto;
+   
 }
 
 
@@ -156,11 +156,7 @@
     }
 
     .assigned_to {
-
-
-
         cursor: pointer;
-
         .label {
             font-family: 'Inter', sans-serif;
             font-weight: 400;
@@ -227,14 +223,15 @@
     }
 
     .Subtasks_card {
-        padding: 1rem;
+        
         border-radius: 8px;
         box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
         max-width: 500px;
         max-height: 200px;
-        overflow-y: auto;
-        scrollbar-width: thin;
-        scrollbar-color: #ccc transparent;
+          overflow-y: auto;
+            scrollbar-width: thin;
+            scrollbar-color: #ccc transparent;
+
 
 
         .Subtasks {
@@ -243,7 +240,8 @@
             font-size: 1.25rem;
             color: #2A3647;
             margin-bottom: 1rem;
-            overflow-y: auto;
+           
+
         }
 
         .subtask-item {
@@ -251,12 +249,16 @@
             align-items: center;
             margin-bottom: 0.75rem;
             transition: transform 0.2s ease, filter 0.2s ease, color 0.2s ease;
+            overflow-y: auto;
+            scrollbar-width: thin;
+            scrollbar-color: #ccc transparent;
+            padding: 0.5rem;
 
-            &::-webkit-scrollbar {
+            .subtask-item::-webkit-scrollbar {
                 width: 6px;
             }
 
-            &::-webkit-scrollbar-thumb {
+            .subtask-item::-webkit-scrollbar-thumb {
                 background-color: #ccc;
                 border-radius: 4px;
             }
