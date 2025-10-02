@@ -1,6 +1,7 @@
 import { Timestamp } from '@angular/fire/firestore';
 
 export interface TaskInterface {
+    index?: number;
     id?: string;
     title: string;
     description: string;
