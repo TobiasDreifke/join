@@ -1,14 +1,14 @@
 <section>
     <header>
         <h1>Add Task</h1>
-        <a>X</a>
+        <!-- <a>X</a> -->
     </header>
 
     <form (ngSubmit)="onSubmit(taskForm)" #taskForm="ngForm" class="task-form">
         <main>
             <div class="left_box">
                 <div>
-                    <label for="title"></label>
+                    <label for="title">Title <span>*</span></label>
                     <input type="text" name="title" id="title" [(ngModel)]="newTask.title" #titleInput="ngModel"
                         pattern=# placeholder="Title" required>
                 </div>
@@ -27,7 +27,7 @@
                 </div>
 
                 <div>
-                    <label for="description"></label>
+                    <label for="description">Description</label>
                     <textarea type="text" name="description" id="description" [(ngModel)]="newTask.description"
                         placeholder="Description" required></textarea>
                 </div>
@@ -35,7 +35,7 @@
                 <div class="error"></div>
 
                 <div>
-                    <label for="date"></label>
+                    <label for="date">Due date <span>*</span></label>
                     <input type="date" name="due_date" id="date" [(ngModel)]="newTask.due_date" #dateInput="ngModel"
                         pattern=# placeholder="Title" required>
                 </div>
@@ -54,35 +54,54 @@
                 </div>
             </div>
 
-            <div></div>
+            <div class="line"></div>
 
             <div class="right_box">
                 <div>
-                    <label for="priority">priority</label>
-                    <select name="priority" id="priority" [(ngModel)]="newTask.priority">
-                        <option value="low">Low</option>
-                        <option value="medium">Medium</option>
-                        <option value="high">High</option>
-                    </select>
+                    <label>Priority</label>
+                    <div class="priority-buttons">
+                        <button type="button" [class.active_high]="newTask.priority === 'high'"
+                            (click)="newTask.priority = 'high'"> Urgent <img src="/assets/icons/urgent.svg"></button>
+                        <button type="button" [class.active_medium]="newTask.priority === 'medium'"
+                            (click)="newTask.priority = 'medium'"> Medium <img src="/assets/icons/medium.svg"></button>
+                        <button type="button" [class.active_low]="newTask.priority === 'low'"
+                            (click)="newTask.priority = 'low'"> Low <img src="/assets/icons/low.svg"></button>
+
+                    </div>
                 </div>
 
                 <div class="error"></div>
 
-                <div class="assigned">
-                    <label for="assigned">Assign contacts</label>
-                    @for (contact of contactService.contactsList; track $index) {
-                    <div>
-                        <input type="checkbox" id="assigned" [value]="contact"
-                            (change)="toggleAssigned(contact, $event)">
-                        {{ contact.name }}
-                    </div>
+
+
+
+                <label>Assigned to</label>
+                <ng-select class="ng_select" [items]="contactService.contactsList" bindLabel="name"
+                    [(ngModel)]="newTask.assigned_to" placeholder="Select contacts to assign" [multiple]="true"
+                    [closeOnSelect]="false" [clearable]="false" [searchable]="true">
+                    <ng-template ng-option-tmp let-contact="item">
+                        <div class="option-row" (click)="$event.stopPropagation()">
+                            <div class="avatar">{{ initials(contact.name) }}</div>
+
+                            <div class="fullname">{{ contact.name }}</div>
+
+                            <input type="checkbox" [checked]="isAssigned(contact)"
+                                (click)="$event.stopPropagation(); toggleAssigned(contact)" />
+                        </div>
+                    </ng-template>
+                </ng-select>
+
+                <div class="selected-badges error">
+                    @for (it of newTask.assigned_to; track $index) {
+                    <div class="badge">{{ initials(it.name) }}</div>
                     }
                 </div>
 
-                <div class="error"></div>
+
+
 
                 <div>
-                    <label for="category">category</label>
+                    <label for="category">Category <span>*</span></label>
                     <select type="text" name="category" id="category" [(ngModel)]="newTask.category"
                         placeholder="Category" #categoryInput="ngModel" pattern=#>
                         <option value="todo">Technical Task</option>
@@ -104,8 +123,9 @@
                 </div>
 
                 <div class="subtasks">
-                    <label for="subtask">Add Subtask</label>
-                    <input type="text" id="subtask" [(ngModel)]="subtaskTitle" name="subtaskTitle" placeholder="Subtask title">
+                    <label for="subtask">Subtasks</label>
+                    <input type="text" id="subtask" [(ngModel)]="subtaskTitle" name="subtaskTitle"
+                        placeholder="Subtask title">
                     <button type="button" (click)="addSubtask()">Add</button>
                     @for (subtask of newTask.subtask; track $index) {
                     <ul>
@@ -123,12 +143,14 @@
 
         <footer>
             <div>
-                <p>*This field is required</p>
+                <p> <span>*</span>This field is required</p>
             </div>
 
             <div>
-                <button (click)="clearInputFields()">Clear<img src=""></button>
-                <button type="submit">Add Task</button>
+                <button class="clear" (click)="clearInputFields()">Clear<img
+                        src="/assets/icons/button_x_check/button_x.png"></button>
+                <button class="add_task" type="submit">Add Task<img
+                        src="/assets/icons/button_x_check/button_check.png"></button>
             </div>
         </footer>
     </form>
