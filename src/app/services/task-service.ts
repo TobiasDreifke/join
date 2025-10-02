@@ -12,9 +12,9 @@ export class TaskService {
   constructor() {
     this.unsubscribeTasksList = onSnapshot(collection(this.firestore, "tasks"), (tasksObject) => {
       this.tasksList = [];
-      tasksObject.forEach((element) => {
+      tasksObject.docs.forEach((element) => {
         console.log(element.id, element.data());
-        this.tasksList.push(this.setTaskObject(element.id, element.data() as TaskInterface))
+        this.tasksList.push(this.setTaskObject(element.id, element.data() as TaskInterface));
       });
     });
   }
@@ -52,8 +52,9 @@ export class TaskService {
     return doc(collection(this.firestore, 'tasks'), docId);
   }
 
-  setTaskObject(id: string, obj: TaskInterface, assignedContacts: Contact[] = []): TaskInterface {
+  setTaskObject(id: string, obj: TaskInterface): TaskInterface {
     return {
+      index: obj.index,
       id: id,
       title: obj.title,
       description: obj.description,
