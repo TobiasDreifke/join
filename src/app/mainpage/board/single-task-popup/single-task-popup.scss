@@ -7,7 +7,7 @@
     background: rgba(0, 0, 0, 0.5);
     z-index: 999;
     padding: 1rem;
-   
+
 }
 
 
@@ -21,6 +21,7 @@
     flex-direction: column;
     gap: 1.5rem;
     max-height: 90vh;
+    animation: slideIn 0.5s ease forwards;
 
 
     .card_container {
@@ -84,6 +85,18 @@
         }
 
 
+    }
+
+    @keyframes slideIn {
+        from {
+            transform: translateX(100%);
+            opacity: 0;
+        }
+
+        to {
+            transform: translateX(0);
+            opacity: 1;
+        }
     }
 
     .title_card {
@@ -157,6 +170,7 @@
 
     .assigned_to {
         cursor: pointer;
+
         .label {
             font-family: 'Inter', sans-serif;
             font-weight: 400;
@@ -170,7 +184,7 @@
             flex-direction: column;
             gap: 5px;
             overflow-y: auto;
-            max-height: 150px;
+            max-height: 120px;
             scrollbar-width: thin;
             scrollbar-color: #ccc transparent;
         }
@@ -223,48 +237,33 @@
     }
 
     .Subtasks_card {
-        
-        border-radius: 8px;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-        max-width: 500px;
-        max-height: 200px;
-          overflow-y: auto;
-            scrollbar-width: thin;
-            scrollbar-color: #ccc transparent;
+        cursor: pointer;
 
-
-
-        .Subtasks {
+        .label {
             font-family: 'Inter', sans-serif;
-            font-weight: 500;
+            font-weight: 400;
             font-size: 1.25rem;
-            color: #2A3647;
-            margin-bottom: 1rem;
-           
-
+            color: #42526E;
+            margin-bottom: 0.5rem;
         }
+
+
 
         .subtask-item {
             display: flex;
-            align-items: center;
-            margin-bottom: 0.75rem;
-            transition: transform 0.2s ease, filter 0.2s ease, color 0.2s ease;
+            flex-direction: column;
             overflow-y: auto;
+            max-height: 65px;
             scrollbar-width: thin;
             scrollbar-color: #ccc transparent;
-            padding: 0.5rem;
 
-            .subtask-item::-webkit-scrollbar {
+            &::-webkit-scrollbar {
                 width: 6px;
             }
 
-            .subtask-item::-webkit-scrollbar-thumb {
+            &::-webkit-scrollbar-thumb {
                 background-color: #ccc;
                 border-radius: 4px;
-            }
-
-            &:hover {
-                transform: scale(1.02);
             }
 
             label {
@@ -280,79 +279,109 @@
                     accent-color: #2A3647;
                 }
 
-                .subtask-label {
-                    font-family: 'Inter', sans-serif;
-                    font-size: 1rem;
-                    color: #000000;
-                    font-weight: 400;
-                    transition: color 0.3s ease;
 
-                    input[type="checkbox"]:checked+& {
-                        color: #2A3647;
+            }
+
+
+                .avatar-wrapper {
+                    display: flex;
+                    align-items: center;
+                    gap: 8px;
+                    background-color: #ffffff;
+                    border-radius: 0.5rem;
+                    padding: 8px 12px;
+                    cursor: pointer;
+                    transition: background-color 0.3s;
+                    width: 200px;
+
+                    &:hover {
+                        background-color: #f0f4f8;
+
                     }
+                    input[type="checkbox"]:checked+& {
+                            color: #2A3647;
+                        }
+
+
+
+                    .subtask-label {
+                        font-family: 'Inter', sans-serif;
+                        font-size: 1rem;
+                        color: #000000;
+                        font-weight: 400;
+                        transition: color 0.3s ease;
+
+                        
+                    }
+
+
+
+
                 }
             }
+
+
         }
-    }
 
 
 
-    .btn_group {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        justify-content: flex-end;
 
-        .delete_btn,
-        .etid_btn {
-            button {
-                display: flex;
-                align-items: center;
-                gap: 0.5rem;
-                border: none;
-                border-radius: 4px;
-                padding: 0.5rem 1rem;
-                cursor: pointer;
-                font-weight: 400;
-                font-family: 'Inter', sans-serif;
-                background-color: #ffffff;
-                font-size: 1rem;
-                color: #2A3647;
-                transition: transform 0.2s ease, filter 0.2s ease, color 0.2s ease;
+        .btn_group {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            justify-content: flex-end;
 
-                img {
-                    width: 16px;
-                    height: 18px;
-                    transition: filter 0.3s ease, transform 0.3s ease;
-                    color: inherit;
-                }
-
-                &:hover {
-                    color: #007CEE;
-                    transform: scale(1.1);
-                    filter: brightness(1.2);
+            .delete_btn,
+            .etid_btn {
+                button {
+                    display: flex;
+                    align-items: center;
+                    gap: 0.5rem;
+                    border: none;
+                    border-radius: 4px;
+                    padding: 0.5rem 1rem;
+                    cursor: pointer;
+                    font-weight: 400;
+                    font-family: 'Inter', sans-serif;
+                    background-color: #ffffff;
+                    font-size: 1rem;
+                    color: #2A3647;
+                    transition: transform 0.2s ease, filter 0.2s ease, color 0.2s ease;
 
                     img {
-                        filter: brightness(0) saturate(100%) invert(32%) sepia(100%) saturate(3186%) hue-rotate(195deg) brightness(99%) contrast(101%);
-                        transform: scale(1.05);
+                        width: 16px;
+                        height: 18px;
+                        transition: filter 0.3s ease, transform 0.3s ease;
+                        color: inherit;
+                    }
+
+                    &:hover {
+                        color: #007CEE;
+                        transform: scale(1.1);
+                        filter: brightness(1.2);
+
+                        img {
+                            filter: brightness(0) saturate(100%) invert(32%) sepia(100%) saturate(3186%) hue-rotate(195deg) brightness(99%) contrast(101%);
+                            transform: scale(1.05);
+                        }
+                    }
+
+                    p {
+                        margin: 0;
                     }
                 }
+            }
 
-                p {
-                    margin: 0;
-                }
+            .border_bn {
+                width: 1px;
+                height: 30px;
+                background-color: #ccc;
             }
         }
 
-        .border_bn {
-            width: 1px;
-            height: 30px;
-            background-color: #ccc;
-        }
+
+
+
+
     }
-
-
-
-
-
-}
