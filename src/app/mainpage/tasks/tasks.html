@@ -60,12 +60,12 @@
                 <div>
                     <label>Priority</label>
                     <div class="priority-buttons">
-                        <button type="button" [class.active_high]="newTask.priority === 'high'"
-                            (click)="newTask.priority = 'high'"> Urgent <img src="/assets/icons/urgent.svg"></button>
-                        <button type="button" [class.active_medium]="newTask.priority === 'medium'"
-                            (click)="newTask.priority = 'medium'"> Medium <img src="/assets/icons/medium.svg"></button>
-                        <button type="button" [class.active_low]="newTask.priority === 'low'"
-                            (click)="newTask.priority = 'low'"> Low <img src="/assets/icons/low.svg"></button>
+                        <button type="button" [class.active_high]="newTask.priority === 'Urgent'"
+                            (click)="newTask.priority = 'Urgent'"> Urgent <img src="/assets/icons/urgent.svg"></button>
+                        <button type="button" [class.active_medium]="newTask.priority === 'Medium'"
+                            (click)="newTask.priority = 'Medium'"> Medium <img src="/assets/icons/medium.svg"></button>
+                        <button type="button" [class.active_low]="newTask.priority === 'Low'"
+                            (click)="newTask.priority = 'Low'"> Low <img src="/assets/icons/low.svg"></button>
 
                     </div>
                 </div>
@@ -104,8 +104,8 @@
                     <label for="category">Category <span>*</span></label>
                     <select type="text" name="category" id="category" [(ngModel)]="newTask.category"
                         placeholder="Category" #categoryInput="ngModel" pattern=#>
-                        <option value="todo">Technical Task</option>
-                        <option value="in-progress">User Story</option>
+                        <option value="Technical Task">Technical Task</option>
+                        <option value="User Story">User Story</option>
                     </select>
                 </div>
 

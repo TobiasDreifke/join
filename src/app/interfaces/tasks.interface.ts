@@ -6,13 +6,13 @@ export interface TaskInterface {
     title: string;
     description: string;
     due_date: Timestamp;
-    priority: 'Urgent' | 'Medium' | 'Low' | string;
+    priority: 'Urgent' | 'Medium' | 'Low' | '';
     assigned_to: Contact[];
-    category: 'Technical Task' | 'User Story' | string;
+    category: 'Technical Task' | 'User Story' | '';
     subtask:
     {
         title: string;
         completed: boolean;
     }[];
-    stage: 'To do' | 'In progress' | 'Await feedback' | 'Done' | string;
+    stage: 'To do' | 'In progress' | 'Await feedback' | 'Done' | '';
 }
