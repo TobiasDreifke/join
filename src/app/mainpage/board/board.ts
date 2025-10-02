@@ -29,13 +29,7 @@ export class Board {
   selectedTaskId: string | null = null;
 
 
-openTaskPopup(taskId: string) {
-  this.selectedTaskId = taskId;
-}
 
-closePopup() {
-  this.selectedTaskId = null;
-}
 
   subtaskTitle = '';
 
@@ -95,6 +89,13 @@ closePopup() {
   removeSubtask(index: number) {
     this.newTask.subtask.splice(index, 1);
   }
+  openTaskPopup(taskId: string) {
+  this.selectedTaskId = taskId;
+}
+
+closePopup() {
+  this.selectedTaskId = null;
+}
 
   // --------------- toggle assigned not yet working ---------------
 
