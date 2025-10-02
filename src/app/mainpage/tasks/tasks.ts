@@ -5,9 +5,10 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
 import { TaskInterface } from '../../interfaces/tasks.interface';
 import { Timestamp } from '@angular/fire/firestore';
+import { NgSelectModule } from '@ng-select/ng-select';
 @Component({
   selector: 'app-tasks',
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, NgSelectModule],
   templateUrl: './tasks.html',
   styleUrl: './tasks.scss'
 })
@@ -67,12 +68,25 @@ export class Tasks {
     this.newTask.subtask.splice(index, 1);
   }
 
-  toggleAssigned(contact: Contact, event: Event) {
-    const checked = (event.target as HTMLInputElement).checked;
-    if (checked) {
-      this.newTask.assigned_to.push(contact);
+  initials(name: string): string {
+    if (!name) return '';
+    const parts = name.trim().split(' ').filter(p => p);
+    if (parts.length <= 2) {
+      return parts.map(p => p[0].toUpperCase()).join('');
     } else {
-      this.newTask.assigned_to = this.newTask.assigned_to.filter(c => c.id !== contact.id);
+      return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
+    }
+  }
+
+  isAssigned(contact: any): boolean {
+    return this.newTask.assigned_to?.some((c: any) => c.id === contact.id);
+  }
+
+  toggleAssigned(contact: any) {
+    if (this.isAssigned(contact)) {
+      this.newTask.assigned_to = this.newTask.assigned_to.filter((c: any) => c.id !== contact.id);
+    } else {
+      this.newTask.assigned_to = [...(this.newTask.assigned_to || []), contact];
     }
   }
 }
