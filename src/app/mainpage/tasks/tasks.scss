@@ -24,6 +24,7 @@ section {
 }
 
 header {
+  @include PositionBox($jc:space-between);
     h1 {
         font-size: 60px;
     }
