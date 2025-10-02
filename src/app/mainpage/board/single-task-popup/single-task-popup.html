@@ -41,17 +41,21 @@
         </div>
       </div>
 
-      <div class="Subtasks_card">
-        <p class="Subtasks">Subtasks:</p>
-        @for (subtask of selectedTask.subtask; track $index) {
-          <div class="subtask-item">
-            <label>
-              <input type="checkbox" />
-              <span class="subtask-label">{{ subtask.title }}</span>
-            </label>
-          </div>
-        }
+     <div class="Subtasks_card">
+  <p class="label">Subtasks:</p>
+  <div class="subtask-item">
+    @for (subtask of selectedTask.subtask; track $index) {
+      <label>
+      <div class="avatar-wrapper">
+          <input type="checkbox" />
+        <span class="subtask-label">{{ subtask.title }}</span>
+       
       </div>
+      </label>
+    }
+  </div>
+</div>
+
 
       <div class="btn_group">
         <div class="delete_btn">
