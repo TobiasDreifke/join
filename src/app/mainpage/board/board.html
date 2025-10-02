@@ -11,12 +11,14 @@
 
 
 @if (selectedTaskId) {
-<app-single-task-popup [taskId]="selectedTaskId" (delete)="deleteTask($event)" (close)="closePopup()">
+<app-single-task-popup (edit)="onEditTask($event)" [taskId]="selectedTaskId" (delete)="deleteTask($event)"
+    (close)="closePopup()">
 </app-single-task-popup>
 }
 
-
-
-
-
-
+@if (editMode) {
+<div class="overlay">
+    <app-tasks [taskId]="editingTaskId" [editMode]="true" (close)="closeEdit()">
+    </app-tasks>
+</div>
+}

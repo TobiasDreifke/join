@@ -1,8 +1,8 @@
-import { Component, inject, Input, Output, EventEmitter, OnInit } from '@angular/core';
+import { Component, inject, Input, Output, EventEmitter, OnInit, SimpleChanges } from '@angular/core';
 import { ContactService } from '../../../services/contact-service';
 import { TaskService } from '../../../services/task-service';
 import { TaskInterface } from '../../../interfaces/tasks.interface';
-
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-single-task-popup',
@@ -16,25 +16,36 @@ export class SingleTaskPopup implements OnInit {
   @Input() taskId!: string;
   @Output() delete = new EventEmitter<string>();
   @Output() close = new EventEmitter<void>();
-
-
+  @Output() edit = new EventEmitter<string>();
 
 
   contactId: string | null = null;
   selectedTask: TaskInterface | undefined;
 
-  constructor() {
+  constructor( private router: Router) {
     if (this.contactService.contactsList.length > 0) {
       this.contactId = this.contactService.contactsList[0].id || null;
     }
   }
 
+
   ngOnInit() {
+    this.loadTask();
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['taskId']) {
+      this.loadTask();
+    }
+  }
+
+  private loadTask() {
     this.selectedTask = this.taskService.tasksList.find(t => t.id === this.taskId);
   }
 
   onDelete() {
     this.delete.emit(this.taskId);
+    this.close.emit();
   }
 
   onClose() {
@@ -56,4 +67,13 @@ export class SingleTaskPopup implements OnInit {
     const date = due.toDate ? due.toDate() : new Date(due);
     return date.toLocaleDateString('en-GB');
   }
+
+  onEditTask() {
+    if (this.taskId) {
+      this.edit.emit(this.taskId);
+      console.log("editing ID:", this.taskId);
+      this.close.emit();
+    }
+  }
+
 }
