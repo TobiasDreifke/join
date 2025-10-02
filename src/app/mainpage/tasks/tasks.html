@@ -1,18 +1,24 @@
 <section>
+
     <header>
         <h1>Add Task</h1>
-        <!-- <a>X</a> -->
+        @if (editMode) {
+        <button class="clear" (click)="onExit()">EDIT CANCEL<img
+                src="/assets/icons/button_x_check/button_x.png"></button>}
+        @else {
+        <span></span>
+        }
     </header>
 
+    @if (edit) {
     <form (ngSubmit)="onSubmit(taskForm)" #taskForm="ngForm" class="task-form">
         <main>
             <div class="left_box">
                 <div>
                     <label for="title">Title <span>*</span></label>
-                    <input type="text" name="title" id="title" [(ngModel)]="newTask.title" #titleInput="ngModel"
-                        pattern=# placeholder="Title" required>
+                    <input type="text" name="title" id="title" [(ngModel)]="edit.title" #titleInput="ngModel" pattern=#
+                        placeholder="Title" required>
                 </div>
-
                 <div class="error">
                     @if (titleInput.invalid && (titleInput.errors?.['pattern'] || titleInput.dirty || titleInput.touched
                     || taskForm.submitted)) {
@@ -28,11 +34,161 @@
 
                 <div>
                     <label for="description">Description</label>
+                    <textarea type="text" name="description" id="description" [(ngModel)]="edit.description"
+                        placeholder="Description" required></textarea>
+                </div>
+
+                <div class="error"></div>
+
+                <div>
+                    <label for="date">Due date <span>*</span></label>
+                    <input type="date" name="due_date" id="date" [(ngModel)]="edit.due_date" #dateInput="ngModel"
+                        pattern=# placeholder="Title" required>
+                </div>
+
+                <div class="error">
+                    @if (dateInput.invalid && (dateInput.errors?.['pattern'] || dateInput.dirty || dateInput.touched ||
+                    taskForm.submitted)) {
+                    <span>
+                        @if (dateInput.errors?.['required']) {
+                        UPS Vergessen
+                        }@else if (dateInput.errors?.['pattern']) {
+                        falsch
+                        }
+                    </span>
+                    }
+                </div>
+            </div>
+
+            <div class="line"></div>
+
+            <div class="right_box">
+                <div>
+                    <label>Priority</label>
+                    <div class="priority-buttons">
+                        <button type="button" [class.active_high]="edit.priority === 'Urgent'"
+                            (click)="edit.priority = 'Urgent'"> Urgent <img src="/assets/icons/urgent.svg"></button>
+                        <button type="button" [class.active_medium]="edit.priority === 'Medium'"
+                            (click)="edit.priority = 'Medium'"> Medium <img src="/assets/icons/medium.svg"></button>
+                        <button type="button" [class.active_low]="edit.priority === 'Low'"
+                            (click)="edit.priority = 'Low'"> Low <img src="/assets/icons/low.svg"></button>
+                    </div>
+                </div>
+
+                <div class="error"></div>
+
+                <label>Assigned to</label>
+                <ng-select class="ng_select" [items]="contactService.contactsList" bindLabel="name"
+                    [(ngModel)]="edit.assigned_to" placeholder="Select contacts to assign" [multiple]="true"
+                    [closeOnSelect]="false" [clearable]="false" [searchable]="true">
+                    <ng-template ng-option-tmp let-contact="item">
+                        <div class="option-row" (click)="$event.stopPropagation()">
+                            <div class="avatar">{{ initials(contact.name) }}</div>
+
+                            <div class="fullname">{{ contact.name }}</div>
+
+                            <input type="checkbox" [checked]="isAssigned(contact)"
+                                (click)="$event.stopPropagation(); toggleAssigned(contact)" />
+                        </div>
+                    </ng-template>
+                </ng-select>
+
+                <div class="selected-badges error">
+                    @for (it of edit.assigned_to; track $index) {
+                    <div class="badge">{{ initials(it.name) }}</div>
+                    }
+                </div>
+
+                <div>
+                    <label for="category">Category <span>*</span></label>
+                    <select type="text" name="category" id="category" [(ngModel)]="edit.category" placeholder="Category"
+                        #categoryInput="ngModel" pattern=#>
+                        <option value="Technical Task">Technical Task</option>
+                        <option value="User Story">User Story</option>
+                    </select>
+                </div>
+
+                <div class="error">
+                    @if (categoryInput.invalid && (categoryInput.errors?.['pattern'] || categoryInput.dirty ||
+                    categoryInput.touched || taskForm.submitted)) {
+                    <span>
+                        @if (categoryInput.errors?.['required']) {
+                        UPS Vergessen
+                        }@else if (categoryInput.errors?.['pattern']) {
+                        falsch
+                        }
+                    </span>
+                    }
+                </div>
+
+                <div class="subtasks">
+                    <label for="subtask">Subtasks</label>
+                    <input type="text" id="subtask" [(ngModel)]="subtaskTitle" name="subtaskTitle"
+                        placeholder="Subtask title">
+                    <button type="button" (click)="addSubtask()">Add</button>
+                    @for (subtask of edit.subtask; track $index) {
+                    <ul>
+                        <li>
+                            {{ subtask.title }}
+                            <button type="button" (click)="removeSubtask($index)">x</button>
+                        </li>
+                    </ul>
+                    }
+                </div>
+
+                <div class="error"></div>
+            </div>
+        </main>
+
+        <footer>
+            <div>
+                <p> <span>*</span>This field is required</p>
+            </div>
+
+            <div>
+
+                <button class="add_task" (click)="saveTask()">EDIT TASK OK<img
+                        src="/assets/icons/button_x_check/button_check.png"></button>
+            </div>
+        </footer>
+    </form>
+
+    } @else {
+
+    <form (ngSubmit)="onSubmit(taskForm)" #taskForm="ngForm" class="task-form">
+        <main>
+            <div class="left_box">
+                <div>
+                    <label for="title">Title <span>*</span></label>
+                    <input type="text" name="title" id="title" [(ngModel)]="newTask.title" #titleInput="ngModel"
+                        pattern=# placeholder="Title" required>
+                </div>
+                <div class="error">
+                    @if (titleInput.invalid && (titleInput.errors?.['pattern'] || titleInput.dirty || titleInput.touched
+                    || taskForm.submitted)) {
+                    <span>
+                        @if (titleInput.errors?.['required']) {
+                        UPS Vergessen
+                        }@else if (titleInput.errors?.['pattern']) {
+                        falsch
+                        }
+                    </span>
+                    }
+                </div>
+
+
+                <div>
+                    <label for="description">Description</label>
                     <textarea type="text" name="description" id="description" [(ngModel)]="newTask.description"
                         placeholder="Description" required></textarea>
                 </div>
 
                 <div class="error"></div>
+
+
+
+
+
 
                 <div>
                     <label for="date">Due date <span>*</span></label>
@@ -61,7 +217,8 @@
                     <label>Priority</label>
                     <div class="priority-buttons">
                         <button type="button" [class.active_high]="newTask.priority === 'Urgent'"
-                            (click)="newTask.priority = 'Urgent'"> Urgent <img src="/assets/icons/urgent.svg"></button>
+                            (click)="newTask.priority = 'Urgent'"> Urgent<img src="/assets/icons/urgent.svg">
+                        </button>
                         <button type="button" [class.active_medium]="newTask.priority === 'Medium'"
                             (click)="newTask.priority = 'Medium'"> Medium <img src="/assets/icons/medium.svg"></button>
                         <button type="button" [class.active_low]="newTask.priority === 'Low'"
@@ -147,11 +304,22 @@
             </div>
 
             <div>
-                <button class="clear" (click)="clearInputFields()">Clear<img
+                <button class="clear" (click)="onExit()">Clear<img
                         src="/assets/icons/button_x_check/button_x.png"></button>
                 <button class="add_task" type="submit">Add Task<img
                         src="/assets/icons/button_x_check/button_check.png"></button>
             </div>
         </footer>
     </form>
+    }
 </section>
+<!-- 
+ <button class="clear" (click)="onExit()">{{ editMode ? 'Cancel' : 'Clear' }}<img
+                        src="/assets/icons/button_x_check/button_x.png"></button>
+                @if (editMode) {
+                <button class="add_task" (click)="saveTask()">Edit Task<img
+                        src="/assets/icons/button_x_check/button_check.png"></button>
+                } @else {
+                <button class="add_task" type="submit">Add Task<img
+                        src="/assets/icons/button_x_check/button_check.png"></button>
+                } -->

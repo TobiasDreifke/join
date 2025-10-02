@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, EventEmitter, inject, Input, Output, SimpleChanges } from '@angular/core';
 import { TaskService } from '../../services/task-service';
 import { ContactService } from '../../services/contact-service';
 import { CommonModule } from '@angular/common';
@@ -13,6 +13,13 @@ import { NgSelectModule } from '@ng-select/ng-select';
   styleUrl: './tasks.scss'
 })
 export class Tasks {
+
+  @Input() taskId: string | null = null;
+  @Input() editMode = false;
+  @Output() close = new EventEmitter<void>();
+
+  edit: TaskInterface | undefined;
+
   taskService = inject(TaskService)
   contactService = inject(ContactService);
   contactId: string | null = null;
@@ -27,6 +34,70 @@ export class Tasks {
     subtask: [],
     assigned_to: []
   };
+
+  // --------------- EDITING ------------
+
+  editingTaskId: string | null = null;
+
+
+  saveTask() {
+    if (!this.edit) return;
+    console.log('Saving task:', this.edit);
+    if (this.editMode && this.edit.id) {
+      this.taskService.updateTask(this.edit.id, this.edit);
+    } else {
+      this.taskService.addTask(this.edit);
+    }
+    this.close.emit();
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['taskId'] && this.taskId) {
+      this.loadTask(this.taskId);
+    }
+  }
+
+  onExit() {
+    if (this.editMode) {
+      this.closeEdit()
+      console.log("closed in editmode");
+
+    }
+    else {
+      this.clearInputFields();
+      console.log("cleared in editmode");
+    }
+  }
+
+  closeEdit() {
+    this.close.emit();
+  }
+
+
+
+  private loadTask(taskId: string) {
+    this.edit = this.taskService.tasksList.find(t => t.id === taskId);
+    if (!this.edit) {
+      this.edit = { ...this.newTask, id: taskId };
+    }
+  }
+
+  clearInputFields() {
+    this.newTask = {
+      title: '',
+      description: '',
+      due_date: Timestamp.now(),
+      priority: '',
+      category: '',
+      stage: '',
+      subtask: [],
+      assigned_to: []
+    };
+    this.subtaskTitle = '';
+  }
+
+
+  // --------------- ADDING ------------
 
   constructor() {
     if (this.contactService.contactsList.length > 0) {
@@ -45,19 +116,7 @@ export class Tasks {
     await this.taskService.deleteTask(taskId);
   }
 
-  clearInputFields() {
-    this.newTask = {
-      title: '',
-      description: '',
-      due_date: Timestamp.now(),
-      priority: '',
-      category: '',
-      stage: '',
-      subtask: [],
-      assigned_to: []
-    };
-    this.subtaskTitle = '';
-  }
+
 
   addSubtask() {
     this.newTask.subtask.push({ title: this.subtaskTitle, completed: false });
