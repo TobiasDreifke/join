@@ -7,7 +7,7 @@
     background: rgba(0, 0, 0, 0.5);
     z-index: 999;
     padding: 1rem;
-   
+
 }
 
 
@@ -21,6 +21,7 @@
     flex-direction: column;
     gap: 1.5rem;
     max-height: 90vh;
+    animation: slideIn 0.5s ease forwards;
 
 
     .card_container {
@@ -85,6 +86,16 @@
 
 
     }
+    @keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
 
     .title_card {
         width: 27.8125rem;
@@ -157,6 +168,7 @@
 
     .assigned_to {
         cursor: pointer;
+
         .label {
             font-family: 'Inter', sans-serif;
             font-weight: 400;
@@ -223,14 +235,14 @@
     }
 
     .Subtasks_card {
-        
+
         border-radius: 8px;
         box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
         max-width: 500px;
-        max-height: 200px;
-          overflow-y: auto;
-            scrollbar-width: thin;
-            scrollbar-color: #ccc transparent;
+        overflow-y: auto;
+        overflow-x: hidden;
+        scrollbar-width: thin;
+        scrollbar-color: #ccc transparent;
 
 
 
@@ -240,7 +252,7 @@
             font-size: 1.25rem;
             color: #2A3647;
             margin-bottom: 1rem;
-           
+
 
         }
 
