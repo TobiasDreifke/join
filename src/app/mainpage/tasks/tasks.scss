@@ -17,14 +17,14 @@
 //   gap: 1rem;
 // }
 
-
 section {
     @include BoxSize($h: calc(100% - 100px));
     padding: 100px 50px 0 50px;
 }
 
 header {
-  @include PositionBox($jc:space-between);
+    @include PositionBox($jc: space-between);
+
     h1 {
         font-size: 60px;
     }
@@ -113,7 +113,7 @@ main {
     @include BoxSize($w: 50%);
     @include PositionBox($jc: start, $ai: start, $fd: column);
 
-    >div {
+    .right_box_container {
         @include PositionBox($jc: start, $ai: start, $fd: column);
         width: 100%;
 
@@ -162,6 +162,8 @@ main {
         }
     }
 
+
+
     .error {
         @include BoxSize($h: 20px);
         min-height: 20px;
@@ -176,39 +178,6 @@ main {
         color: $color_secondary;
         font-size: 20px;
         padding-bottom: 10px;
-    }
-
-    .ng_select {
-        @include BoxSize($h: 50px);
-        background-color: $color_white;
-        font-size: 20px;
-        padding: 10px;
-        border-radius: 10px;
-        border: none;
-        border: 2px solid $color_grey;
-        outline: none;
-
-        &::placeholder {
-            color: $color_grey;
-        }
-
-        &:hover {
-            cursor: pointer;
-        }
-
-        input[type="date"] {
-            &::-webkit-datetime-edit {
-                color: $color_grey;
-            }
-
-            &::-webkit-calendar-picker-indicator {
-                cursor: pointer;
-            }
-
-            &::-webkit-datetime-edit-text {
-                color: $color_grey;
-            }
-        }
     }
 
     .priority-buttons {
@@ -307,6 +276,141 @@ footer {
             @include button_w_background();
             font-weight: bolder;
             color: $color_white;
+        }
+    }
+}
+
+
+// --------------------- DROPDOWN NG-SELECT ---------------------
+
+/* --- reach outside component scope to the overlay dropdown --- */
+:host ::ng-deep {
+
+    /* dropdown panel background and layout */
+    .ng-dropdown-panel {
+        background-color: rgb(255, 255, 255);
+        border-radius: 10px;
+        padding: 5px;
+    }
+
+    /* each option container */
+    .ng-option {
+        padding: 4px 8px;
+        border-radius: 6px;
+
+        &:hover {
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+    }
+
+    /* your custom option layout */
+    .option_row_wrapper {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .avatar {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background-color: beige;
+
+        p {
+            margin: 0;
+            font-weight: bold;
+        }
+    }
+
+    .fullname {
+        // flex: 1;
+        font-size: 18px;
+    }
+
+    .option-row input[type="checkbox"] {
+        width: 18px;
+        height: 18px;
+    }
+}
+
+/* --- main select box --- */
+
+
+
+.ng_select {
+    width: 100%;
+    font-size: 20px;
+    border-radius: 10px;
+    border: 2px solid $color_grey;
+    background-color: rgb(255, 255, 255);
+
+    .ng-select-container {
+        height: 50px;
+        padding: 0 10px;
+        align-items: center;
+    }
+
+    .ng-placeholder {
+        color: $color_grey;
+        font-size: 20px;
+    }
+
+    .ng-value {
+        font-size: 20px;
+    }
+
+    .ng-arrow-wrapper {
+        top: 12px;
+    }
+
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+
+.selected_badges_wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    width: 100%;
+    max-width: 100%;
+    overflow: auto;
+    border: 2px solid red;
+    // height: 100%;
+    max-height: 40px;
+    min-height: 40px;
+
+    .badge_container {
+        position: relative;
+
+        flex-shrink: 0;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background-color: beige;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-weight: bold;
+        border: 2px solid white;
+        margin-left: -10px;
+
+        z-index: calc(1 + var(--i, 0));
+
+        &:first-child {
+            margin-left: 0;
+        }
+
+        p {
+            margin: 0;
+            font-size: 14px;
+            text-transform: uppercase;
         }
     }
 }
