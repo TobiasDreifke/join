@@ -5,7 +5,11 @@
 
 @for (task of taskService.tasksList; track task.id) {
 <div class="task-card">
-    <button (click)="openTaskPopup(task.id ?? '')">View Details</button>
+    @if (task.title.length >= 1) {
+    <button (click)="openTaskPopup(task.id ?? '')">{{task.title}}</button>
+    } @else {
+    <button (click)="openTaskPopup(task.id ?? '')">enter title</button>
+    }
 </div>
 }
 

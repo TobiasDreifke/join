@@ -1,4 +1,4 @@
-import { Component, EventEmitter, inject, Input, Output, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, inject, Input, Output, SimpleChanges, OnInit, OnDestroy } from '@angular/core';
 import { TaskService } from '../../services/task-service';
 import { ContactService } from '../../services/contact-service';
 import { CommonModule } from '@angular/common';
@@ -6,6 +6,8 @@ import { FormsModule, NgForm } from '@angular/forms';
 import { TaskInterface } from '../../interfaces/tasks.interface';
 import { Timestamp } from '@angular/fire/firestore';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { Subscription } from 'rxjs';
+
 @Component({
   selector: 'app-tasks',
   imports: [CommonModule, FormsModule, NgSelectModule],
@@ -13,17 +15,12 @@ import { NgSelectModule } from '@ng-select/ng-select';
   styleUrl: './tasks.scss'
 })
 export class Tasks {
-
   @Input() taskId: string | null = null;
   @Input() editMode = false;
   @Output() close = new EventEmitter<void>();
 
+  // ---------------- TASK REFERENCES ----------------
   edit: TaskInterface | undefined;
-
-  taskService = inject(TaskService)
-  contactService = inject(ContactService);
-  contactId: string | null = null;
-  subtaskTitle = '';
   newTask: TaskInterface = {
     title: '',
     description: '',
@@ -34,21 +31,21 @@ export class Tasks {
     subtask: [],
     assigned_to: []
   };
+  subtaskTitle = '';
+  contactId: string | null = null;
 
-  // --------------- EDITING ------------
+  // ---------------- SERVICES ----------------
+  taskService = inject(TaskService);
+  contactService = inject(ContactService);
 
-  editingTaskId: string | null = null;
-
-
-  saveTask() {
-    if (!this.edit) return;
-    console.log('Saving task:', this.edit);
-    if (this.editMode && this.edit.id) {
-      this.taskService.updateTask(this.edit.id, this.edit);
-    } else {
-      this.taskService.addTask(this.edit);
+  constructor() {
+    if (this.contactService.contactsList.length > 0) {
+      this.contactId = this.contactService.contactsList[0].id || null;
     }
-    this.close.emit();
+  }
+
+  get targetTask(): TaskInterface {
+    return this.editMode && this.edit ? this.edit : this.newTask;
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -57,15 +54,40 @@ export class Tasks {
     }
   }
 
+  // ---------------- EDIT TASK ----------------
+  loadTask(taskId: string) {
+    const existing = this.taskService.tasksList.find(t => t.id === taskId);
+    if (existing) {
+      this.edit = existing;
+    } else {
+      this.edit = { ...this.newTask, id: taskId };
+    }
+  }
+
+  saveTask() {
+    if (!this.edit) return;
+    if (this.editMode && this.edit.id) {
+      this.taskService.updateTask(this.edit.id, this.edit);
+    } else {
+      this.taskService.addTask(this.edit);
+    }
+    this.close.emit();
+  }
+
+  refreshEditReference() {
+    if (this.editMode && this.edit?.id) {
+      const updated = this.taskService.tasksList.find(t => t.id === this.edit!.id);
+      if (updated) {
+        Object.assign(this.edit, updated); 
+      }
+    }
+  }
+
   onExit() {
     if (this.editMode) {
-      this.closeEdit()
-      console.log("closed in editmode");
-
-    }
-    else {
+      this.closeEdit();
+    } else {
       this.clearInputFields();
-      console.log("cleared in editmode");
     }
   }
 
@@ -73,15 +95,7 @@ export class Tasks {
     this.close.emit();
   }
 
-
-
-  private loadTask(taskId: string) {
-    this.edit = this.taskService.tasksList.find(t => t.id === taskId);
-    if (!this.edit) {
-      this.edit = { ...this.newTask, id: taskId };
-    }
-  }
-
+  // ---------------- ADD TASK ----------------
   clearInputFields() {
     this.newTask = {
       title: '',
@@ -96,56 +110,49 @@ export class Tasks {
     this.subtaskTitle = '';
   }
 
-
-  // --------------- ADDING ------------
-
-  constructor() {
-    if (this.contactService.contactsList.length > 0) {
-      this.contactId = this.contactService.contactsList[0].id || null;
-    }
-  }
-
-  async onSubmit(form: NgForm) {
-    await this.taskService.addTask(this.newTask);
+  onSubmit(form: NgForm) {
+    this.taskService.addTask(this.newTask);
     this.clearInputFields();
     form.resetForm();
   }
 
-  async deleteTask(taskId: string | undefined) {
+  deleteTask(taskId: string | undefined) {
     if (!taskId) return;
-    await this.taskService.deleteTask(taskId);
+    this.taskService.deleteTask(taskId);
   }
 
-
-
+  // ---------------- SUBTASKS ----------------
   addSubtask() {
-    this.newTask.subtask.push({ title: this.subtaskTitle, completed: false });
+    const target = this.editMode ? this.edit! : this.newTask;
+    target.subtask.push({ title: this.subtaskTitle, completed: false });
     this.subtaskTitle = '';
   }
 
   removeSubtask(index: number) {
-    this.newTask.subtask.splice(index, 1);
+    const target = this.editMode ? this.edit! : this.newTask;
+    target.subtask.splice(index, 1);
   }
 
+  // ---------------- ASSIGNED TO / INITIALS ----------------
   initials(name: string): string {
     if (!name) return '';
     const parts = name.trim().split(' ').filter(p => p);
-    if (parts.length <= 2) {
-      return parts.map(p => p[0].toUpperCase()).join('');
-    } else {
-      return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
-    }
+    return parts.length <= 2
+      ? parts.map(p => p[0].toUpperCase()).join('')
+      : (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
   }
 
   isAssigned(contact: any): boolean {
-    return this.newTask.assigned_to?.some((c: any) => c.id === contact.id);
+    const target = this.editMode ? this.edit! : this.newTask;
+    return target.assigned_to?.some((c: any) => c.id === contact.id);
   }
 
   toggleAssigned(contact: any) {
+    const target = this.editMode ? this.edit! : this.newTask;
     if (this.isAssigned(contact)) {
-      this.newTask.assigned_to = this.newTask.assigned_to.filter((c: any) => c.id !== contact.id);
+      target.assigned_to = target.assigned_to.filter((c: any) => c.id !== contact.id);
     } else {
-      this.newTask.assigned_to = [...(this.newTask.assigned_to || []), contact];
+      target.assigned_to = [...(target.assigned_to || []), contact];
     }
   }
 }
