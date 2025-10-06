@@ -99,19 +99,25 @@
         }
     }
 
-    .title_card {
-        width: 27.8125rem;
-        height: 13.6875rem;
+.title_card {
+    width: 445px;
+    height: 219px;
 
-        h1 {
-            font-family: 'Inter', sans-serif;
-            font-weight: 700;
-            font-size: 3.8125rem;
-            line-height: 1.2;
-            letter-spacing: 0;
-            margin: 0;
-        }
+    h1 {
+        font-family: 'Inter', sans-serif;
+        font-weight: 700;
+        font-size: clamp(1rem, 5vw, 3.8125rem);
+        line-height: 1.2;
+        letter-spacing: 0;
+        margin: 0;
     }
+
+    @media (max-width: 700px) {
+        width: 200px;
+        height: 100px;
+    }
+}
+
 
     .due-date {
         display: flex;
@@ -283,105 +289,106 @@
             }
 
 
-                .avatar-wrapper {
-                    display: flex;
-                    align-items: center;
-                    gap: 8px;
-                    background-color: #ffffff;
-                    border-radius: 0.5rem;
-                    padding: 8px 12px;
-                    cursor: pointer;
-                    transition: background-color 0.3s;
-                    width: 200px;
+            .avatar-wrapper {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                background-color: #ffffff;
+                border-radius: 0.5rem;
+                padding: 8px 12px;
+                cursor: pointer;
+                transition: background-color 0.3s;
+                width: auto;
 
-                    &:hover {
-                        background-color: #f0f4f8;
-
-                    }
-                    input[type="checkbox"]:checked+& {
-                            color: #2A3647;
-                        }
-
-
-
-                    .subtask-label {
-                        font-family: 'Inter', sans-serif;
-                        font-size: 1rem;
-                        color: #000000;
-                        font-weight: 400;
-                        transition: color 0.3s ease;
-
-                        
-                    }
-
-
-
+                &:hover {
+                    background-color: #a6b7c7;
 
                 }
-            }
 
-
-        }
-
-
-
-
-        .btn_group {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            justify-content: flex-end;
-
-            .delete_btn,
-            .etid_btn {
-                button {
-                    display: flex;
-                    align-items: center;
-                    gap: 0.5rem;
-                    border: none;
-                    border-radius: 4px;
-                    padding: 0.5rem 1rem;
-                    cursor: pointer;
-                    font-weight: 400;
-                    font-family: 'Inter', sans-serif;
-                    background-color: #ffffff;
-                    font-size: 1rem;
+                input[type="checkbox"]:checked+& {
                     color: #2A3647;
-                    transition: transform 0.2s ease, filter 0.2s ease, color 0.2s ease;
-
-                    img {
-                        width: 16px;
-                        height: 18px;
-                        transition: filter 0.3s ease, transform 0.3s ease;
-                        color: inherit;
-                    }
-
-                    &:hover {
-                        color: #007CEE;
-                        transform: scale(1.1);
-                        filter: brightness(1.2);
-
-                        img {
-                            filter: brightness(0) saturate(100%) invert(32%) sepia(100%) saturate(3186%) hue-rotate(195deg) brightness(99%) contrast(101%);
-                            transform: scale(1.05);
-                        }
-                    }
-
-                    p {
-                        margin: 0;
-                    }
                 }
-            }
 
-            .border_bn {
-                width: 1px;
-                height: 30px;
-                background-color: #ccc;
+
+
+                .subtask-label {
+                    font-family: 'Inter', sans-serif;
+                    font-size: 1rem;
+                    color: #000000;
+                    font-weight: 400;
+                    transition: color 0.3s ease;
+
+
+                }
+
+
+
+
             }
         }
-
-
-
 
 
     }
+
+
+
+
+    .btn_group {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        justify-content: flex-end;
+
+        .delete_btn,
+        .etid_btn {
+            button {
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+                border: none;
+                border-radius: 4px;
+                padding: 0.5rem 1rem;
+                cursor: pointer;
+                font-weight: 400;
+                font-family: 'Inter', sans-serif;
+                background-color: #ffffff;
+                font-size: 1rem;
+                color: #2A3647;
+                transition: transform 0.2s ease, filter 0.2s ease, color 0.2s ease;
+
+                img {
+                    width: 16px;
+                    height: 18px;
+                    transition: filter 0.3s ease, transform 0.3s ease;
+                    color: inherit;
+                }
+
+                &:hover {
+                    color: #007CEE;
+                    transform: scale(1.1);
+                    filter: brightness(1.2);
+
+                    img {
+                        filter: brightness(0) saturate(100%) invert(32%) sepia(100%) saturate(3186%) hue-rotate(195deg) brightness(99%) contrast(101%);
+                        transform: scale(1.05);
+                    }
+                }
+
+                p {
+                    margin: 0;
+                }
+            }
+        }
+
+        .border_bn {
+            width: 1px;
+            height: 30px;
+            background-color: #ccc;
+        }
+    }
+
+
+
+
+
+}
