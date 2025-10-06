@@ -1,6 +1,7 @@
 <div class="task-process">
     <div 
         cdkDropList
+        id="cdk-drop-list-0"
         #todoList="cdkDropList"
         [cdkDropListData]="toDoTasksFiltered"
         [cdkDropListConnectedTo]="[inProgressList, awaitFeedbackList, doneList]"
@@ -25,6 +26,7 @@
 
     <div
         cdkDropList
+        id="cdk-drop-list-1"
         #inProgressList="cdkDropList"
         [cdkDropListData]="inProgressTasksFiltered"
         [cdkDropListConnectedTo]="[todoList, awaitFeedbackList, doneList]"
@@ -49,6 +51,7 @@
 
     <div
         cdkDropList
+        id="cdk-drop-list-2"
         #awaitFeedbackList="cdkDropList"
         [cdkDropListData]="awaitFeedbackTasksFiltered"
         [cdkDropListConnectedTo]="[todoList, inProgressList, doneList]"
@@ -73,6 +76,7 @@
 
     <div
         cdkDropList
+        id="cdk-drop-list-3"
         #doneList="cdkDropList"
         [cdkDropListData]="doneTasksFiltered"
         [cdkDropListConnectedTo]="[todoList, inProgressList, awaitFeedbackList]"

@@ -9,6 +9,7 @@ import {
   CdkDropList
 } from '@angular/cdk/drag-drop';
 import { TaskService } from '../../../services/task-service';
+import { isEqual } from 'lodash';
 
 @Component({
   selector: 'app-overview-tasks',
@@ -35,13 +36,9 @@ export class OverviewTasks {
     if(this.tasksList.length !== this.taskService.tasksList.length){
       this.setNewTasksData();
     }else{
-      for (let i = 0; i < this.tasksList.length; i++) {
-        if(this.tasksList[i].index !== this.taskService.tasksList[i].index || this.tasksList[i].stage !== this.taskService.tasksList[i].stage){
-          if(this.checkIndex){
-            this.setNewTasksData();
-            return;
-          }
-        }
+      const hasChanged = !isEqual(this.tasksList, this.taskService.tasksList);
+      if (hasChanged && this.checkIndex) {
+        this.setNewTasksData();
       }
     }
   }
