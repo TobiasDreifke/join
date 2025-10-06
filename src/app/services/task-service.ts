@@ -13,7 +13,7 @@ export class TaskService {
     this.unsubscribeTasksList = onSnapshot(collection(this.firestore, "tasks"), (tasksObject) => {
       this.tasksList = [];
       tasksObject.docs.forEach((element) => {
-        console.log(element.id, element.data());
+        // console.log(element.id, element.data());
         this.tasksList.push(this.setTaskObject(element.id, element.data() as TaskInterface));
       });
     });
