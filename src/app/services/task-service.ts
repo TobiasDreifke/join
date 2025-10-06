@@ -33,6 +33,7 @@ export class TaskService {
 
   getCleanJson(obj: TaskInterface) {
     return {
+      index: obj.index,
       title: obj.title,
       description: obj.description,
       due_date: obj.due_date,
