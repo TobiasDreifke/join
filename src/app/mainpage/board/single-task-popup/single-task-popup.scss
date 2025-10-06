@@ -13,14 +13,14 @@
 
 .card_task {
     width: 100%;
-    max-width: 450px;
+    max-width: 525px;
     background-color: #ffffff;
     border-radius: 30px;
     padding: 30px;
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
-    max-height: 90vh;
+    max-height: 930px;
     animation: slideIn 0.5s ease forwards;
 
 
@@ -184,7 +184,7 @@
             flex-direction: column;
             gap: 5px;
             overflow-y: auto;
-            max-height: 120px;
+            max-height: 130px;
             scrollbar-width: thin;
             scrollbar-color: #ccc transparent;
         }
@@ -253,7 +253,7 @@
             display: flex;
             flex-direction: column;
             overflow-y: auto;
-            max-height: 65px;
+            max-height: 75px;
             scrollbar-width: thin;
             scrollbar-color: #ccc transparent;
 
