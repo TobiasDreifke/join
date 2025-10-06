@@ -1,42 +1,62 @@
 <section>
-    <header>
+    <!-- <header>
         <h1>{{ editMode ? 'Edit Task' : 'Add Task' }}</h1>
         <button class="clear" (click)="onExit()">
             {{ editMode ? 'Cancel Edit' : 'Clear' }}
             <img src="/assets/icons/button_x_check/button_x.png">
         </button>
+    </header> -->
+
+    <header>
+        <h1>Add Task</h1>
+        @if (editMode) {
+        <button class="clear" (click)="onExit()">EDIT CANCEL<img
+                src="/assets/icons/button_x_check/button_x.png"></button>}
+        @else {
+        <span></span>
+        }
     </header>
 
-    <form (ngSubmit)="editMode ? saveTask() : onSubmit(taskForm)" #taskForm="ngForm" class="task-form">
+    <form #taskForm="ngForm" (ngSubmit)="onSubmitOrSave(taskForm)" class="task-form">
         <main>
             <div class="left_box">
                 <div>
                     <label for="title">Title <span>*</span></label>
                     <input type="text" id="title" name="title" [(ngModel)]="targetTask.title" #titleInput="ngModel"
-                        placeholder="Title" required />
+                        placeholder="Title" minlength="2" required />
                 </div>
                 <div class="error">
-                    <span *ngIf="titleInput.invalid && (titleInput.dirty || titleInput.touched || taskForm.submitted)">
-                        {{ titleInput.errors?.['required'] ? 'UPS Vergessen' : '' }}
+                    @if (titleInput.invalid && (titleInput.dirty || titleInput.touched || taskForm.submitted)) {
+                    <span>
+                        @if (titleInput.errors?.['required']) {
+                        Enter Name
+                        } @else if (titleInput.errors?.['minlength']) {
+                        min 2 characters
+                        }
                     </span>
+                    }
                 </div>
 
                 <div>
                     <label for="description">Description</label>
                     <textarea id="description" name="description" [(ngModel)]="targetTask.description"
-                        placeholder="Description" required></textarea>
+                        placeholder="Description"></textarea>
                 </div>
-
                 <div>
                     <label for="date">Due date <span>*</span></label>
-                    <input type="date" id="date" name="due_date" [(ngModel)]="targetTask.due_date" #dateInput="ngModel"
-                        required />
+                    <input type="date" id="date" name="due_date" [(ngModel)]="targetTaskDueDateString"
+                        [min]="todayString" #dateInput="ngModel" required />
                 </div>
                 <div class="error">
-                    <span *ngIf="dateInput.invalid && (dateInput.dirty || dateInput.touched || taskForm.submitted)">
-                        {{ dateInput.errors?.['required'] ? 'UPS Vergessen' : '' }}
+                    @if (dateInput.invalid) {
+                    <span>
+                        @if (dateInput.errors?.['required']) {
+                        enter a date
+                        }
                     </span>
+                    }
                 </div>
+
             </div>
 
             <div class="line"></div>
@@ -75,9 +95,11 @@
                 </ng-select>
 
                 <div class="selected-badges error">
-                    <div *ngFor="let it of targetTask.assigned_to; let i = index" class="badge">
+                    @for (it of targetTask.assigned_to; track $index) {
+                    <div class="badge">
                         {{ initials(it.name) }}
                     </div>
+                    }
                 </div>
 
                 <div>
@@ -89,10 +111,13 @@
                     </select>
                 </div>
                 <div class="error">
-                    <span
-                        *ngIf="categoryInput.invalid && (categoryInput.dirty || categoryInput.touched || taskForm.submitted)">
+                    @if (categoryInput.invalid && (categoryInput.dirty || categoryInput.touched || taskForm.submitted))
+                    {
+                    <span>
                         {{ categoryInput.errors?.['required'] ? 'UPS Vergessen' : '' }}
                     </span>
+                    }
+
                 </div>
 
                 <div class="subtasks">
@@ -102,10 +127,13 @@
                     <button type="button" (click)="addSubtask()">Add</button>
 
                     <ul>
-                        <li *ngFor="let subtask of targetTask.subtask; let i = index">
+                        @for (subtask of targetTask.subtask; track $index) {
+                        <li>
                             {{ subtask.title }}
-                            <button type="button" (click)="removeSubtask(i)">x</button>
+                            <button type="button" (click)="removeSubtask($index)">x</button>
                         </li>
+                        }
+
                     </ul>
                 </div>
             </div>
@@ -116,11 +144,17 @@
                 <p><span>*</span>This field is required</p>
             </div>
             <div>
+                <button class="clear" (click)="onExit()">Clear<img
+                        src="/assets/icons/button_x_check/button_x.png"></button>
+                <button class="add_task" type="submit">Add Task<img
+                        src="/assets/icons/button_x_check/button_check.png"></button>
+            </div>
+            <!-- <div>
                 <button class="add_task" type="submit">
                     {{ editMode ? 'Save Changes' : 'Add Task' }}
                     <img src="/assets/icons/button_x_check/button_check.png">
                 </button>
-            </div>
+            </div> -->
         </footer>
     </form>
 </section>

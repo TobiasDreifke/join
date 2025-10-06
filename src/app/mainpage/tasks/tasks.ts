@@ -25,8 +25,8 @@ export class Tasks {
     title: '',
     description: '',
     due_date: Timestamp.now(),
-    priority: 'Low',
-    category: 'Technical Task',
+    priority: 'Medium',
+    category: '',
     stage: 'To do',
     subtask: [],
     assigned_to: []
@@ -38,20 +38,40 @@ export class Tasks {
   taskService = inject(TaskService);
   contactService = inject(ContactService);
 
+  todayString: string = '';
+
+
   constructor() {
     if (this.contactService.contactsList.length > 0) {
       this.contactId = this.contactService.contactsList[0].id || null;
     }
+    this.setTodayString();
   }
 
   get targetTask(): TaskInterface {
     return this.editMode && this.edit ? this.edit : this.newTask;
   }
 
+  get targetTaskDueDateString(): string {
+    const task = this.targetTask;
+    if (!task.due_date) return this.todayString;
+    if (task.due_date instanceof Timestamp) {
+      return task.due_date.toDate().toISOString().split('T')[0];
+    }
+    return task.due_date as unknown as string;
+  }
+
   ngOnChanges(changes: SimpleChanges) {
     if (changes['taskId'] && this.taskId) {
       this.loadTask(this.taskId);
     }
+  }
+
+  // --------------- SETTING THE DATE --------------
+
+  setTodayString() {
+    const today = new Date();
+    this.todayString = today.toISOString().split('T')[0];
   }
 
   // ---------------- EDIT TASK ----------------
@@ -64,21 +84,11 @@ export class Tasks {
     }
   }
 
-  saveTask() {
-    if (!this.edit) return;
-    if (this.editMode && this.edit.id) {
-      this.taskService.updateTask(this.edit.id, this.edit);
-    } else {
-      this.taskService.addTask(this.edit);
-    }
-    this.close.emit();
-  }
-
   refreshEditReference() {
     if (this.editMode && this.edit?.id) {
       const updated = this.taskService.tasksList.find(t => t.id === this.edit!.id);
       if (updated) {
-        Object.assign(this.edit, updated); 
+        Object.assign(this.edit, updated);
       }
     }
   }
@@ -95,13 +105,18 @@ export class Tasks {
     this.close.emit();
   }
 
+  isTaskValid(): boolean {
+    if (!this.edit) return false;
+    return !!this.edit.title && this.edit.title.length >= 2 && !!this.edit.category && !!this.edit.due_date;
+  }
+
   // ---------------- ADD TASK ----------------
   clearInputFields() {
     this.newTask = {
       title: '',
       description: '',
       due_date: Timestamp.now(),
-      priority: '',
+      priority: 'Medium',
       category: '',
       stage: '',
       subtask: [],
@@ -110,10 +125,22 @@ export class Tasks {
     this.subtaskTitle = '';
   }
 
-  onSubmit(form: NgForm) {
-    this.taskService.addTask(this.newTask);
-    this.clearInputFields();
-    form.resetForm();
+
+  onSubmitOrSave(form: NgForm) {
+    form.control.markAllAsTouched();
+
+    if (!form.valid) {
+      return;
+    }
+
+    if (this.editMode && this.edit) {
+      this.taskService.updateTask(this.edit.id!, this.edit);
+    } else {
+      this.taskService.addTask(this.newTask);
+      this.clearInputFields();
+    }
+
+    this.close.emit();
   }
 
   deleteTask(taskId: string | undefined) {
