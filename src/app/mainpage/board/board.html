@@ -1,19 +1,6 @@
 <app-searchbar-header></app-searchbar-header>
 <app-overview-tasks (selectedTaskId)="setSelectedTaskId($event)"></app-overview-tasks>
 
-
-
-@for (task of taskService.tasksList; track task.id) {
-<div class="task-card">
-    @if (task.title.length >= 1) {
-    <button (click)="openTaskPopup(task.id ?? '')">{{task.title}}</button>
-    } @else {
-    <button (click)="openTaskPopup(task.id ?? '')">enter title</button>
-    }
-</div>
-}
-
-
 @if (selectedTaskId) {
 <app-single-task-popup (edit)="onEditTask($event)" [taskId]="selectedTaskId" (delete)="deleteTask($event)"
     (close)="closePopup()">
