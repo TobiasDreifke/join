@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, EventEmitter, inject, Output } from '@angular/core';
 import { SingleTaskCard } from './single-task-card/single-task-card';
 import { TaskInterface } from '../../../interfaces/tasks.interface';
 import {
@@ -19,8 +19,9 @@ import { TaskService } from '../../../services/task-service';
 export class OverviewTasks {
 
   checkIndex = true;
-
   taskService = inject(TaskService);
+
+  @Output() selectedTaskId = new EventEmitter<string>();
 
   tasksList: TaskInterface[] = [];
   toDoTasksFiltered: TaskInterface[] = [];
@@ -160,5 +161,9 @@ export class OverviewTasks {
     await this.reorderListInternal(event.container.data, event);
     this.setNewTasksData();
     this.checkIndex = true;
+  }
+
+  getSelectedTaskId(taskId: string){
+    this.selectedTaskId.emit(taskId);
   }
 }
