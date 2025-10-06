@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, EventEmitter, inject, Output } from '@angular/core';
 import { SingleTaskCard } from './single-task-card/single-task-card';
 import { TaskInterface } from '../../../interfaces/tasks.interface';
 import {
@@ -19,8 +19,9 @@ import { TaskService } from '../../../services/task-service';
 export class OverviewTasks {
 
   checkIndex = true;
-
   taskService = inject(TaskService);
+
+  @Output() selectedTaskId = new EventEmitter<string>();
 
   tasksList: TaskInterface[] = [];
   toDoTasksFiltered: TaskInterface[] = [];
@@ -53,46 +54,63 @@ export class OverviewTasks {
     this.getTasksDone();
   }
 
-  getTasksToDo() {
+  async getTasksToDo() {
     let tasksToDo = this.tasksList.filter(task => task.stage === 'To do');
-    tasksToDo = this.checkIfTaskIsAddedNew(tasksToDo);
+    tasksToDo = await this.checkIfTaskIsAddedNew(tasksToDo);
     tasksToDo.sort((a, b) => (a.index ?? 0) - (b.index ?? 0));  
     this.toDoTasksFiltered.splice(0, this.toDoTasksFiltered.length, ...tasksToDo);
   }
 
-  getTasksInProgress(){
+  async getTasksInProgress(){
     let tasksInProgress = this.tasksList.filter(task => task.stage == 'In progress');
-    tasksInProgress = this.checkIfTaskIsAddedNew(tasksInProgress);
+    tasksInProgress = await this.checkIfTaskIsAddedNew(tasksInProgress);
     tasksInProgress.sort((a, b) => (a.index ?? 0) - (b.index ?? 0));
     this.inProgressTasksFiltered.splice(0, this.inProgressTasksFiltered.length, ...tasksInProgress);
   }
 
-  getTasksAwaitFeedback(){
+  async getTasksAwaitFeedback(){
     let tasksAwaitFeedback = this.tasksList.filter(task => task.stage == 'Await feedback');
-    tasksAwaitFeedback = this.checkIfTaskIsAddedNew(tasksAwaitFeedback);
+    tasksAwaitFeedback = await this.checkIfTaskIsAddedNew(tasksAwaitFeedback);
     tasksAwaitFeedback.sort((a, b) => (a.index ?? 0) - (b.index ?? 0));
     this.awaitFeedbackTasksFiltered.splice(0, this.awaitFeedbackTasksFiltered.length, ...tasksAwaitFeedback);
   }
 
-  getTasksDone(){
+  async getTasksDone(){
     const tasksDone = this.tasksList.filter(task => task.stage == 'Done');
     tasksDone.sort((a, b) => (a.index ?? 0) - (b.index ?? 0));
     this.doneTasksFiltered.splice(0, this.doneTasksFiltered.length, ...tasksDone);
   }
 
-  checkIfTaskIsAddedNew(tasksList: TaskInterface[]){
-    let hasNoIndexTask = tasksList.find(task => task.index === undefined);
+  async checkIfTaskIsAddedNew(tasksList: TaskInterface[]) {
+    const hasNoIndexTask = tasksList.some(task => task.index === undefined);
     if (hasNoIndexTask) {
-      tasksList.forEach(task => {
+      this.checkIndex = false;
+      for (const task of tasksList) {
         if (task.index !== undefined) {
           task.index += 1;
-          this.taskService.updateTask(task.id!, task);
+          await this.taskService.updateTask(task.id!, task);
+        } else {
+          const updatedTask = this.getCleanJsonWithIndexZero(task);
+          await this.taskService.updateTask(task.id!, updatedTask);
         }
-      });
-      hasNoIndexTask.index = 0;
-      this.taskService.updateTask(hasNoIndexTask.id!, hasNoIndexTask);
+      }
+      this.checkIndex = true;
     }
-    return tasksList
+    return tasksList;
+  }
+
+  getCleanJsonWithIndexZero(obj: TaskInterface){
+    return {
+      index: 0,
+      title: obj.title,
+      description: obj.description,
+      due_date: obj.due_date,
+      priority: obj.priority,
+      category: obj.category,
+      stage: obj.stage,
+      subtask: obj.subtask || [],
+      assigned_to: obj.assigned_to,
+    }
   }
 
   getStageByListId(id: string): "To do" | "In progress" | "Await feedback" | "Done" {
@@ -106,7 +124,7 @@ export class OverviewTasks {
       case 'cdk-drop-list-3':
         return 'Done';   
       default:
-        return 'Done';
+        return 'To do';
     }
   }
 
@@ -143,5 +161,9 @@ export class OverviewTasks {
     await this.reorderListInternal(event.container.data, event);
     this.setNewTasksData();
     this.checkIndex = true;
+  }
+
+  getSelectedTaskId(taskId: string){
+    this.selectedTaskId.emit(taskId);
   }
 }
