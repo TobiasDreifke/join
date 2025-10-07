@@ -1,6 +1,7 @@
 <div class="task-process">
     <div 
         cdkDropList
+        [cdkDropListOrientation]="isSmallScreen ? 'horizontal' : 'vertical'"
         id="cdk-drop-list-0"
         #todoList="cdkDropList"
         [cdkDropListData]="toDoTasksFiltered"
@@ -18,14 +19,17 @@
                 No tasks To do
             </div>
         }@else {
-            @for (singleTaskData of toDoTasksFiltered; track singleTaskData.id) {
-                <app-single-task-card (selectedTaskId)="getSelectedTaskId($event)" class="example-box" [task]="singleTaskData" cdkDrag></app-single-task-card> 
-            } 
+            <div class="task-list">
+                @for (singleTaskData of toDoTasksFiltered; track singleTaskData.id) {
+                    <app-single-task-card (selectedTaskId)="getSelectedTaskId($event)" class="example-box" [task]="singleTaskData" cdkDrag [cdkDragDisabled]="isSmallScreen"></app-single-task-card> 
+                } 
+            </div>
         }
     </div>
 
     <div
         cdkDropList
+        [cdkDropListOrientation]="isSmallScreen ? 'horizontal' : 'vertical'"
         id="cdk-drop-list-1"
         #inProgressList="cdkDropList"
         [cdkDropListData]="inProgressTasksFiltered"
@@ -43,14 +47,17 @@
                 No tasks In progress
             </div>
         }@else {
-            @for (singleTaskData of inProgressTasksFiltered; track singleTaskData.id) {
-                <app-single-task-card (selectedTaskId)="getSelectedTaskId($event)" class="example-box" [task]="singleTaskData" cdkDrag></app-single-task-card> 
-            }
+            <div class="task-list">
+                @for (singleTaskData of inProgressTasksFiltered; track singleTaskData.id) {
+                    <app-single-task-card (selectedTaskId)="getSelectedTaskId($event)" class="example-box" [task]="singleTaskData" cdkDrag [cdkDragDisabled]="isSmallScreen"></app-single-task-card> 
+                }  
+            </div>
         }
     </div>
 
     <div
         cdkDropList
+        [cdkDropListOrientation]="isSmallScreen ? 'horizontal' : 'vertical'"
         id="cdk-drop-list-2"
         #awaitFeedbackList="cdkDropList"
         [cdkDropListData]="awaitFeedbackTasksFiltered"
@@ -68,14 +75,17 @@
                 No tasks Await feedback
             </div>
         }@else {
-            @for (singleTaskData of awaitFeedbackTasksFiltered; track singleTaskData.id) {
-                <app-single-task-card (selectedTaskId)="getSelectedTaskId($event)" class="example-box" [task]="singleTaskData" cdkDrag></app-single-task-card> 
-            }
+            <div class="task-list">
+                @for (singleTaskData of awaitFeedbackTasksFiltered; track singleTaskData.id) {
+                    <app-single-task-card (selectedTaskId)="getSelectedTaskId($event)" class="example-box" [task]="singleTaskData" cdkDrag [cdkDragDisabled]="isSmallScreen"></app-single-task-card> 
+                }
+            </div>
         }
     </div>
 
     <div
         cdkDropList
+        [cdkDropListOrientation]="isSmallScreen ? 'horizontal' : 'vertical'"
         id="cdk-drop-list-3"
         #doneList="cdkDropList"
         [cdkDropListData]="doneTasksFiltered"
@@ -84,18 +94,17 @@
         class="example-list">
         <div>
             <p>Done</p>
-            <button>
-                <img src="./assets/icons/Capa_1.svg" alt="">
-            </button>
         </div>
         @if (doneTasksFiltered.length == 0) {
             <div class="no-task">
                 No tasks Done
             </div>
         }@else {
-            @for (singleTaskData of doneTasksFiltered; track singleTaskData.id) { 
-                <app-single-task-card (selectedTaskId)="getSelectedTaskId($event)" class="example-box" [task]="singleTaskData" cdkDrag></app-single-task-card>    
-            }
+            <div class="task-list">
+                @for (singleTaskData of doneTasksFiltered; track singleTaskData.id) { 
+                    <app-single-task-card (selectedTaskId)="getSelectedTaskId($event)" class="example-box" [task]="singleTaskData" cdkDrag [cdkDragDisabled]="isSmallScreen"></app-single-task-card>    
+                }
+            </div>
         }
     </div>
 </div>
