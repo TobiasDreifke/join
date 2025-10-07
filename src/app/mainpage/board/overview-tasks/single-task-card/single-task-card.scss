@@ -6,7 +6,7 @@
     display: flex;
     flex-direction: column;
     gap: 12px;
-    min-width: 270px;
+    min-width: 255px;
     cursor: pointer;
 }
 
@@ -71,7 +71,7 @@
         overflow-x: hidden;
 
         p{
-            min-width: 45px;
+            min-width: 40px;
             aspect-ratio: 1/1;
             border-radius: 50%;
             border: 2px solid white;
@@ -79,6 +79,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            font-size: 14px;
 
             &:not(:first-child) {
                 transform: translateX(var(--translateX));
@@ -93,4 +94,11 @@
     transform: translateX(-18px);
     display: flex;
     align-items: flex-end;
+}
+
+@media (max-width: 1080px) {
+    
+    .card {
+        width: 255px;
+    }
 }

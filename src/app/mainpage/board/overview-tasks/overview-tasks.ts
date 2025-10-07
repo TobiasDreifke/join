@@ -1,4 +1,4 @@
-import { Component, EventEmitter, inject, Output } from '@angular/core';
+import { Component, EventEmitter, HostListener, inject, Output } from '@angular/core';
 import { SingleTaskCard } from './single-task-card/single-task-card';
 import { TaskInterface } from '../../../interfaces/tasks.interface';
 import {
@@ -19,6 +19,7 @@ import { isEqual } from 'lodash';
 })
 export class OverviewTasks {
 
+  isSmallScreen = window.innerWidth <= 1080;
   checkIndex = true;
   taskService = inject(TaskService);
 
@@ -162,5 +163,10 @@ export class OverviewTasks {
 
   getSelectedTaskId(taskId: string){
     this.selectedTaskId.emit(taskId);
+  }
+
+  @HostListener('window:resize')
+  onResize(){
+    this.isSmallScreen = window.innerWidth <= 1080;
   }
 }

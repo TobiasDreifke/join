@@ -1,30 +1,41 @@
-  @use 'mixins' as *;
-  @use 'variables' as *;
+@use 'mixins' as *;
+@use 'variables' as *;
 
-  :host {
-      @include PositionBox($d: flex, $jc: flex-start, $ai: stretch, $fd: column);
-      background-color: $color_background_main;
+:host {
+    @include PositionBox($d: flex, $jc: flex-start, $ai: stretch, $fd: column);
+    background-color: $color_background_main;
 
-      >app-overview-tasks {
-          width: 100%;
-          height: calc(100vh - 200px);
-      }
-  }
+    >app-overview-tasks {
+        width: 100%;
+        height: calc(100vh - 260px);
+    }
+}
 
-  .overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 90%;
-      height: 90%;
-      background: white; 
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 2000;
-  }
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 90%;
+    height: 90%;
+    background: white; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+}
 
-  form {
-      @include PositionBox($d: flex, $jc: flex-start, $ai: start, $fd: column);
-      gap: 0.5rem;
-  }
+form {
+    @include PositionBox($d: flex, $jc: flex-start, $ai: start, $fd: column);
+    gap: 0.5rem;
+}
+
+@media (max-width: 1080px) {
+    :host {
+        overflow-y: auto;
+        height: calc(100dvh - 200px);
+
+        >app-overview-tasks {
+            height: auto;
+        }
+    }
+}
