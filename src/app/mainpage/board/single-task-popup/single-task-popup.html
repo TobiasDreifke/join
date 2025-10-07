@@ -2,76 +2,94 @@
   <div class="card_task">
     @if (selectedTask) {
 
-      <div class="card_container">
-        <button class="btn_user">{{ selectedTask.category }}</button>
-        <button class="btn_close" (click)="onClose()">
-          <img src="./assets/icons/close.svg" alt="Close button" />
+    <div class="card_container">
+      <p class="category" [ngClass]="selectedTask.category  == 'User Story' ? 'user-story' : 'technical-task'">
+        {{selectedTask.category }}</p>
+
+
+      <button class="btn_close" (click)="onClose()">
+        <img src="./assets/icons/close.svg" alt="Close button" />
+      </button>
+    </div>
+
+    <div class="title_card">
+      <h1>{{ selectedTask.title }}</h1>
+    </div>
+
+    <div class="description_card">
+      <p>{{ selectedTask.description }}</p>
+    </div>
+
+    <div class="due-date">
+      <span class="label">Due date:</span>
+      <span class="date">{{ formatDueDate(selectedTask.due_date) }}</span>
+    </div>
+
+    <div class="priority_card">
+      <p class="priority">Priority:</p>
+      <p class="priority_data">
+        {{ selectedTask.priority }}
+
+        @if (selectedTask.priority === 'Low') {
+        <img src="./assets/icons/low.svg" alt="Low priority" class="priority_icon" />
+        } @else if (selectedTask.priority === 'Medium') {
+        <img src="./assets/icons/medium.svg" alt="Medium priority" class="priority_icon" />
+        } @else if (selectedTask.priority === 'Urgent') {
+        <img src="./assets/icons/urgent.svg" alt="Urgent priority" class="priority_icon" />
+        }
+      </p>
+    </div>
+
+
+    <div class="assigned_to">
+      <p class="label">Assigned To:</p>
+      <div class="assigned_list">
+        @for (user of selectedTask.assigned_to; track $index) {
+        <div class="avatar-wrapper">
+          <div class="image_color" [style.background-color]="user.initial_avatar_color">
+            {{ getInitials(user.name) }}
+          </div>
+          <p class="name">{{ user.name }}</p>
+        </div>
+        }
+      </div>
+    </div>
+
+    <div class="Subtasks_card">
+      <p class="label">Subtasks:</p>
+      <div class="subtask-list">
+        @for (subtask of selectedTask.subtask; track $index) {
+        <div class="subtask-item" (click)="subtask.completed = !subtask.completed">
+          <div class="avatar-wrapper">
+            <img class="checkbox-icon" [src]="subtask.completed
+              ? './assets/icons/checkbox/checkbox_checked.png'
+              : './assets/icons/checkbox/checkbox_empty.png'" alt="checkbox" />
+            <span class="subtask-label" [class.completed]="subtask.completed">
+              {{ subtask.title }}
+            </span>
+          </div>
+        </div>
+        }
+      </div>
+    </div>
+
+
+
+    <div class="btn_group">
+      <div class="delete_btn">
+        <button (click)="onDelete()">
+          <img src="./assets/icons/delete.png" alt="">
+          <p>Delete</p>
         </button>
       </div>
-
-      <div class="title_card">
-        <h1>{{ selectedTask.title }}</h1>
+      <div class="border_bn"></div>
+      <div class="etid_btn">
+        <button (click)="onEditTask()">
+          <img src="./assets/icons/edit.png" alt="">
+          <p>Edit</p>
+        </button>
       </div>
-
-      <div class="description_card">
-        <p>{{ selectedTask.description }}</p>
-      </div>
-
-      <div class="due-date">
-        <span class="label">Due date:</span>
-        <span class="date">{{ formatDueDate(selectedTask.due_date) }}</span>
-      </div>
-
-      <div class="priority_card">
-        <p class="priority">Priority:</p>
-        <p class="priority_data">{{ selectedTask.priority }}</p>
-      </div>
-
-      <div class="assigned_to">
-        <p class="label">Assigned To:</p>
-        <div class="assigned_list">
-          @for (user of selectedTask.assigned_to; track $index) {
-            <div class="avatar-wrapper">
-              <div class="image_color" [style.background-color]="user.initial_avatar_color">
-                {{ getInitials(user.name) }}
-              </div>
-              <p class="name">{{ user.name }}</p>
-            </div>
-          }
-        </div>
-      </div>
-
-     <div class="Subtasks_card">
-  <p class="label">Subtasks:</p>
-  <div class="subtask-item">
-    @for (subtask of selectedTask.subtask; track $index) {
-      <label>
-      <div class="avatar-wrapper">
-          <input type="checkbox" />
-        <span class="subtask-label">{{ subtask.title }}</span>
-       
-      </div>
-      </label>
-    }
-  </div>
-</div>
-
-
-      <div class="btn_group">
-        <div class="delete_btn">
-          <button (click)="onDelete()">
-            <img src="./assets/icons/delete.png" alt="">
-            <p>Delete</p>
-          </button>
-        </div>
-        <div class="border_bn"></div>
-        <div class="etid_btn">
-          <button (click)="onEditTask()">
-            <img src="./assets/icons/edit.png" alt="">
-            <p>Edit</p>
-          </button>
-        </div>
-      </div>
+    </div>
     }
   </div>
 </section>

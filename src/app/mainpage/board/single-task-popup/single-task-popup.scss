@@ -29,19 +29,23 @@
         justify-content: space-between;
         align-items: center;
 
-        .btn_user {
-            font-family: 'Inter', sans-serif;
-            font-weight: 400;
-            font-size: 23px;
-            line-height: 120%;
-            padding: 4px 24px;
+        .category {
+            padding: 8px 16px;
+
             border-radius: 8px;
-            gap: 10px;
-            background-color: #007bff;
-            border: none;
             color: white;
-            cursor: pointer;
+            margin-bottom: 12px;
+            width: fit-content;
+
+            &.user-story {
+                background-color: #0038ff;
+            }
+
+            &.technical-task {
+                background-color: #1fd7c1;
+            }
         }
+
 
         button {
             border: none;
@@ -99,24 +103,24 @@
         }
     }
 
-.title_card {
-    width: 445px;
-    height: 219px;
+    .title_card {
+        width: 445px;
+        height: 219px;
 
-    h1 {
-        font-family: 'Inter', sans-serif;
-        font-weight: 700;
-        font-size: clamp(1.5rem, 5vw, 3.8125rem);
-        line-height: 1.2;
-        letter-spacing: 0;
-        margin: 0;
-    }
+        h1 {
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            font-size: clamp(1.5rem, 5vw, 3.8125rem);
+            line-height: 1.2;
+            letter-spacing: 0;
+            margin: 0;
+        }
 
-    @media (max-width: 700px) {
-        width: 200px;
-        height: 100px;
+        @media (max-width: 700px) {
+            width: 200px;
+            height: 100px;
+        }
     }
-}
 
 
     .due-date {
@@ -170,6 +174,16 @@
             color: #000000;
 
         }
+
+        .priority_icon {
+            width: 25px;
+            height: 25px;
+            transform: rotate(180deg);
+            margin-left: 8px;
+            vertical-align: middle;
+        }
+
+
 
 
     }
@@ -242,95 +256,71 @@
 
     }
 
-    .Subtasks_card {
-        cursor: pointer;
+  .Subtasks_card {
+  cursor: pointer;
 
-        .label {
-            font-family: 'Inter', sans-serif;
-            font-weight: 400;
-            font-size: 1.25rem;
-            color: #42526E;
-            margin-bottom: 0.5rem;
-        }
+  .label {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 1.25rem;
+    color: #42526E;
+    margin-bottom: 0.5rem;
+  }
 
+  .subtask-list {
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    max-height: 75px;
+    scrollbar-width: thin;
+    scrollbar-color: #ccc transparent;
 
-
-        .subtask-item {
-            display: flex;
-            flex-direction: column;
-            overflow-y: auto;
-            max-height: 75px;
-            scrollbar-width: thin;
-            scrollbar-color: #ccc transparent;
-
-            &::-webkit-scrollbar {
-                width: 6px;
-            }
-
-            &::-webkit-scrollbar-thumb {
-                background-color: #ccc;
-                border-radius: 4px;
-            }
-
-            label {
-                display: flex;
-                align-items: center;
-                gap: 10px;
-                cursor: pointer;
-
-                input[type="checkbox"] {
-                    width: 16px;
-                    height: 16px;
-                    cursor: pointer;
-                    accent-color: #2A3647;
-                }
-
-
-            }
-
-
-            .avatar-wrapper {
-                display: flex;
-                align-items: center;
-                gap: 8px;
-                background-color: #ffffff;
-                border-radius: 0.5rem;
-                padding: 8px 12px;
-                cursor: pointer;
-                transition: background-color 0.3s;
-                width: auto;
-
-                &:hover {
-                    background-color: #a6b7c7;
-
-                }
-
-                input[type="checkbox"]:checked+& {
-                    color: #2A3647;
-                }
-
-
-
-                .subtask-label {
-                    font-family: 'Inter', sans-serif;
-                    font-size: 1rem;
-                    color: #000000;
-                    font-weight: 400;
-                    transition: color 0.3s ease;
-
-
-                }
-
-
-
-
-            }
-        }
-
-
+    &::-webkit-scrollbar {
+      width: 6px;
     }
 
+    &::-webkit-scrollbar-thumb {
+      background-color: #ccc;
+      border-radius: 4px;
+    }
+  }
 
+  .subtask-item {
+    display: flex;
+
+    .avatar-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background-color: #ffffff;
+      border-radius: 10rem;
+      padding: 8px 12px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      width: fit-content;
+
+      &:hover {
+        background-color: #F6F7F8;
+      }
+
+      .checkbox-icon {
+        width: 17px;
+        height: 17px;
+        transition: transform 0.2s ease;
+      }
+
+      .subtask-label {
+        font-family: 'Inter', sans-serif;
+        font-size: 1rem;
+        color: #000000;
+        font-weight: 400;
+        transition: color 0.3s ease;
+
+       
+      }
+    }
+  }
+}
 
 
     .btn_group {
