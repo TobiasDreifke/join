@@ -114,7 +114,7 @@ main {
     @include PositionBox($jc: start, $ai: start, $fd: column);
 
     .right_box_container {
-        @include PositionBox($jc: start, $ai: start, $fd: column);
+        @include PositionBox($jc: start, $ai: none, $fd: column);
         width: 100%;
 
         >label {
@@ -281,10 +281,48 @@ footer {
 }
 
 
+
+
+
 // --------------------- DROPDOWN NG-SELECT ---------------------
 
 /* --- reach outside component scope to the overlay dropdown --- */
 :host ::ng-deep {
+
+    /* --- main select box --- */
+
+    .ng_select {
+        width: 100%;
+        font-size: 20px;
+        border-radius: 10px;
+        border: 2px solid $color_grey;
+        background-color: rgb(255, 255, 255);
+
+
+        .ng-select-container {
+            height: 50px;
+            padding: 0 10px;
+            align-items: center;
+        }
+
+        .ng-placeholder {
+
+            color: $color_main;
+            font-size: 20px;
+        }
+
+        .ng-value {
+            font-size: 20px;
+        }
+
+        .ng-arrow-wrapper {
+            top: 12px;
+        }
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
 
     /* dropdown panel background and layout */
     .ng-dropdown-panel {
@@ -299,7 +337,7 @@ footer {
         border-radius: 6px;
 
         &:hover {
-            background-color: rgba(0, 0, 0, 0.05);
+            background-color: rgba(255, 0, 0, 0.05);
         }
     }
 
@@ -328,47 +366,12 @@ footer {
 
     .fullname {
         // flex: 1;
-        font-size: 18px;
+        font-size: 16px;
     }
 
     .option-row input[type="checkbox"] {
         width: 18px;
         height: 18px;
-    }
-}
-
-/* --- main select box --- */
-
-
-
-.ng_select {
-    width: 100%;
-    font-size: 20px;
-    border-radius: 10px;
-    border: 2px solid $color_grey;
-    background-color: rgb(255, 255, 255);
-
-    .ng-select-container {
-        height: 50px;
-        padding: 0 10px;
-        align-items: center;
-    }
-
-    .ng-placeholder {
-        color: $color_grey;
-        font-size: 20px;
-    }
-
-    .ng-value {
-        font-size: 20px;
-    }
-
-    .ng-arrow-wrapper {
-        top: 12px;
-    }
-
-    &:hover {
-        cursor: pointer;
     }
 }
 
@@ -413,4 +416,192 @@ footer {
             text-transform: uppercase;
         }
     }
+}
+
+// ---------------------- SUBTASK DROPDOWN -------------------------
+
+.subtask_input_wrapper {
+    @include BoxSize();
+    @include PositionBox($jc: space-between, $ai: center);
+
+    background-color: $color_white;
+    font-size: 20px;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    border: 2px solid $color_grey;
+    outline: none;
+
+    &::placeholder {
+        color: $color_grey;
+    }
+
+    &:hover {
+        cursor: pointer;
+    }
+
+    &:focus-within {
+        border-color: $color_highlight;
+    }
+
+    >input {
+        appearance: unset;
+        border: none;
+        outline: none;
+        width: 100%;
+        height: 100%;
+        font-size: inherit;
+
+        &:focus {
+            border: none;
+            outline: none;
+            box-shadow: none;
+            background-color: none;
+        }
+
+        &:-webkit-autofill {
+            -webkit-box-shadow: 0 0 0px 1000px transparent inset !important;
+            -webkit-text-fill-color: $color_main !important;
+            caret-color: $color_main;
+            transition: background-color 5000s ease-in-out 0s;
+            font-size: 1rem;
+        }
+
+    }
+
+    .subtask_button_wrapper {
+        @include PositionBox($jc: space-between, $ai: center);
+        height: 100%;
+
+        .img_container {
+            @include PositionBox($jc: center, $ai: center);
+            transition: all 200ms ease;
+
+            &:hover {
+                background-color: $color_grey;
+                border-radius: 100%;
+            }
+
+            >img {
+                height: 20px;
+                width: 20px;
+                border-width: 0;
+                filter: brightness(0) saturate(100%) invert(8%) sepia(28%) saturate(3258%) hue-rotate(195deg) brightness(88%) contrast(98%);
+            }
+        }
+
+
+        .horizontal_devider {
+            background-color: $color_grey;
+            margin-left: 5px;
+            margin-right: 5px;
+            width: 2px;
+            height: 100%;
+        }
+    }
+
+}
+
+
+// ---------------------- SUBTASK LIST -------------------------
+
+
+.subtask_list_wrapper {
+    @include BoxSize();
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    font-size: 20px;
+
+    background-color: $color_white;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    border: 2px solid $color_grey;
+    outline: none;
+
+    &::placeholder {
+        color: $color_grey;
+    }
+
+    &:hover {
+        cursor: pointer;
+    }
+
+    &:focus-within {
+        border-color: $color_highlight;
+    }
+
+    >.subtask_text {
+        flex: 1 1 auto;
+        min-width: 0;
+
+        font-size: inherit;
+        line-height: 1.2;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    >input {
+        flex: 1 1 auto;
+        min-width: 0;
+
+        font-size: inherit;
+        border: none;
+        outline: none;
+        width: 100%;
+
+
+        &:focus {
+            border: none;
+            outline: none;
+            box-shadow: none;
+            background-color: none;
+        }
+
+        &:-webkit-autofill {
+            -webkit-box-shadow: 0 0 0px 1000px transparent inset !important;
+            -webkit-text-fill-color: $color_main !important;
+            caret-color: $color_main;
+            transition: background-color 5000s ease-in-out 0s;
+            font-size: 1rem;
+        }
+
+    }
+
+    .subtask_button_wrapper {
+        display: flex;
+        height: 100%;
+        gap: 5px;
+        flex-shrink: 0;
+
+        .img_container {
+            @include PositionBox($jc: center, $ai: center);
+            transition: all 200ms ease;
+
+            &:hover {
+                background-color: $color_grey;
+                border-radius: 100%;
+            }
+
+            >img {
+                height: 20px;
+                width: 20px;
+                border-width: 0;
+                filter: brightness(0) saturate(100%) invert(8%) sepia(28%) saturate(3258%) hue-rotate(195deg) brightness(88%) contrast(98%);
+            }
+        }
+
+
+        .horizontal_devider {
+            background-color: $color_grey;
+            margin-left: 5px;
+            margin-right: 5px;
+            width: 2px;
+            height: 100%;
+        }
+    }
+
 }

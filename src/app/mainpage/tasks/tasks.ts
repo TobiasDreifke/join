@@ -110,6 +110,8 @@ export class Tasks {
     return !!this.edit.title && this.edit.title.length >= 2 && !!this.edit.category && !!this.edit.due_date;
   }
 
+
+
   // ---------------- ADD TASK ----------------
   clearInputFields() {
     this.newTask = {
@@ -139,25 +141,48 @@ export class Tasks {
       this.taskService.addTask(this.newTask);
       this.clearInputFields();
     }
-
     this.close.emit();
   }
+
 
   deleteTask(taskId: string | undefined) {
     if (!taskId) return;
     this.taskService.deleteTask(taskId);
   }
 
-  // ---------------- SUBTASKS ----------------
-  addSubtask() {
-    const target = this.editMode ? this.edit! : this.newTask;
-    target.subtask.push({ title: this.subtaskTitle, completed: false });
-    this.subtaskTitle = '';
+  // ---------------- SUBTASKS LIST EDIT ----------------
+
+  subtaskEditMap: Record<number, boolean> = {};
+
+  toggleEditSubtask(index: number) {
+    this.subtaskEditMap[index] = !this.subtaskEditMap[index];
   }
 
+  confirmEditSubtask(index: number) {
+    this.subtaskEditMap[index] = false;
+  }
+
+  cancelEditSubtask(index: number) {
+    this.subtaskEditMap[index] = false;
+  }
+
+  // ---------------- SUBTASKS ----------------
+
+  addSubtask() {
+    const target = this.editMode ? this.edit! : this.newTask;
+    target.subtask.push({
+      title: this.subtaskTitle,
+      completed: false,
+    });
+    this.subtaskTitle = '';
+  }
   removeSubtask(index: number) {
     const target = this.editMode ? this.edit! : this.newTask;
     target.subtask.splice(index, 1);
+  }
+
+  cancelSubtask() {
+    this.subtaskTitle = '';
   }
 
   // ---------------- ASSIGNED TO / INITIALS ----------------

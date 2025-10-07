@@ -10,8 +10,7 @@
     <header>
         <h1>Add Task</h1>
         @if (editMode) {
-        <button class="clear" (click)="onExit()">EDIT CANCEL<img
-                src="/assets/icons/button_x_check/button_x.png"></button>}
+        <button class="clear" (click)="onExit()"><img src="/assets/icons/button_x_check/button_x.png"></button>}
         @else {
         <span></span>
         }
@@ -42,6 +41,7 @@
                     <textarea id="description" name="description" [(ngModel)]="targetTask.description"
                         placeholder="Description"></textarea>
                 </div>
+                <div class="error"></div>
                 <div>
                     <label for="date">Due date <span>*</span></label>
                     <input type="date" id="date" name="due_date" [(ngModel)]="targetTaskDueDateString"
@@ -79,10 +79,12 @@
                         </button>
                     </div>
                 </div>
+                <div class="error"></div>
+
 
                 <label>Assigned to</label>
                 <ng-select class="ng_select" [items]="contactService.contactsList" bindLabel="name"
-                    [(ngModel)]="targetTask.assigned_to" name="assigned_to" placeholder="Search contacts..."
+                    [(ngModel)]="targetTask.assigned_to" name="assigned_to" placeholder="Select contacts to assign"
                     [multiple]="true" [closeOnSelect]="false" [clearable]="false" [searchable]="true">
 
                     <!-- Custom option template -->
@@ -112,19 +114,22 @@
                     }
                 </div>
 
+
                 <div class="right_box_container">
                     <label for="category">Category <span>*</span></label>
                     <select id="category" name="category" [(ngModel)]="targetTask.category" #categoryInput="ngModel"
                         required>
-                        <option value="Technical Task">Technical Task</option>
-                        <option value="User Story">User Story</option>
+                        <option value="">Select task category</option>
+                        <option value="Technical Task">Technical
+                            Task</option>
+                        <option value="Select valid">User Story</option>
                     </select>
                 </div>
                 <div class="error">
                     @if (categoryInput.invalid && (categoryInput.dirty || categoryInput.touched || taskForm.submitted))
                     {
                     <span>
-                        {{ categoryInput.errors?.['required'] ? 'UPS Vergessen' : '' }}
+                        {{ categoryInput.errors?.['required'] ? 'Select valid Task' : '' }}
                     </span>
                     }
 
@@ -132,19 +137,65 @@
 
                 <div class="subtasks right_box_container">
                     <label for="subtask">Subtasks</label>
-                    <input type="text" id="subtask" [(ngModel)]="subtaskTitle" name="subtaskTitle"
-                        placeholder="Subtask title" />
-                    <button type="button" (click)="addSubtask()">Add</button>
+                    <div class="subtask_input_wrapper">
+                        <input type="text" id="subtask" [(ngModel)]="subtaskTitle" name="subtaskTitle"
+                            placeholder="Subtask title" />
 
-                    <ul>
-                        @for (subtask of targetTask.subtask; track $index) {
-                        <li>
-                            {{ subtask.title }}
-                            <button type="button" (click)="removeSubtask($index)">x</button>
-                        </li>
+                        @if (subtaskTitle.length >= 1) {
+                        <div class="subtask_button_wrapper">
+                            <div class="img_container"><img src="./assets/icons/close.svg" type="button"
+                                    class="icon-btn" (click)="cancelSubtask()"></div>
+                            <div class="horizontal_devider"></div>
+                            <div class="img_container"> <img src="./assets/icons/check.svg" type="button"
+                                    class="add-btn" (click)="addSubtask()">
+                            </div>
+                        </div>
                         }
 
-                    </ul>
+                    </div>
+
+                    @for (subtask of targetTask.subtask; track $index) {
+                    <li>
+                        <div class="subtask_list_wrapper">
+                            @if (!subtaskEditMap[$index]) {
+                            <span class="subtask_text">{{ subtask.title }}</span>
+                            } @else {
+                            <input type="text" [(ngModel)]="subtask.title" name="subtask_{{ $index }}" />
+                            }
+
+                            <div class="subtask_button_wrapper">
+                                @if (!subtaskEditMap[$index]) {
+                                <div class="img_container">
+                                    <img src="./assets/icons/edit.svg" type="button"
+                                        (click)="toggleEditSubtask($index)" />
+                                </div>
+                                } @else {
+                                <div class="img_container">
+                                    <img src="./assets/icons/check.svg" type="button"
+                                        (click)="confirmEditSubtask($index)" />
+                                </div>
+                                }
+
+                                <div class="horizontal_devider"></div>
+
+                                @if (!subtaskEditMap[$index]) {
+                                <div class="img_container">
+                                    <img src="./assets/icons/delete.svg" type="button"
+                                        (click)="removeSubtask($index)" />
+                                </div>
+                                } @else {
+                                <div class="img_container">
+                                    <img src="./assets/icons/close.svg" type="button"
+                                        (click)="cancelEditSubtask($index)" />
+                                </div>
+                                }
+                            </div>
+                        </div>
+                    </li>
+                    }
+
+
+
                 </div>
             </div>
         </main>
@@ -154,17 +205,16 @@
                 <p><span>*</span>This field is required</p>
             </div>
             <div>
+                @if (!editMode) {
                 <button class="clear" (click)="onExit()">Clear<img
                         src="/assets/icons/button_x_check/button_x.png"></button>
                 <button class="add_task" type="submit">Add Task<img
                         src="/assets/icons/button_x_check/button_check.png"></button>
+                } @else {
+                <button class="add_task" type="submit">Edit Task<img
+                        src="/assets/icons/button_x_check/button_check.png"></button>
+                }
             </div>
-            <!-- <div>
-                <button class="add_task" type="submit">
-                    {{ editMode ? 'Save Changes' : 'Add Task' }}
-                    <img src="/assets/icons/button_x_check/button_check.png">
-                </button>
-            </div> -->
         </footer>
     </form>
 </section>

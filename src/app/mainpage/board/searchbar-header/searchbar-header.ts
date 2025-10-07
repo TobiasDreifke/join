@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, EventEmitter, inject, Output, output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { TaskService } from '../../../services/task-service';
 import { TaskInterface } from '../../../interfaces/tasks.interface';
@@ -14,25 +14,21 @@ import { ContactService } from '../../../services/contact-service';
   styleUrls: ['./searchbar-header.scss']
 })
 export class SearchbarHeader {
-  
-   taskService = inject(TaskService);
-   contactService = inject(ContactService);
+  taskService = inject(TaskService);
+  searchTerm: string = '';
+ @Output() searchResult = new EventEmitter<TaskInterface[]>();
+
+  filteredTaskList(): TaskInterface[] {
+  const term = this.searchTerm.trim().toLowerCase();
+  if (!term) return this.taskService.tasksList;
+
+  return this.taskService.tasksList.filter(task =>
+    task.title?.toLowerCase().includes(term) ||
+    task.description?.toLowerCase().includes(term)
+  );
+}
 
 
-  searchTerm :string ='';
-
-
-    get filteredTaskList(): TaskInterface[] {
-       if (!this.searchTerm.trim()) {
-      return this.taskService.tasksList;
-    }
-    const term = this.searchTerm.toLowerCase();
-    return this.taskService.tasksList.filter(task =>
-      task.title.toLowerCase().includes(term) ||
-      task.description.toLowerCase().includes(term)
-  
-    );
-  }
 
   
   onSearch(event: Event): void {
