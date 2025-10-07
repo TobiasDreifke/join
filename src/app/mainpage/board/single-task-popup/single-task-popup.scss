@@ -29,22 +29,22 @@
         justify-content: space-between;
         align-items: center;
 
-       .category {
-    padding: 8px 16px;
-    
-    border-radius: 8px;
-    color: white;
-    margin-bottom: 12px;
-    width: fit-content;
+        .category {
+            padding: 8px 16px;
 
-    &.user-story {
-        background-color: #0038ff;
-    }
-    
-    &.technical-task {
-        background-color: #1fd7c1;
-    }
-}
+            border-radius: 8px;
+            color: white;
+            margin-bottom: 12px;
+            width: fit-content;
+
+            &.user-story {
+                background-color: #0038ff;
+            }
+
+            &.technical-task {
+                background-color: #1fd7c1;
+            }
+        }
 
 
         button {
@@ -103,24 +103,24 @@
         }
     }
 
-.title_card {
-    width: 445px;
-    height: 219px;
+    .title_card {
+        width: 445px;
+        height: 219px;
 
-    h1 {
-        font-family: 'Inter', sans-serif;
-        font-weight: 700;
-        font-size: clamp(1.5rem, 5vw, 3.8125rem);
-        line-height: 1.2;
-        letter-spacing: 0;
-        margin: 0;
-    }
+        h1 {
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            font-size: clamp(1.5rem, 5vw, 3.8125rem);
+            line-height: 1.2;
+            letter-spacing: 0;
+            margin: 0;
+        }
 
-    @media (max-width: 700px) {
-        width: 200px;
-        height: 100px;
+        @media (max-width: 700px) {
+            width: 200px;
+            height: 100px;
+        }
     }
-}
 
 
     .due-date {
@@ -174,6 +174,16 @@
             color: #000000;
 
         }
+
+        .priority_icon {
+            width: 25px;
+            height: 25px;
+            transform: rotate(180deg);
+            margin-left: 8px;
+            vertical-align: middle;
+        }
+
+
 
 
     }
@@ -298,7 +308,7 @@
                 align-items: center;
                 gap: 8px;
                 background-color: #ffffff;
-                border-radius:10rem;
+                border-radius: 10rem;
                 padding: 8px 12px;
                 cursor: pointer;
                 transition: background-color 0.3s;
