@@ -24,18 +24,5 @@
             </button>
         </div>
 
-        @if (filteredTaskList().length > 0) {
-        <ul class="search-results">
-            @for (task of filteredTaskList(); track task.id) {
-            <li>
-                <strong>{{ task.title }}</strong><br />
-                <small>{{ task.description }}</small>
-            </li>
-            }
-        </ul>
-        } @else if (searchTerm.trim()) {
-        <p>No matching tasks found.</p>
-        }
-
     </div>
 </section>
