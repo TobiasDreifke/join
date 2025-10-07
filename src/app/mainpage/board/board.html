@@ -2,7 +2,7 @@
 </app-searchbar-header>
 
 
-<app-overview-tasks (selectedTaskId)="setSelectedTaskId($event)"></app-overview-tasks>
+<app-overview-tasks (selectedTaskId)="setSelectedTaskId($event)" [searchTermForTask]="searchTerm"></app-overview-tasks>
 
 @if (selectedTaskId) {
 <app-single-task-popup (edit)="onEditTask($event)" [taskId]="selectedTaskId" (delete)="deleteTask($event)"
