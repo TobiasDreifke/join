@@ -11,7 +11,8 @@
                 </a>
                 <div class="divider"></div>
                 <input type="text" aria-label="Search Tasks" placeholder="Find Task" [(ngModel)]="searchTerm"
-                    class="search-input" />
+                    (input)="searchInput()" class="search-input" />
+
             </div>
 
             <button class="add-button">

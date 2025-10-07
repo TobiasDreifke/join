@@ -16,28 +16,30 @@ import { ContactService } from '../../../services/contact-service';
 export class SearchbarHeader {
   taskService = inject(TaskService);
   searchTerm: string = '';
- @Output() searchResult = new EventEmitter<TaskInterface[]>();
+
+  @Output() searchResult = new EventEmitter<TaskInterface[]>();
 
   filteredTaskList(): TaskInterface[] {
-  const term = this.searchTerm.trim().toLowerCase();
-  if (!term) return this.taskService.tasksList;
+    const term = this.searchTerm.trim().toLowerCase();
+    if (!term) return this.taskService.tasksList;
 
-  return this.taskService.tasksList.filter(task =>
-    task.title?.toLowerCase().includes(term) ||
-    task.description?.toLowerCase().includes(term)
-  );
-}
+    return this.taskService.tasksList.filter(task =>
+      task.title?.toLowerCase().includes(term) ||
+      task.description?.toLowerCase().includes(term)
+    );
+  }
 
 
+  searchInput(): void {
+    const filtered = this.filteredTaskList();
+    this.searchResult.emit(filtered); 
+  }
 
-  
   onSearch(event: Event): void {
-  event.preventDefault();
-  console.log(this.searchTerm);
-}
-
-
-
+    event.preventDefault();
+    console.log(this.searchTerm);
+    this.searchInput(); 
+  }
 }
 
 
