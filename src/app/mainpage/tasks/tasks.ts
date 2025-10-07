@@ -153,19 +153,34 @@ export class Tasks {
   // ---------------- SUBTASKS LIST EDIT ----------------
 
   subtaskEditMap: Record<number, boolean> = {};
+  subtaskOriginalMap: Record<number, string> = {};
+
 
   toggleEditSubtask(index: number) {
+    const target = this.editMode ? this.edit! : this.newTask;
+    const subtask = target.subtask[index];
+
+    if (!this.subtaskEditMap[index]) {
+      this.subtaskOriginalMap[index] = subtask.title;
+    }
+
     this.subtaskEditMap[index] = !this.subtaskEditMap[index];
   }
 
   confirmEditSubtask(index: number) {
     this.subtaskEditMap[index] = false;
+    delete this.subtaskOriginalMap[index];
   }
 
   cancelEditSubtask(index: number) {
-    this.subtaskEditMap[index] = false;
-  }
+    const target = this.editMode ? this.edit! : this.newTask;
+    const subtask = target.subtask[index];
 
+    subtask.title = this.subtaskOriginalMap[index] ?? subtask.title;
+
+    this.subtaskEditMap[index] = false;
+    delete this.subtaskOriginalMap[index];
+  }
   // ---------------- SUBTASKS ----------------
 
   addSubtask() {
