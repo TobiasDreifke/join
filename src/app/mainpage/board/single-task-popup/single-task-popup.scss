@@ -256,95 +256,72 @@
 
     }
 
-    .Subtasks_card {
-        cursor: pointer;
+  .Subtasks_card {
+  cursor: pointer;
 
-        .label {
-            font-family: 'Inter', sans-serif;
-            font-weight: 400;
-            font-size: 1.25rem;
-            color: #42526E;
-            margin-bottom: 0.5rem;
-        }
+  .label {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 1.25rem;
+    color: #42526E;
+    margin-bottom: 0.5rem;
+  }
 
+  .subtask-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    overflow-y: auto;
+    max-height: 75px;
+    scrollbar-width: thin;
+    scrollbar-color: #ccc transparent;
 
-
-        .subtask-item {
-            display: flex;
-            flex-direction: column;
-            overflow-y: auto;
-            max-height: 75px;
-            scrollbar-width: thin;
-            scrollbar-color: #ccc transparent;
-
-            &::-webkit-scrollbar {
-                width: 6px;
-            }
-
-            &::-webkit-scrollbar-thumb {
-                background-color: #ccc;
-                border-radius: 4px;
-            }
-
-            label {
-                display: flex;
-                align-items: center;
-                gap: 10px;
-                cursor: pointer;
-
-                input[type="checkbox"] {
-                    width: 16px;
-                    height: 16px;
-                    cursor: pointer;
-                    accent-color: #2A3647;
-                }
-
-
-            }
-
-
-            .avatar-wrapper {
-                display: flex;
-                align-items: center;
-                gap: 8px;
-                background-color: #ffffff;
-                border-radius: 10rem;
-                padding: 8px 12px;
-                cursor: pointer;
-                transition: background-color 0.3s;
-                width: auto;
-
-                &:hover {
-                    background-color: #F6F7F8;
-
-                }
-
-                input[type="checkbox"]:checked+& {
-                    color: #2A3647;
-                }
-
-
-
-                .subtask-label {
-                    font-family: 'Inter', sans-serif;
-                    font-size: 1rem;
-                    color: #000000;
-                    font-weight: 400;
-                    transition: color 0.3s ease;
-
-
-                }
-
-
-
-
-            }
-        }
-
-
+    &::-webkit-scrollbar {
+      width: 6px;
     }
 
+    &::-webkit-scrollbar-thumb {
+      background-color: #ccc;
+      border-radius: 4px;
+    }
+  }
 
+  .subtask-item {
+    display: flex;
+
+    .avatar-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background-color: #ffffff;
+      border-radius: 10rem;
+      padding: 8px 12px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      width: fit-content;
+
+      &:hover {
+        background-color: #F6F7F8;
+      }
+
+      .checkbox-icon {
+        width: 17px;
+        height: 17px;
+        transition: transform 0.2s ease;
+      }
+
+      .subtask-label {
+        font-family: 'Inter', sans-serif;
+        font-size: 1rem;
+        color: #000000;
+        font-weight: 400;
+        transition: color 0.3s ease;
+
+       
+      }
+    }
+  }
+}
 
 
     .btn_group {

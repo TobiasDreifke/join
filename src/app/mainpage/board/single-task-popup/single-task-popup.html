@@ -25,20 +25,20 @@
       <span class="date">{{ formatDueDate(selectedTask.due_date) }}</span>
     </div>
 
-   <div class="priority_card">
-  <p class="priority">Priority:</p>
-  <p class="priority_data">
-    {{ selectedTask.priority }}
+    <div class="priority_card">
+      <p class="priority">Priority:</p>
+      <p class="priority_data">
+        {{ selectedTask.priority }}
 
-    @if (selectedTask.priority === 'Low') {
-      <img src="./assets/icons/low.svg" alt="Low priority" class="priority_icon" />
-    } @else if (selectedTask.priority === 'Medium') {
-      <img src="./assets/icons/medium.svg" alt="Medium priority" class="priority_icon" />
-    } @else if (selectedTask.priority === 'Urgent') {
-      <img src="./assets/icons/urgent.svg" alt="Urgent priority" class="priority_icon" />
-    }
-  </p>
-</div>
+        @if (selectedTask.priority === 'Low') {
+        <img src="./assets/icons/low.svg" alt="Low priority" class="priority_icon" />
+        } @else if (selectedTask.priority === 'Medium') {
+        <img src="./assets/icons/medium.svg" alt="Medium priority" class="priority_icon" />
+        } @else if (selectedTask.priority === 'Urgent') {
+        <img src="./assets/icons/urgent.svg" alt="Urgent priority" class="priority_icon" />
+        }
+      </p>
+    </div>
 
 
     <div class="assigned_to">
@@ -57,18 +57,22 @@
 
     <div class="Subtasks_card">
       <p class="label">Subtasks:</p>
-      <div class="subtask-item">
+      <div class="subtask-list">
         @for (subtask of selectedTask.subtask; track $index) {
-        <label>
+        <div class="subtask-item" (click)="subtask.completed = !subtask.completed">
           <div class="avatar-wrapper">
-            <input type="checkbox" />
-            <span class="subtask-label">{{ subtask.title }}</span>
-
+            <img class="checkbox-icon" [src]="subtask.completed
+              ? './assets/icons/checkbox/checkbox_checked.png'
+              : './assets/icons/checkbox/checkbox_empty.png'" alt="checkbox" />
+            <span class="subtask-label" [class.completed]="subtask.completed">
+              {{ subtask.title }}
+            </span>
           </div>
-        </label>
+        </div>
         }
       </div>
     </div>
+
 
 
     <div class="btn_group">

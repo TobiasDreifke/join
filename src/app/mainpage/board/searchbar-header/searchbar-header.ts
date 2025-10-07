@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, EventEmitter, inject, Output, output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { TaskService } from '../../../services/task-service';
 import { TaskInterface } from '../../../interfaces/tasks.interface';
@@ -16,6 +16,7 @@ import { ContactService } from '../../../services/contact-service';
 export class SearchbarHeader {
   taskService = inject(TaskService);
   searchTerm: string = '';
+ @Output() searchResult = new EventEmitter<TaskInterface[]>();
 
   filteredTaskList(): TaskInterface[] {
   const term = this.searchTerm.trim().toLowerCase();
