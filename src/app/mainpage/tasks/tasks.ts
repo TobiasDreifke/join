@@ -139,9 +139,9 @@ export class Tasks {
       this.taskService.addTask(this.newTask);
       this.clearInputFields();
     }
-
     this.close.emit();
   }
+
 
   deleteTask(taskId: string | undefined) {
     if (!taskId) return;
