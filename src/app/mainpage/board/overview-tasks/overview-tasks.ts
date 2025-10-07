@@ -1,4 +1,4 @@
-import { Component, EventEmitter, HostListener, inject, Output } from '@angular/core';
+import { Component, EventEmitter, HostListener, inject, Input, Output } from '@angular/core';
 import { SingleTaskCard } from './single-task-card/single-task-card';
 import { TaskInterface } from '../../../interfaces/tasks.interface';
 import {
@@ -21,9 +21,15 @@ export class OverviewTasks {
 
   isSmallScreen = window.innerWidth <= 1080;
   checkIndex = true;
+  searchTerm = '';
   taskService = inject(TaskService);
 
   @Output() selectedTaskId = new EventEmitter<string>();
+  @Input()
+  set searchTermForTask(term: string){
+    this.searchTerm = term.trim().toLowerCase();
+    this.setNewTasksData();
+  }
 
   tasksList: TaskInterface[] = [];
   toDoTasksFiltered: TaskInterface[] = [];
@@ -52,31 +58,27 @@ export class OverviewTasks {
     this.getTasksDone();
   }
 
+  filteredTaskListBySearchTerm(list: TaskInterface[]){
+    return list.filter(task =>
+      task.title?.toLowerCase().includes(this.searchTerm) ||
+      task.description?.toLowerCase().includes(this.searchTerm)
+    );
+  }
+
   async getTasksToDo() {
-    let tasksToDo = this.tasksList.filter(task => task.stage === 'To do');
-    tasksToDo = await this.checkIfTaskIsAddedNew(tasksToDo);
-    tasksToDo.sort((a, b) => (a.index ?? 0) - (b.index ?? 0));  
-    this.toDoTasksFiltered = tasksToDo;
+    this.toDoTasksFiltered = await this.filterTasksForView('To do');
   }
 
   async getTasksInProgress(){
-    let tasksInProgress = this.tasksList.filter(task => task.stage == 'In progress');
-    tasksInProgress = await this.checkIfTaskIsAddedNew(tasksInProgress);
-    tasksInProgress.sort((a, b) => (a.index ?? 0) - (b.index ?? 0));
-    this.inProgressTasksFiltered = tasksInProgress;
+    this.inProgressTasksFiltered = await this.filterTasksForView('In progress');
   }
 
   async getTasksAwaitFeedback(){
-    let tasksAwaitFeedback = this.tasksList.filter(task => task.stage == 'Await feedback');
-    tasksAwaitFeedback = await this.checkIfTaskIsAddedNew(tasksAwaitFeedback);
-    tasksAwaitFeedback.sort((a, b) => (a.index ?? 0) - (b.index ?? 0));
-    this.awaitFeedbackTasksFiltered = tasksAwaitFeedback;
+    this.awaitFeedbackTasksFiltered = await this.filterTasksForView('Await feedback');
   }
 
   async getTasksDone(){
-    const tasksDone = this.tasksList.filter(task => task.stage == 'Done');
-    tasksDone.sort((a, b) => (a.index ?? 0) - (b.index ?? 0));
-    this.doneTasksFiltered = tasksDone;
+    this.doneTasksFiltered = await this.filterTasksForView('Done');
   }
 
   async checkIfTaskIsAddedNew(tasksList: TaskInterface[]) {
@@ -95,6 +97,18 @@ export class OverviewTasks {
       this.checkIndex = true;
     }
     return tasksList;
+  }
+
+  async filterTasksForView(stage: string) {
+    let tasksToDo = this.tasksList.filter(task => {
+      const stageMatch = task.stage === stage;
+      const searchTermMatchTitle = this.searchTerm.length >= 3 ? task.title?.toLowerCase().includes(this.searchTerm) : true;
+      const searchTermMatchDescription = this.searchTerm.length >= 3 ? task.description?.toLowerCase().includes(this.searchTerm) : true;
+      return stageMatch && (searchTermMatchTitle || searchTermMatchDescription);
+    });
+    tasksToDo = await this.checkIfTaskIsAddedNew(tasksToDo);
+    tasksToDo.sort((a, b) => (a.index ?? 0) - (b.index ?? 0));
+    return tasksToDo;
   }
 
   getCleanJsonWithIndexZero(obj: TaskInterface){

@@ -2,14 +2,11 @@ import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { TaskService } from '../../services/task-service';
 import { ContactService } from '../../services/contact-service';
 import { CommonModule } from '@angular/common';
-
-import { FormsModule, NgForm, NgModel } from '@angular/forms';
-
+import { FormsModule} from '@angular/forms';
 import { OverviewTasks } from './overview-tasks/overview-tasks';
 import { SearchbarHeader } from './searchbar-header/searchbar-header';
 import { SingleTaskPopup } from './single-task-popup/single-task-popup';
 import { Tasks } from '../tasks/tasks';
-import { TaskInterface } from '../../interfaces/tasks.interface';
 
 @Component({
   selector: 'app-board',
@@ -27,6 +24,7 @@ export class Board {
   contactService = inject(ContactService);
 
   contactId: string | null = null;
+  searchTerm: string = '';
 
   async deleteTask(taskId: string | undefined) {
     if (!taskId) return;
@@ -43,9 +41,8 @@ export class Board {
     this.selectedTaskId = null;
   }
 
-  handleSearch(results: TaskInterface[]) {
-  console.log('Results ist  ', results);
-
+  handleSearch(result: string) {
+    this.searchTerm = result;
 }
 
 
