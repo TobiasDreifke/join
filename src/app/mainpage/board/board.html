@@ -1,4 +1,7 @@
-<app-searchbar-header></app-searchbar-header>
+<app-searchbar-header (searchResult)="handleSearch($event)" (add)="addTask()">
+</app-searchbar-header>
+
+
 <app-overview-tasks (selectedTaskId)="setSelectedTaskId($event)"></app-overview-tasks>
 
 @if (selectedTaskId) {

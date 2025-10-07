@@ -9,6 +9,7 @@ import { OverviewTasks } from './overview-tasks/overview-tasks';
 import { SearchbarHeader } from './searchbar-header/searchbar-header';
 import { SingleTaskPopup } from './single-task-popup/single-task-popup';
 import { Tasks } from '../tasks/tasks';
+import { TaskInterface } from '../../interfaces/tasks.interface';
 
 @Component({
   selector: 'app-board',
@@ -42,6 +43,12 @@ export class Board {
     this.selectedTaskId = null;
   }
 
+  handleSearch(results: TaskInterface[]) {
+  console.log('Results ist  ', results);
+
+}
+
+
   onEditTask(taskId: string) {
     this.selectedTaskId = null;
     this.editingTaskId = taskId;
@@ -56,4 +63,14 @@ export class Board {
   setSelectedTaskId(taskId: string){
     this.selectedTaskId = taskId;
   }
+
+  
+addTask() {
+  this.selectedTaskId = null;
+  this.editingTaskId = null;
+  this.editMode = true;
+}
+
+
+ 
 }

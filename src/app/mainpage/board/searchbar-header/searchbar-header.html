@@ -11,15 +11,18 @@
                 </a>
                 <div class="divider"></div>
                 <input type="text" aria-label="Search Tasks" placeholder="Find Task" [(ngModel)]="searchTerm"
-                    class="search-input" />
+                    (input)="searchInput()" class="search-input" />
+
             </div>
 
-            <button class="add-button">
+            <button class="add-button" (click)="add.emit('add')">
                 Add Task
                 <img src="./assets/icons/add (1).png" alt="Add Icon" />
             </button>
 
-            <button class="add-button-respnsive">
+
+
+            <button class="add-button-respnsive" (click)="add.emit('add')">
                 <img src="./assets/icons/add (1).png" alt="Add Icon" />
             </button>
         </div>
