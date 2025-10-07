@@ -137,19 +137,65 @@
 
                 <div class="subtasks right_box_container">
                     <label for="subtask">Subtasks</label>
-                    <input type="text" id="subtask" [(ngModel)]="subtaskTitle" name="subtaskTitle"
-                        placeholder="Subtask title" />
-                    <button type="button" (click)="addSubtask()">Add</button>
+                    <div class="subtask_input_wrapper">
+                        <input type="text" id="subtask" [(ngModel)]="subtaskTitle" name="subtaskTitle"
+                            placeholder="Subtask title" />
 
-                    <ul>
-                        @for (subtask of targetTask.subtask; track $index) {
-                        <li>
-                            {{ subtask.title }}
-                            <button type="button" (click)="removeSubtask($index)">x</button>
-                        </li>
+                        @if (subtaskTitle.length >= 1) {
+                        <div class="subtask_button_wrapper">
+                            <div class="img_container"><img src="./assets/icons/close.svg" type="button"
+                                    class="icon-btn" (click)="cancelSubtask()"></div>
+                            <div class="horizontal_devider"></div>
+                            <div class="img_container"> <img src="./assets/icons/check.svg" type="button"
+                                    class="add-btn" (click)="addSubtask()">
+                            </div>
+                        </div>
                         }
 
-                    </ul>
+                    </div>
+
+                    @for (subtask of targetTask.subtask; track $index) {
+                    <li>
+                        <div class="subtask_list_wrapper">
+                            @if (!subtaskEditMap[$index]) {
+                            <span class="subtask_text">{{ subtask.title }}</span>
+                            } @else {
+                            <input type="text" [(ngModel)]="subtask.title" name="subtask_{{ $index }}" />
+                            }
+
+                            <div class="subtask_button_wrapper">
+                                @if (!subtaskEditMap[$index]) {
+                                <div class="img_container">
+                                    <img src="./assets/icons/edit.svg" type="button"
+                                        (click)="toggleEditSubtask($index)" />
+                                </div>
+                                } @else {
+                                <div class="img_container">
+                                    <img src="./assets/icons/check.svg" type="button"
+                                        (click)="confirmEditSubtask($index)" />
+                                </div>
+                                }
+
+                                <div class="horizontal_devider"></div>
+
+                                @if (!subtaskEditMap[$index]) {
+                                <div class="img_container">
+                                    <img src="./assets/icons/delete.svg" type="button"
+                                        (click)="removeSubtask($index)" />
+                                </div>
+                                } @else {
+                                <div class="img_container">
+                                    <img src="./assets/icons/close.svg" type="button"
+                                        (click)="cancelEditSubtask($index)" />
+                                </div>
+                                }
+                            </div>
+                        </div>
+                    </li>
+                    }
+
+
+
                 </div>
             </div>
         </main>
