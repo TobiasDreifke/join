@@ -29,19 +29,23 @@
         justify-content: space-between;
         align-items: center;
 
-        .btn_user {
-            font-family: 'Inter', sans-serif;
-            font-weight: 400;
-            font-size: 23px;
-            line-height: 120%;
-            padding: 4px 24px;
-            border-radius: 8px;
-            gap: 10px;
-            background-color: #007bff;
-            border: none;
-            color: white;
-            cursor: pointer;
-        }
+       .category {
+    padding: 8px 16px;
+    
+    border-radius: 8px;
+    color: white;
+    margin-bottom: 12px;
+    width: fit-content;
+
+    &.user-story {
+        background-color: #0038ff;
+    }
+    
+    &.technical-task {
+        background-color: #1fd7c1;
+    }
+}
+
 
         button {
             border: none;

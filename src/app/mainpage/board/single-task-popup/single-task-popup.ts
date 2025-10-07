@@ -3,10 +3,12 @@ import { ContactService } from '../../../services/contact-service';
 import { TaskService } from '../../../services/task-service';
 import { TaskInterface } from '../../../interfaces/tasks.interface';
 import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-single-task-popup',
   templateUrl: './single-task-popup.html',
+   imports: [ CommonModule],
   styleUrls: ['./single-task-popup.scss']
 })
 export class SingleTaskPopup implements OnInit {
