@@ -63,4 +63,14 @@ export class Board {
   setSelectedTaskId(taskId: string){
     this.selectedTaskId = taskId;
   }
+
+  
+addTask() {
+  this.selectedTaskId = null;
+  this.editingTaskId = null;
+  this.editMode = true;
+}
+
+
+ 
 }

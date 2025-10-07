@@ -1,8 +1,7 @@
-import { Component, EventEmitter, inject, Output, output } from '@angular/core';
+import { Component, EventEmitter, inject, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { TaskService } from '../../../services/task-service';
 import { TaskInterface } from '../../../interfaces/tasks.interface';
-import { ContactService } from '../../../services/contact-service';
 
 
 
@@ -14,10 +13,14 @@ import { ContactService } from '../../../services/contact-service';
   styleUrls: ['./searchbar-header.scss']
 })
 export class SearchbarHeader {
+
+
   taskService = inject(TaskService);
   searchTerm: string = '';
 
   @Output() searchResult = new EventEmitter<TaskInterface[]>();
+  @Output() add = new EventEmitter<string>();
+
 
   filteredTaskList(): TaskInterface[] {
     const term = this.searchTerm.trim().toLowerCase();
