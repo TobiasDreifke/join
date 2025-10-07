@@ -281,10 +281,46 @@ footer {
 }
 
 
+
 // --------------------- DROPDOWN NG-SELECT ---------------------
 
 /* --- reach outside component scope to the overlay dropdown --- */
 :host ::ng-deep {
+
+    /* --- main select box --- */
+
+    .ng_select {
+        width: 100%;
+        font-size: 20px;
+        border-radius: 10px;
+        border: 2px solid $color_grey;
+        background-color: rgb(255, 255, 255);
+
+
+        .ng-select-container {
+            height: 50px;
+            padding: 0 10px;
+            align-items: center;
+        }
+
+        .ng-placeholder {
+            
+            color: $color_main;
+            font-size: 20px;
+        }
+
+        .ng-value {
+            font-size: 20px;
+        }
+
+        .ng-arrow-wrapper {
+            top: 12px;
+        }
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
 
     /* dropdown panel background and layout */
     .ng-dropdown-panel {
@@ -299,7 +335,7 @@ footer {
         border-radius: 6px;
 
         &:hover {
-            background-color: rgba(0, 0, 0, 0.05);
+            background-color: rgba(255, 0, 0, 0.05);
         }
     }
 
@@ -328,47 +364,12 @@ footer {
 
     .fullname {
         // flex: 1;
-        font-size: 18px;
+        font-size: 16px;
     }
 
     .option-row input[type="checkbox"] {
         width: 18px;
         height: 18px;
-    }
-}
-
-/* --- main select box --- */
-
-
-
-.ng_select {
-    width: 100%;
-    font-size: 20px;
-    border-radius: 10px;
-    border: 2px solid $color_grey;
-    background-color: rgb(255, 255, 255);
-
-    .ng-select-container {
-        height: 50px;
-        padding: 0 10px;
-        align-items: center;
-    }
-
-    .ng-placeholder {
-        color: $color_grey;
-        font-size: 20px;
-    }
-
-    .ng-value {
-        font-size: 20px;
-    }
-
-    .ng-arrow-wrapper {
-        top: 12px;
-    }
-
-    &:hover {
-        cursor: pointer;
     }
 }
 
