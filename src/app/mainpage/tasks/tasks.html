@@ -1,12 +1,4 @@
 <section>
-    <!-- <header>
-        <h1>{{ editMode ? 'Edit Task' : 'Add Task' }}</h1>
-        <button class="clear" (click)="onExit()">
-            {{ editMode ? 'Cancel Edit' : 'Clear' }}
-            <img src="/assets/icons/button_x_check/button_x.png">
-        </button>
-    </header> -->
-
     <header>
         <h1>Add Task</h1>
         @if (editMode) {
@@ -43,7 +35,7 @@
                 </div>
                 <div class="error"></div>
                 <div>
-                    <label for="date">Due date <span>*</span></label>
+                    <label for="date">Due date</label>
                     <input type="date" id="date" name="due_date" [(ngModel)]="targetTaskDueDateString"
                         [min]="todayString" #dateInput="ngModel" required />
                 </div>
@@ -153,49 +145,47 @@
                         }
 
                     </div>
-
-                    @for (subtask of targetTask.subtask; track $index) {
-                    <li>
-                        <div class="subtask_list_wrapper">
-                            @if (!subtaskEditMap[$index]) {
-                            <span class="subtask_text">{{ subtask.title }}</span>
-                            } @else {
-                            <input type="text" [(ngModel)]="subtask.title" name="subtask_{{ $index }}" />
-                            }
-
-                            <div class="subtask_button_wrapper">
+                    <div class="subtask_box">
+                        @for (subtask of targetTask.subtask; track $index) {
+                        <li class="subtask_list">
+                            <div class="subtask_list_wrapper">
                                 @if (!subtaskEditMap[$index]) {
-                                <div class="img_container">
-                                    <img src="./assets/icons/edit.svg" type="button"
-                                        (click)="toggleEditSubtask($index)" />
-                                </div>
+                                <span class="subtask_text">{{ subtask.title }}</span>
                                 } @else {
-                                <div class="img_container">
-                                    <img src="./assets/icons/check.svg" type="button"
-                                        (click)="confirmEditSubtask($index)" />
-                                </div>
+                                <input type="text" [(ngModel)]="subtask.title" name="subtask_{{ $index }}" />
                                 }
 
-                                <div class="horizontal_devider"></div>
+                                <div class="subtask_button_wrapper">
+                                    @if (!subtaskEditMap[$index]) {
+                                    <div class="img_container">
+                                        <img src="./assets/icons/edit.svg" type="button"
+                                            (click)="toggleEditSubtask($index)" />
+                                    </div>
+                                    } @else {
+                                    <div class="img_container">
+                                        <img src="./assets/icons/check.svg" type="button"
+                                            (click)="confirmEditSubtask($index)" />
+                                    </div>
+                                    }
 
-                                @if (!subtaskEditMap[$index]) {
-                                <div class="img_container">
-                                    <img src="./assets/icons/delete.svg" type="button"
-                                        (click)="removeSubtask($index)" />
+                                    <div class="horizontal_devider"></div>
+
+                                    @if (!subtaskEditMap[$index]) {
+                                    <div class="img_container">
+                                        <img src="./assets/icons/delete.svg" type="button"
+                                            (click)="removeSubtask($index)" />
+                                    </div>
+                                    } @else {
+                                    <div class="img_container">
+                                        <img src="./assets/icons/close.svg" type="button"
+                                            (click)="cancelEditSubtask($index)" />
+                                    </div>
+                                    }
                                 </div>
-                                } @else {
-                                <div class="img_container">
-                                    <img src="./assets/icons/close.svg" type="button"
-                                        (click)="cancelEditSubtask($index)" />
-                                </div>
-                                }
                             </div>
-                        </div>
-                    </li>
-                    }
-
-
-
+                        </li>
+                        }
+                    </div>
                 </div>
             </div>
         </main>
