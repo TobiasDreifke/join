@@ -1,9 +1,13 @@
 <section>
     <header>
-        <h1>Add Task</h1>
         @if (editMode) {
-        <button class="clear" (click)="onExit()"><img src="/assets/icons/button_x_check/button_x.png"></button>}
-        @else {
+        <span></span>
+        <button class="clear" (click)="onExit()"><img src="/assets/icons/button_x_check/button_x.png"></button>
+        } @else if (addMode) {
+        <h1>Add Task</h1>
+        <button class="clear" (click)="onExit()"><img src="/assets/icons/button_x_check/button_x.png"></button>
+        } @else {
+        <h1>Add Task</h1>
         <span></span>
         }
     </header>
@@ -11,6 +15,14 @@
     <form #taskForm="ngForm" (ngSubmit)="onSubmitOrSave(taskForm)" class="task-form">
         <main>
             <div class="left_box">
+                @if (editMode) {
+                <div>
+                    <label for="title">Title</label>
+                    <input type="text" id="title" name="title" [(ngModel)]="targetTask.title" #titleInput="ngModel"
+                        placeholder="Title" minlength="2" required />
+                </div>
+                <div class="error"></div>
+                } @else {
                 <div>
                     <label for="title">Title <span>*</span></label>
                     <input type="text" id="title" name="title" [(ngModel)]="targetTask.title" #titleInput="ngModel"
@@ -27,6 +39,7 @@
                     </span>
                     }
                 </div>
+                }
 
                 <div>
                     <label for="description">Description</label>
@@ -78,8 +91,6 @@
                 <ng-select class="ng_select" [items]="contactService.contactsList" bindLabel="name"
                     [(ngModel)]="targetTask.assigned_to" name="assigned_to" placeholder="Select contacts to assign"
                     [multiple]="true" [closeOnSelect]="false" [clearable]="false" [searchable]="true">
-
-                    <!-- Custom option template -->
                     <ng-template ng-option-tmp let-contact="item">
                         <div class="option_row_wrapper" (click)="$event.stopPropagation()">
                             <div class="avatar" [style.background-color]="contact?.initial_avatar_color">
@@ -90,10 +101,7 @@
                                 (click)="$event.stopPropagation(); toggleAssigned(contact)" />
                         </div>
                     </ng-template>
-
-                    <!-- Custom value template: override default tags -->
                     <ng-template ng-label-tmp>
-                        <!-- keep it empty so nothing shows inside input -->
                         <span></span>
                     </ng-template>
                 </ng-select>
@@ -106,7 +114,19 @@
                     }
                 </div>
 
-
+                @if (editMode) {
+                <div class="right_box_container">
+                    <label for="category">Category</label>
+                    <select id="category" name="category" [(ngModel)]="targetTask.category" #categoryInput="ngModel"
+                        required>
+                        <option value="">Select task category</option>
+                        <option value="Technical Task">Technical
+                            Task</option>
+                        <option value="Select valid">User Story</option>
+                    </select>
+                </div>
+                <div class="error"></div>
+                } @else {
                 <div class="right_box_container">
                     <label for="category">Category <span>*</span></label>
                     <select id="category" name="category" [(ngModel)]="targetTask.category" #categoryInput="ngModel"
@@ -124,8 +144,8 @@
                         {{ categoryInput.errors?.['required'] ? 'Select valid Task' : '' }}
                     </span>
                     }
-
                 </div>
+                }
 
                 <div class="subtasks right_box_container">
                     <label for="subtask">Subtasks</label>
@@ -191,20 +211,25 @@
         </main>
 
         <footer>
+            @if (editMode) {
+            <div>
+                <p></p>
+            </div>
+            <div>
+                <button class="add_task" type="submit">Edit Task<img
+                        src="/assets/icons/button_x_check/button_check.png"></button>
+            </div>
+            } @else {
             <div>
                 <p><span>*</span>This field is required</p>
             </div>
             <div>
-                @if (!editMode) {
                 <button class="clear" (click)="onExit()">Clear<img
                         src="/assets/icons/button_x_check/button_x.png"></button>
                 <button class="add_task" type="submit">Add Task<img
                         src="/assets/icons/button_x_check/button_check.png"></button>
-                } @else {
-                <button class="add_task" type="submit">Edit Task<img
-                        src="/assets/icons/button_x_check/button_check.png"></button>
-                }
             </div>
+            }
         </footer>
     </form>
 </section>

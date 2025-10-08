@@ -31,7 +31,7 @@ header {
 form {
     @include BoxSize($h: calc(100% - 150px));
 
-    main {
+    >main {
         @include BoxSize($h: 100%);
         @include PositionBox($ai: start);
         padding: 20px 0 100px 0;
@@ -579,5 +579,18 @@ footer {
             width: 2px;
             height: 100%;
         }
+    }
+}
+
+@media (max-width: 1080px) {
+    form {
+        >main {
+            @include PositionBox($fd: column);
+        }
+    }
+
+    .left_box,
+    .right_box {
+            @include BoxSize();
     }
 }

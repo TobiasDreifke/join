@@ -23,11 +23,20 @@
     justify-content: center;
     z-index: 2000;
 
-    >app-tasks {
+    >.add_mode {
         background-color: $color_background_main;
-        border-radius: 20px;
+        border-radius: 30px;
         width: 90vw;
-        height: 80vh;
+        height: 90vh;
+    }
+
+    >.edit_mode {
+        width: 100%;
+        max-width: 525px;
+        background-color: $color_background_main;
+        border-radius: 30px;
+        max-height: 930px;
+        overflow: auto;
     }
 }
 

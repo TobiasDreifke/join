@@ -17,6 +17,7 @@ import { Subscription } from 'rxjs';
 export class Tasks {
   @Input() taskId: string | null = null;
   @Input() editMode = false;
+  @Input() addMode = false;
   @Output() close = new EventEmitter<void>();
 
   // ---------------- TASK REFERENCES ----------------
@@ -37,9 +38,7 @@ export class Tasks {
   // ---------------- SERVICES ----------------
   taskService = inject(TaskService);
   contactService = inject(ContactService);
-
   todayString: string = '';
-
 
   constructor() {
     if (this.contactService.contactsList.length > 0) {
@@ -68,7 +67,6 @@ export class Tasks {
   }
 
   // --------------- SETTING THE DATE --------------
-
   setTodayString() {
     const today = new Date();
     this.todayString = today.toISOString().split('T')[0];
@@ -96,6 +94,8 @@ export class Tasks {
   onExit() {
     if (this.editMode) {
       this.closeEdit();
+    } else if (this.addMode) {
+      this.close.emit();
     } else {
       this.clearInputFields();
     }
@@ -109,8 +109,6 @@ export class Tasks {
     if (!this.edit) return false;
     return !!this.edit.title && this.edit.title.length >= 2 && !!this.edit.category && !!this.edit.due_date;
   }
-
-
 
   // ---------------- ADD TASK ----------------
   clearInputFields() {
@@ -126,7 +124,6 @@ export class Tasks {
     };
     this.subtaskTitle = '';
   }
-
 
   onSubmitOrSave(form: NgForm) {
     form.control.markAllAsTouched();
@@ -144,17 +141,14 @@ export class Tasks {
     this.close.emit();
   }
 
-
   deleteTask(taskId: string | undefined) {
     if (!taskId) return;
     this.taskService.deleteTask(taskId);
   }
 
   // ---------------- SUBTASKS LIST EDIT ----------------
-
   subtaskEditMap: Record<number, boolean> = {};
   subtaskOriginalMap: Record<number, string> = {};
-
 
   toggleEditSubtask(index: number) {
     const target = this.editMode ? this.edit! : this.newTask;
@@ -163,7 +157,6 @@ export class Tasks {
     if (!this.subtaskEditMap[index]) {
       this.subtaskOriginalMap[index] = subtask.title;
     }
-
     this.subtaskEditMap[index] = !this.subtaskEditMap[index];
   }
 
@@ -175,14 +168,12 @@ export class Tasks {
   cancelEditSubtask(index: number) {
     const target = this.editMode ? this.edit! : this.newTask;
     const subtask = target.subtask[index];
-
     subtask.title = this.subtaskOriginalMap[index] ?? subtask.title;
-
     this.subtaskEditMap[index] = false;
     delete this.subtaskOriginalMap[index];
   }
-  // ---------------- SUBTASKS ----------------
 
+  // ---------------- SUBTASKS ----------------
   addSubtask() {
     const target = this.editMode ? this.edit! : this.newTask;
     target.subtask.push({
@@ -191,6 +182,7 @@ export class Tasks {
     });
     this.subtaskTitle = '';
   }
+
   removeSubtask(index: number) {
     const target = this.editMode ? this.edit! : this.newTask;
     target.subtask.splice(index, 1);
