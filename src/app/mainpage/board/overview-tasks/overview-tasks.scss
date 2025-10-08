@@ -47,10 +47,13 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
+  padding: 4px 4px;
+}
+
+.example-list {
   overflow-y: auto;
   scrollbar-width: none; 
-  -ms-overflow-style: none; 
-  padding: 4px 4px;
+  -ms-overflow-style: none;
 }
 
 .no-task {
