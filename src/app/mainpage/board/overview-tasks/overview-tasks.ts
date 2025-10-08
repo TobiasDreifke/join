@@ -50,13 +50,11 @@ export class OverviewTasks {
       const hasChanged = !isEqual(this.tasksList, this.taskService.tasksList);
       if (hasChanged && this.checkIndex) {
         this.setNewTasksData();
-        console.log("Änderungen");
       }
     }
   }
 
   setNewTasksData(){
-    console.log("Render");
     this.tasksList = this.taskService.tasksList;
     this.getTasksToDo();
     this.getTasksInProgress();
@@ -170,7 +168,6 @@ export class OverviewTasks {
   async changeStageOfTask(event: CdkDragDrop<TaskInterface[]>){
     this.checkIndex = false;
     await this.reorderListInternal(event.container.data, event);
-    // this.setNewTasksData();
     this.checkIndex = true;
   }
 
