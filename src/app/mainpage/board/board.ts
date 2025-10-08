@@ -43,7 +43,7 @@ export class Board {
 
   handleSearch(result: string) {
     this.searchTerm = result;
-}
+  }
 
 
   onEditTask(taskId: string) {
@@ -62,12 +62,17 @@ export class Board {
   }
 
   
-addTask() {
-  this.selectedTaskId = null;
-  this.editingTaskId = null;
-  this.editMode = true;
-}
+  addTask() {
+    this.selectedTaskId = null;
+    this.editingTaskId = null;
+    this.editMode = true;
+  }
 
-
+  addTaskWithStage(stage: string){
+    this.selectedTaskId = null;
+    this.editingTaskId = null;
+    this.editMode = true;
+    console.log("Add task to stage: ",stage);
+  }
  
 }

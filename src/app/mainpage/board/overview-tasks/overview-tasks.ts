@@ -24,6 +24,7 @@ export class OverviewTasks {
   searchTerm = '';
   taskService = inject(TaskService);
 
+  @Output() addTaskToStage = new EventEmitter<string>();
   @Output() selectedTaskId = new EventEmitter<string>();
   @Input()
   set searchTermForTask(term: string){
@@ -173,5 +174,9 @@ export class OverviewTasks {
 
   getSelectedTaskId(taskId: string){
     this.selectedTaskId.emit(taskId);
+  }
+
+  addTask(stage: string){
+    this.addTaskToStage.emit(stage);
   }
 }
