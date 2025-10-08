@@ -112,11 +112,14 @@
   .task-process {
     display: flex;
     flex-direction: column;
+    height: auto;
   }
 
   .task-list {
     flex-direction: row;
     gap: 12px;
     overflow-x: auto;
+    scrollbar-width: none; 
+    -ms-overflow-style: none;
   }
 }
