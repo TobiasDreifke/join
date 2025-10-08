@@ -52,14 +52,12 @@
     }
 }
 
-.task-list {
+.example-list {
   display: flex;
   flex-direction: column;
+  flex: 1;
   gap: 16px;
   padding: 4px 4px;
-}
-
-.example-list {
   overflow-y: auto;
   scrollbar-width: none; 
   -ms-overflow-style: none;
@@ -115,11 +113,9 @@
     height: auto;
   }
 
-  .task-list {
+  .example-list {
     flex-direction: row;
     gap: 12px;
     overflow-x: auto;
-    scrollbar-width: none; 
-    -ms-overflow-style: none;
   }
 }
