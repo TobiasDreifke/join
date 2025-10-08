@@ -34,9 +34,18 @@
                 width: 25px;
                 aspect-ratio: 1/1;
                 cursor: pointer;
+                transition: all 75ms ease;
 
                 img {
                     width: 10px;
+                }
+
+                &:hover {
+                  border: 3px solid #29abe2;
+
+                  img {
+                    filter: invert(59%) sepia(62%) saturate(1324%) hue-rotate(165deg) brightness(92%) contrast(91%);
+                  }
                 }
             }
         }
@@ -47,10 +56,13 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
+  padding: 4px 4px;
+}
+
+.example-list {
   overflow-y: auto;
   scrollbar-width: none; 
-  -ms-overflow-style: none; 
-  padding: 4px 4px;
+  -ms-overflow-style: none;
 }
 
 .no-task {
@@ -100,11 +112,14 @@
   .task-process {
     display: flex;
     flex-direction: column;
+    height: auto;
   }
 
   .task-list {
     flex-direction: row;
     gap: 12px;
     overflow-x: auto;
+    scrollbar-width: none; 
+    -ms-overflow-style: none;
   }
 }

@@ -24,11 +24,16 @@ export class OverviewTasks {
   searchTerm = '';
   taskService = inject(TaskService);
 
+  @Output() addTaskToStage = new EventEmitter<string>();
   @Output() selectedTaskId = new EventEmitter<string>();
   @Input()
   set searchTermForTask(term: string){
     this.searchTerm = term.trim().toLowerCase();
     this.setNewTasksData();
+  }
+  @HostListener('window:resize')
+  onResize(){
+    this.isSmallScreen = window.innerWidth <= 1080;
   }
 
   tasksList: TaskInterface[] = [];
@@ -56,13 +61,6 @@ export class OverviewTasks {
     this.getTasksInProgress();
     this.getTasksAwaitFeedback();
     this.getTasksDone();
-  }
-
-  filteredTaskListBySearchTerm(list: TaskInterface[]){
-    return list.filter(task =>
-      task.title?.toLowerCase().includes(this.searchTerm) ||
-      task.description?.toLowerCase().includes(this.searchTerm)
-    );
   }
 
   async getTasksToDo() {
@@ -102,8 +100,8 @@ export class OverviewTasks {
   async filterTasksForView(stage: string) {
     let tasksToDo = this.tasksList.filter(task => {
       const stageMatch = task.stage === stage;
-      const searchTermMatchTitle = this.searchTerm.length >= 3 ? task.title?.toLowerCase().includes(this.searchTerm) : true;
-      const searchTermMatchDescription = this.searchTerm.length >= 3 ? task.description?.toLowerCase().includes(this.searchTerm) : true;
+      const searchTermMatchTitle = this.searchTerm.length >= 1 ? task.title?.toLowerCase().includes(this.searchTerm) : true;
+      const searchTermMatchDescription = this.searchTerm.length >= 1 ? task.description?.toLowerCase().includes(this.searchTerm) : true;
       return stageMatch && (searchTermMatchTitle || searchTermMatchDescription);
     });
     tasksToDo = await this.checkIfTaskIsAddedNew(tasksToDo);
@@ -156,7 +154,7 @@ export class OverviewTasks {
   drop(event: CdkDragDrop<TaskInterface[]>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
-      this.reorderListInternal(event.container.data);
+      this.changeStageOfTask(event);
     } else {
       transferArrayItem(
         event.previousContainer.data,
@@ -171,7 +169,6 @@ export class OverviewTasks {
   async changeStageOfTask(event: CdkDragDrop<TaskInterface[]>){
     this.checkIndex = false;
     await this.reorderListInternal(event.container.data, event);
-    this.setNewTasksData();
     this.checkIndex = true;
   }
 
@@ -179,8 +176,7 @@ export class OverviewTasks {
     this.selectedTaskId.emit(taskId);
   }
 
-  @HostListener('window:resize')
-  onResize(){
-    this.isSmallScreen = window.innerWidth <= 1080;
+  addTask(stage: string){
+    this.addTaskToStage.emit(stage);
   }
 }
