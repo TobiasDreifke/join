@@ -23,6 +23,7 @@
     max-height: 930px;
     animation: slideIn 0.5s ease forwards;
 
+  
 
     .card_container {
         display: flex;
@@ -31,7 +32,6 @@
 
         .category {
             padding: 8px 16px;
-
             border-radius: 8px;
             color: white;
             margin-bottom: 12px;
@@ -117,9 +117,10 @@
         }
 
         @media (max-width: 700px) {
-            width: 200px;
-            height: 100px;
+            width: auto;
+            height: auto;
         }
+       
     }
 
 
@@ -178,7 +179,6 @@
         .priority_icon {
             width: 25px;
             height: 25px;
-            transform: rotate(180deg);
             margin-left: 8px;
             vertical-align: middle;
         }

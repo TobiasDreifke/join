@@ -1,18 +1,13 @@
 .searchbar_header {
     width: 100%;
     height: 100px;
-    padding: 80px 32px;
+    padding: 100px 32px;
     cursor: pointer;
-
-
 
     .wrapper_header {
         display: flex;
         justify-content: space-between;
         flex-direction: row;
-
-
-
 
         .title_header {
             h1 {
@@ -21,32 +16,22 @@
                 font-style: normal;
                 font-size: 3.8rem;
                 line-height: 120%;
-                letter-spacing: 0;
                 color: #000000;
+
                 @media (max-width: 768px) {
                     font-size: 2.5rem;
                 }
             }
-
-
-
         }
 
         .searchbar {
             display: flex;
             align-items: center;
             gap: 1.5rem;
+            flex-direction: row;
 
             @media (min-width: 1081px) and (max-width: 1370px) {
-
                 margin-right: 9rem;
-
-            }
-
-            @media (max-width: 768px) {
-                display: flex;
-                flex-direction: column-reverse;
-
             }
 
             .input-wrapper {
@@ -61,7 +46,6 @@
                     border-radius: 8px;
                     padding: 10px 60px 10px 16px;
                     transition: border 0.3s ease;
-
 
                     &:focus {
                         border: 2px solid #29ABE2;
@@ -102,13 +86,10 @@
                 }
             }
 
-
-
             .add-button-respnsive {
                 display: none;
 
-                @media (max-width : 1375px) {
-                    display: block;
+                @media (max-width: 1375px) {
                     display: flex;
                     align-items: center;
                     gap: 0.5rem;
@@ -132,7 +113,6 @@
                     &:active {
                         background-color: #29ABE2;
                     }
-
                 }
             }
 
@@ -164,16 +144,83 @@
                     background-color: #29ABE2;
                 }
 
-                @media (max-width :1375px) {
+                @media (max-width: 1375px) {
                     display: none;
                 }
             }
+        }
+    }
+
+    @media (max-width: 768px) {
+        height: auto;
+        padding: 32px 16px;
+
+        .add-button-respnsive {
+            position: relative;
+            bottom: 40px;
+            left: 250px;
 
         }
 
+        @media (max-width: 570px) {
+            .add-button-respnsive {
+                left: 50%;
+                transform: translateX(-50%);
+                bottom: 40px;
+            }
+        }
 
 
+        .wrapper_header {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            width: 100%;
+
+            .title_header {
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                gap: 1rem;
+
+                h1 {
+                    font-size: 2.5rem;
+                    margin-right: 15px;
+                    display: flex;
+                    align-items: center;
+
+
+
+                }
+
+            }
+
+            .searchbar {
+                display: flex;
+                flex-direction: column-reverse;
+                align-items: center;
+                justify-content: center;
+                width: 100%;
+
+
+
+                .input-wrapper {
+                    width: 90%;
+                    max-width: 400px;
+                    display: flex;
+                    justify-content: center;
+
+                    input {
+                        width: 100%;
+                        height: 45px;
+                        border: 2px solid black;
+                        border-radius: 8px;
+                        transition: border 0.3s ease;
+
+                    }
+                }
+            }
+        }
     }
-
-
 }
