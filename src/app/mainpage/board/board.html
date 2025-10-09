@@ -12,7 +12,14 @@
 
 @if (editMode) {
 <div class="overlay">
-    <app-tasks [taskId]="editingTaskId" [editMode]="true" (close)="closeEdit()">
+    <app-tasks class="edit_mode" [taskId]="editingTaskId" [editMode]="true" (close)="closeEdit()">
+    </app-tasks>
+</div>
+}
+
+@if (addMode) {
+<div class="overlay">
+    <app-tasks class="add_mode" [addMode]="true" (close)="closeAdd()">
     </app-tasks>
 </div>
 }

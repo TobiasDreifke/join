@@ -2,7 +2,7 @@ import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { TaskService } from '../../services/task-service';
 import { ContactService } from '../../services/contact-service';
 import { CommonModule } from '@angular/common';
-import { FormsModule} from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { OverviewTasks } from './overview-tasks/overview-tasks';
 import { SearchbarHeader } from './searchbar-header/searchbar-header';
 import { SingleTaskPopup } from './single-task-popup/single-task-popup';
@@ -18,6 +18,7 @@ export class Board {
 
   selectedTaskId: string | null = null;
   editMode = false;
+  addMode = false;
   editingTaskId: string | null = null;
 
   taskService = inject(TaskService)
@@ -45,7 +46,6 @@ export class Board {
     this.searchTerm = result;
   }
 
-
   onEditTask(taskId: string) {
     this.selectedTaskId = null;
     this.editingTaskId = taskId;
@@ -57,22 +57,26 @@ export class Board {
     this.editingTaskId = null;
   }
 
-  setSelectedTaskId(taskId: string){
+  setSelectedTaskId(taskId: string) {
     this.selectedTaskId = taskId;
   }
 
-  
   addTask() {
     this.selectedTaskId = null;
     this.editingTaskId = null;
-    this.editMode = true;
+    this.addMode = true;
   }
 
-  addTaskWithStage(stage: string){
+  addTaskWithStage(stage: string) {
     this.selectedTaskId = null;
     this.editingTaskId = null;
-    this.editMode = true;
-    console.log("Add task to stage: ",stage);
+    this.addMode = true;
+    console.log("Add task to stage: ", stage);
   }
- 
+
+  closeAdd() {
+    this.addMode = false;
+    this.editingTaskId = null;
+  }
+
 }

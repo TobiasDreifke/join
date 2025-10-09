@@ -1,25 +1,9 @@
 @use 'mixins' as *;
 @use 'variables' as *;
 
-
-// .task-edit-popup {
-//   background: #fff;
-//   padding: 2rem;
-//   border-radius: 12px;
-//   width: 600px;
-//   max-width: 90%;
-//   box-shadow: 0 8px 24px rgba(0,0,0,0.3);
-// }
-// .actions {
-//   margin-top: 1rem;
-//   display: flex;
-//   justify-content: flex-end;
-//   gap: 1rem;
-// }
-
 section {
     @include BoxSize($h: calc(100% - 100px));
-    padding: 100px 50px 0 50px;
+    padding: 50px;
 }
 
 header {
@@ -28,17 +12,36 @@ header {
     h1 {
         font-size: 60px;
     }
+
+    button {
+        @include PositionBox();
+        @include BoxSize($h: 40px, $w: 40px);
+        font-size: 30px;
+        border: none;
+        background-color: $color_background_main;
+        border-radius: 150px;
+
+        &:hover {
+            background-color: $color_grey;
+            cursor: pointer;
+        }
+    }
 }
 
-main {
-    @include BoxSize($h: 70vh);
-    @include PositionBox();
-    padding: 50px 0 100px 0;
+form {
+    @include BoxSize($h: calc(100% - 150px));
+
+    >main {
+        @include BoxSize($h: 100%);
+        @include PositionBox($ai: start);
+        padding: 20px 0 100px 0;
+    }
 }
 
 .left_box {
     @include BoxSize($w: 50%);
     @include PositionBox($jc: start, $ai: start, $fd: column);
+    padding-top: 50px;
 
     >div {
         @include PositionBox($jc: start, $ai: start, $fd: column);
@@ -104,7 +107,7 @@ main {
 }
 
 .line {
-    @include BoxSize($w: 3px);
+    @include BoxSize($w: 3px, $h: 80%);
     background-color: $color_grey;
     margin: 0 50px;
 }
@@ -112,6 +115,7 @@ main {
 .right_box {
     @include BoxSize($w: 50%);
     @include PositionBox($jc: start, $ai: start, $fd: column);
+    padding-top: 50px;
 
     .right_box_container {
         @include PositionBox($jc: start, $ai: none, $fd: column);
@@ -161,8 +165,6 @@ main {
             }
         }
     }
-
-
 
     .error {
         @include BoxSize($h: 20px);
@@ -246,11 +248,22 @@ main {
             }
         }
     }
+
+    .subtasks {
+        >.subtask_box {
+            @include BoxSize($h: 150px);
+            max-height: 150px;
+            overflow: auto;
+
+            >.subtask_list {
+                margin-left: 25px;
+            }
+        }
+    }
 }
 
 footer {
     @include PositionBox($jc: space-between);
-    bottom: 0;
 
     >div {
         >p {
@@ -280,24 +293,13 @@ footer {
     }
 }
 
-
-
-
-
-// --------------------- DROPDOWN NG-SELECT ---------------------
-
-/* --- reach outside component scope to the overlay dropdown --- */
 :host ::ng-deep {
-
-    /* --- main select box --- */
-
     .ng_select {
         width: 100%;
         font-size: 20px;
         border-radius: 10px;
         border: 2px solid $color_grey;
         background-color: rgb(255, 255, 255);
-
 
         .ng-select-container {
             height: 50px;
@@ -306,7 +308,6 @@ footer {
         }
 
         .ng-placeholder {
-
             color: $color_main;
             font-size: 20px;
         }
@@ -324,14 +325,12 @@ footer {
         }
     }
 
-    /* dropdown panel background and layout */
     .ng-dropdown-panel {
         background-color: rgb(255, 255, 255);
         border-radius: 10px;
         padding: 5px;
     }
 
-    /* each option container */
     .ng-option {
         padding: 4px 8px;
         border-radius: 6px;
@@ -341,7 +340,6 @@ footer {
         }
     }
 
-    /* your custom option layout */
     .option_row_wrapper {
         display: flex;
         justify-content: flex-start;
@@ -365,7 +363,6 @@ footer {
     }
 
     .fullname {
-        // flex: 1;
         font-size: 16px;
     }
 
@@ -377,21 +374,18 @@ footer {
 
 
 .selected_badges_wrapper {
+    margin: 5px 0 10px 5px;
     display: flex;
     flex-direction: row;
     align-items: center;
-
     width: 100%;
     max-width: 100%;
     overflow: auto;
-    border: 2px solid red;
-    // height: 100%;
     max-height: 40px;
     min-height: 40px;
 
     .badge_container {
         position: relative;
-
         flex-shrink: 0;
         width: 36px;
         height: 36px;
@@ -402,8 +396,7 @@ footer {
         align-items: center;
         font-weight: bold;
         border: 2px solid white;
-        margin-left: -10px;
-
+        margin-left: -7px;
         z-index: calc(1 + var(--i, 0));
 
         &:first-child {
@@ -418,12 +411,9 @@ footer {
     }
 }
 
-// ---------------------- SUBTASK DROPDOWN -------------------------
-
 .subtask_input_wrapper {
-    @include BoxSize();
+    @include BoxSize($h: 50px);
     @include PositionBox($jc: space-between, $ai: center);
-
     background-color: $color_white;
     font-size: 20px;
     padding: 10px;
@@ -466,7 +456,6 @@ footer {
             transition: background-color 5000s ease-in-out 0s;
             font-size: 1rem;
         }
-
     }
 
     .subtask_button_wrapper {
@@ -490,7 +479,6 @@ footer {
             }
         }
 
-
         .horizontal_devider {
             background-color: $color_grey;
             margin-left: 5px;
@@ -499,26 +487,18 @@ footer {
             height: 100%;
         }
     }
-
 }
-
-
-// ---------------------- SUBTASK LIST -------------------------
-
 
 .subtask_list_wrapper {
     @include BoxSize();
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 100%;
     font-size: 20px;
-
-    background-color: $color_white;
+    background-color: $color_background_main;
     padding: 10px;
     border-radius: 10px;
     border: none;
-    border: 2px solid $color_grey;
     outline: none;
 
     &::placeholder {
@@ -527,6 +507,7 @@ footer {
 
     &:hover {
         cursor: pointer;
+        background-color: $color_grey;
     }
 
     &:focus-within {
@@ -536,7 +517,6 @@ footer {
     >.subtask_text {
         flex: 1 1 auto;
         min-width: 0;
-
         font-size: inherit;
         line-height: 1.2;
         white-space: nowrap;
@@ -547,12 +527,11 @@ footer {
     >input {
         flex: 1 1 auto;
         min-width: 0;
-
         font-size: inherit;
         border: none;
         outline: none;
         width: 100%;
-
+        background-color: $color_grey;
 
         &:focus {
             border: none;
@@ -568,7 +547,6 @@ footer {
             transition: background-color 5000s ease-in-out 0s;
             font-size: 1rem;
         }
-
     }
 
     .subtask_button_wrapper {
@@ -594,7 +572,6 @@ footer {
             }
         }
 
-
         .horizontal_devider {
             background-color: $color_grey;
             margin-left: 5px;
@@ -603,5 +580,17 @@ footer {
             height: 100%;
         }
     }
+}
 
+@media (max-width: 1080px) {
+    form {
+        >main {
+            @include PositionBox($fd: column);
+        }
+    }
+
+    .left_box,
+    .right_box {
+            @include BoxSize();
+    }
 }
