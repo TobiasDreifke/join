@@ -28,8 +28,8 @@ export class SearchbarHeader {
     this.searchInput();
   }
 
-  addResTask(stage: string) {
-    if (window.innerWidth >= 1080) {
+  addResponsiveTask(stage: string) {
+    if (window.innerWidth >= 1375) {
       this.addTaskToStage.emit(stage);
     } else {
       this.router.navigate(['/tasks']);
