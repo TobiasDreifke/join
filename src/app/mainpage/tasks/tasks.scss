@@ -3,7 +3,7 @@
 
 section {
     @include BoxSize($h: calc(100% - 100px));
-    padding: 50px;
+    padding: 2% 5%;
 }
 
 header {
@@ -194,7 +194,7 @@ form {
             border-radius: 10px;
             background-color: $color_white;
             font-size: 20px;
-            padding: 0.75rem 1.5rem;
+            padding: 10px 25px;
 
             >img {
                 padding-left: 10px;
@@ -583,14 +583,89 @@ footer {
 }
 
 @media (max-width: 1080px) {
-    form {
-        >main {
-            @include PositionBox($fd: column);
+
+    header {
+        h1 {
+            font-size: 32px;
         }
     }
 
-    .left_box,
+    form {
+        >main {
+            @include PositionBox($fd: column);
+            padding: 20px 0 20px 0;
+        }
+    }
+
     .right_box {
-            @include BoxSize();
+        @include BoxSize();
+        padding-top: 0;
+
+        .right_box_container {
+            >label {
+                font-size: 16px;
+                padding-bottom: 5px;
+            }
+
+            >input,
+            select {
+                font-size: 16px;
+            }
+        }
+    }
+
+    .left_box {
+        @include BoxSize();
+        padding-top: 0;
+
+        >div {
+            >label {
+                color: $color_secondary;
+                font-size: 16px;
+                padding-bottom: 5px;
+            }
+
+            >input,
+            textarea {
+                font-size: 16px;
+                padding: 5px;
+            }
+        }
+    }
+
+
+    footer {
+        @include PositionBox($ai: start, $fd: column);
+
+        >div {
+            >p {
+                padding-bottom: 10px;
+
+                >span {
+                    color: $color_error;
+                }
+            }
+        }
+    }
+
+}
+
+@media (max-width: 620px) {
+    .right_box {
+        @include BoxSize();
+
+        .priority-buttons {
+            >button {
+                @include PositionBox();
+                border: 1px solid $color_grey;
+                font-size: 16px;
+                padding: 5px 10px;
+
+                >img {
+                    @include BoxSize($h: 20px, $w: 20px);
+                    padding-left: 5px;
+                }
+            }
+        }
     }
 }
