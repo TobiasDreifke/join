@@ -55,23 +55,24 @@
       </div>
     </div>
 
-    <div class="Subtasks_card">
-      <p class="label">Subtasks:</p>
-      <div class="subtask-list">
-        @for (subtask of selectedTask.subtask; track $index) {
-        <div class="subtask-item" (click)="subtask.completed = !subtask.completed">
-          <div class="avatar-wrapper">
-            <img class="checkbox-icon" [src]="subtask.completed
-              ? './assets/icons/checkbox/checkbox_checked.png'
-              : './assets/icons/checkbox/checkbox_empty.png'" alt="checkbox" />
-            <span class="subtask-label" [class.completed]="subtask.completed">
-              {{ subtask.title }}
-            </span>
-          </div>
-        </div>
-        }
+ <div class="Subtasks_card">
+  <p class="label">Subtasks:</p>
+  <div class="subtask-list">
+    @for(subtask of selectedTask.subtask; track $index){
+    <div class="subtask-item" (click)="toggleSubtaskCompleted($index)">
+      <div class="avatar-wrapper">
+        <img class="checkbox-icon" [src]="subtask.completed
+          ? './assets/icons/checkbox/checkbox_checked.png'
+          : './assets/icons/checkbox/checkbox_empty.png'" alt="checkbox" />
+        <span class="subtask-label" [class.completed]="subtask.completed">
+          {{ subtask.title }}
+        </span>
       </div>
     </div>
+  }
+  </div>
+</div>
+
 
 
 
