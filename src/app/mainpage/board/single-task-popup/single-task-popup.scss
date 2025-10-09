@@ -7,24 +7,41 @@
     background: rgba(0, 0, 0, 0.5);
     z-index: 999;
     padding: 1rem;
-    overflow: auto;
 
-}
-
-
+    }
 .card_task {
     width: 100%;
     max-width: 525px;
+    max-height: 95vh;
     background-color: #ffffff;
     border-radius: 30px;
     padding: 30px;
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
-    max-height: 930px;
     animation: slideIn 0.5s ease forwards;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #ccc transparent;
 
+    @media (max-height: 800px) {
+        max-height: 90vh;
+        padding: 20px;
+    }
 
+    @media (max-height: 600px) {
+        max-height: 85vh;
+        padding: 16px;
+    }
+
+    &::-webkit-scrollbar {
+        width: 4px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: #ccc;
+        border-radius: 4px;
+    }
 
     .card_container {
         display: flex;
