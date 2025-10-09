@@ -85,7 +85,7 @@
             .add-button-respnsive {
                 display: none;
 
-                @media (max-width: 1375px) {
+                @media (max-width: 1080px) {
                     display: flex;
                     align-items: center;
                     gap: 0.5rem;
@@ -140,7 +140,7 @@
                     background-color: #29ABE2;
                 }
 
-                @media (max-width: 1375px) {
+                @media (max-width: 1080px) {
                     display: none;
                 }
             }

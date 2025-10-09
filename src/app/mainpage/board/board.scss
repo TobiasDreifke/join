@@ -31,13 +31,18 @@
     }
 
     >.edit_mode {
-        width: 100%;
-        max-width: 525px;
+        // width: 100%;
+        // max-width: 525px;
+        // background-color: $color_background_main;
+        // border-radius: 30px;
+        // max-height: 930px;
+        // overflow: auto;
         background-color: $color_background_main;
         border-radius: 30px;
-        max-height: 930px;
-        overflow: auto;
+        width: 90vw;
+        height: 90vh;
     }
+
 }
 
 form {
