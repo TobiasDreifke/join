@@ -1,110 +1,111 @@
 <div class="task-process">
-    <div 
-        cdkDropList
-        [cdkDropListOrientation]="isSmallScreen ? 'horizontal' : 'vertical'"
-        id="cdk-drop-list-0"
-        #todoList="cdkDropList"
-        [cdkDropListData]="toDoTasksFiltered"
-        [cdkDropListConnectedTo]="[inProgressList, awaitFeedbackList, doneList]"
-        (cdkDropListDropped)="drop($event)"
-        class="example-list">
+    <div>
         <div>
             <p>To do</p>
             <button (click)="addTask('To do')">
                 <img src="./assets/icons/Capa_1.svg" alt="">
             </button>
         </div>
-        @if (toDoTasksFiltered.length == 0) {
-            <div class="no-task">
-                No tasks To do
-            </div>
-        }@else {
-            <div class="task-list">
-                @for (singleTaskData of toDoTasksFiltered; track singleTaskData.id) {
+        <div 
+            cdkDropList
+            [cdkDropListOrientation]="isSmallScreen ? 'horizontal' : 'vertical'"
+            id="cdk-drop-list-0"
+            #todoList="cdkDropList"
+            [cdkDropListData]="toDoTasksFiltered"
+            [cdkDropListConnectedTo]="[inProgressList, awaitFeedbackList, doneList]"
+            (cdkDropListDropped)="drop($event)"
+            class="example-list">
+            @if (toDoTasksFiltered.length == 0) {
+                <div class="no-task">
+                    No tasks To do
+                </div>
+            }@else {
+                @for (singleTaskData of toDoTasksFiltered; track singleTaskData) {
                     <app-single-task-card (selectedTaskId)="getSelectedTaskId($event)" class="example-box" [task]="singleTaskData" cdkDrag></app-single-task-card> 
                 } 
-            </div>
-        }
+            }
+        </div>        
     </div>
 
-    <div
-        cdkDropList
-        [cdkDropListOrientation]="isSmallScreen ? 'horizontal' : 'vertical'"
-        id="cdk-drop-list-1"
-        #inProgressList="cdkDropList"
-        [cdkDropListData]="inProgressTasksFiltered"
-        [cdkDropListConnectedTo]="[todoList, awaitFeedbackList, doneList]"
-        (cdkDropListDropped)="drop($event)"
-        class="example-list">
+    <div>
         <div>
             <p>In progress</p>
             <button (click)="addTask('In progress')">
                 <img src="./assets/icons/Capa_1.svg" alt="">
             </button>
         </div>
-        @if (inProgressTasksFiltered.length == 0) {
-            <div class="no-task">
-                No tasks In progress
-            </div>
-        }@else {
-            <div class="task-list">
-                @for (singleTaskData of inProgressTasksFiltered; track singleTaskData.id) {
+        <div
+            cdkDropList
+            [cdkDropListOrientation]="isSmallScreen ? 'horizontal' : 'vertical'"
+            id="cdk-drop-list-1"
+            #inProgressList="cdkDropList"
+            [cdkDropListData]="inProgressTasksFiltered"
+            [cdkDropListConnectedTo]="[todoList, awaitFeedbackList, doneList]"
+            (cdkDropListDropped)="drop($event)"
+            class="example-list">
+            @if (inProgressTasksFiltered.length == 0) {
+                <div class="no-task">
+                    No tasks In progress
+                </div>
+            }@else {
+                @for (singleTaskData of inProgressTasksFiltered; track singleTaskData) {
                     <app-single-task-card (selectedTaskId)="getSelectedTaskId($event)" class="example-box" [task]="singleTaskData" cdkDrag></app-single-task-card> 
                 }  
-            </div>
-        }
+            }
+        </div>   
     </div>
 
-    <div
-        cdkDropList
-        [cdkDropListOrientation]="isSmallScreen ? 'horizontal' : 'vertical'"
-        id="cdk-drop-list-2"
-        #awaitFeedbackList="cdkDropList"
-        [cdkDropListData]="awaitFeedbackTasksFiltered"
-        [cdkDropListConnectedTo]="[todoList, inProgressList, doneList]"
-        (cdkDropListDropped)="drop($event)"
-        class="example-list">
+    <div>
         <div>
             <p>Await feedback</p>
             <button (click)="addTask('Await feedback')">
                 <img src="./assets/icons/Capa_1.svg" alt="">
             </button>
         </div>
-        @if (awaitFeedbackTasksFiltered.length == 0) {
-            <div class="no-task">
-                No tasks Await feedback
-            </div>
-        }@else {
-            <div class="task-list">
-                @for (singleTaskData of awaitFeedbackTasksFiltered; track singleTaskData.id) {
+        <div
+            cdkDropList
+            [cdkDropListOrientation]="isSmallScreen ? 'horizontal' : 'vertical'"
+            id="cdk-drop-list-2"
+            #awaitFeedbackList="cdkDropList"
+            [cdkDropListData]="awaitFeedbackTasksFiltered"
+            [cdkDropListConnectedTo]="[todoList, inProgressList, doneList]"
+            (cdkDropListDropped)="drop($event)"
+            class="example-list">
+            @if (awaitFeedbackTasksFiltered.length == 0) {
+                <div class="no-task">
+                    No tasks Await feedback
+                </div>
+            }@else {
+                @for (singleTaskData of awaitFeedbackTasksFiltered; track singleTaskData) {
                     <app-single-task-card (selectedTaskId)="getSelectedTaskId($event)" class="example-box" [task]="singleTaskData" cdkDrag></app-single-task-card> 
                 }
-            </div>
-        }
+            }
+        </div>  
     </div>
 
-    <div
-        cdkDropList
-        [cdkDropListOrientation]="isSmallScreen ? 'horizontal' : 'vertical'"
-        id="cdk-drop-list-3"
-        #doneList="cdkDropList"
-        [cdkDropListData]="doneTasksFiltered"
-        [cdkDropListConnectedTo]="[todoList, inProgressList, awaitFeedbackList]"
-        (cdkDropListDropped)="drop($event)"
-        class="example-list">
+    <div>
         <div>
             <p>Done</p>
         </div>
-        @if (doneTasksFiltered.length == 0) {
-            <div class="no-task">
-                No tasks Done
-            </div>
-        }@else {
-            <div class="task-list">
-                @for (singleTaskData of doneTasksFiltered; track singleTaskData.id) { 
+        <div
+            cdkDropList
+            [cdkDropListOrientation]="isSmallScreen ? 'horizontal' : 'vertical'"
+            id="cdk-drop-list-3"
+            #doneList="cdkDropList"
+            [cdkDropListData]="doneTasksFiltered"
+            [cdkDropListConnectedTo]="[todoList, inProgressList, awaitFeedbackList]"
+            (cdkDropListDropped)="drop($event)"
+            class="example-list">
+            @if (doneTasksFiltered.length == 0) {
+                <div class="no-task">
+                    No tasks Done
+                </div>
+            }@else {
+                @for (singleTaskData of doneTasksFiltered; track singleTaskData) { 
                     <app-single-task-card (selectedTaskId)="getSelectedTaskId($event)" class="example-box" [task]="singleTaskData" cdkDrag></app-single-task-card>    
                 }
-            </div>
-        }
+            }
+        </div>
     </div>
+
 </div>

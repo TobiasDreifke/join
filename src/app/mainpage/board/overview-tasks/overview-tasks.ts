@@ -10,6 +10,7 @@ import {
 } from '@angular/cdk/drag-drop';
 import { TaskService } from '../../../services/task-service';
 import { isEqual } from 'lodash';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-overview-tasks',
@@ -23,6 +24,7 @@ export class OverviewTasks {
   checkIndex = true;
   searchTerm = '';
   taskService = inject(TaskService);
+  router = inject(Router);
 
   @Output() addTaskToStage = new EventEmitter<string>();
   @Output() selectedTaskId = new EventEmitter<string>();
@@ -177,6 +179,10 @@ export class OverviewTasks {
   }
 
   addTask(stage: string){
-    this.addTaskToStage.emit(stage);
+    if(window.innerWidth >= 1080){
+      this.addTaskToStage.emit(stage);
+    }else{
+      this.router.navigate(['/tasks']);
+    }
   }
 }
