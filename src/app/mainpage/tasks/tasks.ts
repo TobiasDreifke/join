@@ -19,6 +19,9 @@ export class Tasks {
   @Input() editMode = false;
   @Input() addMode = false;
   @Output() close = new EventEmitter<void>();
+  @Output() addToStage = new EventEmitter<string>();
+  @Input() stage: "" | "To do" | "In progress" | "Await feedback" | "Done" = "To do";
+
 
   // ---------------- TASK REFERENCES ----------------
   edit: TaskInterface | undefined;
@@ -61,9 +64,17 @@ export class Tasks {
   }
 
   ngOnChanges(changes: SimpleChanges) {
+    if (changes['stage'] && this.addMode) {
+      this.newTask.stage = this.stage;
+    }
+
     if (changes['taskId'] && this.taskId) {
       this.loadTask(this.taskId);
     }
+  }
+
+  ngOnInit() {
+    this.newTask.stage = this.stage;
   }
 
   // --------------- SETTING THE DATE --------------
@@ -111,6 +122,8 @@ export class Tasks {
   }
 
   // ---------------- ADD TASK ----------------
+
+
   clearInputFields() {
     this.newTask = {
       title: '',
@@ -136,8 +149,10 @@ export class Tasks {
       this.taskService.updateTask(this.edit.id!, this.edit);
     } else {
       this.taskService.addTask(this.newTask);
+      this.addToStage.emit(this.newTask.stage);
       this.clearInputFields();
     }
+
     this.close.emit();
   }
 
