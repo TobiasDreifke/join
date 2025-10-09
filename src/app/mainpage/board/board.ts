@@ -27,6 +27,9 @@ export class Board {
   contactId: string | null = null;
   searchTerm: string = '';
 
+  stageForNewTask: "" | "To do" | "In progress" | "Await feedback" | "Done" = "To do";
+
+
   async deleteTask(taskId: string | undefined) {
     if (!taskId) return;
     await this.taskService.deleteTask(taskId);
@@ -62,16 +65,17 @@ export class Board {
   }
 
   addTask() {
+    this.stageForNewTask = "To do";
     this.selectedTaskId = null;
     this.editingTaskId = null;
     this.addMode = true;
   }
 
   addTaskWithStage(stage: string) {
+  this.stageForNewTask = stage as "" | "To do" | "In progress" | "Await feedback" | "Done";
     this.selectedTaskId = null;
     this.editingTaskId = null;
     this.addMode = true;
-    console.log("Add task to stage: ", stage);
   }
 
   closeAdd() {
