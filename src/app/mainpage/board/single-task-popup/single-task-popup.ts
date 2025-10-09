@@ -4,6 +4,7 @@ import { TaskService } from '../../../services/task-service';
 import { TaskInterface } from '../../../interfaces/tasks.interface';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { updateDoc } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-single-task-popup',
@@ -77,5 +78,13 @@ export class SingleTaskPopup implements OnInit {
       this.close.emit();
     }
   }
+  async toggleSubtaskCompleted(subtaskIndex: number) {
+  if (!this.selectedTask) return;
+  this.selectedTask.subtask[subtaskIndex].completed = !this.selectedTask.subtask[subtaskIndex].completed;
+    await this.taskService.updateTask(this.taskId, this.selectedTask);
+}
+
+
+ 
 
 }
