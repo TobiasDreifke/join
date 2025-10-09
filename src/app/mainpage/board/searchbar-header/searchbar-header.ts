@@ -29,7 +29,7 @@ export class SearchbarHeader {
   }
 
   addResponsiveTask(stage: string) {
-    if (window.innerWidth >= 1375) {
+    if (window.innerWidth >= 1080) {
       this.addTaskToStage.emit(stage);
     } else {
       this.router.navigate(['/tasks']);
