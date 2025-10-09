@@ -82,8 +82,6 @@ export class SingleTaskPopup implements OnInit {
   if (!this.selectedTask) return;
   this.selectedTask.subtask[subtaskIndex].completed = !this.selectedTask.subtask[subtaskIndex].completed;
     await this.taskService.updateTask(this.taskId, this.selectedTask);
-    console.log('Subtask updated successfully');
-  
 }
 
 
