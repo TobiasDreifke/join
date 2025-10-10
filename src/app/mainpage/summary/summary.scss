@@ -1,37 +1,33 @@
-section {
-
+section.contanier {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    padding: 60px 0;
 
     .wrapper_summary {
         display: flex;
-        justify-content: flex-start;
         flex-direction: column;
-        padding: 30px;
         gap: 3rem;
         width: 100%;
+        max-width: 1200px;
         position: relative;
+        padding: 20px;
     }
 
     .title_summary {
         display: flex;
         flex-direction: row;
+        align-items: center;
         gap: 30px;
-        width: 625px;
-        height: 73px;
-        position: absolute;
-        top: 100px;
-        left: 200px;
+        position: relative;
 
         h1 {
-            
             font-family: 'Inter', sans-serif;
             font-weight: 700;
-            font-style: normal;
             font-size: 61px;
             line-height: 120%;
-            letter-spacing: 0;
-            display: flex;
-            align-items: center;
-
+            margin: 0;
         }
 
         .line-mittel {
@@ -39,25 +35,119 @@ section {
             height: 50px;
             background-color: #29ABE2;
             border: none;
-             display: flex;
-            align-items: center;
-    
         }
+
         p {
             font-family: 'Inter', sans-serif;
             font-weight: 400;
-            font-style: normal;
             font-size: 27px;
             line-height: 120%;
-            letter-spacing: 0;
-            display: flex;
-            align-items: center;
             color: #2A3647;
-
+            margin: 0;
         }
     }
 
+    .main_summary {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 2rem;
+        position: relative;
 
+        .content_box {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
 
+            .group_1 {
+                display: flex;
+                flex-direction: row;
+                gap: 30px;
 
+                a {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    gap: 20px;
+                    width: 264px;
+                    height: 168px;
+                    border-radius: 30px;
+                    padding: 38px 19px;
+                    box-sizing: border-box;
+                    background-color: #fff;
+                    text-decoration: none;
+                    transition: all 0.3s ease;
+                    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+
+                    .icon {
+                        width: 60px;
+                        height: 60px;
+                        background-color: #2A3647;
+                        border-radius: 50%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        transition: all 0.3s ease;
+
+                        img {
+                            width: 28px;
+                            height: 28px;
+                            filter: invert(0);
+                            transition: all 0.3s ease;
+                        }
+                    }
+
+                    .num_to_do {
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        justify-content: center;
+                        gap: 5px;
+                        color: #2A3647;
+                        transition: all 0.3s ease;
+
+                        h1 {
+                            font-family: 'Inter', sans-serif;
+                            font-weight: 600;
+                            font-style: normal;
+                            font-size: 64px;
+                            line-height: 120%;
+                            letter-spacing: 0;
+                            text-align: center;
+                            margin: 0;
+                        }
+
+                        p {
+                            font-family: 'Inter', sans-serif;
+                            font-weight: 400;
+                            font-style: normal;
+                            font-size: 20px;
+                            line-height: 120%;
+                            letter-spacing: 0;
+                            margin: 0;
+                         
+                        }
+                    }
+
+                    &:hover {
+                        background-color: #2A3647;
+                        transform: translateY(-4px);
+                        box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+
+                        .icon {
+                            background-color: #fff;
+
+                            img {
+                                filter: invert(1);
+                            }
+                        }
+
+                        .num_to_do {
+                            color: #fff;
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
