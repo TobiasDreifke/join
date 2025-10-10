@@ -1,5 +1,5 @@
 import { NgClass } from '@angular/common';
-import { Component, HostListener } from '@angular/core';
+import { Component, HostListener, Input } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
@@ -9,6 +9,8 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
   styleUrl: './header.scss'
 })
 export class Header {
+
+  @Input() loggedIn!: boolean;
   notVisible = true;
 
   toggleUserMenu(event: Event){

@@ -1,0 +1,128 @@
+.login-card {
+    padding: 48px 115px;
+    background-color: white;
+    border-radius: 16px;
+    box-shadow: 3px 3px 8px 3px rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: fit-content;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;   
+    
+    >p:first-of-type {
+        font-size: 61px;
+        font-weight: 700;
+        position: relative;
+
+        &::before {
+            content: "";
+            width: 140px;
+            height: 3px;
+            background-color: #29ABE2;
+            position: absolute;
+            bottom: -12px;
+            left: 20px;
+            border-radius: 8px;
+        }
+    }
+}
+
+.inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 130%;
+
+    >div {
+        position: relative;
+
+        >img {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+    }
+
+    input {
+        border: 2px solid #c4c4c4;
+        border-radius: 8px;
+        padding: 12px 21px;
+        font-family: inherit;
+        font-size: 20px;
+        width: 100%;
+
+        &::placeholder {
+            color: #c4c4c4;
+        }
+
+        &:focus {
+            border-color: #29ABE2;
+            outline: none;
+        }
+
+        &.error {
+            border-color: #E60026;
+        }
+    }
+}
+
+.buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 35px;
+
+    button {
+        padding: 15px 24px;
+        border-radius: 8px;
+        font-size: 21px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: all 125ms ease;
+        font-family: inherit;
+    }
+
+    >button:first-of-type {
+        background-color: #2A3647;
+        color: white;
+        border: none;
+
+        &:hover {
+            background-color: #29ABE2;
+            box-shadow: 0px 5px 4px 0px rgba(0, 0, 0, 0.2);
+        }
+    }
+
+    >button:nth-of-type(2) {
+        border: 2px solid #2A3647;
+        color: #2A3647;
+        background-color: transparent;
+
+        &:hover {
+            color: #29ABE2;
+            border-color: #29ABE2;
+            box-shadow: 0px 5px 4px 0px rgba(0, 0, 0, 0.2);
+        }
+    }
+    
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.error-message {
+    color: #E60026;
+    font-size: 14px;
+    opacity: 0;
+
+    &.show-error {
+        opacity: 1;
+    }
+}
