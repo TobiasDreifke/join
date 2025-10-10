@@ -3,16 +3,16 @@ section.contanier {
     display: flex;
     justify-content: center;
     position: relative;
-    padding: 60px 0;
+    padding: 25px 0;
 
     .wrapper_summary {
         display: flex;
         flex-direction: column;
-        gap: 3rem;
+        gap: 1rem;
         width: 100%;
         max-width: 1200px;
         position: relative;
-        padding: 20px;
+        padding: 15px;
     }
 
     .title_summary {
@@ -51,13 +51,13 @@ section.contanier {
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
-        gap: 2rem;
+        gap: 1rem;
         position: relative;
 
         .content_box {
             display: flex;
             flex-direction: column;
-            gap: 2rem;
+            gap: 1rem;
 
             .group_1 {
                 display: flex;
@@ -125,7 +125,7 @@ section.contanier {
                             line-height: 120%;
                             letter-spacing: 0;
                             margin: 0;
-                         
+
                         }
                     }
 
@@ -149,5 +149,195 @@ section.contanier {
                 }
             }
         }
+    }
+
+    .group_2 {
+        display: flex;
+        flex-direction: row;
+        gap: 30px;
+
+        a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 25px;
+            width: 560px;
+            height: 168px;
+            border-radius: 30px;
+            padding: 38px 19px;
+            box-sizing: border-box;
+            background-color: #fff;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+
+            &:hover {
+                background-color: #2A3647;
+                transform: translateY(-4px);
+                box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+
+                .num_status,
+                .datum_summary {
+                    color: #fff;
+                }
+
+                .hr_mittle hr {
+                    border-color: #fff;
+                }
+            }
+
+            .icon {
+                width: 60px;
+                height: 60px;
+                background-color: #FF3D00;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: all 0.3s ease;
+                box-shadow: 0 2px 8px rgba(255, 61, 0, 0.4);
+
+                img {
+                    width: 35px;
+                    height: 26px;
+                    transition: all 0.3s ease;
+                }
+            }
+
+            .num_status {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                justify-content: center;
+                gap: 5px;
+                color: #2A3647;
+                transition: all 0.3s ease;
+
+                h1 {
+                    font-family: 'Inter', sans-serif;
+                    font-weight: 600;
+                    font-style: normal;
+                    font-size: 64px;
+                    line-height: 120%;
+                    letter-spacing: 0;
+                    text-align: center;
+                    margin: 0;
+                }
+
+                p {
+                    font-family: 'Inter', sans-serif;
+                    font-weight: 400;
+                    font-style: normal;
+                    font-size: 20px;
+                    line-height: 120%;
+                    letter-spacing: 0;
+                    margin: 0;
+                }
+            }
+            .hr_mittle {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                height: 100px;
+
+                hr {
+                    border: none;
+                    border-left: 2px solid #D1D1D1;
+                    height: 100%;
+                    margin: 0;
+                    transition: all 0.3s ease;
+                }
+            }
+
+            .datum_summary {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                color: #2A3647;
+                transition: all 0.3s ease;
+                gap: 10px;
+
+                h5 {
+                    font-family: 'Inter', sans-serif;
+                    font-weight: 700;
+                    font-style: normal;
+                    font-size: 21px;
+                    line-height: 120%;
+                    letter-spacing: 0;
+                    margin: 0;
+                }
+
+                p {
+                    font-family: 'Inter', sans-serif;
+                    font-weight: 400;
+                    font-style: normal;
+                    font-size: 16px;
+                    line-height: 120%;
+                    letter-spacing: 0;
+                    margin: 0;
+                }
+            }
+        }
+    }
+
+    .group_3 {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        gap: 30px;
+        margin-top: 20px;
+
+        .t_in_board,
+        .t_i_progress,
+        .feedback {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 168px;
+            height: 168px;
+            background-color: #fff;
+            border-radius: 30px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            text-align: center;
+            cursor: pointer;
+            text-decoration: none;
+            &:hover {
+                background-color: #2A3647;
+                transform: translateY(-4px);
+                box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+
+                h1,
+                p {
+                    color: #fff;
+                }
+            }
+            h1 {
+                font-family: 'Inter', sans-serif;
+                font-weight: 700;
+                font-style: normal;
+                font-size: 64px;
+                line-height: 120%;
+                letter-spacing: 0;
+                color: #2A3647;
+                margin: 0;
+            }
+
+            p {
+                font-family: 'Inter', sans-serif;
+                font-weight: 400;
+                font-style: normal;
+                font-size: 20px;
+                line-height: 120%;
+                letter-spacing: 0;
+                color: #2A3647;
+                margin: 0;
+            }
+        }
+
+     
     }
 }
