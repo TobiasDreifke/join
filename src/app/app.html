@@ -1,11 +1,17 @@
-@if(!loggedIn){
+@if(!loggedIn && (router.url === '/privacy' || router.url === '/legal')){
+    <app-sidebar [loggedIn]="false"></app-sidebar>
+    <div class="content">
+        <app-header [loggedIn]="false"></app-header>
+        <router-outlet />
+    </div>
+}@else if (!loggedIn){
     <app-start-screen>
         <router-outlet />
     </app-start-screen>
 }@else {
-    <app-sidebar></app-sidebar>
+    <app-sidebar [loggedIn]="true"></app-sidebar>
     <div class="content">
-        <app-header></app-header>
+        <app-header [loggedIn]="true"></app-header>
         <router-outlet />
     </div>
 }

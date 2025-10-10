@@ -1,23 +1,34 @@
 <div class="sidebar">
     <img src="/assets/icons/logo/logo_white.svg" class="logo">
 
-    <nav>
-        <a routerLink="/summary" routerLinkActive="active">
-            <img src="/assets/icons/Summary.svg" alt="">
-            Summary
-        </a>
-        <a routerLink="/tasks" routerLinkActive="active">
-            <img src="/assets/icons/Add-task.svg" alt="">
-            Add Task
-        </a>
-        <a routerLink="/board" routerLinkActive="active">
-            <img src="/assets/icons/Board.svg" alt="">
-            Board
-        </a>
-        <a routerLink="/contacts" routerLinkActive="active">
-            <img src="/assets/icons/Contacts.svg" alt=""> 
-            Contacts
-        </a>
+    <nav [ngClass]="{'nav-logged-out': !loggedIn}">
+        @if(loggedIn){
+            <a routerLink="/summary" routerLinkActive="active">
+                <img src="/assets/icons/Summary.svg" alt="">
+                Summary
+            </a>
+            <a routerLink="/tasks" routerLinkActive="active">
+                <img src="/assets/icons/Add-task.svg" alt="">
+                Add Task
+            </a>
+            <a routerLink="/board" routerLinkActive="active">
+                <img src="/assets/icons/Board.svg" alt="">
+                Board
+            </a>
+            <a routerLink="/contacts" routerLinkActive="active">
+                <img src="/assets/icons/Contacts.svg" alt=""> 
+                Contacts
+            </a>
+        }@else {
+            <a routerLink="/login" routerLinkActive="active">
+                <img src="/assets/icons/login.svg" alt="">
+                Log In
+            </a>
+            <div class="links-responsive">
+                <a routerLink="/privacy" routerLinkActive="active">Privacy Policy</a>
+                <a routerLink="/legal" routerLinkActive="active">Legal Notice</a>
+            </div>
+        }
     </nav>
 
     <div class="links">

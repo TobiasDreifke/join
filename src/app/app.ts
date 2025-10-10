@@ -1,5 +1,5 @@
 import { Component, inject, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 import { Sidebar } from './shared/sidebar/sidebar';
 import { Header } from './shared/header/header';
 import { StartScreen } from './start-screen/start-screen';
@@ -13,6 +13,7 @@ import { StartScreen } from './start-screen/start-screen';
 export class App {
   protected readonly title = signal('join');
 
-  loggedIn = true;
+  router = inject(Router)
+  loggedIn = false;
 }
 
