@@ -14,6 +14,6 @@ export class App {
   protected readonly title = signal('join');
 
   router = inject(Router)
-  loggedIn = false;
+  loggedIn = true;
 }
 
