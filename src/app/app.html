@@ -1,19 +1,7 @@
 @if(!loggedIn){
-    <div class="start-screen">
-        <img src="./assets/icons/logo/logo_blue.svg" alt="">
-        @if (router.url === '/login') {
-            <div class="sign-up">
-                <p>Not a Join user?</p>
-                <a routerLink="sign-up">Sign up</a>
-            </div>
-        }
-
-        <div class="privacy-legal-links">
-            <a routerLink="privacy">Privacy Policy</a>
-            <a routerLink="legal">Legal Notice</a>
-        </div>
+    <app-start-screen>
         <router-outlet />
-    </div>
+    </app-start-screen>
 }@else {
     <app-sidebar></app-sidebar>
     <div class="content">
@@ -21,4 +9,3 @@
         <router-outlet />
     </div>
 }
-
