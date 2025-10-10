@@ -1,1 +1,54 @@
-<p>login works!</p>
+<div class="login-card">
+    <form #form="ngForm" (ngSubmit)="onSubmit(form)">
+        <p>Log in</p>
+
+        <div class="inputs">
+            <div>
+                <input
+                    type="email" 
+                    name="email" 
+                    id="email"
+                    required
+                    placeholder="Email"
+                    [(ngModel)]="user.email"
+                    #email="ngModel"
+                    pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}"
+                    [ngClass]="{'error': form.submitted && form.invalid}"
+                >
+                <img src="./assets/icons/mail.svg" alt="">
+            </div>
+
+            <div>
+                <input 
+                    [type]="passwordVisible ? 'text' : 'password'"
+                    name="password" 
+                    id="password"
+                    required
+                    placeholder="Password"
+                    [(ngModel)]="user.password"
+                    #password="ngModel"
+                    [ngClass]="{'error': form.submitted && form.invalid}"
+                > 
+                @if(user.password.length == 0){
+                    <img src="./assets/icons/lock.svg" alt=""> 
+                }@else {
+                    @if(passwordVisible){
+                        <img src="./assets/icons/visibility.svg" (click)="togglePasswordVisibility()" class="pointer" alt="">
+                    }@else {
+                        <img src="./assets/icons/visibility_off.svg" (click)="togglePasswordVisibility()" class="pointer" alt="">
+                    }
+                }
+            </div>
+
+            <p class="error-message" [ngClass]="{'show-error': form.submitted && form.invalid}">
+                Check your email and password. Please try again.
+            </p>
+        </div>
+
+        <div class="buttons">
+           <button type="submit">Log in</button>
+           <button type="button" (click)="guestLogIn()">Guest Log in</button>
+        </div>
+        
+    </form>
+</div>
