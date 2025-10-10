@@ -13,6 +13,6 @@ import { StartScreen } from './start-screen/start-screen';
 export class App {
   protected readonly title = signal('join');
 
-  loggedIn = false;
+  loggedIn = true;
 }
 
