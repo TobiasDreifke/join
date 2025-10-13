@@ -1,3 +1,4 @@
+
 <section class="contanier">
     <div class="wrapper_summary">
         <div class="title_summary">
@@ -8,27 +9,28 @@
         <div class="main_summary">
             <div class="content_box">
                 <div class="group_1">
-                    <a class="to_do" href="#">
+                    <a class="to_do" (click)="goToBoard()">
                         <div class="icon">
                             <img src="/assets/icons/edit1.png" alt="">
                         </div>
                         <div class="num_to_do">
-                            <h1>1</h1>
+                            <h1>{{ todoCount }}</h1>
                             <p>To-do</p>
                         </div>
                     </a>
-                    <a class="done" href="#">
+
+                    <a class="done" (click)="goToBoard()">
                         <div class="icon">
                             <img src="./assets/icons/vector.png" alt="">
                         </div>
                         <div class="num_to_do">
-                            <h1>1</h1>
+                            <h1>{{ doneCount }}</h1>
                             <p>Done</p>
                         </div>
                     </a>
                 </div>
                 <div class="group_2">
-                    <a href="#">
+                    <a (click)="goToBoard()">
                         <div class="icon">
                             <img src="./assets/icons/low.svg" alt="">
                         </div>
@@ -45,23 +47,24 @@
                         </div>
                     </a>
                 </div>
+
                 <div class="group_3">
-                    <a href="#">
-                    <div class="t_in_board">
-                        <h1>5</h1>
-                        <p>Tasks in <br> Board</p>
-                    </div>
-                    <div class="t_i_progress">
-                        <h1>2</h1>
-                        <p>Tasks in <br>Progress</p>
-                    </div>
-                    <div class="feedback">
-                        <h1>5</h1>
-                        <p>Awaiting Feedback</p>
-                    </div>
+                    <a (click)="goToBoard()">
+                        <div class="t_in_board">
+                            <h1>{{ totalCount }}</h1>
+                            <p>Tasks in <br> Board</p>
+                        </div>
+                        <div class="t_i_progress">
+                            <h1>{{ inProgressCount }}</h1>
+                            <p>Tasks in <br> Progress</p>
+                        </div>
+                        <div class="feedback">
+                            <h1>{{ feedbackCount }}</h1>
+                            <p>Awaiting Feedback</p>
+                        </div>
                     </a>
                 </div>
-                
+
             </div>
             <div class="content_name">
                 <p>Good Morning,</p>

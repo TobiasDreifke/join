@@ -26,6 +26,13 @@ export class OverviewTasks {
   taskService = inject(TaskService);
   router = inject(Router);
 
+   @Output() tasksCount = new EventEmitter<{ 
+  todo: number; 
+  inProgress: number; 
+  feedback: number; 
+  done: number; 
+}>();
+
   @Output() addTaskToStage = new EventEmitter<string>();
   @Output() selectedTaskId = new EventEmitter<string>();
   @Input()
@@ -57,13 +64,25 @@ export class OverviewTasks {
     }
   }
 
-  setNewTasksData(){
-    this.tasksList = this.taskService.tasksList;
-    this.getTasksToDo();
-    this.getTasksInProgress();
-    this.getTasksAwaitFeedback();
-    this.getTasksDone();
-  }
+async setNewTasksData() {
+  this.tasksList = this.taskService.tasksList;
+  await this.getTasksToDo();
+  await this.getTasksInProgress();
+  await this.getTasksAwaitFeedback();
+  await this.getTasksDone();
+
+  this.emitTasksCount();
+}
+
+emitTasksCount() {
+  this.tasksCount.emit({
+    todo: this.toDoTasksFiltered.length,
+    inProgress: this.inProgressTasksFiltered.length,
+    feedback: this.awaitFeedbackTasksFiltered.length,
+    done: this.doneTasksFiltered.length
+  });
+}
+
 
   async getTasksToDo() {
     this.toDoTasksFiltered = await this.filterTasksForView('To do');
@@ -185,4 +204,7 @@ export class OverviewTasks {
       this.router.navigate(['/tasks']);
     }
   }
+ 
+
+
 }
