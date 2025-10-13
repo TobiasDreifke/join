@@ -13,7 +13,7 @@
                     [(ngModel)]="user.email"
                     #email="ngModel"
                     pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}"
-                    [ngClass]="{'error': form.submitted && form.invalid}"
+                    [ngClass]="{'error': form.submitted && email.invalid}"
                 >
                 <img src="./assets/icons/mail.svg" alt="">
             </div>
@@ -27,7 +27,8 @@
                     placeholder="Password"
                     [(ngModel)]="user.password"
                     #password="ngModel"
-                    [ngClass]="{'error': form.submitted && form.invalid}"
+                    pattern=".{6,}"
+                    [ngClass]="{'error': form.submitted && password.invalid}"
                 > 
                 @if(user.password.length == 0){
                     <img src="./assets/icons/lock.svg" alt=""> 
@@ -40,7 +41,7 @@
                 }
             </div>
 
-            <p class="error-message" [ngClass]="{'show-error': form.submitted && form.invalid}">
+            <p class="error-message" [ngClass]="{'show-error': form.submitted}">
                 Check your email and password. Please try again.
             </p>
         </div>
