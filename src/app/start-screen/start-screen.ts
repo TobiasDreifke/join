@@ -1,11 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-start-screen',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './start-screen.html',
   styleUrl: './start-screen.scss'
 })
 export class StartScreen {
 
+  router = inject(Router);
 }

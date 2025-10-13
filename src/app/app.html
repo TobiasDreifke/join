@@ -1,6 +1,11 @@
-<app-sidebar></app-sidebar>
-<div class="content">
-    <app-header></app-header>
+@if (!loggedIn && (router.url !== '/privacy' && router.url !== '/legal')) {
+  <app-start-screen>
     <router-outlet />
-</div>
-
+  </app-start-screen>
+} @else {
+  <app-sidebar [loggedIn]="loggedIn"></app-sidebar>
+  <div class="content">
+    <app-header [loggedIn]="loggedIn"></app-header>
+    <router-outlet />
+  </div>
+}
