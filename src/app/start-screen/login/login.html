@@ -13,7 +13,7 @@
                     [(ngModel)]="user.email"
                     #email="ngModel"
                     pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}"
-                    [ngClass]="{'error': form.submitted && email.invalid}"
+                    [ngClass]="{'error': form.submitted && invalidLogginAttempt}"
                 >
                 <img src="./assets/icons/mail.svg" alt="">
             </div>
@@ -28,7 +28,7 @@
                     [(ngModel)]="user.password"
                     #password="ngModel"
                     pattern=".{6,}"
-                    [ngClass]="{'error': form.submitted && password.invalid}"
+                    [ngClass]="{'error': form.submitted && invalidLogginAttempt}"
                 > 
                 @if(user.password.length == 0){
                     <img src="./assets/icons/lock.svg" alt=""> 
