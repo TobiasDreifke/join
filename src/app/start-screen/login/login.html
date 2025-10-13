@@ -41,7 +41,7 @@
                 }
             </div>
 
-            <p class="error-message" [ngClass]="{'show-error': form.submitted}">
+            <p class="error-message" [ngClass]="{'show-error': form.submitted && invalidLogginAttempt}">
                 Check your email and password. Please try again.
             </p>
         </div>

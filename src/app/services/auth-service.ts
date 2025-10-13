@@ -16,8 +16,10 @@ export class AuthService {
       await signInWithEmailAndPassword(this.auth, email, password);
       this.logStatus.set(true);
       this.router.navigate(['/summary']);
+      return false;
     }catch(error){
       console.log("Error in logg in: ", error);
+      return true;
     }
   }
 
