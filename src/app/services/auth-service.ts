@@ -18,7 +18,6 @@ export class AuthService {
       this.router.navigate(['/summary']);
       return false;
     }catch(error){
-      console.log("Error in logg in: ", error);
       return true;
     }
   }

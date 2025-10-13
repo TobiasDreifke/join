@@ -21,10 +21,7 @@ export class Login {
 
   async onSubmit(ngForm: NgForm){
     if(ngForm.submitted && ngForm.valid){
-      console.log("Valid Form: ", this.user.email, this.user.password);
       this.invalidLogginAttempt = await this.authService.login(this.user.email, this.user.password);
-    }else{
-      console.log("Invalid Form");
     }
   }
 
