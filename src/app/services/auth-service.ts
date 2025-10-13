@@ -9,7 +9,7 @@ export class AuthService {
   
   auth = inject(Auth);
   router = inject(Router);
-  logStatus = signal(false);
+  logStatus = signal(true);
 
   async login(email: string, password: string){
     try {
