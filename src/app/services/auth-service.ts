@@ -27,4 +27,8 @@ export class AuthService {
     this.logStatus.set(false);
     this.router.navigate(['/login']);
   }
+
+  getDisplayName(){
+    return this.auth.currentUser?.displayName;
+  }
 }
