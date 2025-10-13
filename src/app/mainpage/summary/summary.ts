@@ -18,16 +18,27 @@ export class Summary implements OnInit {
   inProgressCount = 0;
   feedbackCount = 0;
   totalCount = 0;
+  urgentCount = 0;
+ todayDate!: string;
+
+
 
   ngOnInit() {
+    this.todayDate = this.getTodayDate();
     this.observeTasks();
   }
 
+  getTodayDate(): string {
+    const today = new Date();
+    const options: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'long', day: 'numeric' };
+    return today.toLocaleDateString('en-US', options);
+  }
+
   observeTasks() {
-    const unsubscribe = this.taskService.unsubscribeTasksList;
     const interval = setInterval(() => {
       if (this.taskService.tasksList.length > 0) {
         this.updateTaskCounts(this.taskService.tasksList);
+        clearInterval(interval); 
       }
     }, 500);
 
@@ -39,7 +50,8 @@ export class Summary implements OnInit {
     this.inProgressCount = allTasks.filter(t => t.stage === 'In progress').length;
     this.feedbackCount = allTasks.filter(t => t.stage === 'Await feedback').length;
     this.doneCount = allTasks.filter(t => t.stage === 'Done').length;
-    this.totalCount = allTasks.length - 10;
+    this.totalCount = allTasks.length - 10 ;
+    this.urgentCount = allTasks.filter(t => t.priority === 'Urgent').length;
   }
 
   goToBoard() {
