@@ -1,4 +1,3 @@
-
 <section class="contanier">
     <div class="wrapper_summary">
         <div class="title_summary">
@@ -35,18 +34,19 @@
                             <img src="./assets/icons/low.svg" alt="">
                         </div>
                         <div class="num_status">
-                            <h1>1</h1>
+                            <h1>{{ urgentCount }}</h1>
                             <p>Urgent</p>
                         </div>
                         <div class="hr_mittle">
                             <hr>
                         </div>
                         <div class="datum_summary">
-                            <h5>October 16,2022</h5>
+                            <h5>{{ todayDate }}</h5>
                             <p>Upcoming Deadline</p>
                         </div>
                     </a>
                 </div>
+
 
                 <div class="group_3">
                     <a (click)="goToBoard()">
