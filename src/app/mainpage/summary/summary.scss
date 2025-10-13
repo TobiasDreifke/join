@@ -234,6 +234,7 @@ section.contanier {
                     margin: 0;
                 }
             }
+
             .hr_mittle {
                 display: flex;
                 align-items: center;
@@ -305,6 +306,7 @@ section.contanier {
             text-align: center;
             cursor: pointer;
             text-decoration: none;
+
             &:hover {
                 background-color: #2A3647;
                 transform: translateY(-4px);
@@ -315,6 +317,7 @@ section.contanier {
                     color: #fff;
                 }
             }
+
             h1 {
                 font-family: 'Inter', sans-serif;
                 font-weight: 700;
@@ -338,6 +341,31 @@ section.contanier {
             }
         }
 
-     
+
+    }
+
+    .content_name {
+        position: absolute;
+        left: 700px;
+        top: 200px;
+
+        p {
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            font-style: normal;
+            font-size: 47px;
+            line-height: 120%;
+            letter-spacing: 0;
+        }
+
+        h1 {
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            font-style: normal;
+            font-size: 64px;
+            line-height: 120%;
+            letter-spacing: 0;
+            color: #29ABE2;
+        }
     }
 }
