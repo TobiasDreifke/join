@@ -15,8 +15,8 @@ export class AuthService {
   async login(email: string, password: string){
     try {
       await signInWithEmailAndPassword(this.auth, email, password);
-      this.logStatus.next(true);
       this.router.navigate(['/summary']);
+      this.logStatus.next(true);
       return false;
     }catch(error){
       return true;
