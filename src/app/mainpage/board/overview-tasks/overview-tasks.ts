@@ -57,17 +57,13 @@ export class OverviewTasks {
     }
   }
 
-async setNewTasksData() {
+setNewTasksData() {
   this.tasksList = this.taskService.tasksList;
-  await this.getTasksToDo();
-  await this.getTasksInProgress();
-  await this.getTasksAwaitFeedback();
-  await this.getTasksDone();
-
+  this.getTasksToDo();
+  this.getTasksInProgress();
+  this.getTasksAwaitFeedback();
+  this.getTasksDone();
 }
-
-
-
 
   async getTasksToDo() {
     this.toDoTasksFiltered = await this.filterTasksForView('To do');
@@ -189,7 +185,4 @@ async setNewTasksData() {
       this.router.navigate(['/tasks']);
     }
   }
- 
-
-
 }
