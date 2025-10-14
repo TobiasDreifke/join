@@ -28,4 +28,12 @@ export class Header {
   logout(){
     this.authService.logout();
   }
+
+  getUserInitials(displayName: string){
+    return displayName
+      .trim()
+      .split(/\s+/)
+      .map(word => word.charAt(0).toUpperCase())
+      .join('');
+  }
 }
