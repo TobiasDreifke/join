@@ -6,7 +6,7 @@ export const reverseAuthFunctionalGuardGuard: CanActivateFn = (route, state) => 
   const authService = inject(AuthService);
   const router = inject(Router);
 
-  if (authService.logStatus()) {
+  if (authService.logStatus.value) {
     return router.createUrlTree(['/summary']);
   } else {
     return true;
