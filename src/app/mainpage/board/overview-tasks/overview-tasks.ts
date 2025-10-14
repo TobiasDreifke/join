@@ -57,7 +57,7 @@ export class OverviewTasks {
     }
   }
 
-  setNewTasksData(){
+  setNewTasksData() {
     this.tasksList = this.taskService.tasksList;
     this.getTasksToDo();
     this.getTasksInProgress();
