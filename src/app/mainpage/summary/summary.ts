@@ -1,6 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TaskService } from '../../services/task-service';
+import { AuthService } from '../../services/auth-service';
 import { TaskInterface } from '../../interfaces/tasks.interface';
 
 @Component({
@@ -12,6 +13,9 @@ export class Summary implements OnInit {
 
   router = inject(Router);
   taskService = inject(TaskService);
+  authService = inject(AuthService);  
+
+  userName: string = 'Guest';  
 
   todoCount = 0;
   doneCount = 0;
@@ -19,13 +23,19 @@ export class Summary implements OnInit {
   feedbackCount = 0;
   totalCount = 0;
   urgentCount = 0;
- todayDate!: string;
-
-
+  todayDate!: string;
 
   ngOnInit() {
     this.todayDate = this.getTodayDate();
+    this.getUserName();      
     this.observeTasks();
+  }
+
+  getUserName() {
+    const name = this.authService.getDisplayName();
+    if (name) {
+      this.userName = name;
+    }
   }
 
   getTodayDate(): string {
@@ -38,7 +48,7 @@ export class Summary implements OnInit {
     const interval = setInterval(() => {
       if (this.taskService.tasksList.length > 0) {
         this.updateTaskCounts(this.taskService.tasksList);
-        clearInterval(interval); 
+        clearInterval(interval);
       }
     }, 500);
 
@@ -50,7 +60,7 @@ export class Summary implements OnInit {
     this.inProgressCount = allTasks.filter(t => t.stage === 'In progress').length;
     this.feedbackCount = allTasks.filter(t => t.stage === 'Await feedback').length;
     this.doneCount = allTasks.filter(t => t.stage === 'Done').length;
-    this.totalCount = allTasks.length -10 ;
+    this.totalCount = allTasks.length - 10;
     this.urgentCount = allTasks.filter(t => t.priority === 'Urgent').length;
   }
 
