@@ -1,6 +1,6 @@
 <div class="start-screen">
-    <img src="./assets/icons/logo/logo_blue.svg" alt="">
-    <div class="start-animation-bg"></div>
+    <img [style.--animTime]="animationTime + 's'" src="./assets/icons/logo/logo_blue.svg" alt="">
+    <div [style.--animTime]="animationTime + 's'" class="start-animation-bg"></div>
     @if (router.url === '/login') {
         <div class="sign-up">
             <p>Not a Join user?</p>

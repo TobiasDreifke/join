@@ -1,5 +1,5 @@
 @if (!authService.logStatus() && (router.url !== '/privacy' && router.url !== '/legal')) {
-  <app-start-screen>
+  <app-start-screen [animationTime]="animationTime">
     <router-outlet />
   </app-start-screen>
 } @else {
