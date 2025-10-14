@@ -1,6 +1,7 @@
 import { NgClass } from '@angular/common';
-import { Component, HostListener, Input } from '@angular/core';
+import { Component, HostListener, inject, Input } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
+import { AuthService } from '../../services/auth-service';
 
 @Component({
   selector: 'app-header',
@@ -12,6 +13,7 @@ export class Header {
 
   @Input() loggedIn!: boolean;
   notVisible = true;
+  authService = inject(AuthService);
 
   toggleUserMenu(event: Event){
     this.notVisible = !this.notVisible;
@@ -23,4 +25,15 @@ export class Header {
     this.notVisible = true;
   }
 
+  logout(){
+    this.authService.logout();
+  }
+
+  getUserInitials(displayName: string){
+    return displayName
+      .trim()
+      .split(/\s+/)
+      .map(word => word.charAt(0).toUpperCase())
+      .join('');
+  }
 }

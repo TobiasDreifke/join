@@ -3,6 +3,7 @@ import { Router, RouterOutlet } from '@angular/router';
 import { Sidebar } from './shared/sidebar/sidebar';
 import { Header } from './shared/header/header';
 import { StartScreen } from './start-screen/start-screen';
+import { AuthService } from './services/auth-service';
 
 @Component({
   selector: 'app-root',
@@ -14,6 +15,7 @@ export class App {
   protected readonly title = signal('join');
 
   router = inject(Router)
-  loggedIn = true;
+  authService = inject(AuthService);
+  
 }
 

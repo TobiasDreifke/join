@@ -1,11 +1,11 @@
-@if (!loggedIn && (router.url !== '/privacy' && router.url !== '/legal')) {
+@if (!authService.logStatus() && (router.url !== '/privacy' && router.url !== '/legal')) {
   <app-start-screen>
     <router-outlet />
   </app-start-screen>
 } @else {
-  <app-sidebar [loggedIn]="loggedIn"></app-sidebar>
+  <app-sidebar [loggedIn]="authService.logStatus()"></app-sidebar>
   <div class="content">
-    <app-header [loggedIn]="loggedIn"></app-header>
+    <app-header [loggedIn]="authService.logStatus()"></app-header>
     <router-outlet />
   </div>
 }

@@ -1,6 +1,7 @@
 import { NgClass } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
+import { AuthService } from '../../services/auth-service';
 
 @Component({
   selector: 'app-login',
@@ -10,17 +11,17 @@ import { FormsModule, NgForm } from '@angular/forms';
 })
 export class Login {
   passwordVisible = false;
+  invalidLogginAttempt = false;
+  authService = inject(AuthService);
 
   user = {
     email: '',
     password: ''
   }
 
-  onSubmit(ngForm: NgForm){
+  async onSubmit(ngForm: NgForm){
     if(ngForm.submitted && ngForm.valid){
-      console.log("Valid Form: ", this.user.email, this.user.password);
-    }else{
-      console.log("Invalid Form");
+      this.invalidLogginAttempt = await this.authService.login(this.user.email, this.user.password);
     }
   }
 
