@@ -24,8 +24,8 @@ export class AuthService {
 
   async logout(){
     await signOut(this.auth);
-    this.logStatus.set(false);
     this.router.navigate(['/login']);
+    this.logStatus.set(false);
   }
 
   getDisplayName(){
