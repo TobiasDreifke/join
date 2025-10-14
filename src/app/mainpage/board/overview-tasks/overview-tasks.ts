@@ -57,13 +57,13 @@ export class OverviewTasks {
     }
   }
 
-setNewTasksData() {
-  this.tasksList = this.taskService.tasksList;
-  this.getTasksToDo();
-  this.getTasksInProgress();
-  this.getTasksAwaitFeedback();
-  this.getTasksDone();
-}
+  setNewTasksData() {
+    this.tasksList = this.taskService.tasksList;
+    this.getTasksToDo();
+    this.getTasksInProgress();
+    this.getTasksAwaitFeedback();
+    this.getTasksDone();
+  }
 
   async getTasksToDo() {
     this.toDoTasksFiltered = await this.filterTasksForView('To do');
