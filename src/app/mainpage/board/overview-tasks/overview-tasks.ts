@@ -26,13 +26,6 @@ export class OverviewTasks {
   taskService = inject(TaskService);
   router = inject(Router);
 
-   @Output() tasksCount = new EventEmitter<{ 
-  todo: number; 
-  inProgress: number; 
-  feedback: number; 
-  done: number; 
-}>();
-
   @Output() addTaskToStage = new EventEmitter<string>();
   @Output() selectedTaskId = new EventEmitter<string>();
   @Input()
@@ -71,17 +64,9 @@ async setNewTasksData() {
   await this.getTasksAwaitFeedback();
   await this.getTasksDone();
 
-  this.emitTasksCount();
 }
 
-emitTasksCount() {
-  this.tasksCount.emit({
-    todo: this.toDoTasksFiltered.length,
-    inProgress: this.inProgressTasksFiltered.length,
-    feedback: this.awaitFeedbackTasksFiltered.length,
-    done: this.doneTasksFiltered.length
-  });
-}
+
 
 
   async getTasksToDo() {
