@@ -10,7 +10,7 @@ export class AuthService {
   
   auth = inject(Auth);
   router = inject(Router);
-  logStatus = new BehaviorSubject<boolean>(false);
+  logStatus = new BehaviorSubject<boolean>(true);
 
   async login(email: string, password: string){
     try {
