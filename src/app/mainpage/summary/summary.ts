@@ -8,7 +8,9 @@ import { TaskInterface } from '../../interfaces/tasks.interface';
   selector: 'app-summary',
   templateUrl: './summary.html',
   styleUrls: ['./summary.scss']
+  styleUrls: ['./summary.scss']
 })
+export class Summary implements OnInit {
 export class Summary implements OnInit {
 
   router = inject(Router);
