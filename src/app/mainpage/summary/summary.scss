@@ -17,7 +17,6 @@ section.contanier {
         flex-direction: row;
         align-items: center;
         gap: 30px;
-        
 
         h1 {
             font-family: 'Inter', sans-serif;
@@ -32,6 +31,7 @@ section.contanier {
             height: 50px;
             background-color: #29ABE2;
             border: none;
+            transition: all 0.3s ease;
         }
 
         p {
@@ -41,6 +41,28 @@ section.contanier {
             line-height: 120%;
             color: #2A3647;
             margin: 0;
+        }
+
+        @media (max-width: 1080px) {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 15px;
+
+            .line-mittel {
+                width: 80px;
+                height: 3px;
+                order: 3;
+            }
+
+            h1 {
+                font-size: 48px;
+                order: 1;
+            }
+
+            p {
+                font-size: 22px;
+                order: 2;
+            }
         }
     }
 
@@ -54,8 +76,6 @@ section.contanier {
             display: flex;
             flex-direction: column;
             gap: 1.5rem;
-            
-
             .group_1 {
                 display: flex;
                 flex-direction: row;
@@ -284,7 +304,7 @@ section.contanier {
         justify-content: center;
         align-items: center;
         gap: 30px;
-        
+
 
         a {
             display: flex;
@@ -342,6 +362,7 @@ section.contanier {
             }
 
         }
+        
     }
 
 
