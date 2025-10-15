@@ -20,13 +20,35 @@ h2 {
     padding: 25px 0;
 }
 
+h3 {
+    font-size: clamp(1rem, 0.808rem + 0.769vw, 1.5rem);
+}
+
 p {
     font-size: clamp(1rem, 0.904rem + 0.385vw, 1.25rem);
     padding: 0 0 0 10px;
 
-    >a {
+    >span {
         font-size: clamp(1rem, 0.904rem + 0.385vw, 1.25rem);
-        text-decoration: none;
         color: $color_highlight;
+    }
+}
+
+ul {
+    padding: 0 0 0 30px;
+
+    >li {
+        font-size: clamp(1rem, 0.904rem + 0.385vw, 1.25rem);
+    }
+}
+
+table {
+    >tr {
+        @include PositionBox($jc: start, $ai: start);
+
+        >td {
+            @include PositionBox($fd: column, $ai:start);
+            padding: 10px 0 5px 20px;
+        }
     }
 }
