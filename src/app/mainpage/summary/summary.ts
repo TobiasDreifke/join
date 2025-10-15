@@ -62,7 +62,7 @@ export class Summary implements OnInit {
     this.inProgressCount = allTasks.filter(t => t.stage === 'In progress').length;
     this.feedbackCount = allTasks.filter(t => t.stage === 'Await feedback').length;
     this.doneCount = allTasks.filter(t => t.stage === 'Done').length;
-    this.totalCount = allTasks.length - 10;
+    this.totalCount = allTasks.length;
     this.urgentCount = allTasks.filter(t => t.priority === 'Urgent').length;
   }
 
