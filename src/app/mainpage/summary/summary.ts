@@ -26,12 +26,29 @@ export class Summary implements OnInit {
   totalCount = 0;
   urgentCount = 0;
   todayDate!: string;
+  showWelcome = false; 
+showMainContent = true; 
 
-  ngOnInit() {
-    this.todayDate = this.getTodayDate();
-    this.getUserName();      
-    this.observeTasks();
+
+ngOnInit() {
+  this.todayDate = this.getTodayDate();
+  this.getUserName();      
+  this.observeTasks();
+  this.checkScreenWidth();
+}
+
+checkScreenWidth() {
+  if (window.innerWidth <= 1080) {
+    this.showWelcome = true;
+    this.showMainContent = false;
+
+    setTimeout(() => {
+      this.showWelcome = false;
+      this.showMainContent = true;
+    }, 2000); 
   }
+}
+
 
   getUserName() {
     const name = this.authService.getDisplayName();
