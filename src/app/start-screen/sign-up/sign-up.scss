@@ -32,6 +32,11 @@
 }
 
 .accept_terms {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+
     p {
         a {
             color: $color_highlight;
