@@ -100,9 +100,17 @@
     }
 
     .start-screen {
-
         >img:first-of-type {
-            width: 50px !important;
+            animation: logo-animation-small var(--animTime) ease var(--animTime) forwards;
+        }
+    }
+
+    @keyframes logo-animation-small {
+        to {
+            left: 20px;
+            top: 20px;
+            transform: translate(0, 0);
+            width: 50px;
         }
     }
 }
