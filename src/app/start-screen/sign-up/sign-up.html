@@ -58,13 +58,17 @@
             </p>
         </div>
 
-        <div class="accept_terms" (click)="toggleCheckBox()">
-            @if (this.checked) {
-            <img class="checkbox-icon" src="./assets/icons/checkbox/checkbox_checked.png">
-            } @else {
-            <img class="checkbox-icon" src="./assets/icons/checkbox/checkbox_empty.png">
-            }
-            <p>I accept the <a routerLink=""><span>Privacy policy</span></a></p>
+        <div class="accept_terms">
+            <div (click)="toggleCheckBox()">
+                @if (this.checked) {
+                <img class="checkbox-icon" src="./assets/icons/checkbox/checkbox_checked.png">
+                } @else {
+                <img class="checkbox-icon" src="./assets/icons/checkbox/checkbox_empty.png">
+                }
+            </div>
+
+
+            <p>I accept the <a routerLink="/privacy"><span>Privacy policy</span></a></p>
         </div>
 
         <div class="buttons">
