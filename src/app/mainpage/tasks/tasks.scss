@@ -3,10 +3,11 @@
 
 section {
     @include BoxSize($h: calc(100% - 100px));
-    padding: 2% 5%;
+    padding: 2% 5% 0 5%;
 }
 
 header {
+    @include BoxSize($h: 10%);
     @include PositionBox($jc: space-between);
 
     h1 {
@@ -29,19 +30,19 @@ header {
 }
 
 form {
-    @include BoxSize($h: calc(100% - 150px));
+    @include BoxSize($h: 70%);
 
     >main {
-        @include BoxSize($h: 100%);
-        @include PositionBox($ai: start);
-        padding: 20px 0 100px 0;
+        @include BoxSize();
+        @include PositionBox();
     }
 }
 
 .left_box {
     @include BoxSize($w: 50%);
-    @include PositionBox($jc: start, $ai: start, $fd: column);
-    padding-top: 50px;
+    @include PositionBox($ai: start, $fd: column);
+    overflow-y: auto;
+    overflow-x: hidden;
 
     >div {
         @include PositionBox($jc: start, $ai: start, $fd: column);
@@ -98,7 +99,7 @@ form {
     .error {
         @include BoxSize($h: 20px);
         min-height: 20px;
-        margin: 5px 0 20px 10px;
+        margin: 5px 0 10px 10px;
 
         >span {
             color: $color_error;
@@ -114,8 +115,9 @@ form {
 
 .right_box {
     @include BoxSize($w: 50%);
-    @include PositionBox($jc: start, $ai: start, $fd: column);
-    padding-top: 50px;
+    @include PositionBox($ai: start, $fd: column);
+    overflow-y: auto;
+    overflow-x: hidden;
 
     .right_box_container {
         @include PositionBox($jc: start, $ai: none, $fd: column);
@@ -169,7 +171,7 @@ form {
     .error {
         @include BoxSize($h: 20px);
         min-height: 20px;
-        margin: 5px 0 20px 10px;
+        margin: 5px 0 10px 10px;
 
         >span {
             color: $color_error;
@@ -251,8 +253,8 @@ form {
 
     .subtasks {
         >.subtask_box {
-            @include BoxSize($h: 150px);
-            max-height: 150px;
+            min-height: 30px;
+            max-height: 120px;
             overflow: auto;
 
             >.subtask_list {
@@ -263,7 +265,8 @@ form {
 }
 
 footer {
-    @include PositionBox($jc: space-between);
+    @include BoxSize($h: 20%);
+    @include PositionBox($jc: space-between, $ai: end);
 
     >div {
         >p {
@@ -302,7 +305,7 @@ footer {
         background-color: rgb(255, 255, 255);
 
         .ng-select-container {
-            height: 50px;
+            height: 48px;
             padding: 0 10px;
             align-items: center;
         }
@@ -351,12 +354,13 @@ footer {
         display: flex;
         justify-content: center;
         align-items: center;
-        width: 32px;
-        height: 32px;
+        width: 28px;
+        height: 28px;
         border-radius: 50%;
         background-color: beige;
 
         p {
+            font-size: 12px;
             margin: 0;
             font-weight: bold;
         }
@@ -374,21 +378,21 @@ footer {
 
 
 .selected_badges_wrapper {
-    margin: 5px 0 10px 5px;
+    margin: 5px 0 5px 5px;
     display: flex;
     flex-direction: row;
     align-items: center;
     width: 100%;
     max-width: 100%;
     overflow: auto;
-    max-height: 40px;
-    min-height: 40px;
+    max-height: 30px;
+    min-height: 30px;
 
     .badge_container {
         position: relative;
         flex-shrink: 0;
-        width: 36px;
-        height: 36px;
+        width: 30px;
+        height: 30px;
         border-radius: 50%;
         background-color: beige;
         display: flex;
@@ -405,14 +409,14 @@ footer {
 
         p {
             margin: 0;
-            font-size: 14px;
+            font-size: 12px;
             text-transform: uppercase;
         }
     }
 }
 
 .subtask_input_wrapper {
-    @include BoxSize($h: 50px);
+    @include BoxSize();
     @include PositionBox($jc: space-between, $ai: center);
     background-color: $color_white;
     font-size: 20px;
@@ -584,6 +588,10 @@ footer {
 
 @media (max-width: 1080px) {
 
+    :host {
+        overflow-y: auto;
+    }
+
     header {
         h1 {
             font-size: 32px;
@@ -594,23 +602,6 @@ footer {
         >main {
             @include PositionBox($fd: column);
             padding: 20px 0 20px 0;
-        }
-    }
-
-    .right_box {
-        @include BoxSize();
-        padding-top: 0;
-
-        .right_box_container {
-            >label {
-                font-size: 16px;
-                padding-bottom: 5px;
-            }
-
-            >input,
-            select {
-                font-size: 16px;
-            }
         }
     }
 
@@ -630,9 +621,45 @@ footer {
                 font-size: 16px;
                 padding: 5px;
             }
+
+            >textarea {
+                @include BoxSize($h: 100px);
+            }
         }
     }
 
+    .right_box {
+        @include BoxSize();
+        padding-top: 0;
+
+        label {
+            font-size: 16px;
+        }
+
+        .right_box_container {
+            >label {
+                font-size: 16px;
+                padding-bottom: 5px;
+            }
+
+            >input,
+            select {
+                font-size: 16px;
+                padding: 5px;
+            }
+        }
+
+        .subtasks {
+            >div {
+                padding: 5px;
+            }
+
+            >.subtask_box {
+                min-width: 20px;
+                max-height: 80px;
+            }
+        }
+    }
 
     footer {
         @include PositionBox($ai: start, $fd: column);
@@ -648,6 +675,36 @@ footer {
         }
     }
 
+    :host ::ng-deep {
+        .ng_select {
+            font-size: 16px;
+
+            .ng-select-container {
+                height: 33px;
+            }
+
+            .ng-placeholder {
+                font-size: 16px;
+            }
+
+            .ng-value {
+                font-size: 16px;
+            }
+        }
+
+        .avatar {
+            width: 28px;
+            height: 28px;
+        }
+    }
+
+    .subtask_input_wrapper {
+        font-size: 16px;
+    }
+
+    .subtask_list_wrapper {
+        font-size: 16px;
+    }
 }
 
 @media (max-width: 620px) {
