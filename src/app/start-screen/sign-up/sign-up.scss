@@ -1,15 +1,20 @@
 @use 'variables' as *;
 
 .login-card {
-    padding: 48px 115px;
+    padding: 50px 100px;
+    margin-left: 10px;
+    margin-right: 10px;
+
     background-color: $color_white;
     border-radius: 16px;
-    box-shadow: 3px 3px 8px 3px rgba(0, 0, 0, 0.2);
+    box-shadow: 3px 3px 8px 3px rgba(0, 0, 0, 0.05);
     display: flex;
     justify-content: center;
     align-items: center;
     width: fit-content;
     position: relative;
+
+    transition: all 250ms ease;
 }
 
 .back_arrow_wrapper {
@@ -17,6 +22,7 @@
     align-items: center;
     justify-content: center;
     position: absolute;
+
     border-radius: 100%;
     top: 75px;
     left: 0px;
@@ -25,25 +31,14 @@
     margin-left: 50px;
     transition: all 250ms ease;
 
+
     &:hover {
         background-color: $color_grey;
         cursor: pointer;
     }
 }
 
-.accept_terms {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
 
-    p {
-        a {
-            color: $color_highlight;
-            text-decoration: none;
-        }
-    }
-}
 
 
 form {
@@ -51,22 +46,27 @@ form {
     flex-direction: column;
     align-items: center;
     gap: 32px;
+    transition: all 250ms ease;
 
     >p:first-of-type {
         font-size: 61px;
         font-weight: 700;
         position: relative;
+        transition: all 250ms ease;
 
-        &::before {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+
+        &::after {
             content: "";
             width: 140px;
             height: 3px;
             background-color: $color_highlight;
-            position: absolute;
-            bottom: -12px;
-            left: 20px;
-            border-radius: 8px;
         }
+
     }
 }
 
@@ -110,6 +110,26 @@ form {
     }
 }
 
+.accept_terms {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    transition: all 250ms ease;
+
+    p {
+        font-size: 1rem;
+        transition: all 250ms ease;
+
+        a {
+            color: $color_highlight;
+            text-decoration: none;
+            transition: all 250ms ease;
+
+        }
+    }
+}
+
 .buttons {
     display: flex;
     flex-direction: row;
@@ -126,7 +146,7 @@ form {
         font-family: inherit;
 
         background-color: #2A3647;
-        color: white;
+        color: $color_white;
         border: none;
         box-sizing: border-box;
 
@@ -161,5 +181,41 @@ form {
 
     &.show-error {
         opacity: 1;
+    }
+}
+
+@media (max-width: 450px) {
+    .login-card {
+        padding: 50px 60px;
+    }
+
+
+    form {
+        >p:first-of-type {
+            font-size: 40px;
+        }
+    }
+
+    .back_arrow_wrapper {
+        top: 65px;
+        margin-left: 25px;
+    }
+
+    .accept_terms {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 0.5rem;
+
+        p {
+            font-size: 1rem;
+            text-align: center;
+
+            a {
+                color: $color_highlight;
+                text-decoration: none;
+            }
+        }
     }
 }

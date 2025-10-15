@@ -1,35 +1,48 @@
+@use 'variables' as *;
+
+
 .login-card {
-    padding: 48px 115px;
-    background-color: white;
+    padding: 50px 100px;
+    margin-left: 10px;
+    margin-right: 10px;
+
+    background-color: $color_white;
     border-radius: 16px;
-    box-shadow: 3px 3px 8px 3px rgba(0, 0, 0, 0.2);
+    box-shadow: 3px 3px 8px 3px rgba(0, 0, 0, 0.05);
     display: flex;
     justify-content: center;
     align-items: center;
     width: fit-content;
+    position: relative;
+
+    transition: all 250ms ease;
 }
 
 form {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 32px;   
-    
+    gap: 32px;
+
     >p:first-of-type {
         font-size: 61px;
         font-weight: 700;
         position: relative;
+        transition: all 250ms ease;
 
-        &::before {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+
+        &::after {
             content: "";
             width: 140px;
             height: 3px;
-            background-color: #29ABE2;
-            position: absolute;
-            bottom: -12px;
-            left: 20px;
-            border-radius: 8px;
+            background-color: $color_highlight;
         }
+
     }
 }
 
@@ -51,7 +64,7 @@ form {
     }
 
     input {
-        border: 2px solid #c4c4c4;
+        border: 2px solid $color_font_user_menu;
         border-radius: 8px;
         padding: 12px 21px;
         font-family: inherit;
@@ -59,16 +72,16 @@ form {
         width: 100%;
 
         &::placeholder {
-            color: #c4c4c4;
+            color: $color_font_user_menu;
         }
 
         &:focus {
-            border-color: #29ABE2;
+            border-color: $color_highlight;
             outline: none;
         }
 
         &.error {
-            border-color: #E60026;
+            border-color: $color_error;
         }
     }
 }
@@ -77,6 +90,7 @@ form {
     display: flex;
     flex-direction: row;
     gap: 35px;
+    transition: all 250ms ease;
 
     button {
         padding: 15px 24px;
@@ -90,11 +104,11 @@ form {
 
     >button:first-of-type {
         background-color: #2A3647;
-        color: white;
+        color: $color_white;
         border: none;
 
         &:hover {
-            background-color: #29ABE2;
+            background-color: $color_highlight;
             box-shadow: 0px 5px 4px 0px rgba(0, 0, 0, 0.2);
         }
     }
@@ -105,12 +119,12 @@ form {
         background-color: transparent;
 
         &:hover {
-            color: #29ABE2;
-            border-color: #29ABE2;
+            color: $color_highlight;
+            border-color: $color_highlight;
             box-shadow: 0px 5px 4px 0px rgba(0, 0, 0, 0.2);
         }
     }
-    
+
 }
 
 .pointer {
@@ -118,11 +132,58 @@ form {
 }
 
 .error-message {
-    color: #E60026;
+    color: $color_error;
     font-size: 14px;
     opacity: 0;
 
     &.show-error {
         opacity: 1;
+    }
+}
+
+
+@media (max-width: 450px) {
+    .login-card {
+        padding: 50px 60px;
+    }
+
+
+    form {
+        >p:first-of-type {
+            font-size: 40px;
+        }
+    }
+
+    .back_arrow_wrapper {
+        top: 65px;
+        margin-left: 25px;
+    }
+
+    .accept_terms {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 0.5rem;
+
+        p {
+            font-size: 1rem;
+            text-align: center;
+
+            a {
+                color: $color_highlight;
+                text-decoration: none;
+            }
+        }
+    }
+
+
+}
+
+@media (max-width: 545px) {
+    .buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
     }
 }
