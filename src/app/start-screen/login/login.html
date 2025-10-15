@@ -12,7 +12,7 @@
                     placeholder="Email"
                     [(ngModel)]="user.email"
                     #email="ngModel"
-                    pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}"
+                    pattern="[a-zA-Z0-9._%+\-äöüÄÖÜß]+@[a-zA-Z0-9.\-äöüÄÖÜß]+\.[a-zA-ZäöüÄÖÜ]{2,}"
                     [ngClass]="{'error': form.submitted && (invalidLogginAttempt || email.invalid || password.invalid)}"
                 >
                 <img src="./assets/icons/mail.svg" alt="">
