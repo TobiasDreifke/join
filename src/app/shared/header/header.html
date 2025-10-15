@@ -5,7 +5,7 @@
     @if(loggedIn){
         <div>
             <p class="info">?</p>
-            <p (click)="toggleUserMenu($event)" class="user">{{ getUserInitials(this.authService.getDisplayName() || 'J O') }}</p>
+            <p (click)="toggleUserMenu($event)" class="user">{{ getUserInitials(this.authService.getDisplayName() || '') }}</p>
         </div>
 
         <div class="user_menu" [ngClass]="{'not_visible': notVisible}">

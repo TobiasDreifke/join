@@ -26,7 +26,7 @@ export class Login {
   }
 
   guestLogIn(){
-    console.log("Guest Log in");
+    this.authService.login('sofia.müller@gmail.com', 'sofiamu');
   }
 
   togglePasswordVisibility(){

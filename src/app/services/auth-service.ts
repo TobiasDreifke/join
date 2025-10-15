@@ -1,6 +1,7 @@
-import { inject, Injectable, signal } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { Auth, signInWithEmailAndPassword, signOut } from '@angular/fire/auth';
 import { Router } from '@angular/router';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -9,13 +10,13 @@ export class AuthService {
   
   auth = inject(Auth);
   router = inject(Router);
-  logStatus = signal(true);
+  logStatus = new BehaviorSubject<boolean>(true);
 
   async login(email: string, password: string){
     try {
       await signInWithEmailAndPassword(this.auth, email, password);
-      this.logStatus.set(true);
       this.router.navigate(['/summary']);
+      this.logStatus.next(true);
       return false;
     }catch(error){
       return true;
@@ -24,8 +25,8 @@ export class AuthService {
 
   async logout(){
     await signOut(this.auth);
-    this.logStatus.set(false);
     this.router.navigate(['/login']);
+    this.logStatus.next(false);
   }
 
   getDisplayName(){

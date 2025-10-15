@@ -13,8 +13,39 @@
 
     >img:first-of-type {
         position: absolute;
-        top: 50px;
+        animation: logo-animation var(--animTime) ease var(--animTime) forwards;
+        z-index: 10;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 200px;
+    }
+
+    .start-animation-bg {
+        background-color: #f6f7f8;
+        position: absolute;
+        inset: 0;
+        z-index: 5;
+        animation: bg-animation var(--animTime) ease var(--animTime) forwards;
+    }
+}
+
+@keyframes logo-animation {
+    to {
         left: 50px;
+        top: 50px;
+        transform: translate(0, 0);
+        width: 100px;
+    }
+}
+
+@keyframes bg-animation {
+    95% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 0;
+        z-index: -1;
     }
 }
 

@@ -8,6 +8,7 @@ import { Board } from './mainpage/board/board';
 import { Login } from './start-screen/login/login';
 import { SignUp } from './start-screen/sign-up/sign-up';
 import { authFunctionalGuard } from './guards/auth-functional-guard';
+import { reverseAuthFunctionalGuardGuard } from './guards/reverse-auth-functional-guard-guard';
 
 export const routes: Routes = [
     { path: '', redirectTo: '/contacts', pathMatch: 'full' },
@@ -17,6 +18,6 @@ export const routes: Routes = [
     { path: 'summary', component: Summary, canActivate: [authFunctionalGuard] },
     { path: 'tasks', component: Tasks, canActivate: [authFunctionalGuard] },
     { path: 'board', component: Board, canActivate: [authFunctionalGuard] },
-    { path: 'login', component: Login },
-    { path: 'sign-up', component: SignUp }
+    { path: 'login', component: Login, canActivate: [reverseAuthFunctionalGuardGuard] },
+    { path: 'sign-up', component: SignUp, canActivate: [reverseAuthFunctionalGuardGuard] }
 ];

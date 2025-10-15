@@ -16,6 +16,14 @@ export class App {
 
   router = inject(Router)
   authService = inject(AuthService);
+
+  animationTime = 1.5;
+
+  constructor(){
+    setTimeout(() => {
+      this.animationTime = 0;
+    }, 3000);
+  }
   
 }
 
