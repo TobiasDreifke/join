@@ -4,7 +4,8 @@
 
 .start-screen {
     width: 100%;
-    min-height: 100dvh;
+    height: 100dvh;
+    min-height: 900px;
     background-color: #f6f7f8;
     display: flex;
     justify-content: center;
@@ -85,6 +86,31 @@
 
         &:hover {
             color: #29ABE2;
+        }
+    }
+}
+
+@media (max-width: 750px) {
+    .sign-up {
+        white-space: nowrap;
+        top: auto;
+        bottom: 100px ;
+        right: 50%;
+        transform: translateX(50%);  
+    }
+
+    .start-screen {
+        >img:first-of-type {
+            animation: logo-animation-small var(--animTime) ease var(--animTime) forwards;
+        }
+    }
+
+    @keyframes logo-animation-small {
+        to {
+            left: 20px;
+            top: 20px;
+            transform: translate(0, 0);
+            width: 50px;
         }
     }
 }
