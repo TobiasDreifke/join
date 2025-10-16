@@ -586,10 +586,16 @@ footer {
     }
 }
 
+// ------------- RESPONSIVE -----------
+
 @media (max-width: 1080px) {
 
     :host {
         overflow-y: auto;
+    }
+
+    .line {
+        display: none;
     }
 
     header {
@@ -724,5 +730,132 @@ footer {
                 }
             }
         }
+    }
+}
+
+// ------------- FORCED RESPONSIVE FOR EDIT ---------------
+// ------------- DUPLICATE THE CODE FROM @MEDAIQUERY IN HERE ---------------
+
+section.responsive {
+    :host {
+        overflow-y: auto;
+    }
+
+    .line {
+        display: none;
+    }
+
+    header {
+        h1 {
+            font-size: 32px;
+        }
+    }
+
+    form {
+        >main {
+            @include PositionBox($fd: column);
+            padding: 20px 0 20px 0;
+        }
+    }
+
+    .left_box {
+        @include BoxSize();
+        padding-top: 0;
+
+        >div {
+            >label {
+                color: $color_secondary;
+                font-size: 16px;
+                padding-bottom: 5px;
+            }
+
+            >input,
+            textarea {
+                font-size: 16px;
+                padding: 5px;
+            }
+
+            >textarea {
+                @include BoxSize($h: 100px);
+            }
+        }
+    }
+
+    .right_box {
+        @include BoxSize();
+        padding-top: 0;
+
+        label {
+            font-size: 16px;
+        }
+
+        .right_box_container {
+            >label {
+                font-size: 16px;
+                padding-bottom: 5px;
+            }
+
+            >input,
+            select {
+                font-size: 16px;
+                padding: 5px;
+            }
+        }
+
+        .subtasks {
+            >div {
+                padding: 5px;
+            }
+
+            >.subtask_box {
+                min-width: 20px;
+                max-height: 80px;
+            }
+        }
+    }
+
+    footer {
+        @include PositionBox($ai: start, $fd: column);
+
+        >div {
+            >p {
+                padding-bottom: 10px;
+
+                >span {
+                    color: $color_error;
+                }
+            }
+        }
+    }
+
+    :host ::ng-deep {
+        .ng_select {
+            font-size: 16px;
+
+            .ng-select-container {
+                height: 33px;
+            }
+
+            .ng-placeholder {
+                font-size: 16px;
+            }
+
+            .ng-value {
+                font-size: 16px;
+            }
+        }
+
+        .avatar {
+            width: 28px;
+            height: 28px;
+        }
+    }
+
+    .subtask_input_wrapper {
+        font-size: 16px;
+    }
+
+    .subtask_list_wrapper {
+        font-size: 16px;
     }
 }
