@@ -2,8 +2,9 @@
 @use 'variables' as *;
 
 section {
-    @include BoxSize($h: calc(100% - 100px));
+    @include BoxSize($h: calc(100dvh - 100px));
     padding: 2% 5%;
+    overflow: auto;
 }
 
 div {
@@ -50,5 +51,11 @@ table {
             @include PositionBox($fd: column, $ai:start);
             padding: 10px 0 5px 20px;
         }
+    }
+}
+
+@media (max-width: 1080px) {
+    section {
+        @include BoxSize($h: calc(100dvh - 200px));
     }
 }

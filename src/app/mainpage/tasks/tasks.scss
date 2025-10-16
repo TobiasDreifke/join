@@ -458,7 +458,7 @@ footer {
             -webkit-text-fill-color: $color_main !important;
             caret-color: $color_main;
             transition: background-color 5000s ease-in-out 0s;
-            font-size: 1rem;
+            font-size: inherit;
         }
     }
 

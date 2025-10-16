@@ -1,9 +1,11 @@
 @use 'mixins' as *;
 @use 'variables' as *;
 
+
 section {
-    @include BoxSize($h: calc(100% - 100px));
+    @include BoxSize($h: calc(100dvh - 100px));
     padding: 2% 5%;
+    overflow: auto;
 }
 
 div {
@@ -46,5 +48,11 @@ ul {
 
     >li {
         font-size: clamp(1rem, 0.904rem + 0.385vw, 1.25rem);
+    }
+}
+
+@media (max-width: 1080px) {
+    section {
+        @include BoxSize($h: calc(100dvh - 200px));
     }
 }
