@@ -3,15 +3,15 @@
     <img src="./assets/icons/logo/logo_blue.svg" alt="">
 
     @if(loggedIn){
-        <div>
-            <p class="info">?</p>
-            <p (click)="toggleUserMenu($event)" class="user">{{ getUserInitials(this.authService.getDisplayName() || '') }}</p>
-        </div>
+    <div>
+        <p class="info" routerLink="/help-page" routerLinkActive="active">?</p>
+        <p (click)="toggleUserMenu($event)" class="user">{{ getUserInitials(this.authService.getDisplayName() || '') }}</p>
+    </div>
 
-        <div class="user_menu" [ngClass]="{'not_visible': notVisible}">
-            <a (click)="toggleUserMenu($event)" routerLink="/legal" routerLinkActive="active">Legal Notice</a>
-            <a (click)="toggleUserMenu($event)" routerLink="/privacy" routerLinkActive="active">Privacy Policy</a>
-            <a (click)="logout()">Log out</a>
-        </div>
+    <div class="user_menu" [ngClass]="{'not_visible': notVisible}">
+        <a (click)="toggleUserMenu($event)" routerLink="/legal" routerLinkActive="active">Legal Notice</a>
+        <a (click)="toggleUserMenu($event)" routerLink="/privacy" routerLinkActive="active">Privacy Policy</a>
+        <a (click)="logout()">Log out</a>
+    </div>
     }
 </header>

@@ -1,0 +1,50 @@
+@use 'mixins' as *;
+@use 'variables' as *;
+
+section {
+    @include BoxSize($h: calc(100% - 100px));
+    padding: 2% 5%;
+}
+
+div {
+    @include PositionBox($jc: space-between);
+}
+
+h1 {
+    font-size: clamp(1.5rem, 0.635rem + 3.462vw, 3.75rem);
+    padding: 25px 0;
+}
+
+h2 {
+    font-size: clamp(1.25rem, 0.721rem + 2.115vw, 2.625rem);
+    padding: 25px 0;
+}
+
+h3 {
+    font-size: clamp(1rem, 0.808rem + 0.769vw, 1.5rem);
+    padding: 10px 0;
+}
+
+h4 {
+    font-size: clamp(1rem, 0.904rem + 0.385vw, 1.25rem);
+    padding: 0 0 0 10px;
+}
+
+p {
+    font-size: clamp(1rem, 0.904rem + 0.385vw, 1.25rem);
+    padding: 0 0 0 10px;
+
+    >a {
+        font-size: clamp(1rem, 0.904rem + 0.385vw, 1.25rem);
+        text-decoration: none;
+        color: $color_highlight;
+    }
+}
+
+ul {
+    padding: 0 0 0 30px;
+
+    >li {
+        font-size: clamp(1rem, 0.904rem + 0.385vw, 1.25rem);
+    }
+}
