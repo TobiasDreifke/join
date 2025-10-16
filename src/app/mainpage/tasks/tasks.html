@@ -21,7 +21,18 @@
                     <input type="text" id="title" name="title" [(ngModel)]="targetTask.title" #titleInput="ngModel"
                         placeholder="Title" minlength="2" required />
                 </div>
-                <div class="error"></div>
+                <div class="error">
+                    @if (titleInput.invalid && (titleInput.dirty || titleInput.touched || taskForm.submitted)) {
+                    <span>
+                        @if (titleInput.errors?.['required']) {
+                        Enter Name
+                        } @else if (titleInput.errors?.['minlength']) {
+                        min 2 characters
+                        }
+                    </span>
+                    }
+                </div>
+
                 } @else {
                 <div>
                     <label for="title">Title <span>*</span></label>
@@ -92,13 +103,12 @@
                     [(ngModel)]="targetTask.assigned_to" name="assigned_to" placeholder="Select contacts to assign"
                     [multiple]="true" [closeOnSelect]="false" [clearable]="false" [searchable]="true">
                     <ng-template ng-option-tmp let-contact="item">
-                        <div class="option_row_wrapper" (click)="$event.stopPropagation()">
+                        <div class="option_row_wrapper" (click)="$event.stopPropagation(); toggleAssigned(contact)">
                             <div class="avatar" [style.background-color]="contact?.initial_avatar_color">
                                 <p>{{ initials(contact.name) }}</p>
                             </div>
                             <div class="fullname">{{ contact.name }}</div>
-                            <input type="checkbox" [checked]="isAssigned(contact)"
-                                (click)="$event.stopPropagation(); toggleAssigned(contact)" />
+                            <input type="checkbox" [checked]="isAssigned(contact)" (click)="$event.stopPropagation()" />
                         </div>
                     </ng-template>
                     <ng-template ng-label-tmp>
@@ -119,22 +129,27 @@
                     <label for="category">Category</label>
                     <select id="category" name="category" [(ngModel)]="targetTask.category" #categoryInput="ngModel"
                         required>
-                        <option value="">Select task category</option>
-                        <option value="Technical Task">Technical
-                            Task</option>
-                        <option value="Select valid">User Story</option>
+                        <option value="" disabled selected hidden>Select task category</option>
+                        <option value="Technical Task">Technical Task</option>
+                        <option value="User Story">User Story</option>
                     </select>
                 </div>
-                <div class="error"></div>
+                <div class="error">
+                    @if (categoryInput.invalid && (categoryInput.dirty || categoryInput.touched || taskForm.submitted))
+                    {
+                    <span>
+                        {{ categoryInput.errors?.['required'] ? 'Select valid Task' : '' }}
+                    </span>
+                    }
+                </div>
                 } @else {
                 <div class="right_box_container">
                     <label for="category">Category <span>*</span></label>
                     <select id="category" name="category" [(ngModel)]="targetTask.category" #categoryInput="ngModel"
                         required>
-                        <option value="">Select task category</option>
-                        <option value="Technical Task">Technical
-                            Task</option>
-                        <option value="Select valid">User Story</option>
+                        <option value="" disabled selected hidden>Select task category</option>
+                        <option value="Technical Task">Technical Task</option>
+                        <option value="User Story">User Story</option>
                     </select>
                 </div>
                 <div class="error">
