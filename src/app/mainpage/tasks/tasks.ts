@@ -1,4 +1,4 @@
-import { Component, EventEmitter, inject, Input, Output, SimpleChanges, OnInit, OnDestroy } from '@angular/core';
+import { Component, EventEmitter, inject, Input, Output, SimpleChanges, OnInit, OnDestroy, HostListener } from '@angular/core';
 import { TaskService } from '../../services/task-service';
 import { ContactService } from '../../services/contact-service';
 import { CommonModule } from '@angular/common';
@@ -23,8 +23,8 @@ export class Tasks {
   @Output() addToStage = new EventEmitter<string>();
   @Input() stage: "" | "To do" | "In progress" | "Await feedback" | "Done" = "To do";
   router = inject(Router);
-
-
+  screenWidth: number = window.innerWidth;
+  isResponsive = false;
   // ---------------- TASK REFERENCES ----------------
   edit: TaskInterface | undefined;
   newTask: TaskInterface = {
@@ -50,6 +50,8 @@ export class Tasks {
       this.contactId = this.contactService.contactsList[0].id || null;
     }
     this.setTodayString();
+    this.updateResponsiveState();
+
   }
 
   get targetTask(): TaskInterface {
@@ -66,6 +68,9 @@ export class Tasks {
   }
 
   ngOnChanges(changes: SimpleChanges) {
+    if (changes['editMode'] || changes['addMode']) {
+    }
+
     if (changes['stage'] && this.addMode) {
       this.newTask.stage = this.stage;
     }
@@ -75,8 +80,33 @@ export class Tasks {
     }
   }
 
+
   ngOnInit() {
+    this.screenWidth = window.innerWidth;
+    this.updateResponsiveState();
     this.newTask.stage = this.stage;
+  }
+
+
+  // --------- FORCE RESPONSIVE IN EDITMODE ---------------
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any) {
+    this.screenWidth = event.target.innerWidth;
+    this.updateResponsiveState();
+  }
+
+  private updateResponsiveState() {
+    if (this.editMode) {
+      this.isResponsive = true;
+    } else {
+      this.isResponsive = this.screenWidth <= 1080;
+    }
+  }
+
+  switchMode(mode: 'edit' | 'add') {
+    this.editMode = mode === 'edit';
+    this.updateResponsiveState();
   }
 
   // --------------- SETTING THE DATE --------------
