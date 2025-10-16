@@ -137,6 +137,7 @@ export class Tasks {
       subtask: [],
       assigned_to: []
     };
+
     form?.resetForm({
       title: '',
       description: '',
@@ -147,6 +148,8 @@ export class Tasks {
       subtask: [],
       assigned_to: []
     });
+
+    this.subtaskTitle = '';
   }
 
   onSubmitOrSave(form: NgForm) {
