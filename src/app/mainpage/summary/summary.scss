@@ -20,6 +20,11 @@ section.container {
         padding: 15px;
     }
 
+    @media (max-width: 350px) {
+        padding: 5px;
+    }
+
+
 
     .wrapper_summary {
         display: flex;
@@ -137,11 +142,12 @@ section.container {
 
                     @media (max-width:768px) {
                         width: 200px;
-                        height: 120px;
+                        height: 110px;
                     }
 
                     @media (max-width:460px) {
                         width: 150px;
+                        height: 70px;
                     }
 
                     @media (max-width: 1080px) {
