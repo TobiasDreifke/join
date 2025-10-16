@@ -7,10 +7,11 @@ import { TaskInterface } from '../../interfaces/tasks.interface';
 import { Timestamp } from '@angular/fire/firestore';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { Subscription } from 'rxjs';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-tasks',
-  imports: [CommonModule, FormsModule, NgSelectModule],
+  imports: [CommonModule, FormsModule, NgSelectModule, RouterLink],
   templateUrl: './tasks.html',
   styleUrl: './tasks.scss'
 })
@@ -21,6 +22,7 @@ export class Tasks {
   @Output() close = new EventEmitter<void>();
   @Output() addToStage = new EventEmitter<string>();
   @Input() stage: "" | "To do" | "In progress" | "Await feedback" | "Done" = "To do";
+  router = inject(Router);
 
 
   // ---------------- TASK REFERENCES ----------------
@@ -124,7 +126,7 @@ export class Tasks {
   // ---------------- ADD TASK ----------------
 
 
-  clearInputFields() {
+  clearInputFields(form?: NgForm) {
     this.newTask = {
       title: '',
       description: '',
@@ -135,26 +137,43 @@ export class Tasks {
       subtask: [],
       assigned_to: []
     };
-    this.subtaskTitle = '';
+    form?.resetForm({
+      title: '',
+      description: '',
+      due_date: this.todayString,
+      priority: 'Medium',
+      category: '',
+      stage: this.stage || 'To do',
+      subtask: [],
+      assigned_to: []
+    });
   }
 
   onSubmitOrSave(form: NgForm) {
     form.control.markAllAsTouched();
 
-    if (!form.valid) {
-      return;
-    }
+    if (!form.valid) return;
 
     if (this.editMode && this.edit) {
       this.taskService.updateTask(this.edit.id!, this.edit);
     } else {
       this.taskService.addTask(this.newTask);
       this.addToStage.emit(this.newTask.stage);
-      this.clearInputFields();
+      this.clearInputFields(form);
+      this.router.navigate(['/board'])
+
     }
 
     this.close.emit();
+
+    if (this.addMode) {
+      this.router.navigate(['/board']).then(() => {
+        this.clearInputFields(form);
+      });
+    }
   }
+
+
 
   deleteTask(taskId: string | undefined) {
     if (!taskId) return;
