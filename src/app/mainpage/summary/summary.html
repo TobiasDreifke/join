@@ -1,83 +1,87 @@
 @if (showWelcome) {
-  <div class="content_name">
-    <p>Good Morning</p>
-    <p>{{ userName }}</p>
-  </div>
+<div class="content_name">
+  <p>Good Morning</p>
+  <p>{{ userName }}</p>
+</div>
 }
 @else {
-  <section class="contanier">
-    <div class="wrapper_summary">
-      <div class="title_summary">
-        <h1>Join 360</h1>
-        <hr class="line-mittel">
-        <p>Key Metrics at a Glance</p>
-      </div>
+<section class="contanier">
+  <div class="wrapper_summary">
+    <div class="title_summary">
+      <h1>Join 360</h1>
+      <hr class="line-mittel">
+      <p>Key Metrics at a Glance</p>
+    </div>
 
-      <div class="main_summary">
-        <div class="content_box">
-          <div class="group_1">
-            <a class="to_do" (click)="goToBoard()">
-              <div class="icon">
-                <img src="/assets/icons/edit1.png" alt="">
-              </div>
-              <div class="num_to_do">
-                <h1>{{ todoCount }}</h1>
-                <p>To-do</p>
-              </div>
-            </a>
+    <div class="main_summary">
+      <div class="content_box">
+        <div class="group_1">
+          <a class="to_do" (click)="goToBoard()">
+            <div class="icon">
+              <img src="/assets/icons/edit1.png" alt="">
+            </div>
+            <div class="num_to_do">
+              <h1>{{ todoCount }}</h1>
+              <p>To-do</p>
+            </div>
+          </a>
 
-            <a class="done" (click)="goToBoard()">
-              <div class="icon">
-                <img src="./assets/icons/Vector.png" alt="">
-              </div>
-              <div class="num_to_do">
-                <h1>{{ doneCount }}</h1>
-                <p>Done</p>
-              </div>
-            </a>
-          </div>
+          <a class="done" (click)="goToBoard()">
+            <div class="icon">
+              <img src="./assets/icons/Vector.png" alt="">
+            </div>
+            <div class="num_to_do">
+              <h1>{{ doneCount }}</h1>
+              <p>Done</p>
+            </div>
+          </a>
+        </div>
 
-          <div class="group_2">
-            <a (click)="goToBoard()">
-              <div class="icon">
-                <img src="./assets/icons/Capa 1.png" alt="">
-              </div>
-              <div class="num_status">
-                <h1>{{ urgentCount }}</h1>
-                <p>Urgent</p>
-              </div>
-              <div class="hr_mittle">
-                <hr>
-              </div>
-              <div class="datum_summary">
-                <h5>{{ todayDate }}</h5>
-                <p>Upcoming Deadline</p>
-              </div>
-            </a>
-          </div>
+        <div class="group_2">
+          <a (click)="goToBoard()">
+            <div class="icon">
+              <img src="./assets/icons/Capa 1.png" alt="">
+            </div>
+            <div class="num_status">
+              <h1>{{ urgentCount }}</h1>
+              <p>Urgent</p>
+            </div>
+            <div class="hr_mittle">
+              <hr>
+            </div>
+            <div class="datum_summary">
+              <h5>{{ todayDate }}</h5>
+              <p>Upcoming Deadline</p>
+            </div>
+          </a>
+        </div>
 
-          <div class="group_3">
-            <a (click)="goToBoard()">
-              <div class="t_in_board">
-                <h1>{{ totalCount }}</h1>
-                <p>Tasks in <br> Board</p>
-              </div>
-              <div class="t_i_progress">
-                <h1>{{ inProgressCount }}</h1>
-                <p>Tasks in <br> Progress</p>
-              </div>
-              <div class="feedback">
-                <h1>{{ feedbackCount }}</h1>
-                <p>Awaiting Feedback</p>
-              </div>
-            </a>
-          </div>
+        <div class="group_3">
+          <a (click)="goToBoard()">
+            <div class="t_in_board">
+              <h1>{{ totalCount }}</h1>
+              <p>Tasks in <br> Board</p>
+            </div>
+            <div class="t_i_progress">
+              <h1>{{ inProgressCount }}</h1>
+              <p>Tasks in <br> Progress</p>
+            </div>
+            <div class="feedback">
+              <h1>{{ feedbackCount }}</h1>
+              <p>Awaiting Feedback</p>
+            </div>
+          </a>
         </div>
       </div>
       <div class="content_name_des">
-    <p>Good Morning,</p>
-    <h1>{{ userName }}</h1>
-  </div>
+        <p>Good Morning,</p>
+        <h1>{{ userName }}</h1>
+      </div>
     </div>
-  </section>
+    <!-- <div class="content_name_des">
+      <p>Good Morning,</p>
+      <h1>{{ userName }}</h1>
+    </div> -->
+  </div>
+</section>
 }
