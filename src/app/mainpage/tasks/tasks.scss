@@ -802,22 +802,28 @@ footer {
     }
 
     .content_wrapper {
-        // height: calc(100dvh - 200px);
         display: flex;
         flex-direction: column;
-        position: relative;
-        // overflow-y: hidden;
-        // height: 100%;
+        height: calc(100dvh - 200px);
+        overflow: auto;
+        overflow-x: hidden;
+        // position: relative;
 
         &::-webkit-scrollbar {
             display: none;
         }
     }
 
+
+
+
     .task_wrapper {
         &::-webkit-scrollbar {
             display: none;
         }
+
+        // position: relative;
+
     }
 
     .line {
@@ -841,12 +847,19 @@ footer {
     }
 
     form {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        overflow-x: hidden;
+        padding-bottom:100px;
+
         >main {
+            overflow-x: hidden;
             @include PositionBox($fd: column);
             padding: 20px 0 20px 0;
-            overflow-x: hidden;
             flex: 1;
-            overflow-y: hidden;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
         }
     }
 
@@ -912,15 +925,16 @@ footer {
 
     footer {
         @include PositionBox($ai: start, $fd: column);
-        position: sticky;
+        position: absolute;
         bottom: 0;
         right: 0;
         width: 100%;
         // height: 100px;
         z-index: 99999;
         padding: 0 0 20px 20px;
+        margin-bottom: 100px;
         overflow: hidden;
-        background-color: $color_white;
+        background-color: $color_background_main;
 
         >div {
             >p {
