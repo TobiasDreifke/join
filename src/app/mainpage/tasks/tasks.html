@@ -1,250 +1,259 @@
-<section [class.responsive]="isResponsive">
-    <header>
-        @if (editMode) {
-        <h1>Edit Task</h1>
-        <button class="clear" (click)="onExit()"><img src="/assets/icons/button_x_check/button_x.png"></button>
-        } @else if (addMode) {
-        <h1>Add Task</h1>
-        <button class="clear" (click)="onExit()"><img src="/assets/icons/button_x_check/button_x.png"></button>
-        } @else {
-        <h1>Add Task</h1>
-        <span></span>
-        }
-    </header>
+<section class="content_wrapper" [class.responsive]="isResponsive">
+    <div class="tasks_wrapper">
+        <header>
+            @if (editMode) {
+            <h1>Edit Task</h1>
+            <button class="clear" (click)="onExit()"><img src="assets/icons/close.svg"></button>
+            } @else if (addMode) {
+            <h1>Add Task</h1>
+            <button class="clear" (click)="onExit()"><img src="assets/icons/close.svg"></button>
+            } @else {
+            <h1>Add Task</h1>
+            <span></span>
+            }
+        </header>
 
-    <form #taskForm="ngForm" (ngSubmit)="onSubmitOrSave(taskForm)" class="task-form">
-        <main>
-            <div class="left_box">
-                @if (editMode) {
-                <div>
-                    <label for="title">Title</label>
-                    <input type="text" id="title" name="title" [(ngModel)]="targetTask.title" #titleInput="ngModel"
-                        placeholder="Title" minlength="2" required />
-                </div>
-                <div class="error">
-                    @if (titleInput.invalid && (titleInput.dirty || titleInput.touched || taskForm.submitted)) {
-                    <span>
-                        @if (titleInput.errors?.['required']) {
-                        Enter Name
-                        } @else if (titleInput.errors?.['minlength']) {
-                        min 2 characters
-                        }
-                    </span>
-                    }
-                </div>
-
-                } @else {
-                <div>
-                    <label for="title">Title <span>*</span></label>
-                    <input type="text" id="title" name="title" [(ngModel)]="targetTask.title" #titleInput="ngModel"
-                        placeholder="Title" minlength="2" required />
-                </div>
-                <div class="error">
-                    @if (titleInput.invalid && (titleInput.dirty || titleInput.touched || taskForm.submitted)) {
-                    <span>
-                        @if (titleInput.errors?.['required']) {
-                        Enter Name
-                        } @else if (titleInput.errors?.['minlength']) {
-                        min 2 characters
-                        }
-                    </span>
-                    }
-                </div>
-                }
-
-                <div>
-                    <label for="description">Description</label>
-                    <textarea id="description" name="description" [(ngModel)]="targetTask.description"
-                        placeholder="Description"></textarea>
-                </div>
-                <div class="error"></div>
-                <div>
-                    <label for="date">Due date</label>
-                    <input type="date" id="date" name="due_date" [(ngModel)]="targetTaskDueDateString"
-                        [min]="todayString" #dateInput="ngModel" required />
-                </div>
-                <div class="error">
-                    @if (dateInput.invalid) {
-                    <span>
-                        @if (dateInput.errors?.['required']) {
-                        enter a date
-                        }
-                    </span>
-                    }
-                </div>
-
-            </div>
-
-            <div class="line"></div>
-
-            <div class="right_box">
-                <div class="right_box_container">
-                    <label>Priority</label>
-                    <div class="priority-buttons">
-                        <button type="button" [class.active_high]="targetTask.priority === 'Urgent'"
-                            (click)="targetTask.priority = 'Urgent'">
-                            Urgent <img src="/assets/icons/urgent.svg">
-                        </button>
-                        <button type="button" [class.active_medium]="targetTask.priority === 'Medium'"
-                            (click)="targetTask.priority = 'Medium'">
-                            Medium <img src="/assets/icons/medium.svg">
-                        </button>
-                        <button type="button" [class.active_low]="targetTask.priority === 'Low'"
-                            (click)="targetTask.priority = 'Low'">
-                            Low <img src="/assets/icons/low.svg">
-                        </button>
+        <form #taskForm="ngForm" (ngSubmit)="onSubmitOrSave(taskForm)" class="task-form">
+            <main>
+                <div class="left_box">
+                    @if (editMode) {
+                    <div>
+                        <label for="title">Title</label>
+                        <input type="text" id="title" name="title" [(ngModel)]="targetTask.title" #titleInput="ngModel"
+                            placeholder="Title" minlength="2" required />
                     </div>
+                    <div class="error">
+                        @if (titleInput.invalid && (titleInput.dirty || titleInput.touched || taskForm.submitted)) {
+                        <span>
+                            @if (titleInput.errors?.['required']) {
+                            Enter Name
+                            } @else if (titleInput.errors?.['minlength']) {
+                            min 2 characters
+                            }
+                        </span>
+                        }
+                    </div>
+
+                    } @else {
+                    <div>
+                        <label for="title">Title <span>*</span></label>
+                        <input type="text" id="title" name="title" [(ngModel)]="targetTask.title" #titleInput="ngModel"
+                            placeholder="Title" minlength="2" required />
+                    </div>
+                    <div class="error">
+                        @if (titleInput.invalid && (titleInput.dirty || titleInput.touched || taskForm.submitted)) {
+                        <span>
+                            @if (titleInput.errors?.['required']) {
+                            Enter Name
+                            } @else if (titleInput.errors?.['minlength']) {
+                            min 2 characters
+                            }
+                        </span>
+                        }
+                    </div>
+                    }
+
+                    <div>
+                        <label for="description">Description</label>
+                        <textarea id="description" name="description" [(ngModel)]="targetTask.description"
+                            placeholder="Description"></textarea>
+                    </div>
+                    <div class="error"></div>
+                    <div>
+                        <label for="date">Due date</label>
+                        <input type="date" id="date" name="due_date" [(ngModel)]="targetTaskDueDateString"
+                            [min]="todayString" #dateInput="ngModel" required />
+                    </div>
+                    <div class="error">
+                        @if (dateInput.invalid) {
+                        <span>
+                            @if (dateInput.errors?.['required']) {
+                            enter a date
+                            }
+                        </span>
+                        }
+                    </div>
+
                 </div>
-                <div class="error"></div>
 
+                <div class="line"></div>
 
-                <label>Assigned to</label>
-                <ng-select class="ng_select" [items]="contactService.contactsList" bindLabel="name"
-                    [(ngModel)]="targetTask.assigned_to" name="assigned_to" placeholder="Select contacts to assign"
-                    [multiple]="true" [closeOnSelect]="false" [clearable]="false" [searchable]="true">
-                    <ng-template ng-option-tmp let-contact="item">
-                        <div class="option_row_wrapper" (click)="$event.stopPropagation(); toggleAssigned(contact)">
-                            <div class="avatar" [style.background-color]="contact?.initial_avatar_color">
-                                <p>{{ initials(contact.name) }}</p>
-                            </div>
-                            <div class="fullname">{{ contact.name }}</div>
-                            <input type="checkbox" [checked]="isAssigned(contact)" (click)="$event.stopPropagation()" />
+                <div class="right_box">
+                    <div class="right_box_container">
+                        <label>Priority</label>
+                        <div class="priority-buttons">
+                            <button type="button" [class.active_high]="targetTask.priority === 'Urgent'"
+                                (click)="targetTask.priority = 'Urgent'">
+                                Urgent <img src="/assets/icons/urgent.svg">
+                            </button>
+                            <button type="button" [class.active_medium]="targetTask.priority === 'Medium'"
+                                (click)="targetTask.priority = 'Medium'">
+                                Medium <img src="/assets/icons/medium.svg">
+                            </button>
+                            <button type="button" [class.active_low]="targetTask.priority === 'Low'"
+                                (click)="targetTask.priority = 'Low'">
+                                Low <img src="/assets/icons/low.svg">
+                            </button>
                         </div>
-                    </ng-template>
-                    <ng-template ng-label-tmp>
-                        <span></span>
-                    </ng-template>
-                </ng-select>
-
-                <div class="selected_badges_wrapper">
-                    @for (it of targetTask.assigned_to; track $index) {
-                    <div class="badge_container" [style.background-color]="it?.initial_avatar_color">
-                        <p>{{ initials(it.name) }}</p>
                     </div>
-                    }
-                </div>
+                    <div class="error"></div>
 
-                @if (editMode) {
-                <div class="right_box_container">
-                    <label for="category">Category</label>
-                    <select id="category" name="category" [(ngModel)]="targetTask.category" #categoryInput="ngModel"
-                        required>
-                        <option value="" disabled selected hidden>Select task category</option>
-                        <option value="Technical Task">Technical Task</option>
-                        <option value="User Story">User Story</option>
-                    </select>
-                </div>
-                <div class="error">
-                    @if (categoryInput.invalid && (categoryInput.dirty || categoryInput.touched || taskForm.submitted))
-                    {
-                    <span>
-                        {{ categoryInput.errors?.['required'] ? 'Select valid Task' : '' }}
-                    </span>
-                    }
-                </div>
-                } @else {
-                <div class="right_box_container">
-                    <label for="category">Category <span>*</span></label>
-                    <select id="category" name="category" [(ngModel)]="targetTask.category" #categoryInput="ngModel"
-                        required>
-                        <option value="" disabled selected hidden>Select task category</option>
-                        <option value="Technical Task">Technical Task</option>
-                        <option value="User Story">User Story</option>
-                    </select>
-                </div>
-                <div class="error">
-                    @if (categoryInput.invalid && (categoryInput.dirty || categoryInput.touched || taskForm.submitted))
-                    {
-                    <span>
-                        {{ categoryInput.errors?.['required'] ? 'Select valid Task' : '' }}
-                    </span>
-                    }
-                </div>
-                }
 
-                <div class="subtasks right_box_container">
-                    <label for="subtask">Subtasks</label>
-                    <div class="subtask_input_wrapper">
-                        <input type="text" id="subtask" [(ngModel)]="subtaskTitle" name="subtaskTitle"
-                            placeholder="Subtask title" />
+                    <label>Assigned to</label>
+                    <ng-select class="ng_select" [items]="contactService.contactsList" bindLabel="name"
+                        [(ngModel)]="targetTask.assigned_to" name="assigned_to" placeholder="Select contacts to assign"
+                        [multiple]="true" [closeOnSelect]="false" [clearable]="false" [searchable]="true">
+                        <ng-template ng-option-tmp let-contact="item">
 
-                        @if (subtaskTitle.length >= 1) {
-                        <div class="subtask_button_wrapper">
-                            <div class="img_container"><img src="./assets/icons/close.svg" type="button"
-                                    class="icon-btn" (click)="cancelSubtask()"></div>
-                            <div class="horizontal_devider"></div>
-                            <div class="img_container"> <img src="./assets/icons/check.svg" type="button"
-                                    class="add-btn" (click)="addSubtask()">
+                            <div class="option_row_wrapper" (click)="$event.stopPropagation(); toggleAssigned(contact)">
+                                <div>
+                                    <div class="avatar" [style.background-color]="contact?.initial_avatar_color">
+                                        <p>{{ initials(contact.name) }}</p>
+                                    </div>
+                                    <div class="fullname">{{ contact.name }}</div>
+                                </div>
+                                <input type="checkbox" [checked]="isAssigned(contact)"
+                                    (click)="$event.stopPropagation()" />
                             </div>
+                        </ng-template>
+                        <ng-template ng-label-tmp>
+                            <span></span>
+                        </ng-template>
+                    </ng-select>
+
+                    <div class="selected_badges_wrapper">
+                        @for (it of targetTask.assigned_to; track $index) {
+                        <div class="badge_container" [style.background-color]="it?.initial_avatar_color">
+                            <p>{{ initials(it.name) }}</p>
                         </div>
                         }
-
                     </div>
-                    <div class="subtask_box">
-                        @for (subtask of targetTask.subtask; track $index) {
-                        <li class="subtask_list">
-                            <div class="subtask_list_wrapper">
-                                @if (!subtaskEditMap[$index]) {
-                                <span class="subtask_text">{{ subtask.title }}</span>
-                                } @else {
-                                <input type="text" [(ngModel)]="subtask.title" name="subtask_{{ $index }}" />
-                                }
 
-                                <div class="subtask_button_wrapper">
-                                    @if (!subtaskEditMap[$index]) {
-                                    <div class="img_container">
-                                        <img src="./assets/icons/edit.svg" type="button"
-                                            (click)="toggleEditSubtask($index)" />
-                                    </div>
-                                    } @else {
-                                    <div class="img_container">
-                                        <img src="./assets/icons/check.svg" type="button"
-                                            (click)="confirmEditSubtask($index)" />
-                                    </div>
-                                    }
+                    @if (editMode) {
+                    <div class="right_box_container">
+                        <label for="category">Category</label>
+                        <select id="category" name="category" [(ngModel)]="targetTask.category" #categoryInput="ngModel"
+                            required>
+                            <option value="" disabled selected hidden>Select task category</option>
+                            <option value="Technical Task">Technical Task</option>
+                            <option value="User Story">User Story</option>
+                        </select>
+                    </div>
+                    <div class="error">
+                        @if (categoryInput.invalid && (categoryInput.dirty || categoryInput.touched ||
+                        taskForm.submitted))
+                        {
+                        <span>
+                            {{ categoryInput.errors?.['required'] ? 'Select valid Task' : '' }}
+                        </span>
+                        }
+                    </div>
+                    } @else {
+                    <div class="right_box_container">
+                        <label for="category">Category <span>*</span></label>
+                        <select id="category" name="category" [(ngModel)]="targetTask.category" #categoryInput="ngModel"
+                            required>
+                            <option value="" disabled selected hidden>Select task category</option>
+                            <option value="Technical Task">Technical Task</option>
+                            <option value="User Story">User Story</option>
+                        </select>
+                    </div>
+                    <div class="error">
+                        @if (categoryInput.invalid && (categoryInput.dirty || categoryInput.touched ||
+                        taskForm.submitted))
+                        {
+                        <span>
+                            {{ categoryInput.errors?.['required'] ? 'Select valid Task' : '' }}
+                        </span>
+                        }
+                    </div>
+                    }
 
-                                    <div class="horizontal_devider"></div>
+                    <div class="subtasks right_box_container">
+                        <label for="subtask">Subtasks</label>
+                        <div class="subtask_input_wrapper">
+                            <input type="text" id="subtask" [(ngModel)]="subtaskTitle" name="subtaskTitle"
+                                placeholder="Subtask title" />
 
-                                    @if (!subtaskEditMap[$index]) {
-                                    <div class="img_container">
-                                        <img src="./assets/icons/delete.svg" type="button"
-                                            (click)="removeSubtask($index)" />
-                                    </div>
-                                    } @else {
-                                    <div class="img_container">
-                                        <img src="./assets/icons/close.svg" type="button"
-                                            (click)="cancelEditSubtask($index)" />
-                                    </div>
-                                    }
+                            @if (subtaskTitle.length >= 1) {
+                            <div class="subtask_button_wrapper">
+                                <div class="img_container"><img src="./assets/icons/close.svg" type="button"
+                                        class="icon-btn" (click)="cancelSubtask()"></div>
+                                <div class="horizontal_devider"></div>
+                                <div class="img_container"> <img src="./assets/icons/check.svg" type="button"
+                                        class="add-btn" (click)="addSubtask()">
                                 </div>
                             </div>
-                        </li>
-                        }
+                            }
+
+                        </div>
+                        <div class="subtask_box">
+                            @for (subtask of targetTask.subtask; track $index) {
+                            <li class="subtask_list">
+                                <div class="subtask_list_wrapper">
+                                    @if (!subtaskEditMap[$index]) {
+                                    <span class="subtask_text">{{ subtask.title }}</span>
+                                    } @else {
+                                    <input type="text" [(ngModel)]="subtask.title" name="subtask_{{ $index }}" />
+                                    }
+
+                                    <div class="subtask_button_wrapper">
+                                        @if (!subtaskEditMap[$index]) {
+                                        <div class="img_container">
+                                            <img src="./assets/icons/edit.svg" type="button"
+                                                (click)="toggleEditSubtask($index)" />
+                                        </div>
+                                        } @else {
+                                        <div class="img_container">
+                                            <img src="./assets/icons/check.svg" type="button"
+                                                (click)="confirmEditSubtask($index)" />
+                                        </div>
+                                        }
+
+                                        <div class="horizontal_devider"></div>
+
+                                        @if (!subtaskEditMap[$index]) {
+                                        <div class="img_container">
+                                            <img src="./assets/icons/delete.svg" type="button"
+                                                (click)="removeSubtask($index)" />
+                                        </div>
+                                        } @else {
+                                        <div class="img_container">
+                                            <img src="./assets/icons/close.svg" type="button"
+                                                (click)="cancelEditSubtask($index)" />
+                                        </div>
+                                        }
+                                    </div>
+                                </div>
+                            </li>
+                            }
+                        </div>
                     </div>
                 </div>
-            </div>
-        </main>
+            </main>
+            <footer>
+                @if (editMode) {
+                <div>
+                    <p></p>
+                </div>
+                <div>
+                    <button class="add_task" type="submit">Edit Task<img
+                            src="/assets/icons/button_x_check/button_check.png"></button>
+                </div>
+                } @else {
+                <div>
+                    <p><span>*</span>This field is required</p>
+                </div>
+                <div>
+                    <button type="button" class="clear" (click)="clearInputFields(taskForm)">Clear<img
+                            src="/assets/icons/button_x_check/button_x.png"></button>
+                    <button class="add_task" type="submit">Add Task<img
+                            src="/assets/icons/button_x_check/button_check.png"></button>
+                </div>
+                }
+            </footer>
+        </form>
+    </div>
 
-        <footer>
-            @if (editMode) {
-            <div>
-                <p></p>
-            </div>
-            <div>
-                <button class="add_task" type="submit">Edit Task<img
-                        src="/assets/icons/button_x_check/button_check.png"></button>
-            </div>
-            } @else {
-            <div>
-                <p><span>*</span>This field is required</p>
-            </div>
-            <div>
-                <button type="button" class="clear" (click)="clearInputFields(taskForm)">Clear<img
-                        src="/assets/icons/button_x_check/button_x.png"></button>
-                <button class="add_task" type="submit">Add Task<img
-                        src="/assets/icons/button_x_check/button_check.png"></button>
-            </div>
-            }
-        </footer>
-    </form>
+
 </section>

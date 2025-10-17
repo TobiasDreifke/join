@@ -8,16 +8,16 @@ import { TaskInterface } from '../../interfaces/tasks.interface';
   selector: 'app-summary',
   templateUrl: './summary.html',
   styleUrls: ['./summary.scss']
- 
+
 })
 export class Summary implements OnInit {
 
 
   router = inject(Router);
   taskService = inject(TaskService);
-  authService = inject(AuthService);  
+  authService = inject(AuthService);
 
-  userName: string = 'Guest';  
+  userName: string = 'Guest';
 
   todoCount = 0;
   doneCount = 0;
@@ -26,54 +26,54 @@ export class Summary implements OnInit {
   totalCount = 0;
   urgentCount = 0;
   todayDate!: string;
-  showWelcome = false; 
-showMainContent = true; 
+  showWelcome = false;
+  showMainContent = true;
 
 
-ngOnInit() {
-  this.todayDate = this.getTodayDate();
-  this.getUserName();      
-  this.observeTasks();
-  this.checkScreenWidth();
-}
+  ngOnInit() {
+    this.todayDate = this.getTodayDate();
+    this.getUserName();
+    this.observeTasks();
+    this.checkScreenWidth();
+  }
 
-checkScreenWidth() {
-  const hasSeenWelcome = localStorage.getItem('hasSeenWelcome');
-  const isGuestLogin = localStorage.getItem('guestLogin'); 
-  if (!hasSeenWelcome && window.innerWidth <= 1080) {
-    this.showWelcome = true;
-    this.showMainContent = false;
-    setTimeout(() => {
+  checkScreenWidth() {
+    const hasSeenWelcome = localStorage.getItem('hasSeenWelcome');
+    const isGuestLogin = localStorage.getItem('guestLogin');
+    if (!hasSeenWelcome && window.innerWidth <= 1080) {
+      this.showWelcome = true;
+      this.showMainContent = false;
+      setTimeout(() => {
+        this.showWelcome = false;
+        this.showMainContent = true;
+
+        localStorage.setItem('hasSeenWelcome', 'true');
+
+        if (!isGuestLogin) {
+          this.router.navigate(['/summary']);
+        }
+      }, 3000);
+    } else {
       this.showWelcome = false;
       this.showMainContent = true;
-
-      localStorage.setItem('hasSeenWelcome', 'true');
-
       if (!isGuestLogin) {
         this.router.navigate(['/summary']);
       }
-    }, 3000);
-  } else {
-    this.showWelcome = false;
-    this.showMainContent = true;
-    if (!isGuestLogin) {
-      this.router.navigate(['/summary']);
     }
   }
-}
 
 
 
- getUserName() {
-  const isGuestLogin = localStorage.getItem('guestLogin'); 
+  getUserName() {
+    const isGuestLogin = localStorage.getItem('guestLogin');
 
-  if (isGuestLogin) {
-    this.userName = 'Guest'; 
-  } else {
-    const name = this.authService.getDisplayName();
-    this.userName = name ? name : 'Guest'; 
+    if (isGuestLogin) {
+      this.userName = 'Guest';
+    } else {
+      const name = this.authService.getDisplayName();
+      this.userName = name ? name : 'Guest';
+    }
   }
-}
 
 
   getTodayDate(): string {

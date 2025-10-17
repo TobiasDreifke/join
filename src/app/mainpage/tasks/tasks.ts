@@ -99,9 +99,10 @@ export class Tasks {
   private updateResponsiveState() {
     if (this.editMode) {
       this.isResponsive = true;
-    } else {
-      this.isResponsive = this.screenWidth <= 1080;
-    }
+    } 
+    // else {
+    //   this.isResponsive = this.screenWidth <= 1080;
+    // }
   }
 
   switchMode(mode: 'edit' | 'add') {
