@@ -38,24 +38,43 @@ ngOnInit() {
 }
 
 checkScreenWidth() {
-  if (window.innerWidth <= 1080) {
+  const hasSeenWelcome = localStorage.getItem('hasSeenWelcome');
+  const isGuestLogin = localStorage.getItem('guestLogin'); 
+  if (!hasSeenWelcome && window.innerWidth <= 1080) {
     this.showWelcome = true;
     this.showMainContent = false;
-
     setTimeout(() => {
       this.showWelcome = false;
       this.showMainContent = true;
-    }, 2000); 
+
+      localStorage.setItem('hasSeenWelcome', 'true');
+
+      if (!isGuestLogin) {
+        this.router.navigate(['/summary']);
+      }
+    }, 3000);
+  } else {
+    this.showWelcome = false;
+    this.showMainContent = true;
+    if (!isGuestLogin) {
+      this.router.navigate(['/summary']);
+    }
   }
 }
 
 
-  getUserName() {
+
+ getUserName() {
+  const isGuestLogin = localStorage.getItem('guestLogin'); 
+
+  if (isGuestLogin) {
+    this.userName = 'Guest'; 
+  } else {
     const name = this.authService.getDisplayName();
-    if (name) {
-      this.userName = name;
-    }
+    this.userName = name ? name : 'Guest'; 
   }
+}
+
 
   getTodayDate(): string {
     const today = new Date();
