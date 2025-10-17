@@ -1,36 +1,59 @@
 @use 'mixins' as *;
 @use 'variables' as *;
 
+.content_wrapper {
+    height: calc(100dvh - 100px);
+    padding: 30px;
+}
+
+.task_wrapper {
+    //  padding: 30px;
+    // position: relative;
+}
+
+
 section {
-    @include BoxSize($h: calc(100% - 100px));
-    padding: 2% 5% 0 5%;
+    // @include BoxSize($h: calc(100dvh - 100px));
+    // padding: 2% 5% 0 5%;
+    padding: 0 5% 0 5%;
+    box-sizing: border-box;
+
 }
 
 header {
-    @include BoxSize($h: 10%);
+    // @include BoxSize($h: 10%);
     @include PositionBox($jc: space-between);
 
     h1 {
+        padding-top: 2%;
         font-size: 60px;
     }
 
     button {
         @include PositionBox();
         @include BoxSize($h: 40px, $w: 40px);
-        font-size: 30px;
+        // font-size: 30px;
         border: none;
         background-color: $color_background_main;
-        border-radius: 150px;
+        // border-radius: 150px;
 
         &:hover {
+            border-radius: 100%;
             background-color: $color_grey;
             cursor: pointer;
+        }
+
+        >img {
+            height: 40px;
+            width: 40px;
+            aspect-ratio: 1;
         }
     }
 }
 
 form {
-    @include BoxSize($h: 70%);
+    // @include BoxSize($h: 70%);
+    // position: relative;
 
     >main {
         @include BoxSize();
@@ -41,8 +64,8 @@ form {
 .left_box {
     @include BoxSize($w: 50%);
     @include PositionBox($ai: start, $fd: column);
-    overflow-y: auto;
-    overflow-x: hidden;
+    // overflow-y: auto;
+    // overflow-x: hidden;
 
     >div {
         @include PositionBox($jc: start, $ai: start, $fd: column);
@@ -116,8 +139,8 @@ form {
 .right_box {
     @include BoxSize($w: 50%);
     @include PositionBox($ai: start, $fd: column);
-    overflow-y: auto;
-    overflow-x: hidden;
+    // overflow-y: auto;
+    // overflow-x: hidden;
 
     .right_box_container {
         @include PositionBox($jc: start, $ai: none, $fd: column);
@@ -265,7 +288,7 @@ form {
 }
 
 footer {
-    @include BoxSize($h: 20%);
+    // @include BoxSize($h: 20%);
     @include PositionBox($jc: space-between, $ai: end);
 
     >div {
@@ -345,9 +368,14 @@ footer {
 
     .option_row_wrapper {
         display: flex;
-        justify-content: flex-start;
+        justify-content: space-between;
         align-items: center;
         gap: 10px;
+
+        >div {
+            @include PositionBox();
+            gap: 1rem;
+        }
     }
 
     .avatar {
@@ -382,6 +410,8 @@ footer {
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: space-between;
+
     width: 100%;
     max-width: 100%;
     overflow: auto;
@@ -588,10 +618,206 @@ footer {
 
 // ------------- RESPONSIVE -----------
 
-@media (max-width: 1080px) {
+// @media (max-width: 1080px) {
 
-    :host {
-        overflow-y: auto;
+//     .content_wrapper {
+//         height: calc(100dvh - 200px);
+//         display: flex;
+//         flex-direction: column;
+//         position: relative;
+//         padding-bottom: 0;
+//     }
+
+//     :host {}
+
+//     .section {
+//         overflow: hidden;
+//     }
+
+//     .line {
+//         display: none;
+//     }
+
+//     header {
+//         h1 {
+//             font-size: 32px;
+//         }
+//     }
+
+//     form {
+
+
+//         >main {
+//             @include PositionBox($fd: column);
+//             padding: 20px 0 20px 0;
+
+//             flex: 1;
+//             overflow-y: auto;
+
+//             &::-webkit-scrollbar {
+//                 display: none;
+//             }
+//         }
+//     }
+
+//     .left_box {
+//         @include BoxSize();
+//         padding-top: 0;
+
+//         >div {
+//             >label {
+//                 color: $color_secondary;
+//                 font-size: 16px;
+//                 padding-bottom: 5px;
+//             }
+
+//             >input,
+//             textarea {
+//                 font-size: 16px;
+//                 padding: 5px;
+//             }
+
+//             >textarea {
+//                 @include BoxSize($h: 100px);
+//             }
+//         }
+//     }
+
+//     .right_box {
+//         @include BoxSize();
+//         padding-top: 0;
+
+//         label {
+//             font-size: 16px;
+//         }
+
+//         .right_box_container {
+//             >label {
+//                 font-size: 16px;
+//                 padding-bottom: 5px;
+//             }
+
+//             >input,
+//             select {
+//                 font-size: 16px;
+//                 padding: 5px;
+//             }
+//         }
+
+//         .subtasks {
+//             >div {
+//                 padding: 5px;
+//             }
+
+//             >.subtask_box {
+//                 &::-webkit-scrollbar {
+//                     display: none;
+//                 }
+
+//                 min-width: 20px;
+//                 max-height: 80px;
+//             }
+//         }
+
+//         .priority-buttons {
+//             >button {
+//                 @include PositionBox();
+//                 border: 1px solid $color_grey;
+//                 font-size: 16px;
+//                 padding: 5px 10px;
+
+//                 >img {
+//                     @include BoxSize($h: 20px, $w: 20px);
+//                     padding-left: 5px;
+//                 }
+//             }
+//         }
+//     }
+
+//     footer {
+//         @include PositionBox($ai: start, $fd: column);
+//         position: absolute;
+//         bottom: 0;
+//         right: 0;
+//         width: 100%;
+//         padding: 0 0 20px 20px;
+
+//         >div {
+//             >p {
+//                 padding-bottom: 10px;
+
+//                 >span {
+//                     color: $color_error;
+//                 }
+//             }
+//         }
+//     }
+
+//     :host ::ng-deep {
+//         .ng_select {
+//             font-size: 16px;
+
+//             .ng-select-container {
+//                 height: 33px;
+//             }
+
+//             .ng-placeholder {
+//                 font-size: 16px;
+//             }
+
+//             .ng-value {
+//                 font-size: 16px;
+//             }
+//         }
+
+//         .avatar {
+//             width: 28px;
+//             height: 28px;
+//         }
+//     }
+
+//     .subtask_input_wrapper {
+//         font-size: 16px;
+//     }
+
+//     .subtask_list_wrapper {
+//         font-size: 16px;
+//     }
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+@media (max-width: 1080px) {
+    section {
+        // height: calc(100dvh - 200px);
+    }
+
+    .content_wrapper {
+        // height: calc(100dvh - 200px);
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        // overflow-y: hidden;
+        // height: 100%;
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
+    }
+
+    .task_wrapper {
+        &::-webkit-scrollbar {
+            display: none;
+        }
     }
 
     .line {
@@ -602,12 +828,25 @@ footer {
         h1 {
             font-size: 32px;
         }
+
+        button {
+            background-color: transparent;
+
+            &:hover {
+                border-radius: 100%;
+                background-color: $color_grey;
+                cursor: pointer;
+            }
+        }
     }
 
     form {
         >main {
             @include PositionBox($fd: column);
             padding: 20px 0 20px 0;
+            overflow-x: hidden;
+            flex: 1;
+            overflow-y: hidden;
         }
     }
 
@@ -661,6 +900,10 @@ footer {
             }
 
             >.subtask_box {
+                &::-webkit-scrollbar {
+                    display: none;
+                }
+
                 min-width: 20px;
                 max-height: 80px;
             }
@@ -669,6 +912,15 @@ footer {
 
     footer {
         @include PositionBox($ai: start, $fd: column);
+        position: sticky;
+        bottom: 0;
+        right: 0;
+        width: 100%;
+        // height: 100px;
+        z-index: 99999;
+        padding: 0 0 20px 20px;
+        overflow: hidden;
+        background-color: $color_white;
 
         >div {
             >p {
@@ -710,25 +962,11 @@ footer {
 
     .subtask_list_wrapper {
         font-size: 16px;
-    }
-}
+        background-color: transparent;
 
-@media (max-width: 620px) {
-    .right_box {
-        @include BoxSize();
-
-        .priority-buttons {
-            >button {
-                @include PositionBox();
-                border: 1px solid $color_grey;
-                font-size: 16px;
-                padding: 5px 10px;
-
-                >img {
-                    @include BoxSize($h: 20px, $w: 20px);
-                    padding-left: 5px;
-                }
-            }
+        &:hover {
+            cursor: pointer;
+            background-color: $color_grey;
         }
     }
 }
@@ -737,8 +975,12 @@ footer {
 // ------------- DUPLICATE THE CODE FROM @MEDAIQUERY IN HERE ---------------
 
 section.responsive {
-    :host {
-        overflow-y: auto;
+
+    .content_wrapper {
+        height: 100dvh;
+        display: flex;
+        flex-direction: column;
+        position: relative;
     }
 
     .line {
@@ -749,12 +991,27 @@ section.responsive {
         h1 {
             font-size: 32px;
         }
+
+        button {
+            background-color: transparent;
+
+            &:hover {
+                border-radius: 100%;
+                background-color: $color_grey;
+                cursor: pointer;
+            }
+        }
     }
 
     form {
+        // padding-bottom: 100px;
+
         >main {
             @include PositionBox($fd: column);
             padding: 20px 0 20px 0;
+            overflow-x: hidden;
+            flex: 1;
+            overflow-y: auto;
         }
     }
 
@@ -808,6 +1065,10 @@ section.responsive {
             }
 
             >.subtask_box {
+                &::-webkit-scrollbar {
+                    display: none;
+                }
+
                 min-width: 20px;
                 max-height: 80px;
             }
@@ -816,6 +1077,15 @@ section.responsive {
 
     footer {
         @include PositionBox($ai: start, $fd: column);
+        position: sticky;
+        bottom: 0;
+        right: 0;
+        width: 100%;
+        // height: 100px;
+        z-index: 99999;
+        padding: 0 0 20px 20px;
+        overflow: hidden;
+        background-color: $color_white;
 
         >div {
             >p {
@@ -857,5 +1127,11 @@ section.responsive {
 
     .subtask_list_wrapper {
         font-size: 16px;
+        background-color: transparent;
+
+        &:hover {
+            cursor: pointer;
+            background-color: $color_grey;
+        }
     }
 }

@@ -1,7 +1,7 @@
 @if (showWelcome) {
 <div class="content_name">
   <p>Good Morning</p>
-  <p>{{ userName }}</p>
+  <p>{{ this.authService.getDisplayName() || '' }}</p>
 </div>
 }
 @else {
@@ -76,7 +76,7 @@
       </div>
       <div class="content_name_des">
         <p>Good Morning,</p>
-        <h1>{{ userName }}</h1>
+        <h1>{{ this.authService.getDisplayName() || '' }}</h1>
       </div>
     </div>
     <!-- <div class="content_name_des">

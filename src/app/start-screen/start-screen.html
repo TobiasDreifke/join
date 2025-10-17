@@ -1,15 +1,18 @@
 <div class="start-screen">
     <img [style.--animTime]="animationTime + 's'" src="./assets/icons/logo/logo_blue.svg" alt="">
     <div [style.--animTime]="animationTime + 's'" class="start-animation-bg"></div>
-    @if (router.url === '/login') {
-        <div class="sign-up">
-            <p>Not a Join user?</p>
-            <a routerLink="sign-up">Sign up</a>
-        </div>
-    }
-    <div class="privacy-legal-links">
-        <a routerLink="privacy">Privacy Policy</a>
-        <a routerLink="legal">Legal Notice</a>
-    </div>
     <ng-content></ng-content>
+    @if (router.url === '/login') {
+    <div class="sign-up">
+        <p>Not a Join user?</p>
+        <a routerLink="sign-up">Sign up</a>
+    </div>
+    }
+    <div class="privacy_legal_wrapper">
+        <div class="privacy-legal-links">
+            <a routerLink="privacy">Privacy Policy</a>
+            <a routerLink="legal">Legal Notice</a>
+        </div>
+    </div>
+
 </div>

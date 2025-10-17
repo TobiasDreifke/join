@@ -55,42 +55,44 @@
       </div>
     </div>
 
- <div class="Subtasks_card">
-  <p class="label">Subtasks:</p>
-  <div class="subtask-list">
-    @for(subtask of selectedTask.subtask; track $index){
-    <div class="subtask-item" (click)="toggleSubtaskCompleted($index)">
-      <div class="avatar-wrapper">
-        <img class="checkbox-icon" [src]="subtask.completed
+    <div class="Subtasks_card">
+      <p class="label">Subtasks:</p>
+      <div class="subtask-list">
+        @for(subtask of selectedTask.subtask; track $index){
+        <div class="subtask-item" (click)="toggleSubtaskCompleted($index)">
+          <div class="avatar-wrapper">
+            <img class="checkbox-icon" [src]="subtask.completed
           ? './assets/icons/checkbox/checkbox_checked.png'
           : './assets/icons/checkbox/checkbox_empty.png'" alt="checkbox" />
-        <span class="subtask-label" [class.completed]="subtask.completed">
-          {{ subtask.title }}
-        </span>
+            <span class="subtask-label" [class.completed]="subtask.completed">
+              {{ subtask.title }}
+            </span>
+          </div>
+        </div>
+        }
       </div>
     </div>
-  }
-  </div>
-</div>
 
 
 
-
-    <div class="btn_group">
-      <div class="delete_btn">
-        <button (click)="onDelete()">
-          <img src="./assets/icons/delete.png" alt="">
-          <p>Delete</p>
-        </button>
-      </div>
-      <div class="border_bn"></div>
-      <div class="etid_btn">
-        <button (click)="onEditTask()">
-          <img src="./assets/icons/edit.png" alt="">
-          <p>Edit</p>
-        </button>
+    <div class="btn_wrapper">
+      <div class="btn_group">
+        <div class="delete_btn">
+          <button (click)="onDelete()">
+            <img src="./assets/icons/delete.png" alt="">
+            <p>Delete</p>
+          </button>
+        </div>
+        <div class="border_bn"></div>
+        <div class="etid_btn">
+          <button (click)="onEditTask()">
+            <img src="./assets/icons/edit.png" alt="">
+            <p>Edit</p>
+          </button>
+        </div>
       </div>
     </div>
+
     }
   </div>
 </section>

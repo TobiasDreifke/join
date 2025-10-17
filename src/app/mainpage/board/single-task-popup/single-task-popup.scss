@@ -1,3 +1,7 @@
+@use 'mixins' as *;
+@use 'variables' as *;
+
+
 .container {
     position: fixed;
     inset: 0;
@@ -8,40 +12,56 @@
     z-index: 999;
     padding: 1rem;
 
+    &::-webkit-scrollbar {
+        display: none;
     }
+
+}
+
 .card_task {
+
+
     width: 100%;
     max-width: 525px;
-    max-height: 95vh;
+    height: calc(100dvh - 200px);
     background-color: #ffffff;
     border-radius: 30px;
     padding: 30px;
+
     display: flex;
     flex-direction: column;
+    justify-content: start;
+
     gap: 1.5rem;
     animation: slideIn 0.5s ease forwards;
+
     overflow-y: auto;
-    scrollbar-width: thin;
-    scrollbar-color: #ccc transparent;
 
-    @media (max-height: 800px) {
-        max-height: 90vh;
-        padding: 20px;
-    }
-
-    @media (max-height: 600px) {
-        max-height: 85vh;
-        padding: 16px;
-    }
+    // scrollbar-width: thin;
+    // scrollbar-color: #ccc transparent;
 
     &::-webkit-scrollbar {
-        width: 4px;
+        display: none;
     }
 
-    &::-webkit-scrollbar-thumb {
-        background-color: #ccc;
-        border-radius: 4px;
-    }
+    // @media (max-height: 800px) {
+    //     max-height: 90vh;
+    //     padding: 20px;
+    // }
+
+    // @media (max-height: 600px) {
+    //     max-height: 85vh;
+    //     padding: 16px;
+    // }
+
+    // &::-webkit-scrollbar {
+    //     width: 4px;
+    // }
+
+    // &::-webkit-scrollbar-thumb {
+    //     background-color: #ccc;
+    //     border-radius: 4px;
+    // }
 
     .card_container {
         display: flex;
@@ -66,33 +86,55 @@
 
 
         button {
+            @include PositionBox();
+            @include BoxSize($h: 40px, $w: 40px);
             border: none;
-            color: white;
-            padding: 8px 10px;
-            border-radius: 8px;
-            font-size: 14px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
+            background-color: transparent;
 
-            img {
-                width: 16px;
-                height: 16px;
-                transition: border-radius 0.5s ease;
+            &:hover {
+                border-radius: 100%;
+                background-color: $color_grey;
+                cursor: pointer;
             }
 
-            &.btn_close {
-                background-color: transparent;
-                padding: 4px;
-
-                &:hover {
-                    background-color: #E7E7E7;
-
-                    img {
-                        border-radius: 50%;
-                    }
-                }
+            >img {
+                height: 40px;
+                width: 40px;
+                aspect-ratio: 1;
             }
         }
+
+        // button {
+        //     border: none;
+        //     color: white;
+        //     background-color: transparent;
+        //     // padding: 8px 10px;
+        //     border-radius: 100%;
+
+        //     font-size: 14px;
+        //     cursor: pointer;
+        //     transition: background-color 0.3s ease;
+        //     aspect-ratio: 1;
+
+        //     img {
+        //         width: 16px;
+        //         height: 16px;
+        //         transition: border-radius 0.5s ease;
+        //     }
+
+        //     &.btn_close {
+        //         aspect-ratio: 1;
+        //         // padding: 4px;
+
+        //         &:hover {
+        //             background-color: #E7E7E7;
+        //             border-radius: 100%;
+        //             aspect-ratio: 1;
+
+        //             img {}
+        //         }
+        //     }
+
 
         .description_card {
 
@@ -340,60 +382,67 @@
         }
     }
 
-
-    .btn_group {
+    .btn_wrapper {
+        height: 100%;
         display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        justify-content: flex-end;
+        justify-content: end;
+        align-items: end;
 
-        .delete_btn,
-        .etid_btn {
-            button {
-                display: flex;
-                align-items: center;
-                gap: 0.5rem;
-                border: none;
-                border-radius: 4px;
-                padding: 0.5rem 1rem;
-                cursor: pointer;
-                font-weight: 400;
-                font-family: 'Inter', sans-serif;
-                background-color: #ffffff;
-                font-size: 1rem;
-                color: #2A3647;
-                transition: transform 0.2s ease, filter 0.2s ease, color 0.2s ease;
+        .btn_group {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            justify-content: flex-end;
 
-                img {
-                    width: 16px;
-                    height: 18px;
-                    transition: filter 0.3s ease, transform 0.3s ease;
-                    color: inherit;
-                }
-
-                &:hover {
-                    color: #007CEE;
-                    transform: scale(1.1);
-                    filter: brightness(1.2);
+            .delete_btn,
+            .etid_btn {
+                button {
+                    display: flex;
+                    align-items: center;
+                    gap: 0.5rem;
+                    border: none;
+                    border-radius: 4px;
+                    padding: 0.5rem 1rem;
+                    cursor: pointer;
+                    font-weight: 400;
+                    font-family: 'Inter', sans-serif;
+                    background-color: #ffffff;
+                    font-size: 1rem;
+                    color: #2A3647;
+                    transition: transform 0.2s ease, filter 0.2s ease, color 0.2s ease;
 
                     img {
-                        filter: brightness(0) saturate(100%) invert(32%) sepia(100%) saturate(3186%) hue-rotate(195deg) brightness(99%) contrast(101%);
-                        transform: scale(1.05);
+                        width: 16px;
+                        height: 18px;
+                        transition: filter 0.3s ease, transform 0.3s ease;
+                        color: inherit;
+                    }
+
+                    &:hover {
+                        color: #007CEE;
+                        transform: scale(1.1);
+                        filter: brightness(1.2);
+
+                        img {
+                            filter: brightness(0) saturate(100%) invert(32%) sepia(100%) saturate(3186%) hue-rotate(195deg) brightness(99%) contrast(101%);
+                            transform: scale(1.05);
+                        }
+                    }
+
+                    p {
+                        margin: 0;
                     }
                 }
+            }
 
-                p {
-                    margin: 0;
-                }
+            .border_bn {
+                width: 1px;
+                height: 30px;
+                background-color: #ccc;
             }
         }
-
-        .border_bn {
-            width: 1px;
-            height: 30px;
-            background-color: #ccc;
-        }
     }
+
 
 
 

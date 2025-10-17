@@ -1,10 +1,11 @@
 section.container {
     width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
+    // display: flex;
+    // justify-content: start;
+    // align-items: start;
     padding: 25px 50px;
-
+    height: calc(100dvh - 200px);
+    overflow-y: auto;
 
     @media (max-width: 768px) {
 
@@ -100,7 +101,7 @@ section.container {
     .main_summary {
         display: flex;
         flex-direction: row;
-        justify-content: center;
+        justify-content: start;
         align-items: center;
         // flex-wrap: wrap;
         // position: relative;
