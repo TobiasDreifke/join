@@ -1,19 +1,24 @@
 section.container {
     width: 100%;
-    // display: flex;
-    // justify-content: start;
-    // align-items: start;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
     padding: 25px 50px;
     height: calc(100dvh - 200px);
     overflow-y: auto;
+    overflow-x: hidden;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
 
     @media (max-width: 768px) {
 
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        padding: 20px;
-        text-align: center;
+        // flex-direction: column;
+        // justify-content: center;
+        // align-items: center;
+        // padding: 20px;
+        // text-align: center;
 
     }
 
@@ -101,7 +106,7 @@ section.container {
     .main_summary {
         display: flex;
         flex-direction: row;
-        justify-content: start;
+        justify-content: center;
         align-items: center;
         // flex-wrap: wrap;
         // position: relative;
