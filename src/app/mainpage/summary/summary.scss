@@ -181,31 +181,33 @@ section.container {
                         justify-content: center;
                         transition: all 0.3s ease;
 
-                        @media (max-width:768px) {
-                            width: 50px;
-                            height: 50px;
-                        }
+                        // @media (max-width:768px) {
+                        //     width: 50px;
+                        //     height: 50px;
+                        // }
 
-                        @media (max-width:460px) {
-                            width: 40px;
-                            height: 40px;
-                        }
+                        // @media (max-width:460px) {
+                        //     width: 40px;
+                        //     height: 40px;
+                        // }
 
                         img {
-                            width: 28px;
-                            height: 28px;
-                            filter: invert(0);
+                            width: 40px;
+                            height: 40px;
                             transition: all 0.3s ease;
+                            filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(2%) hue-rotate(154deg) brightness(103%) contrast(101%);
 
-                            @media (max-width:768px) {
-                                width: 24px;
-                                height: 24px;
-                            }
 
-                            @media (max-width:460px) {
-                                width: 20px;
-                                height: 20px;
-                            }
+
+                            // @media (max-width:768px) {
+                            //     width: 24px;
+                            //     height: 24px;
+                            // }
+
+                            // @media (max-width:460px) {
+                            //     width: 20px;
+                            //     height: 20px;
+                            // }
                         }
                     }
 
@@ -261,7 +263,7 @@ section.container {
                             background-color: #fff;
 
                             img {
-                                filter: invert(1);
+                                filter: brightness(0) saturate(100%) invert(17%) sepia(15%) saturate(1238%) hue-rotate(175deg) brightness(96%) contrast(88%);
                             }
                         }
 
@@ -350,16 +352,11 @@ section.container {
                 }
 
                 img {
-                    width: 35px;
-                    height: 25px;
+                    width: 50px;
+                    height: 50px;
                     transition: all 0.3s ease;
 
-                    @media (max-width:460px) {
-                        width: 25px;
-                        height: 20px;
-
-                    }
-
+                    filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(2%) hue-rotate(154deg) brightness(103%) contrast(101%);
                 }
             }
 

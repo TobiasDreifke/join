@@ -4,19 +4,19 @@
     <nav [ngClass]="{'nav-logged-out': !loggedIn}">
         @if(loggedIn){
             <a routerLink="/summary" routerLinkActive="active">
-                <img src="/assets/icons/Summary.svg" alt="">
+                <img src="/assets/icons/summary.svg" alt="">
                 Summary
             </a>
             <a routerLink="/tasks" routerLinkActive="active">
-                <img src="/assets/icons/Add-task.svg" alt="">
+                <img src="/assets/icons/add-task.svg" alt="">
                 Add Task
             </a>
             <a routerLink="/board" routerLinkActive="active">
-                <img src="/assets/icons/Board.svg" alt="">
+                <img src="/assets/icons/board.svg" alt="">
                 Board
             </a>
             <a routerLink="/contacts" routerLinkActive="active">
-                <img src="/assets/icons/Contacts.svg" alt=""> 
+                <img src="/assets/icons/contacts.svg" alt=""> 
                 Contacts
             </a>
         }@else {

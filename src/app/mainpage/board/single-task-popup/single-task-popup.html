@@ -62,8 +62,8 @@
         <div class="subtask-item" (click)="toggleSubtaskCompleted($index)">
           <div class="avatar-wrapper">
             <img class="checkbox-icon" [src]="subtask.completed
-          ? './assets/icons/checkbox/checkbox_checked.png'
-          : './assets/icons/checkbox/checkbox_empty.png'" alt="checkbox" />
+          ? './assets/icons/checked_button.svg'
+          : './assets/icons/checked_button_empty.svg'" alt="checkbox" />
             <span class="subtask-label" [class.completed]="subtask.completed">
               {{ subtask.title }}
             </span>
@@ -79,14 +79,14 @@
       <div class="btn_group">
         <div class="delete_btn">
           <button (click)="onDelete()">
-            <img src="./assets/icons/delete.png" alt="">
+            <img src="./assets/icons/delete.svg" alt="">
             <p>Delete</p>
           </button>
         </div>
         <div class="border_bn"></div>
         <div class="etid_btn">
           <button (click)="onEditTask()">
-            <img src="./assets/icons/edit.png" alt="">
+            <img src="./assets/icons/edit.svg" alt="">
             <p>Edit</p>
           </button>
         </div>
