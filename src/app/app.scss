@@ -4,10 +4,15 @@
 :host {
     @include PositionBox($d: flex, $jc: flex-start, $ai: stretch, $fd: row);
     background-color: $color_background_main;
+
+
+}
+
+.router_outlet_wrapper {
+    max-width: 1440px;
 }
 
 .content {
-    max-width: 1440px;
     width: 100%;
     min-height: 100vh;
 }
