@@ -339,17 +339,32 @@ footer {
 }
 
 :host ::ng-deep {
+    .ng-select {
+        .ng-input {
+            cursor: pointer;
+
+            input {
+                // cursor: pointer;
+                pointer-events: none;
+            }
+        }
+    }
+
     .ng_select {
         width: 100%;
         font-size: 20px;
         border-radius: 10px;
         border: 2px solid $color_grey;
         background-color: rgb(255, 255, 255);
+        cursor: pointer;
+
 
         .ng-select-container {
             height: 48px;
             padding: 0 10px;
             align-items: center;
+            cursor: pointer;
+
         }
 
         .ng-placeholder {
@@ -421,8 +436,8 @@ footer {
         width: 18px;
         height: 18px;
     }
-}
 
+}
 
 .selected_badges_wrapper {
     margin: 5px 0 5px 5px;
