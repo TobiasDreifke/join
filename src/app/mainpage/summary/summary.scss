@@ -140,6 +140,14 @@ section.container {
                     gap: 0.7rem;
                 }
 
+                .to_do {
+                    cursor: pointer;
+                }
+
+                .done {
+                    cursor: pointer;
+                }
+
                 a {
                     display: flex;
                     align-items: center;
@@ -280,6 +288,7 @@ section.container {
         display: flex;
         flex-direction: row;
         gap: 30px;
+        cursor: pointer;
 
         @media (max-width:768px) {
             gap: 1rem;
@@ -476,7 +485,7 @@ section.container {
             align-items: center;
             gap: 30px;
             text-decoration: none;
-            cursor: pointer;
+            // cursor: pointer;
             transition: all 0.3s ease;
 
             @media (max-width:768px) {
@@ -502,6 +511,8 @@ section.container {
                 box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
                 transition: all 0.3s ease;
                 text-align: center;
+
+                cursor: pointer;
 
                 @media (max-width:768px) {
                     width: 120px;
