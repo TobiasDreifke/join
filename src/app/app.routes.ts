@@ -12,7 +12,7 @@ import { authFunctionalGuard } from './guards/auth-functional-guard';
 import { reverseAuthFunctionalGuardGuard } from './guards/reverse-auth-functional-guard-guard';
 
 export const routes: Routes = [
-    { path: '', redirectTo: '/contacts', pathMatch: 'full' },
+    { path: '', redirectTo: '/login', pathMatch: 'full' },
     { path: 'legal', component: Legal },
     { path: 'help-page', component: HelpPage },
     { path: 'privacy', component: Privacy },
