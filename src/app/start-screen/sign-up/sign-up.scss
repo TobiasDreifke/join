@@ -177,7 +177,7 @@ form {
 .error-message {
     color: $color_error;
     font-size: 14px;
-    opacity: 0;
+    opacity: 1;
 
     &.show-error {
         opacity: 1;
