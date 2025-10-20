@@ -48,8 +48,17 @@ export class SignUp {
     this.validateConfirmPassword();
   }
   validateEmail() {
+    const value = this.user.email.trim();
+
+    this.errorMessage = '';
+
+    if (!value) {
+      this.emailInvalid = true;
+      return;
+    }
+
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    this.emailInvalid = !emailPattern.test(this.user.email.trim());
+    this.emailInvalid = !emailPattern.test(value);
   }
 
   validateConfirmPassword() {
@@ -69,38 +78,63 @@ export class SignUp {
     return null;
   }
 
+
+
   async onSubmit(form: NgForm) {
+    // Reset flags
     this.displayNameInvalid = false;
     this.passwordInvalid = false;
     this.confirmPasswordMismatch = false;
+    this.emailInvalid = false;
     this.errorMessage = '';
 
+    // Local validation
     const namePattern = /^[A-ZÄÖÜ][a-zäöüß]+ [A-ZÄÖÜ][a-zäöüß]+$/;
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
     if (!namePattern.test(this.user.displayName.trim())) {
       this.displayNameInvalid = true;
     }
-
+    if (!this.user.email.trim() || !emailPattern.test(this.user.email.trim())) {
+      this.emailInvalid = true;
+    }
     if (this.user.password.length < 6) {
       this.passwordInvalid = true;
     }
-
     if (this.user.password !== this.user.confirmPassword) {
       this.confirmPasswordMismatch = true;
     }
 
-    if (this.displayNameInvalid || this.passwordInvalid || this.confirmPasswordMismatch) {
+    // Stop early if anything invalid
+    if (
+      this.displayNameInvalid ||
+      this.emailInvalid ||
+      this.passwordInvalid ||
+      this.confirmPasswordMismatch
+    ) {
       return;
     }
 
-    const result = await this.authService.signup(
-      this.user.email,
-      this.user.password,
-      this.user.displayName
-    );
+    try {
+      const result = await this.authService.signup(
+        this.user.email,
+        this.user.password,
+        this.user.displayName
+      );
 
-    if (!result.success) {
-      this.errorMessage = result.message || 'Sign-up failed. Please try again.';
+      if (!result.success) {
+        this.errorMessage = result.message || 'Sign-up failed. Please try again.';
+      }
+    } catch (error: any) {
+      if (error.code === 'auth/email-already-in-use') {
+        this.errorMessage = 'This email is already registered.';
+        this.emailInvalid = true;
+      } else {
+        this.errorMessage = 'An unexpected error occurred. Please try again.';
+      }
     }
   }
 
 }
+
+
