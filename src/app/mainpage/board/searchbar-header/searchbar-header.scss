@@ -156,6 +156,9 @@
             bottom: 40px;
             left: 250px;
 
+            >img {
+                filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(2%) hue-rotate(154deg) brightness(103%) contrast(101%);
+            }
         }
 
         @media (max-width: 570px) {
@@ -163,6 +166,10 @@
                 left: 50%;
                 transform: translateX(-50%);
                 bottom: 40px;
+
+                img {
+                    filter: brightness(0) saturate(100%) invert(89%) sepia(56%) saturate(5539%) hue-rotate(182deg) brightness(124%) contrast(100%);
+                }
             }
         }
 

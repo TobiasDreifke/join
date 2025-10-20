@@ -23,6 +23,9 @@ export class SignUp {
   checked = false;
   invalidSignupAttempt = false;
   confirmPasswordMismatch = false;
+  displayNameInvalid = false;
+  passwordInvalid = false;
+  emailInvalid = false;
   errorMessage = '';
 
   constructor(private authService: AuthService) { }
@@ -35,27 +38,57 @@ export class SignUp {
     this.checked = !this.checked;
   }
 
+  validateDisplayName() {
+    const namePattern = /^[A-ZÄÖÜ][a-zäöüß]+ [A-ZÄÖÜ][a-zäöüß]+$/;
+    this.displayNameInvalid = !namePattern.test(this.user.displayName.trim());
+  }
+
+  validatePassword() {
+    this.passwordInvalid = this.user.password.length < 6;
+    this.validateConfirmPassword();
+  }
+  validateEmail() {
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    this.emailInvalid = !emailPattern.test(this.user.email.trim());
+  }
+
+  validateConfirmPassword() {
+    if (!this.user.confirmPassword) {
+      this.confirmPasswordMismatch = false;
+      return;
+    }
+    this.confirmPasswordMismatch = this.user.password !== this.user.confirmPassword;
+  }
+
+  get currentError(): string | null {
+    if (this.displayNameInvalid) return 'Name must be in the format "Forename Lastname".';
+    if (this.emailInvalid) return 'Please enter a valid email address.';
+    if (this.passwordInvalid) return 'Password must be at least 6 characters long.';
+    if (this.confirmPasswordMismatch) return 'Passwords do not match.';
+    if (this.errorMessage) return this.errorMessage;
+    return null;
+  }
+
   async onSubmit(form: NgForm) {
-    this.invalidSignupAttempt = false;
+    this.displayNameInvalid = false;
+    this.passwordInvalid = false;
     this.confirmPasswordMismatch = false;
     this.errorMessage = '';
 
-    if (this.user.password !== this.user.confirmPassword) {
-      this.confirmPasswordMismatch = true;
-      this.errorMessage = 'Passwords do not match.';
-      return;
-    }
-
     const namePattern = /^[A-ZÄÖÜ][a-zäöüß]+ [A-ZÄÖÜ][a-zäöüß]+$/;
     if (!namePattern.test(this.user.displayName.trim())) {
-      this.invalidSignupAttempt = true;
-      this.errorMessage = 'Name must be in the format "Forename Lastname".';
-      return;
+      this.displayNameInvalid = true;
     }
 
     if (this.user.password.length < 6) {
-      this.invalidSignupAttempt = true;
-      this.errorMessage = 'Password must be at least 6 characters long.';
+      this.passwordInvalid = true;
+    }
+
+    if (this.user.password !== this.user.confirmPassword) {
+      this.confirmPasswordMismatch = true;
+    }
+
+    if (this.displayNameInvalid || this.passwordInvalid || this.confirmPasswordMismatch) {
       return;
     }
 
@@ -66,7 +99,6 @@ export class SignUp {
     );
 
     if (!result.success) {
-      this.invalidSignupAttempt = true;
       this.errorMessage = result.message || 'Sign-up failed. Please try again.';
     }
   }

@@ -191,6 +191,14 @@ form {
         }
     }
 
+    .right_box_container {
+        position: relative;
+
+        select {
+            appearance: none;
+        }
+    }
+
     .error {
         @include BoxSize($h: 20px);
         min-height: 20px;
@@ -279,6 +287,17 @@ form {
             min-height: 30px;
             max-height: 120px;
             overflow: auto;
+            scrollbar-width: thin;
+            scrollbar-color: #ccc transparent;
+
+            &::-webkit-scrollbar {
+                width: 6px;
+            }
+
+            &::-webkit-scrollbar-thumb {
+                background-color: #ccc;
+                border-radius: 4px;
+            }
 
             >.subtask_list {
                 margin-left: 25px;
@@ -320,17 +339,32 @@ footer {
 }
 
 :host ::ng-deep {
+    .ng-select {
+        .ng-input {
+            cursor: pointer;
+
+            input {
+                // cursor: pointer;
+                pointer-events: none;
+            }
+        }
+    }
+
     .ng_select {
         width: 100%;
         font-size: 20px;
         border-radius: 10px;
         border: 2px solid $color_grey;
         background-color: rgb(255, 255, 255);
+        cursor: pointer;
+
 
         .ng-select-container {
             height: 48px;
             padding: 0 10px;
             align-items: center;
+            cursor: pointer;
+
         }
 
         .ng-placeholder {
@@ -402,15 +436,15 @@ footer {
         width: 18px;
         height: 18px;
     }
-}
 
+}
 
 .selected_badges_wrapper {
     margin: 5px 0 5px 5px;
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;
+    justify-content: start;
 
     width: 100%;
     max-width: 100%;
@@ -534,6 +568,8 @@ footer {
     border-radius: 10px;
     border: none;
     outline: none;
+    scrollbar-width: thin;
+    scrollbar-color: #ccc transparent;
 
     &::placeholder {
         color: $color_grey;
@@ -617,189 +653,7 @@ footer {
 }
 
 // ------------- RESPONSIVE -----------
-
-// @media (max-width: 1080px) {
-
-//     .content_wrapper {
-//         height: calc(100dvh - 200px);
-//         display: flex;
-//         flex-direction: column;
-//         position: relative;
-//         padding-bottom: 0;
-//     }
-
-//     :host {}
-
-//     .section {
-//         overflow: hidden;
-//     }
-
-//     .line {
-//         display: none;
-//     }
-
-//     header {
-//         h1 {
-//             font-size: 32px;
-//         }
-//     }
-
-//     form {
-
-
-//         >main {
-//             @include PositionBox($fd: column);
-//             padding: 20px 0 20px 0;
-
-//             flex: 1;
-//             overflow-y: auto;
-
-//             &::-webkit-scrollbar {
-//                 display: none;
-//             }
-//         }
-//     }
-
-//     .left_box {
-//         @include BoxSize();
-//         padding-top: 0;
-
-//         >div {
-//             >label {
-//                 color: $color_secondary;
-//                 font-size: 16px;
-//                 padding-bottom: 5px;
-//             }
-
-//             >input,
-//             textarea {
-//                 font-size: 16px;
-//                 padding: 5px;
-//             }
-
-//             >textarea {
-//                 @include BoxSize($h: 100px);
-//             }
-//         }
-//     }
-
-//     .right_box {
-//         @include BoxSize();
-//         padding-top: 0;
-
-//         label {
-//             font-size: 16px;
-//         }
-
-//         .right_box_container {
-//             >label {
-//                 font-size: 16px;
-//                 padding-bottom: 5px;
-//             }
-
-//             >input,
-//             select {
-//                 font-size: 16px;
-//                 padding: 5px;
-//             }
-//         }
-
-//         .subtasks {
-//             >div {
-//                 padding: 5px;
-//             }
-
-//             >.subtask_box {
-//                 &::-webkit-scrollbar {
-//                     display: none;
-//                 }
-
-//                 min-width: 20px;
-//                 max-height: 80px;
-//             }
-//         }
-
-//         .priority-buttons {
-//             >button {
-//                 @include PositionBox();
-//                 border: 1px solid $color_grey;
-//                 font-size: 16px;
-//                 padding: 5px 10px;
-
-//                 >img {
-//                     @include BoxSize($h: 20px, $w: 20px);
-//                     padding-left: 5px;
-//                 }
-//             }
-//         }
-//     }
-
-//     footer {
-//         @include PositionBox($ai: start, $fd: column);
-//         position: absolute;
-//         bottom: 0;
-//         right: 0;
-//         width: 100%;
-//         padding: 0 0 20px 20px;
-
-//         >div {
-//             >p {
-//                 padding-bottom: 10px;
-
-//                 >span {
-//                     color: $color_error;
-//                 }
-//             }
-//         }
-//     }
-
-//     :host ::ng-deep {
-//         .ng_select {
-//             font-size: 16px;
-
-//             .ng-select-container {
-//                 height: 33px;
-//             }
-
-//             .ng-placeholder {
-//                 font-size: 16px;
-//             }
-
-//             .ng-value {
-//                 font-size: 16px;
-//             }
-//         }
-
-//         .avatar {
-//             width: 28px;
-//             height: 28px;
-//         }
-//     }
-
-//     .subtask_input_wrapper {
-//         font-size: 16px;
-//     }
-
-//     .subtask_list_wrapper {
-//         font-size: 16px;
-//     }
-// }
-
-
-
-
-
-
-
-
-
-
-
-
 @media (max-width: 1080px) {
-    section {
-        // height: calc(100dvh - 200px);
-    }
 
     .content_wrapper {
         display: flex;
@@ -807,7 +661,6 @@ footer {
         height: calc(100dvh - 200px);
         overflow: auto;
         overflow-x: hidden;
-        // position: relative;
 
         &::-webkit-scrollbar {
             display: none;
@@ -821,9 +674,6 @@ footer {
         &::-webkit-scrollbar {
             display: none;
         }
-
-        // position: relative;
-
     }
 
     .line {
@@ -851,7 +701,7 @@ footer {
         display: flex;
         flex-direction: column;
         overflow-x: hidden;
-        padding-bottom:100px;
+        padding-bottom: 100px;
 
         >main {
             overflow-x: hidden;
@@ -913,10 +763,6 @@ footer {
             }
 
             >.subtask_box {
-                &::-webkit-scrollbar {
-                    display: none;
-                }
-
                 min-width: 20px;
                 max-height: 80px;
             }
@@ -924,12 +770,11 @@ footer {
     }
 
     footer {
-        @include PositionBox($ai: start, $fd: column);
+        @include PositionBox($ai: end, $fd: column);
         position: absolute;
         bottom: 0;
-        right: 0;
+        right: 25px;
         width: 100%;
-        // height: 100px;
         z-index: 99999;
         padding: 0 0 20px 20px;
         margin-bottom: 100px;
@@ -978,9 +823,38 @@ footer {
         font-size: 16px;
         background-color: transparent;
 
+        overflow-y: auto;
+        max-height: 200px;
+
+        scrollbar-width: thin;
+        scrollbar-color: #ccc transparent;
+
+        &::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background-color: #ccc;
+            border-radius: 4px;
+        }
+
         &:hover {
             cursor: pointer;
             background-color: $color_grey;
+        }
+    }
+
+    .priority-buttons {
+        >button {
+            @include PositionBox();
+            border: 1px solid $color_grey;
+            font-size: 16px;
+            padding: 2px 5px;
+
+            >img {
+                @include BoxSize($h: 40px, $w: 40px);
+                padding-left: 5px;
+            }
         }
     }
 }
@@ -991,7 +865,7 @@ footer {
 section.responsive {
 
     .content_wrapper {
-        height: 100dvh;
+        height: calc(100svh - 200px);
         display: flex;
         flex-direction: column;
         position: relative;
@@ -1019,6 +893,7 @@ section.responsive {
 
     form {
         // padding-bottom: 100px;
+        padding-bottom: 50px;
 
         >main {
             @include PositionBox($fd: column);
@@ -1079,27 +954,30 @@ section.responsive {
             }
 
             >.subtask_box {
-                &::-webkit-scrollbar {
-                    display: none;
-                }
+                // &::-webkit-scrollbar {
+                //     display: none;
+                // }
 
                 min-width: 20px;
-                max-height: 80px;
+                max-height: 200px;
             }
         }
     }
 
     footer {
-        @include PositionBox($ai: start, $fd: column);
-        position: sticky;
-        bottom: 0;
-        right: 0;
-        width: 100%;
-        // height: 100px;
-        z-index: 99999;
-        padding: 0 0 20px 20px;
-        overflow: hidden;
+        position: fixed;
+        bottom: 100px;
+        align-self: stretch;
+        max-width: 525px;
+        margin: 0 auto;
+        padding: 5px 20px 20px 20px;
         background-color: $color_white;
+        border-bottom-left-radius: 32px;
+        border-bottom-right-radius: 32px;
+
+        bottom: 0;
+        left: 50%;
+        transform: translate(-50%, -100px);
 
         >div {
             >p {
@@ -1146,6 +1024,20 @@ section.responsive {
         &:hover {
             cursor: pointer;
             background-color: $color_grey;
+        }
+    }
+
+    .priority-buttons {
+        >button {
+            @include PositionBox();
+            border: 1px solid $color_grey;
+            font-size: 16px;
+            padding: 5px 10px;
+
+            >img {
+                @include BoxSize($h: 20px, $w: 20px);
+                padding-left: 5px;
+            }
         }
     }
 }

@@ -60,6 +60,7 @@ section {
 .back-responsive {
     display: none;
     margin-left: auto;
+    cursor: pointer;
 }
 
 .contact-created {
@@ -113,7 +114,7 @@ section {
         gap: 24px !important;
     }
 
-    .single-contact{
+    .single-contact {
         gap: 24px;
     }
 }

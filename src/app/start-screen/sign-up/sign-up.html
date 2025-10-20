@@ -1,82 +1,68 @@
 <div class="login-card">
-    <div class="back_arrow_wrapper"> <a class="back_arrow" routerLink="/login"><img
-                src="assets/icons/arrow_left_blue.png" alt=""></a>
+    <div class="back_arrow_wrapper">
+        <a class="back_arrow" routerLink="/login">
+            <img src="assets/icons/arrow-left-line.svg" alt="">
+        </a>
     </div>
+
     <form #form="ngForm" (ngSubmit)="onSubmit(form)">
         <p>Sign up</p>
 
         <div class="inputs">
+
+            <!-- Display Name -->
             <div>
                 <input type="text" name="displayName" id="displayName" required placeholder="Name"
-                    [(ngModel)]="user.displayName" #displayName="ngModel" [ngClass]="{
-            error: form.submitted && (invalidSignupAttempt || displayName.invalid)
-          }" />
-                <img src="./assets/icons/person.svg" alt="" />
+                    [(ngModel)]="user.displayName" #displayName="ngModel" (ngModelChange)="validateDisplayName()"
+                    [ngClass]="{ error: displayNameInvalid }" /> <img src="./assets/icons/person.svg" alt="" />
             </div>
 
+            <!-- Email -->
             <div>
                 <input type="email" name="email" id="email" required placeholder="Email" [(ngModel)]="user.email"
-                    #email="ngModel" [ngClass]="{
-            error: form.submitted && (invalidSignupAttempt || email.invalid)
-          }" />
-                <img src="./assets/icons/mail.svg" alt="" />
+                    #email="ngModel" (ngModelChange)="validateEmail()" [ngClass]="{ error: emailInvalid }" /><img
+                    src="./assets/icons/mail.svg" alt="" />
             </div>
 
+            <!-- Password -->
             <div>
                 <input [type]="passwordVisible ? 'text' : 'password'" name="password" id="password" required
-                    placeholder="Password" [(ngModel)]="user.password" #password="ngModel" pattern=".{6,}" [ngClass]="{
-            error: form.submitted && (invalidSignupAttempt || password.invalid)
-          }" />
-
-                @if (!user.password?.length) {
-                <img src="./assets/icons/lock.svg" alt="" />
-                } @else {
-                @if (passwordVisible) {
-                <img src="./assets/icons/visibility.svg" (click)="togglePasswordVisibility()" class="pointer" alt="" />
-                } @else {
-                <img src="./assets/icons/visibility_off.svg" (click)="togglePasswordVisibility()" class="pointer"
-                    alt="" />
-                } }
+                    placeholder="Password" [(ngModel)]="user.password" #password="ngModel"
+                    (ngModelChange)="validatePassword()" [ngClass]="{ error: passwordInvalid }" />
+                <img [src]="passwordVisible ? './assets/icons/visibility.svg' : './assets/icons/visibility_off.svg'"
+                    (click)="togglePasswordVisibility()" class="pointer" alt="Show/Hide Password" />
             </div>
 
+            <!-- Confirm Password -->
             <div>
-                <input [type]="passwordVisible ? 'text' : 'password'" name="confirmPassword" id="confirmPassword"
-                    required placeholder="Confirm Password" [(ngModel)]="user.confirmPassword"
-                    #confirmPassword="ngModel" [ngClass]="{
-            error:
-              form.submitted &&
-              (invalidSignupAttempt || confirmPasswordMismatch)
-          }" />
-                <img src="./assets/icons/lock.svg" alt="" />
+                <input type="password" name="confirmPassword" id="confirmPassword" required
+                    placeholder="Confirm Password" [(ngModel)]="user.confirmPassword" #confirmPassword="ngModel"
+                    (ngModelChange)="validateConfirmPassword()" [ngClass]="{ error: confirmPasswordMismatch }" /> <img
+                    src="./assets/icons/lock.svg" alt="" />
             </div>
 
-            <p class="error-message" [ngClass]="{
-          'show-error':
-            form.submitted && (invalidSignupAttempt || confirmPasswordMismatch)
-        }">
-                {{ errorMessage }}
-            </p>
+            <!-- Error messages -->
+
+            @if (currentError) {
+            <p class="error-message">{{ currentError }}</p>
+            }
         </div>
 
-        <div class="accept_terms">
-            <div (click)="toggleCheckBox()">
-                @if (this.checked) {
-                <img class="checkbox-icon" src="./assets/icons/checkbox/checkbox_checked.png">
-                } @else {
-                <img class="checkbox-icon" src="./assets/icons/checkbox/checkbox_empty.png">
-                }
-            </div>
-
-
+        <!-- Accept Terms -->
+        <div class="accept_terms" (click)="toggleCheckBox()">
+            <img class="checkbox-icon"
+                [src]="checked ? './assets/icons/checked_button.svg' : './assets/icons/checked_button_empty.svg'" />
             <p>I accept the <a routerLink="/privacy"><span>Privacy policy</span></a></p>
         </div>
 
+        <!-- Submit Button -->
         <div class="buttons">
-            @if (this.checked) {
-            <button class="active" type="submit">Sign up</button>
-            } @else {
-            <button class="inactive" type="submit" disabled>Sign up</button>
-            }
+            <button [class.active]="checked" [class.inactive]="!checked" [disabled]="!checked" type="submit">
+                Sign up
+            </button>
+
+
         </div>
+
     </form>
 </div>
