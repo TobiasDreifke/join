@@ -27,8 +27,6 @@ export class Login {
 
   guestLogIn(){
     this.authService.login('sofia.müller@gmail.com', 'sofiamu');
-    localStorage.setItem('guestLogin', 'true');
-  localStorage.removeItem('hasSeenWelcome');
   }
 
   togglePasswordVisibility(){
