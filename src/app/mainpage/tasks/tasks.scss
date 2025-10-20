@@ -848,11 +848,11 @@ footer {
         >button {
             @include PositionBox();
             border: 1px solid $color_grey;
-            font-size: 16px;
-            padding: 2px 5px;
+            font-size: 16px !important;
+            padding: 5px 10px;
 
             >img {
-                @include BoxSize($h: 40px, $w: 40px);
+                @include BoxSize($h: 30px, $w: 30px);
                 padding-left: 5px;
             }
         }
@@ -977,7 +977,7 @@ section.responsive {
 
         bottom: 0;
         left: 50%;
-        transform: translate(-50%, -100px);
+        transform: translate(-50%, -120%);
 
         >div {
             >p {
