@@ -99,7 +99,7 @@ export class Tasks {
   private updateResponsiveState() {
     if (this.editMode) {
       this.isResponsive = true;
-    } 
+    }
     // else {
     //   this.isResponsive = this.screenWidth <= 1080;
     // }
@@ -115,6 +115,14 @@ export class Tasks {
     const today = new Date();
     this.todayString = today.toISOString().split('T')[0];
   }
+
+
+
+  set targetTaskDueDateString(value: string) {
+    const task = this.targetTask;
+    task.due_date = Timestamp.fromDate(new Date(value));
+  }
+
 
   // ---------------- EDIT TASK ----------------
   loadTask(taskId: string) {
