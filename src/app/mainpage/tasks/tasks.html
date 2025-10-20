@@ -113,7 +113,7 @@
                                     <div class="fullname">{{ contact.name }}</div>
                                 </div>
                                 <input type="checkbox" [checked]="isAssigned(contact)"
-                                    (click)="$event.stopPropagation()" />
+                                    (click)="$event.stopPropagation(); toggleAssigned(contact)" />
                             </div>
                         </ng-template>
                         <ng-template ng-label-tmp>
