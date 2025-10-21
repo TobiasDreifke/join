@@ -70,29 +70,41 @@ form {
     }
 }
 
+.image_color {
+    filter: brightness(0) saturate(100%) invert(92%) sepia(7%) saturate(9%) hue-rotate(345deg) brightness(91%) contrast(87%);
+}
+
 .inputs {
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 20px;
     width: 130%;
 
     >div {
         position: relative;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        width: 100%;
+        height: 50px;
+        border: 2px solid $color_font_user_menu;
+        border-radius: 8px;
+        padding: 12px 15px;
+        font-family: inherit;
+        font-size: 20px;
+
 
         >img {
-            position: absolute;
-            right: 12px;
-            top: 50%;
-            transform: translateY(-50%);
+            width: 25px;
+            aspect-ratio: 1;
         }
     }
 
     input {
-        border: 2px solid $color_font_user_menu;
-        border-radius: 8px;
-        padding: 12px 21px;
-        font-family: inherit;
-        font-size: 20px;
+        border: 0px solid $color_font_user_menu;
+        height: 100%;
         width: 100%;
 
         &::placeholder {
