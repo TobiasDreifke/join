@@ -1,17 +1,46 @@
 import { inject, Injectable } from '@angular/core';
-import { Auth, authState, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, updateProfile } from '@angular/fire/auth';
+import {
+  Auth,
+  authState,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut,
+  updateProfile
+} from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import { BehaviorSubject, map, Observable } from 'rxjs';
 
+/**
+ * Service for handling user authentication using Firebase Auth.
+ * 
+ * Provides methods for:
+ * - Signing up new users
+ * - Logging in existing users
+ * - Logging out
+ * - Retrieving current user display name
+ * - Observing authentication state
+ */
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
+  /** Firebase Auth instance */
   auth = inject(Auth);
+
+  /** Angular Router for navigation after login/signup/logout */
   router = inject(Router);
+
+  /** BehaviorSubject tracking login status */
   logStatus = new BehaviorSubject<boolean>(false);
 
+  /**
+   * Sign up a new user with email, password, and display name
+   * @param email User email
+   * @param password User password
+   * @param displayName User display name
+   * @returns Success status and optional error message
+   */
   async signup(
     email: string,
     password: string,
@@ -86,13 +115,14 @@ export class AuthService {
 
       return { success: false, message };
     }
-
-
   }
 
-
-  // --------------------------------
-
+  /**
+   * Log in an existing user using email and password
+   * @param email User email
+   * @param password User password
+   * @returns Boolean indicating if an error occurred
+   */
   async login(email: string, password: string) {
     try {
       await signInWithEmailAndPassword(this.auth, email, password);
@@ -104,18 +134,24 @@ export class AuthService {
     }
   }
 
+  /** Observable that emits true if a user is logged in, false otherwise */
   loggedIn$: Observable<boolean> = authState(this.auth).pipe(
     map(user => !!user)
   );
 
+  /**
+   * Logs out the current user and navigates to login page
+   */
   async logout() {
     await signOut(this.auth);
     this.router.navigate(['/login']);
-    // this.logStatus.next(false);
     console.log("Logout");
-    
   }
 
+  /**
+   * Retrieves the display name of the currently logged-in user
+   * @returns Display name string or undefined
+   */
   getDisplayName() {
     return this.auth.currentUser?.displayName;
   }

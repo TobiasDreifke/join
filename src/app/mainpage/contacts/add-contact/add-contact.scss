@@ -27,21 +27,16 @@ $border-radius: 2rem;
 
 .left_wrapper {
     position: relative;
-
     @include PositionBox($d: flex, $jc: center, $ai: start, $fd: column);
     background-color: $color_secondary;
-
     width: 467px;
     height: 594px;
-
     padding: 2rem;
     gap: 1rem;
-
     border-bottom-left-radius: $border-radius;
     border-top-left-radius: $border-radius;
     transition: all 100ms ease;
 
-    
     >img:first-of-type {
         width: 70px;
     }
@@ -60,7 +55,6 @@ $border-radius: 2rem;
         color: white;
         font-size: 4rem;
         transition: all 100ms ease;
-
     }
 
     >h3 {
@@ -68,7 +62,6 @@ $border-radius: 2rem;
         font-size: 1.9rem;
         font-weight: 400;
         transition: all 100ms ease;
-
     }
 }
 
@@ -81,22 +74,17 @@ $border-radius: 2rem;
 .right_wrapper {
     @include PositionBox($d: flex, $jc: center, $ai: end, $fd: column);
     background-color: white;
-
     width: 700px;
     height: 594px;
-
     padding: 2rem;
     gap: 1rem;
-
     border-bottom-right-radius: $border-radius;
     border-top-right-radius: $border-radius;
-
     transition: all 100ms ease;
     position: relative;
 
     >p {
         @include PositionBox($d: flex, $jc: center, $ai: center, $fd: row);
-
         width: 2rem;
         height: 2rem;
         position: absolute;
@@ -114,8 +102,6 @@ $border-radius: 2rem;
 .form_wrapper {
     @include PositionBox($d: flex, $jc: space-between, $ai: center, $fd: row);
     gap: 24px;
-    // gap: 1rem;
-    // width: 95%;
 
     .person_icon {
         @include PositionBox($d: flex, $jc: center, $ai: center, $fd: row);
@@ -133,7 +119,6 @@ $border-radius: 2rem;
         }
 
         >img {
-            // button greyed out 
             filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(7419%) hue-rotate(115deg) brightness(117%) contrast(119%);
             width: 70px;
         }
@@ -145,13 +130,11 @@ $border-radius: 2rem;
 .form_container {
     .form {
         @include PositionBox($d: flex, $jc: space-between, $ai: center, $fd: column);
-        // gap: 1rem;
 
         .error {
             width: 100%;
 
             span {
-                // border: 1px dotted blue;
                 font-size: 0.8rem;
                 color: red;
                 display: inline-block;
@@ -173,7 +156,6 @@ $border-radius: 2rem;
             color: $color_grey;
             padding-top: 0;
             padding-bottom: 0;
-
             margin-top: 8px;
 
             >img {
@@ -185,8 +167,6 @@ $border-radius: 2rem;
                 flex: 1;
                 min-width: 0;
             }
-
-
 
             .input_no_error {
                 width: 100%;
@@ -204,8 +184,6 @@ $border-radius: 2rem;
                 }
             }
         }
-
-
     }
 }
 
@@ -236,8 +214,6 @@ $border-radius: 2rem;
             color: $color_white;
             cursor: pointer;
 
-
-
             &::placeholder {
                 color: $color_grey;
             }
@@ -253,15 +229,11 @@ $border-radius: 2rem;
     padding: 0;
 }
 
-
-
 .input_error_text,
 span.ng-error {
     color: $color_error;
     font-size: 0.9rem;
 }
-
-// -------------------------- RESPONSIVE --------------
 
 @media (max-width: 960px) {
     .d_none {
@@ -277,14 +249,11 @@ span.ng-error {
     .left_wrapper {
         @include PositionBox($d: flex, $jc: center, $ai: start, $fd: column);
         background-color: $color_secondary;
-
         width: 98%;
         height: 30%;
-
         padding: 2rem;
         gap: 1rem;
         position: relative;
-
         border-bottom-left-radius: 0;
         border-bottom-right-radius: 0;
         border-top-left-radius: $border-radius;
@@ -314,18 +283,15 @@ span.ng-error {
 
         .person_icon_mobile {
             @include PositionBox($d: flex, $jc: center, $ai: center, $fd: row);
-
             background-color: $color_grey;
             position: absolute;
             z-index: 10;
             display: flex;
             border: 3px solid white;
-
             bottom: -60px;
             left: 50%;
             transform: translateX(-50%);
             border-radius: 100%;
-
             width: 100px;
             height: 100px;
 
@@ -339,13 +305,10 @@ span.ng-error {
     .right_wrapper {
         @include PositionBox($d: flex, $jc: center, $ai: center, $fd: column);
         background-color: white;
-
         width: 98%;
         height: 70%;
-
         padding: 2rem;
         gap: 1rem;
-
         border-bottom-left-radius: $border-radius;
         border-bottom-right-radius: $border-radius;
         border-top-left-radius: 0;
@@ -374,10 +337,8 @@ span.ng-error {
                 @include button_w_border($border-color: $color_grey);
                 @include PositionBox($d: flex, $jc: space-between, $ai: center, $fd: row);
                 cursor: default;
-
                 width: 100%;
                 height: 50px;
-
                 color: #D1D1D1;
                 padding-top: 0;
                 padding-bottom: 0;
@@ -391,7 +352,6 @@ span.ng-error {
 
     .form_wrapper {
         @include PositionBox($d: flex, $jc: center, $ai: center, $fd: row);
-        // gap: 1rem;
         width: 95%;
     }
 

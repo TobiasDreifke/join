@@ -6,22 +6,12 @@
     padding: 30px;
 }
 
-.task_wrapper {
-    //  padding: 30px;
-    // position: relative;
-}
-
-
 section {
-    // @include BoxSize($h: calc(100dvh - 100px));
-    // padding: 2% 5% 0 5%;
     padding: 0 5% 0 5%;
     box-sizing: border-box;
-
 }
 
 header {
-    // @include BoxSize($h: 10%);
     @include PositionBox($jc: space-between);
 
     h1 {
@@ -32,10 +22,8 @@ header {
     button {
         @include PositionBox();
         @include BoxSize($h: 40px, $w: 40px);
-        // font-size: 30px;
         border: none;
         background-color: $color_background_main;
-        // border-radius: 150px;
 
         &:hover {
             border-radius: 100%;
@@ -52,9 +40,6 @@ header {
 }
 
 form {
-    // @include BoxSize($h: 70%);
-    // position: relative;
-
     >main {
         @include BoxSize();
         @include PositionBox();
@@ -64,8 +49,6 @@ form {
 .left_box {
     @include BoxSize($w: 50%);
     @include PositionBox($ai: start, $fd: column);
-    // overflow-y: auto;
-    // overflow-x: hidden;
 
     >div {
         @include PositionBox($jc: start, $ai: start, $fd: column);
@@ -139,8 +122,6 @@ form {
 .right_box {
     @include BoxSize($w: 50%);
     @include PositionBox($ai: start, $fd: column);
-    // overflow-y: auto;
-    // overflow-x: hidden;
 
     .right_box_container {
         @include PositionBox($jc: start, $ai: none, $fd: column);
@@ -307,7 +288,6 @@ form {
 }
 
 footer {
-    // @include BoxSize($h: 20%);
     @include PositionBox($jc: space-between, $ai: end);
 
     >div {
@@ -344,7 +324,6 @@ footer {
             cursor: pointer;
 
             input {
-                // cursor: pointer;
                 pointer-events: none;
             }
         }
@@ -357,7 +336,6 @@ footer {
         border: 2px solid $color_grey;
         background-color: rgb(255, 255, 255);
         cursor: pointer;
-
 
         .ng-select-container {
             height: 48px;
@@ -445,7 +423,6 @@ footer {
     flex-direction: row;
     align-items: center;
     justify-content: start;
-
     width: 100%;
     max-width: 100%;
     overflow: auto;
@@ -652,9 +629,7 @@ footer {
     }
 }
 
-// ------------- RESPONSIVE -----------
 @media (max-width: 1080px) {
-
     .content_wrapper {
         display: flex;
         flex-direction: column;
@@ -666,9 +641,6 @@ footer {
             display: none;
         }
     }
-
-
-
 
     .task_wrapper {
         &::-webkit-scrollbar {
@@ -822,10 +794,8 @@ footer {
     .subtask_list_wrapper {
         font-size: 16px;
         background-color: transparent;
-
         overflow-y: auto;
         max-height: 200px;
-
         scrollbar-width: thin;
         scrollbar-color: #ccc transparent;
 
@@ -859,9 +829,6 @@ footer {
     }
 }
 
-// ------------- FORCED RESPONSIVE FOR EDIT ---------------
-// ------------- DUPLICATE THE CODE FROM @MEDAIQUERY IN HERE ---------------
-
 section.responsive {
 
     .content_wrapper {
@@ -892,7 +859,6 @@ section.responsive {
     }
 
     form {
-        // padding-bottom: 100px;
         padding-bottom: 50px;
 
         >main {
@@ -954,10 +920,6 @@ section.responsive {
             }
 
             >.subtask_box {
-                // &::-webkit-scrollbar {
-                //     display: none;
-                // }
-
                 min-width: 20px;
                 max-height: 200px;
             }
@@ -974,7 +936,6 @@ section.responsive {
         background-color: $color_white;
         border-bottom-left-radius: 32px;
         border-bottom-right-radius: 32px;
-
         bottom: 0;
         left: 50%;
         transform: translate(-50%, -120%);
