@@ -10,7 +10,7 @@ export const reverseAuthFunctionalGuardGuard: CanActivateFn = (route, state) => 
 
   return authState(authService.auth).pipe(
     map(user => {
-      if (user) return router.createUrlTree(['/board']);
+      if (user) return router.createUrlTree(['/summary']);
       return true;  
     })
   );
