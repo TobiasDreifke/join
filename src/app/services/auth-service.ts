@@ -53,7 +53,6 @@ export class AuthService {
         password
       );
 
-      // Update the display name if user creation succeeded
       if (userCredential.user) {
         await updateProfile(userCredential.user, { displayName });
         console.log('Display name set:', displayName);
@@ -68,7 +67,6 @@ export class AuthService {
 
       let message = 'An unexpected error occurred. Please try again.';
 
-      // Map common Firebase Auth error codes to friendly messages
       if (error?.code) {
         switch (error.code) {
           case 'auth/email-already-in-use':

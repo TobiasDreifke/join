@@ -1,7 +1,6 @@
 @use 'mixins' as *;
 @use 'variables' as *;
 
-
 .container {
     position: fixed;
     inset: 0;
@@ -15,53 +14,25 @@
     &::-webkit-scrollbar {
         display: none;
     }
-
 }
 
 .card_task {
-
-
     width: 100%;
     max-width: 525px;
     height: calc(100dvh - 200px);
     background-color: #ffffff;
     border-radius: 30px;
     padding: 30px;
-
     display: flex;
     flex-direction: column;
     justify-content: start;
-
     gap: 1.5rem;
     animation: slideIn 0.5s ease forwards;
-
     overflow-y: auto;
-
-    // scrollbar-width: thin;
-    // scrollbar-color: #ccc transparent;
 
     &::-webkit-scrollbar {
         display: none;
     }
-
-    // @media (max-height: 800px) {
-    //     max-height: 90vh;
-    //     padding: 20px;
-    // }
-
-    // @media (max-height: 600px) {
-    //     max-height: 85vh;
-    //     padding: 16px;
-    // }
-
-    // &::-webkit-scrollbar {
-    //     width: 4px;
-    // }
-
-    // &::-webkit-scrollbar-thumb {
-    //     background-color: #ccc;
-    //     border-radius: 4px;
-    // }
 
     .card_container {
         display: flex;
@@ -84,7 +55,6 @@
             }
         }
 
-
         button {
             @include PositionBox();
             @include BoxSize($h: 40px, $w: 40px);
@@ -104,40 +74,7 @@
             }
         }
 
-        // button {
-        //     border: none;
-        //     color: white;
-        //     background-color: transparent;
-        //     // padding: 8px 10px;
-        //     border-radius: 100%;
-
-        //     font-size: 14px;
-        //     cursor: pointer;
-        //     transition: background-color 0.3s ease;
-        //     aspect-ratio: 1;
-
-        //     img {
-        //         width: 16px;
-        //         height: 16px;
-        //         transition: border-radius 0.5s ease;
-        //     }
-
-        //     &.btn_close {
-        //         aspect-ratio: 1;
-        //         // padding: 4px;
-
-        //         &:hover {
-        //             background-color: #E7E7E7;
-        //             border-radius: 100%;
-        //             aspect-ratio: 1;
-
-        //             img {}
-        //         }
-        //     }
-
-
         .description_card {
-
             p {
                 font-family: 'Inter', sans-serif;
                 font-weight: 400;
@@ -147,8 +84,6 @@
                 letter-spacing: 0px;
             }
         }
-
-
     }
 
     @keyframes slideIn {
@@ -181,9 +116,7 @@
             width: auto;
 
         }
-
     }
-
 
     .due-date {
         display: flex;
@@ -223,7 +156,6 @@
             line-height: 120%;
             letter-spacing: 0;
             color: #42526E;
-
         }
 
         .priority_data {
@@ -234,7 +166,6 @@
             line-height: 120%;
             letter-spacing: 0;
             color: #000000;
-
         }
 
         .priority_icon {
@@ -243,10 +174,6 @@
             margin-left: 8px;
             vertical-align: middle;
         }
-
-
-
-
     }
 
     .assigned_to {
@@ -288,9 +215,6 @@
             border-radius: 0.5rem;
             padding: 8px 12px;
             transition: background-color 0.3s;
-
-
-
         }
 
         .image_color {
@@ -304,8 +228,6 @@
             font-size: 12px;
             font-weight: 400;
             font-family: 'Inter', sans-serif;
-
-
         }
 
         .name {
@@ -314,7 +236,6 @@
             font-size: 1.25rem;
             color: #000000;
         }
-
     }
 
     .Subtasks_card {
@@ -376,8 +297,6 @@
                     color: #000000;
                     font-weight: 400;
                     transition: color 0.3s ease;
-
-
                 }
             }
         }
@@ -443,10 +362,4 @@
             }
         }
     }
-
-
-
-
-
-
 }

@@ -53,8 +53,6 @@ export class Tasks {
   /** Flag for responsive layout */
   isResponsive = false;
 
-  // ---------------- TASK REFERENCES ----------------
-
   /** Task being edited */
   edit: TaskInterface | undefined;
 
@@ -76,7 +74,6 @@ export class Tasks {
   /** Currently selected contact ID for assignment */
   contactId: string | null = null;
 
-  // ---------------- SERVICES ----------------
   taskService = inject(TaskService);
   contactService = inject(ContactService);
 
@@ -124,8 +121,6 @@ export class Tasks {
     this.newTask.stage = this.stage;
   }
 
-  // --------- RESPONSIVE STATE -----------
-
   /** Updates screen width and responsive state on window resize */
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {
@@ -146,8 +141,6 @@ export class Tasks {
     this.updateResponsiveState();
   }
 
-  // --------- DUE DATE -----------
-
   /** Sets today's date string for default values */
   setTodayString() {
     const today = new Date();
@@ -159,8 +152,6 @@ export class Tasks {
     const task = this.targetTask;
     task.due_date = Timestamp.fromDate(new Date(value));
   }
-
-  // --------- TASK EDIT -----------
 
   /** Loads a task by ID for editing */
   loadTask(taskId: string) {
@@ -203,8 +194,6 @@ export class Tasks {
     if (!this.edit) return false;
     return !!this.edit.title && this.edit.title.length >= 2 && !!this.edit.category && !!this.edit.due_date;
   }
-
-  // --------- ADD TASK -----------
 
   /** Clears form inputs for a new task */
   clearInputFields(form?: NgForm) {
@@ -266,8 +255,6 @@ export class Tasks {
     this.taskService.deleteTask(taskId);
   }
 
-  // --------- SUBTASKS EDIT -----------
-
   /** Tracks which subtasks are in edit mode */
   subtaskEditMap: Record<number, boolean> = {};
 
@@ -300,8 +287,6 @@ export class Tasks {
     delete this.subtaskOriginalMap[index];
   }
 
-  // --------- SUBTASKS MANAGEMENT -----------
-
   /** Adds a new subtask */
   addSubtask() {
     const target = this.editMode ? this.edit! : this.newTask;
@@ -322,8 +307,6 @@ export class Tasks {
   cancelSubtask() {
     this.subtaskTitle = '';
   }
-
-  // --------- ASSIGNED CONTACTS -----------
 
   /**
    * Generates initials for a contact name

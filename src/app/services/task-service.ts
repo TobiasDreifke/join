@@ -25,7 +25,6 @@ export class TaskService {
   tasksList: TaskInterface[] = [];
 
   constructor() {
-    // Subscribe to Firestore 'tasks' collection in real-time
     this.unsubscribeTasksList = onSnapshot(collection(this.firestore, "tasks"), (tasksSnapshot) => {
       this.tasksList = [];
       tasksSnapshot.docs.forEach((docItem) => {

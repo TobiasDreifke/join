@@ -16,7 +16,3 @@ export const appConfig: ApplicationConfig = {
     provideFirestore(() => getFirestore())
   ]
 };
-
-// for smooth transition replace row 13 with:
-
-    // provideRouter(routes, withViewTransitions()), 

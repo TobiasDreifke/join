@@ -103,7 +103,6 @@ export class SignUp {
    * @param form NgForm submitted form object
    */
   async onSubmit(form: NgForm) {
-    // Reset validation flags
     this.displayNameInvalid = false;
     this.passwordInvalid = false;
     this.confirmPasswordMismatch = false;
@@ -113,7 +112,6 @@ export class SignUp {
     const namePattern = /^[A-ZÄÖÜ][a-zäöüß]+ [A-ZÄÖÜ][a-zäöüß]+$/;
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-    // Local validation
     if (!namePattern.test(this.user.displayName.trim())) this.displayNameInvalid = true;
     if (!this.user.email.trim() || !emailPattern.test(this.user.email.trim())) this.emailInvalid = true;
     if (this.user.password.length < 6) this.passwordInvalid = true;

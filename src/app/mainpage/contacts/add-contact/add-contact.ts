@@ -104,7 +104,6 @@ export class AddContact {
       this.contactService.updateContact(this.contactId, this.htmlinput);
       this.close.emit();
     } else if (!this.editMode) {
-      // ------------------ ENABLE THIS FOR LIVE DATABASE SAVING ----------------
       const addedContactId = await this.contactService.addContact(this.htmlinput);
       this.clearInputFields();
       this.close.emit();

@@ -106,7 +106,6 @@ export class Summary implements OnInit {
       }
     }, 500);
 
-    // Safety: stop interval after 5 seconds
     setTimeout(() => clearInterval(interval), 5000);
   }
 

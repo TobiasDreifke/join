@@ -64,8 +64,6 @@ export class Contacts {
     this.displaySingleContact = true;
   }
 
-  // ---------- Popup/add/edit related state ----------
-
   /** Flag to show/hide the add/edit contact popup */
   showPopUpAddContact = false;
 
@@ -96,7 +94,6 @@ export class Contacts {
   addedContact(createdContactId: string) {
     this.showSingleContact();
     this.activeContactId = createdContactId;
-
     this.addedContactParam = true;
     setTimeout(() => {
       this.addedContactParam = false;
