@@ -14,14 +14,15 @@
             <div>
                 <input type="text" name="displayName" id="displayName" required placeholder="Name"
                     [(ngModel)]="user.displayName" #displayName="ngModel" (ngModelChange)="validateDisplayName()"
-                    [ngClass]="{ error: displayNameInvalid }" /> <img src="./assets/icons/person.svg" alt="" />
+                    [ngClass]="{ error: displayNameInvalid }" />
+                <img class="image_color" src="./assets/icons/person.svg" alt="" />
             </div>
 
             <!-- Email -->
             <div>
                 <input type="email" name="email" id="email" required placeholder="Email" [(ngModel)]="user.email"
-                    #email="ngModel" (ngModelChange)="validateEmail()" [ngClass]="{ error: emailInvalid }" /><img
-                    src="./assets/icons/mail.svg" alt="" />
+                    #email="ngModel" (ngModelChange)="validateEmail()" [ngClass]="{ error: emailInvalid }" />
+                <img class="image_color" src="./assets/icons/mail.svg" alt="" />
             </div>
 
             <!-- Password -->
@@ -29,16 +30,17 @@
                 <input [type]="passwordVisible ? 'text' : 'password'" name="password" id="password" required
                     placeholder="Password" [(ngModel)]="user.password" #password="ngModel"
                     (ngModelChange)="validatePassword()" [ngClass]="{ error: passwordInvalid }" />
-                <img [src]="passwordVisible ? './assets/icons/visibility.svg' : './assets/icons/visibility_off.svg'"
-                    (click)="togglePasswordVisibility()" class="pointer" alt="Show/Hide Password" />
+                <img class="image_color pointer"
+                    [src]="passwordVisible ? './assets/icons/visibility.svg' : './assets/icons/visibility_off.svg'"
+                    (click)="togglePasswordVisibility()" alt="Show/Hide Password" />
             </div>
 
             <!-- Confirm Password -->
             <div>
                 <input type="password" name="confirmPassword" id="confirmPassword" required
                     placeholder="Confirm Password" [(ngModel)]="user.confirmPassword" #confirmPassword="ngModel"
-                    (ngModelChange)="validateConfirmPassword()" [ngClass]="{ error: confirmPasswordMismatch }" /> <img
-                    src="./assets/icons/lock.svg" alt="" />
+                    (ngModelChange)="validateConfirmPassword()" [ngClass]="{ error: confirmPasswordMismatch }" />
+                <img class="image_color" src="./assets/icons/lock.svg" alt="" />
             </div>
 
             <!-- Error messages -->
