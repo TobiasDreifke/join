@@ -50,14 +50,14 @@ export class Summary implements OnInit {
         localStorage.setItem('hasSeenWelcome', 'true');
 
         if (!isGuestLogin) {
-          this.router.navigate(['/summary']);
+          // this.router.navigate(['/summary']);
         }
       }, 3000);
     } else {
       this.showWelcome = false;
       this.showMainContent = true;
       if (!isGuestLogin) {
-        this.router.navigate(['/summary']);
+        // this.router.navigate(['/summary']);
       }
     }
   }
@@ -70,9 +70,9 @@ export class Summary implements OnInit {
     if (isGuestLogin) {
       this.userName = 'Guest';
     } else {
-      const name = this.authService.getDisplayName();
-      this.userName = name ? name : 'Guest';
-    }
+    const name = this.authService.getDisplayName();
+    this.userName = name ? name : 'Guest';
+  }
   }
 
 

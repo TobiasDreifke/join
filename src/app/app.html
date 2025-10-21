@@ -1,12 +1,11 @@
-@if (!authService.logStatus.value && (router.url !== '/privacy' && router.url !== '/legal')) {
-<app-start-screen [animationTime]="animationTime">
-  <div class="router_outlet_wrapper"> <router-outlet /></div>
-</app-start-screen>
+@if (!(authService.loggedIn$ | async) && (router.url !== '/privacy' && router.url !== '/legal')) {
+  <app-start-screen [animationTime]="animationTime">
+    <div class="router_outlet_wrapper"> <router-outlet /></div>
+  </app-start-screen>
 } @else {
-<app-sidebar [loggedIn]="authService.logStatus.value"></app-sidebar>
-<div class="content">
-  <app-header [loggedIn]="authService.logStatus.value"></app-header>
-  <div class="router_outlet_wrapper"> <router-outlet /></div>
-
-</div>
+  <app-sidebar [loggedIn]="authService.loggedIn$ | async"></app-sidebar>
+  <div class="content">
+    <app-header [loggedIn]="authService.loggedIn$ | async"></app-header>
+    <div class="router_outlet_wrapper"> <router-outlet /></div>
+  </div>
 }
