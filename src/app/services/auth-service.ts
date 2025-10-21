@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
-import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, updateProfile } from '@angular/fire/auth';
+import { Auth, authState, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, updateProfile } from '@angular/fire/auth';
 import { Router } from '@angular/router';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, map, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -104,12 +104,16 @@ export class AuthService {
     }
   }
 
-
+  loggedIn$: Observable<boolean> = authState(this.auth).pipe(
+    map(user => !!user)
+  );
 
   async logout() {
     await signOut(this.auth);
     this.router.navigate(['/login']);
-    this.logStatus.next(false);
+    // this.logStatus.next(false);
+    console.log("Logout");
+    
   }
 
   getDisplayName() {

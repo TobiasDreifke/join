@@ -11,7 +11,7 @@ import { AuthService } from '../../services/auth-service';
 })
 export class Header {
 
-  @Input() loggedIn!: boolean;
+  @Input() loggedIn!: boolean | null;
   notVisible = true;
   authService = inject(AuthService);
 

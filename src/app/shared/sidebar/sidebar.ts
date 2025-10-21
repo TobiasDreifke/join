@@ -10,5 +10,5 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 })
 export class Sidebar {
 
-  @Input() loggedIn!: boolean;
+  @Input() loggedIn!: boolean | null;
 }
