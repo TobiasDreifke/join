@@ -1,59 +1,67 @@
-# Join
+# Join – Collaborative Project Management App
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.1.3.
+**Join** is a web-based project management application designed to streamline team collaboration, task tracking, and communication. Built using Angular 20, Firebase, and hosted on All-Inkl, Join offers a seamless experience for teams to manage their workflows efficiently.
 
-## Development server
+---
 
-To start a local development server, run:
+## 🚀 Features
 
-```bash
-ng serve
-```
+- **Dashboard (`/summary`)**  
+  Provides an overview of ongoing projects, upcoming deadlines, and recent activities, offering a snapshot of the team's progress.
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+- **Task Management (`/tasks`)**  
+  Allows users to create, assign, and track tasks, ensuring that all team members are aligned and aware of their responsibilities.
 
-## Code scaffolding
+- **Project Board (`/board`)**  
+  Visualize tasks and their statuses using a Kanban-style board, facilitating easy tracking of task progress across different stages.
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+- **Contacts (`/contacts`)**  
+  Manage and view team members' contact information, fostering better communication and collaboration within the team.
 
-```bash
-ng generate component component-name
-```
+- **Authentication (`/login` & `/sign-up`)**  
+  Secure login and registration system, ensuring that only authorized users can access and manage the application.
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+---
 
-```bash
-ng generate --help
-```
+## 🛠️ Technologies Used
 
-## Building
+- **Frontend:** Angular 20 with TypeScript, HTML, and CSS  
+- **Backend:** Firebase for real-time database and authentication  
+- **Hosting:** All-Inkl server  
+- **Version Control:** Git and GitHub  
 
-To build the project run:
+---
 
-```bash
-ng build
-```
+## 🧩 Development Process
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+The project was developed collaboratively by a team of four developers.  
+We followed Scrum methodology, conducting daily stand-ups and using Trello for task management and communication.  
+Firebase was integrated for real-time data synchronization and user authentication.
 
-## Running unit tests
+---
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+## 📦 Installation
 
-```bash
-ng test
-```
+To set up the project locally:
 
-## Running end-to-end tests
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/TobiasDreifke/join.git
+   cd join
 
-For end-to-end (e2e) testing, run:
+   
+2. **Install dependencies:**
+   ```bash
+   npm install
 
-```bash
-ng e2e
-```
+3. **Run the development server:**
+   ```bash
+   ng s -o
+## 🌐 Live Demo
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+Check out the live application here: https://join.tobiasdreifke.com
 
-## Additional Resources
+## 📄 License
+This project is open-source and available under the MIT License
+.
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
